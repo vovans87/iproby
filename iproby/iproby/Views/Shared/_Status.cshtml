@@ -1,0 +1,20 @@
+﻿@{
+    Layout = null;
+}
+
+@if (IsSectionDefined("RegistrationSuccess"))
+{
+    @RenderSection("RegistrationSuccess")
+}
+
+@if (IsSectionDefined("LoginSuccess"))
+{
+    @RenderSection("LoginSuccess")
+}
+
+@if (IsSectionDefined("LoginFailed"))
+{
+    @RenderSection("LoginFailed")
+}
+
+@RenderBody()

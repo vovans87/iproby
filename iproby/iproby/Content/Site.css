@@ -1,0 +1,18 @@
+﻿.add_asterisk:after 
+{
+	content: "*";
+	font-weight: bold;
+	color: red; 
+}
+.hide {
+    display:none;
+}
+.enter:hover {
+    opacity:0.7;
+    cursor:pointer;
+}
+.registration:hover {
+    opacity:0.7;
+    cursor:pointer;
+}
+

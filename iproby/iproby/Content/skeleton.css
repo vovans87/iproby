@@ -1,0 +1,34 @@
+﻿ @font-face {
+    font-family: HelveticaBold; 
+    src: url(fonts\Helvetica\HelveticaBold\HelveticaBold.woff); 
+   }
+
+div {
+    /*border: 1px solid black;*/
+    /*background-color:grey;*/
+}
+.container {
+    width:1400px;
+}
+.header_top>div{
+    height:52px;
+    background-image:url(img/header_top_bg.png);
+    background-repeat:repeat-x;
+    text-align:center;
+    line-height:3;
+    font-size:15px;
+    color:white;
+    font-weight:bold;
+}
+.header_top>[css="custom"] {
+    background-image:url(img/header_top_reg.png);
+    background-repeat:repeat-x;
+    padding-left:20px;
+    overflow:hidden;
+    /*width:170px;*/
+}
+.header_middle {
+    height:530px;
+    padding-top:10px;
+    /*padding:10px;*/
+}

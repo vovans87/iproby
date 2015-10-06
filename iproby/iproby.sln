@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iproby", "iproby\iproby.csproj", "{D34BEEDE-66A9-4CD6-BC78-A18287D38B21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D34BEEDE-66A9-4CD6-BC78-A18287D38B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D34BEEDE-66A9-4CD6-BC78-A18287D38B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D34BEEDE-66A9-4CD6-BC78-A18287D38B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D34BEEDE-66A9-4CD6-BC78-A18287D38B21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://vsukhov.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = iproby\\iproby.csproj
+		SccProjectName1 = iproby
+		SccLocalPath1 = iproby
+	EndGlobalSection
+EndGlobal

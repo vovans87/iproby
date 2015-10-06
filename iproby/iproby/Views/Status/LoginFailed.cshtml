@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "LoginFailed";
+    Layout = "~/Views/Shared/_Status.cshtml";
+}
+
+@section LoginFailed{
+    <h6>Неправильный логин или пароль!</h6>
+    @Html.ActionLink("Повторить попытку", "Login", "Login", null, new { @class = "btn btn-link" })
+    
+
+}
+
+
+
+
