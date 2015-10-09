@@ -1,7 +1,7 @@
-﻿ @font-face {
-    font-family: HelveticaBold; 
-    src: url(fonts\Helvetica\HelveticaBold\HelveticaBold.woff); 
-   }
+﻿@font-face {
+    font-family: 'Helvetica Bold';
+    src: url('fonts/HelveticaBold.ttf'),url('fonts/HelveticaBold.woff'),url('fonts/HelveticaBold.eot');
+}
 body {
     
 }
