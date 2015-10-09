@@ -2,7 +2,9 @@
     font-family: HelveticaBold; 
     src: url(fonts\Helvetica\HelveticaBold\HelveticaBold.woff); 
    }
-
+body {
+    
+}
 div {
     /*border: 1px solid black;*/
     /*background-color:grey;*/
