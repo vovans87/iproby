@@ -197,9 +197,14 @@
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
     <Content Include="Content\img\header_middle_left.png" />
+    <Content Include="Content\img\header_middle_left_btn.png" />
+    <Content Include="Content\img\header_middle_left_li.png" />
     <Content Include="Content\img\header_middle_right.png" />
+    <Content Include="Content\img\header_middle_right_li.png" />
     <Content Include="Content\img\header_top_bg.png" />
+    <Content Include="Content\img\header_top_login_ico.png" />
     <Content Include="Content\img\header_top_reg.png" />
+    <Content Include="Content\img\header_top_reg_ico.png" />
     <Content Include="Content\img\ipro_header_top.png" />
     <Content Include="Content\skeleton.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

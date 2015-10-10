@@ -12,7 +12,7 @@ div {
 .container {
     width:1400px;
 }
-.header_top>div{
+.header_top>.col-md-1{
     height:52px;
     background-image:url(img/header_top_bg.png);
     background-repeat:repeat-x;
@@ -22,12 +22,9 @@ div {
     color:white;
     font-weight:bold;
 }
-.header_top>[css="custom"] {
-    background-image:url(img/header_top_reg.png);
-    background-repeat:repeat-x;
-    padding-left:20px;
-    overflow:hidden;
-    /*width:170px;*/
+
+.right_after_reg {
+    width:180px;
 }
 .header_middle {
     height:530px;

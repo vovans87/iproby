@@ -1,18 +1,93 @@
-﻿.add_asterisk:after 
-{
-	content: "*";
-	font-weight: bold;
-	color: red; 
-}
-.hide {
-    display:none;
-}
-.enter:hover {
-    opacity:0.7;
-    cursor:pointer;
-}
-.registration:hover {
-    opacity:0.7;
-    cursor:pointer;
+﻿.add_asterisk:after {
+    content: "*";
+    font-weight: bold;
+    color: red;
 }
 
+.hide {
+    display: none;
+}
+#enter {
+    font-size:13px;
+    line-height: 3.7;
+    background-image:none;
+     height:52px;
+     background-color:#44b275;
+     overflow:hidden;
+}
+#enter:hover {
+        cursor:pointer;
+    background-color:#88cca5;
+    border:1px solid white;
+}
+.registration {
+    background-image:none;
+   background-color:#f5ab35;
+    height:52px;
+    padding-left:20px;
+    overflow:hidden;
+    width:170px;
+     text-align:center;
+    line-height:3;
+    font-size:15px;
+    color:white;
+    font-weight:bold;
+}
+.registration:hover {
+    cursor:pointer;
+    background-color:#f6c679;
+    border:1px solid white;
+}
+
+.header_middle_left_btn {
+    /* Для хороших браузеров */
+  -moz-border-radius: 40px; /* Firefox */
+  -webkit-border-radius: 40px; /* Safari, Chrome */
+  -khtml-border-radius: 40px; /* KHTML */
+  border-radius: 40px; /* CSS3 */
+  /* Для плохих IE */
+  behavior: url(border-radius.htc); /* учим IE border-radius */
+    width: 220px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 35px;
+    font-family: Helvetica Bold;
+    font-size: 16px;
+    line-height: 3;
+    color: white;
+    background-color:#f5ab35;
+    
+}
+
+    .header_middle_left_btn:hover {
+    cursor:pointer;
+    background-color:#f6c679;
+    border:1px solid white;
+}
+
+    .header_middle_right_btn {
+    /* Для хороших браузеров */
+  -moz-border-radius: 40px; /* Firefox */
+  -webkit-border-radius: 40px; /* Safari, Chrome */
+  -khtml-border-radius: 40px; /* KHTML */
+  border-radius: 40px; /* CSS3 */
+  /* Для плохих IE */
+  behavior: url(border-radius.htc); /* учим IE border-radius */
+    width: 220px;
+    height: 50px;
+    margin: 0 auto;
+    margin-top: 35px;
+    font-family: Helvetica Bold;
+    font-size: 16px;
+    line-height: 3;
+    color: white;
+    background-color:#44b275;
+    
+}
+
+    .header_middle_right_btn:hover {
+    cursor:pointer;
+    background-color:#88cca5;
+    border:1px solid white;
+}
+    
