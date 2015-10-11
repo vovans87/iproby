@@ -196,6 +196,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\img\calendar_ico.png" />
     <Content Include="Content\img\category_comp_li_ico_1.png" />
     <Content Include="Content\img\category_comp_li_ico_2.png" />
     <Content Include="Content\img\category_comp_li_ico_3.png" />
@@ -211,6 +212,7 @@
     <Content Include="Content\img\category_mobile_li_ico_2.png" />
     <Content Include="Content\img\category_mobile_li_ico_3.png" />
     <Content Include="Content\img\category_mobile_top.png" />
+    <Content Include="Content\img\city_ico.png" />
     <Content Include="Content\img\find_ico.png" />
     <Content Include="Content\img\header_middle_left.png" />
     <Content Include="Content\img\header_middle_left_btn.png" />
@@ -222,6 +224,11 @@
     <Content Include="Content\img\header_top_reg.png" />
     <Content Include="Content\img\header_top_reg_ico.png" />
     <Content Include="Content\img\ipro_header_top.png" />
+    <Content Include="Content\img\no_logo.png" />
+    <Content Include="Content\img\phone.png" />
+    <Content Include="Content\img\star_active.png" />
+    <Content Include="Content\img\star_inactive.png" />
+    <Content Include="Content\img\view_ico.png" />
     <Content Include="Content\skeleton.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
