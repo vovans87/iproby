@@ -196,6 +196,22 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\img\category_comp_li_ico_1.png" />
+    <Content Include="Content\img\category_comp_li_ico_2.png" />
+    <Content Include="Content\img\category_comp_li_ico_3.png" />
+    <Content Include="Content\img\category_comp_top.png" />
+    <Content Include="Content\img\category_edu_li_ico_1.png" />
+    <Content Include="Content\img\category_edu_li_ico_2.png" />
+    <Content Include="Content\img\category_edu_top.png" />
+    <Content Include="Content\img\category_internet_li_ico_1.png" />
+    <Content Include="Content\img\category_internet_li_ico_2.png" />
+    <Content Include="Content\img\category_internet_li_ico_3.png" />
+    <Content Include="Content\img\category_internet_top.png" />
+    <Content Include="Content\img\category_mobile_li_ico_1.png" />
+    <Content Include="Content\img\category_mobile_li_ico_2.png" />
+    <Content Include="Content\img\category_mobile_li_ico_3.png" />
+    <Content Include="Content\img\category_mobile_top.png" />
+    <Content Include="Content\img\find_ico.png" />
     <Content Include="Content\img\header_middle_left.png" />
     <Content Include="Content\img\header_middle_left_btn.png" />
     <Content Include="Content\img\header_middle_left_li.png" />

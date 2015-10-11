@@ -7,46 +7,50 @@
 .hide {
     display: none;
 }
+
 #enter {
-    font-size:13px;
+    font-size: 13px;
     line-height: 3.7;
-    background-image:none;
-     height:52px;
-     background-color:#44b275;
-     overflow:hidden;
+    background-image: none;
+    height: 52px;
+    background-color: #44b275;
+    overflow: hidden;
 }
-#enter:hover {
-        cursor:pointer;
-    background-color:#88cca5;
-    border:1px solid white;
-}
+
+    #enter:hover {
+        cursor: pointer;
+        background-color: #88cca5;
+        border: 1px solid white;
+    }
+
 .registration {
-    background-image:none;
-   background-color:#f5ab35;
-    height:52px;
-    padding-left:20px;
-    overflow:hidden;
-    width:170px;
-     text-align:center;
-    line-height:3;
-    font-size:15px;
-    color:white;
-    font-weight:bold;
+    background-image: none;
+    background-color: #f5ab35;
+    height: 52px;
+    padding-left: 20px;
+    overflow: hidden;
+    width: 170px;
+    text-align: center;
+    line-height: 3;
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
 }
-.registration:hover {
-    cursor:pointer;
-    background-color:#f6c679;
-    border:1px solid white;
-}
+
+    .registration:hover {
+        cursor: pointer;
+        background-color: #f6c679;
+        border: 1px solid white;
+    }
 
 .header_middle_left_btn {
     /* Для хороших браузеров */
-  -moz-border-radius: 40px; /* Firefox */
-  -webkit-border-radius: 40px; /* Safari, Chrome */
-  -khtml-border-radius: 40px; /* KHTML */
-  border-radius: 40px; /* CSS3 */
-  /* Для плохих IE */
-  behavior: url(border-radius.htc); /* учим IE border-radius */
+    -moz-border-radius: 40px; /* Firefox */
+    -webkit-border-radius: 40px; /* Safari, Chrome */
+    -khtml-border-radius: 40px; /* KHTML */
+    border-radius: 40px; /* CSS3 */
+    /* Для плохих IE */
+    behavior: url(border-radius.htc); /* учим IE border-radius */
     width: 220px;
     height: 50px;
     margin: 0 auto;
@@ -55,24 +59,23 @@
     font-size: 16px;
     line-height: 3;
     color: white;
-    background-color:#f5ab35;
-    
+    background-color: #f5ab35;
 }
 
     .header_middle_left_btn:hover {
-    cursor:pointer;
-    background-color:#f6c679;
-    border:1px solid white;
-}
+        cursor: pointer;
+        background-color: #f6c679;
+        border: 1px solid white;
+    }
 
-    .header_middle_right_btn {
+.header_middle_right_btn {
     /* Для хороших браузеров */
-  -moz-border-radius: 40px; /* Firefox */
-  -webkit-border-radius: 40px; /* Safari, Chrome */
-  -khtml-border-radius: 40px; /* KHTML */
-  border-radius: 40px; /* CSS3 */
-  /* Для плохих IE */
-  behavior: url(border-radius.htc); /* учим IE border-radius */
+    -moz-border-radius: 40px; /* Firefox */
+    -webkit-border-radius: 40px; /* Safari, Chrome */
+    -khtml-border-radius: 40px; /* KHTML */
+    border-radius: 40px; /* CSS3 */
+    /* Для плохих IE */
+    behavior: url(border-radius.htc); /* учим IE border-radius */
     width: 220px;
     height: 50px;
     margin: 0 auto;
@@ -81,13 +84,44 @@
     font-size: 16px;
     line-height: 3;
     color: white;
-    background-color:#44b275;
-    
+    background-color: #44b275;
 }
 
     .header_middle_right_btn:hover {
-    cursor:pointer;
-    background-color:#88cca5;
-    border:1px solid white;
+        cursor: pointer;
+        background-color: #88cca5;
+        border: 1px solid white;
+    }
+
+.category a {
+    border-bottom: 1px solid #446cb3;
 }
-    
+
+    .category a:hover {
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        border-bottom: 1px solid white;
+        cursor: pointer;
+    }
+
+.find_btn {
+    width: 140px;
+    height: 45px;
+    background-color: #16171c;
+    float: right;
+    margin-top: -45px;
+    text-align: center;
+    margin-right: 30px;
+    -moz-border-radius: 4px; /* Firefox */
+    -webkit-border-radius: 4px; /* Safari, Chrome */
+    -khtml-border-radius: 4px; /* KHTML */
+    border-radius: 4px; /* CSS3 */ /* Для плохих IE */
+    behavior: url(border-radius.htc); /* учим IE border-radius */
+}
+
+    .find_btn:hover {
+        cursor: pointer;
+        background-color: #666667;
+         border: 1px solid white;
+    }

@@ -31,3 +31,15 @@ div {
     padding-top:10px;
     /*padding:10px;*/
 }
+.category > .col-md-2 {
+   
+    height:340px;
+    text-align:center;
+
+    }
+.category_left_clear {
+    width:150px;
+}
+.category_right_clear {
+    width:150px;
+}
