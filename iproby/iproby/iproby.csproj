@@ -196,6 +196,12 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\img\announ_social_bg.png" />
+    <Content Include="Content\img\announ_social_facebook.png" />
+    <Content Include="Content\img\announ_social_odnoklass.png" />
+    <Content Include="Content\img\announ_social_skype.png" />
+    <Content Include="Content\img\announ_social_twitter.png" />
+    <Content Include="Content\img\announ_social_vkontakte.png" />
     <Content Include="Content\img\calendar_ico.png" />
     <Content Include="Content\img\category_comp_li_ico_1.png" />
     <Content Include="Content\img\category_comp_li_ico_2.png" />
@@ -224,6 +230,7 @@
     <Content Include="Content\img\header_top_reg.png" />
     <Content Include="Content\img\header_top_reg_ico.png" />
     <Content Include="Content\img\ipro_header_top.png" />
+    <Content Include="Content\img\like_dislike.png" />
     <Content Include="Content\img\no_logo.png" />
     <Content Include="Content\img\phone.png" />
     <Content Include="Content\img\star_active.png" />

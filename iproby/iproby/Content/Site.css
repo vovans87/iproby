@@ -125,3 +125,7 @@
         background-color: #666667;
          border: 1px solid white;
     }
+
+.social_band img,span:hover {
+    cursor:pointer;
+}
