@@ -220,6 +220,9 @@
     <Content Include="Content\img\category_mobile_top.png" />
     <Content Include="Content\img\city_ico.png" />
     <Content Include="Content\img\find_ico.png" />
+    <Content Include="Content\img\footer_address_ico.png" />
+    <Content Include="Content\img\footer_calend_ico.png" />
+    <Content Include="Content\img\footer_phone_ico.png" />
     <Content Include="Content\img\header_middle_left.png" />
     <Content Include="Content\img\header_middle_left_btn.png" />
     <Content Include="Content\img\header_middle_left_li.png" />
@@ -231,11 +234,16 @@
     <Content Include="Content\img\header_top_reg_ico.png" />
     <Content Include="Content\img\ipro_header_top.png" />
     <Content Include="Content\img\like_dislike.png" />
+    <Content Include="Content\img\maestro.png" />
+    <Content Include="Content\img\master.png" />
+    <Content Include="Content\img\news_ico.png" />
     <Content Include="Content\img\no_logo.png" />
+    <Content Include="Content\img\paypal.png" />
     <Content Include="Content\img\phone.png" />
     <Content Include="Content\img\star_active.png" />
     <Content Include="Content\img\star_inactive.png" />
     <Content Include="Content\img\view_ico.png" />
+    <Content Include="Content\img\visa.png" />
     <Content Include="Content\skeleton.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />

@@ -129,3 +129,15 @@
 .social_band img,span:hover {
     cursor:pointer;
 }
+.announ:hover {
+-webkit-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
+
+-moz-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
+
+box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
+cursor:pointer;
+}
+
+.news_read_forward:hover {
+    cursor:pointer;
+}
