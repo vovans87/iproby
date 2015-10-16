@@ -222,7 +222,12 @@
     <Content Include="Content\img\find_ico.png" />
     <Content Include="Content\img\footer_address_ico.png" />
     <Content Include="Content\img\footer_calend_ico.png" />
+    <Content Include="Content\img\footer_facebook.png" />
+    <Content Include="Content\img\footer_odnoklas.png" />
     <Content Include="Content\img\footer_phone_ico.png" />
+    <Content Include="Content\img\footer_skype.png" />
+    <Content Include="Content\img\footer_twitter.png" />
+    <Content Include="Content\img\footer_vk.png" />
     <Content Include="Content\img\header_middle_left.png" />
     <Content Include="Content\img\header_middle_left_btn.png" />
     <Content Include="Content\img\header_middle_left_li.png" />
