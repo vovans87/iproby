@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@if (IsSectionDefined("Registration"))
+{
+    @RenderSection("Registration")
+}
+@if (IsSectionDefined("Login"))
+{
+    @RenderSection("Login")
+}
+
+@RenderBody()

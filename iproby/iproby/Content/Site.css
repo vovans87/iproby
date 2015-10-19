@@ -8,6 +8,10 @@
     display: none;
 }
 
+.header_top_left > a {
+    color: white;
+}
+
 #enter {
     font-size: 13px;
     line-height: 3.7;
@@ -15,6 +19,7 @@
     height: 52px;
     background-color: #44b275;
     overflow: hidden;
+    width: 100px;
 }
 
     #enter:hover {
@@ -123,21 +128,34 @@
     .find_btn:hover {
         cursor: pointer;
         background-color: #666667;
-         border: 1px solid white;
+        border: 1px solid white;
     }
 
-.social_band img,span:hover {
-    cursor:pointer;
+.social_band img, span:hover {
+    cursor: pointer;
 }
+
 .announ:hover {
--webkit-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
-
--moz-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
-
-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
-cursor:pointer;
+    -webkit-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
+    -moz-box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
+    box-shadow: 1px 1px 12px 12px rgba(225,223,223,1);
+    cursor: pointer;
 }
 
 .news_read_forward:hover {
-    cursor:pointer;
+    cursor: pointer;
+}
+
+.header_get_workers:hover {
+        cursor: pointer;
+        background-color: #88cca5;
+        border: 2px solid white;
+        -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;
+}
+
+.header_get_clients:hover {
+        cursor: pointer;
+        background-color: #f6c679;
+        border: 2px solid white;
+        -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;
 }

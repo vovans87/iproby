@@ -12,7 +12,7 @@ div {
 .container {
     width:1400px;
 }
-.header_top>.col-md-1{
+.header_top_left{
     height:52px;
     background-image:url(img/header_top_bg.png);
     background-repeat:repeat-x;
@@ -22,7 +22,16 @@ div {
     color:white;
     font-weight:bold;
 }
-
+.header_top_right{
+    height:52px;
+    background-image:url(img/header_top_bg.png);
+    background-repeat:repeat-x;
+    text-align:center;
+    line-height:3;
+    font-size:15px;
+    color:white;
+    font-weight:bold;
+}
 .right_after_reg {
     width:180px;
 }
@@ -32,8 +41,7 @@ div {
     /*padding:10px;*/
 }
 .category > .col-md-2 {
-   
-    height:340px;
+  
     text-align:center;
 
     }

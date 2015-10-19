@@ -152,6 +152,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data_Model\contact.cs">
@@ -202,6 +204,7 @@
     <Content Include="Content\img\announ_social_skype.png" />
     <Content Include="Content\img\announ_social_twitter.png" />
     <Content Include="Content\img\announ_social_vkontakte.png" />
+    <Content Include="Content\img\big_clock_ico.png" />
     <Content Include="Content\img\calendar_ico.png" />
     <Content Include="Content\img\category_comp_li_ico_1.png" />
     <Content Include="Content\img\category_comp_li_ico_2.png" />
@@ -228,6 +231,7 @@
     <Content Include="Content\img\footer_skype.png" />
     <Content Include="Content\img\footer_twitter.png" />
     <Content Include="Content\img\footer_vk.png" />
+    <Content Include="Content\img\header_job_ico.png" />
     <Content Include="Content\img\header_middle_left.png" />
     <Content Include="Content\img\header_middle_left_btn.png" />
     <Content Include="Content\img\header_middle_left_li.png" />
@@ -237,6 +241,7 @@
     <Content Include="Content\img\header_top_login_ico.png" />
     <Content Include="Content\img\header_top_reg.png" />
     <Content Include="Content\img\header_top_reg_ico.png" />
+    <Content Include="Content\img\header_work_ico.png" />
     <Content Include="Content\img\ipro_header_top.png" />
     <Content Include="Content\img\like_dislike.png" />
     <Content Include="Content\img\maestro.png" />
@@ -447,6 +452,16 @@
     <Content Include="Views\Status\CheckLogin.cshtml" />
     <Content Include="Views\Authorization\Registration.cshtml" />
     <Content Include="Views\Authorization\Login.cshtml" />
+    <Content Include="Views\Catalog\Index.cshtml" />
+    <Content Include="Views\Home\HeaderTop.cshtml" />
+    <Content Include="Views\Home\HeaderMiddle.cshtml" />
+    <Content Include="Views\Catalog\Announs.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\Home\Footer.cshtml" />
+    <Content Include="Views\Home\Head.cshtml" />
+    <Content Include="Views\Authorization\Index.cshtml" />
+    <Content Include="Views\Catalog\Categories.cshtml" />
+    <Content Include="Views\Catalog\CategoriesMin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
