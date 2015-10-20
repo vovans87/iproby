@@ -6,19 +6,15 @@ using System.Web.Mvc;
 
 namespace iproby.Controllers
 {
-    public class CatalogController : Controller
+    public class AnnounController : Controller
     {
         //
-        // GET: /Catalog/
+        // GET: /Announ/
 
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult Announs()
-        {
-            return View();
-        }
     }
 }

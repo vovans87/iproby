@@ -65,6 +65,12 @@
       <HintPath>..\packages\JavaScriptEngineSwitcher.Core.1.2.4\lib\net40\JavaScriptEngineSwitcher.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MvcSiteMapProvider">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC4.Core.4.6.19\lib\net45\MvcSiteMapProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcSiteMapProvider.WebActivator">
+      <HintPath>..\packages\MvcSiteMapProvider.MVC4.4.6.19\lib\net45\MvcSiteMapProvider.WebActivator.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -141,6 +147,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -151,6 +160,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AnnounController.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
@@ -198,12 +208,19 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\img\announ_letter_ico.png" />
+    <Content Include="Content\img\announ_letter_ico2.png" />
+    <Content Include="Content\img\announ_no_photo.png" />
+    <Content Include="Content\img\announ_no_profile_img.gif" />
+    <Content Include="Content\img\announ_site_ico.png" />
+    <Content Include="Content\img\announ_skype_ico.png" />
     <Content Include="Content\img\announ_social_bg.png" />
     <Content Include="Content\img\announ_social_facebook.png" />
     <Content Include="Content\img\announ_social_odnoklass.png" />
     <Content Include="Content\img\announ_social_skype.png" />
     <Content Include="Content\img\announ_social_twitter.png" />
     <Content Include="Content\img\announ_social_vkontakte.png" />
+    <Content Include="Content\img\announ_star_ico.png" />
     <Content Include="Content\img\big_clock_ico.png" />
     <Content Include="Content\img\calendar_ico.png" />
     <Content Include="Content\img\category_comp_li_ico_1.png" />
@@ -222,6 +239,7 @@
     <Content Include="Content\img\category_mobile_li_ico_3.png" />
     <Content Include="Content\img\category_mobile_top.png" />
     <Content Include="Content\img\city_ico.png" />
+    <Content Include="Content\img\edit_ico.png" />
     <Content Include="Content\img\find_ico.png" />
     <Content Include="Content\img\footer_address_ico.png" />
     <Content Include="Content\img\footer_calend_ico.png" />
@@ -408,6 +426,10 @@
     <Content Include="Content\fonts\HelveticaBold.eot" />
     <Content Include="Content\fonts\HelveticaBold.ttf" />
     <Content Include="Content\fonts\HelveticaBold.woff" />
+    <Content Include="Mvc.sitemap" />
+    <None Include="MvcSiteMapSchema.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -433,6 +455,14 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Validator.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.ascx" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -462,6 +492,15 @@
     <Content Include="Views\Authorization\Index.cshtml" />
     <Content Include="Views\Catalog\Categories.cshtml" />
     <Content Include="Views\Catalog\CategoriesMin.cshtml" />
+    <Content Include="Views\Announ\Index.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SiteMapHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
