@@ -456,6 +456,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Validator.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Announ\Index.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.ascx" />
@@ -493,7 +496,6 @@
     <Content Include="Views\Authorization\Index.cshtml" />
     <Content Include="Views\Catalog\Categories.cshtml" />
     <Content Include="Views\Catalog\CategoriesMin.cshtml" />
-    <Content Include="Views\Announ\Index.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.cshtml" />
