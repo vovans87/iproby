@@ -3,7 +3,9 @@
     src: url('fonts/HelveticaBold.ttf'),url('fonts/HelveticaBold.woff'),url('fonts/HelveticaBold.eot');
 }
 body {
-    
+    background-color:#f6f6f6;
+    margin:0;
+    padding:0;
 }
 div {
     /*border: 1px solid black;*/
@@ -11,6 +13,13 @@ div {
 }
 .container {
     width:1400px;
+    background-color:#ebebeb;
+   
+}
+.header_top {
+    height:52px;
+    background-image:url(img/header_top_bg.png);
+    background-repeat:repeat-x;
 }
 .header_top_left{
     height:52px;
@@ -21,6 +30,8 @@ div {
     font-size:15px;
     color:white;
     font-weight:bold;
+    float:left;
+    width:600px;
 }
 .header_top_right{
     height:52px;
@@ -31,6 +42,8 @@ div {
     font-size:15px;
     color:white;
     font-weight:bold;
+     float:right;
+    width:500px;
 }
 .right_after_reg {
     width:180px;

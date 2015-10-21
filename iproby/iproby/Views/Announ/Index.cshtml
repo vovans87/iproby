@@ -8,6 +8,7 @@
 
 </head>
 <body>
+   
     <div class="container">
         @RenderPage("~/Views/Home/HeaderTop.cshtml")
         <div class="row">
@@ -132,9 +133,10 @@
                         <span style="color: #888888; font-family: Helvetica; font-size: 14px;">26 сентябрь, 2016</span>
                         <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " />
                         <span style="color: #888888; font-family: Helvetica; font-size: 14px;">Просмотров: <b>2.393</b></span>
-                        <img src="~/Content/img/like_dislike.png" style="margin-left:480px;margin-top:18px;" />
-                        <span style="font-family: Helvetica; font-size: 11px; color:white; margin-top: 25px; position: absolute;">150</span>
-                        <span style="font-family: Helvetica; font-size: 11px; color:white; margin-top: 25px; position: absolute;">150</span>
+                        <img src="~/Content/img/like_dislike.png" style="margin-top:30px;margin-left:40px;position:absolute;" />
+                        <span style="position:absolute;margin-top:37px;margin-left:81px;font-family: Helvetica; font-size: 11px;color:white;">150</span>
+                        <span style="position:absolute;margin-top:37px;margin-left:146px;font-family: Helvetica; font-size: 11px;color:white;">150</span>
+ 
                     </li>
                 </ul>
             </div>
@@ -144,7 +146,7 @@
                 Отзывы (0):
             </div>
             <div class="row" style="width:1100px;margin:0 auto;">
-                <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:30px;">
+                <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;">
                     <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
                         <img src="~/Content/img/no_logo.png" style="margin-left: 20px;margin-top:20px;margin-right:20px; float: left;" />
                         <div style="font-family: Helvetica Bold; font-size: 14px; float: left; margin-top: 20px; width: 130px; height: 40px; color: #115a56;">Эльвира Семеновна</div>
@@ -174,29 +176,44 @@
             <div class="row" style="width: 1100px; margin: 0 auto; height: 70px; font-family: Helvetica Bold; font-size: 16px; color: #115a56; line-height:70px;">
                 Добавить отзыв
             </div>
-            <div class="row" style="width: 1100px; margin: 0 auto;">
-                <div style="width:460px;height:50px;background-color:white;-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);"></div>
-                <div style="margin-top:15px;width: 460px; height: 50px; background-color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);"></div>
-                <div style="margin-top: 15px; width: 460px; height: 50px; background-color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);"></div>
-                <div style="margin-top: 15px; width: 460px; height: 50px;">
-                    <div style="margin-left: 20px; color: #454545; font-family: Helvetica Bold; font-size: 15px; "> Ваша оценка: <b>4</b></div>
-                    <div style="margin-left: 20px; ">
-                        <img src="~/Content/img/star_active.png" />
-                        <img src="~/Content/img/star_active.png" />
-                        <img src="~/Content/img/star_active.png" />
-                        <img src="~/Content/img/star_active.png" />
-                        <img src="~/Content/img/star_inactive.png" />
+            <div class="row" style="width: 1100px; margin: 0 auto;padding-bottom:50px;">
+                <div style="float:left;">
+                    <div style="width:460px;height:50px;background-color:white;-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                        <input type="text" style="width:460px;height:50px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;" value="Введите Ваше имя"/>
                     </div>
-                    <div style="width: 620px; height: 210px; background-color: white;float:left;">
-                        s
+                    <div style="margin-top:15px;width: 460px; height: 50px; background-color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                        <input type="text" style="width:460px;height:50px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;" value="Ваш email" />
                     </div>
+                    <div style="margin-top: 15px; width: 460px; height: 50px; background-color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                        <input type="text" style="width:460px;height:50px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;" value="Заголовок отзыва" />
+                    </div>
+                    <div style="margin-top: 15px; width: 460px; height: 50px;">
+                        <div style="margin-left: 20px; color: #454545; font-family: Helvetica Bold; font-size: 15px; "> Ваша оценка: <b>4</b></div>
+                        <div style="margin-left: 20px; ">
+                            <img src="~/Content/img/star_active.png" />
+                            <img src="~/Content/img/star_active.png" />
+                            <img src="~/Content/img/star_active.png" />
+                            <img src="~/Content/img/star_active.png" />
+                            <img src="~/Content/img/star_inactive.png" />
+                        </div>
+                    </div>
+                </div>
+                    <div style="width: 620px; height: 180px; background-color: white;float:right;-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                        <textarea style="width:620px;height:180px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;padding:10px;">Текст отзыва</textarea>                        
+                        
+                    </div>
+                <div style="width: 160px; height: 50px; background-color: #4b99f7;float:right;margin-top:10px;text-align:center;line-height:50px;font-family: Helvetica Bold; font-size: 14px;color:white; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                    Отправить
+                </div>
                 </div>
             </div>
 
 
-        </div>
-        @RenderPage("~/Views/Home/Footer.cshtml")
+        @RenderPage("~/Views/News/Index.cshtml")
+      
+        @RenderPage("~/Views/Home/Footer.cshtml")    
     </div>
+   
     <script src="~/Scripts/main.js"></script>
 
 </body>
