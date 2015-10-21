@@ -161,11 +161,11 @@
 }
 .add_request {
    width: 260px; height: 60px; background-color: #4b99f7; vertical-align: middle; display: table-cell; text-align: center; font-family: Helvetica Bold; font-size: 18px; color:white;
-     -moz-border-radius: 4px; /* Firefox */
-    -webkit-border-radius: 4px; /* Safari, Chrome */
-    -khtml-border-radius: 4px; /* KHTML */
-    border-radius: 4px; /* CSS3 */ /* Для плохих IE */
-    behavior: url(border-radius.htc); /* учим IE border-radius */
+     -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+    behavior: url(border-radius.htc);
 }
 .add_request:hover {
     cursor:pointer;

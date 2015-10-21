@@ -208,6 +208,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\img\announ_calend_ico.png" />
     <Content Include="Content\img\announ_letter_ico.png" />
     <Content Include="Content\img\announ_letter_ico2.png" />
     <Content Include="Content\img\announ_no_photo.png" />
