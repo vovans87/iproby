@@ -70,6 +70,25 @@ namespace iproby.Controllers
                                    select a.login).Count();
                 if (Login_Count > 0)
                 {
+                    Session["login"] = model.login;
+                    var contact_id_arr = (from a in db.customers
+                                       where a.login == model.login
+                                       where a.password == model.password
+                                      select a.contact_id);
+                    int contact_id=0;
+                    foreach (int item in contact_id_arr)
+                    {
+                        contact_id = item;
+                    }
+                    var fio_arr = (from a in db.contacts
+                               where a.contact_id == contact_id
+                                       select a.first_name);
+                    string fio = String.Empty;
+                    foreach (string item in fio_arr)
+                    {
+                        fio = item;
+                    }
+                    Session["fio"] = fio;
                     return View("~/Views/Status/LoginSuccess.cshtml");
                 }
                 else

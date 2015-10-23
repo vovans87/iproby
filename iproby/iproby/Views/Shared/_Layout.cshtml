@@ -17,7 +17,11 @@
 {
     @RenderSection("Login")
 }
-
+@if (IsSectionDefined("AddClients"))
+{
+    @RenderSection("AddClients")
+}
+        
         
         @RenderPage("~/Views/Home/HeaderTop.cshtml")
         @RenderPage("~/Views/Home/HeaderMiddle.cshtml")

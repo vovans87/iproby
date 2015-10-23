@@ -12,24 +12,16 @@ namespace iproby.Data_Model
     using System;
     using System.Collections.Generic;
     
-    public partial class customer
+    public partial class customer_announ
     {
-        public customer()
-        {
-            this.customer_announ = new HashSet<customer_announ>();
-        }
-    
-        public int customer_id { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
-        public int contact_id { get; set; }
-        public int status_id { get; set; }
+        public int id { get; set; }
+        public Nullable<int> customer_id { get; set; }
+        public Nullable<int> announ_id { get; set; }
         public System.DateTime date_from { get; set; }
         public System.DateTime date_to { get; set; }
         public int active { get; set; }
     
-        public virtual contact contact { get; set; }
-        public virtual status status { get; set; }
-        public virtual ICollection<customer_announ> customer_announ { get; set; }
+        public virtual announ announ { get; set; }
+        public virtual customer customer { get; set; }
     }
 }

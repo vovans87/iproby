@@ -11,6 +11,9 @@ div {
     /*border: 1px solid black;*/
     /*background-color:grey;*/
 }
+textarea {
+   resize: none;
+}
 .container {
     width:1400px;
     background-color:#ebebeb;
@@ -63,4 +66,7 @@ div {
 }
 .category_right_clear {
     width:150px;
+}
+.education {
+    display:none;
 }

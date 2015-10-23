@@ -13,7 +13,7 @@
                 type: this.method,
                 data: $(this).serialize(),
                 success: function (result) {
-                    $('.modal-footer').addClass('hide');
+                    //$('.modal-footer').addClass('hide');
                     $('#result').html(result);
                     
                 }
@@ -33,37 +33,6 @@ $('.enter').click(function () {
     location.href = "/Authorization/Login";
 })
 
-//$(function () {
-//    $('[data-toggle="tooltip"]').tooltip()
-//})
-
-//$(function () {
-//    $("form #InputLoginRegist").keyup(function () {
-//        alert($(this).serialize());
-//        $.ajax({
-//            url: "/status/checklogin",
-//            type: "post",
-//            data: $(this).serialize(),
-//            success: function (result) {
-//                //$('#result').html(result);
-                
-//                if (result == "False") {
-//                    $("form #InputLoginRegist").parent().addClass("has-error");
-//                    $("form .form-control-feedback").addClass("glyphicon glyphicon-remove");
-//                    $(".login_check").removeClass("hide");
-//                } else {
-//                    $("form .form-control-feedback").removeClass("glyphicon glyphicon-remove");
-//                    $("form #InputLoginRegist").parent().removeClass("has-error");
-//                    $("form #InputLoginRegist").parent().addClass("has-success");
-//                    $("form .form-control-feedback").addClass("glyphicon glyphicon-ok");
-//                    $(".login_check").addClass("hide");
-//                }
-               
-//            }
-//        });
-//    });
-//});
-
 $(function () {
    
     $.mask.definitions['*'] = '[A-Z,a-z,0-9,_,$,~,#]';
@@ -76,20 +45,38 @@ $(function () {
     $(".phone").mask('+7 (999) 999-99-99');
 });
 
+$(function () {
+    $('.parent_type li').click(function () {
+        if ($(this).text().trim().indexOf('Образование') > -1) {
+            $(".education").css("display", "block");
+        } else {
+            $(".education").css("display", "none");
+        };
+       
+    
+        $.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).attr('name') + "=" + $(this).text().trim(),
+          
+            success: function (result) {
+                //$('.modal-footer').addClass('hide');
+                obj = JSON.parse(result);
+                $(".child_type").prev().html('Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>');
+                $(".child_type li").remove();
+                obj.forEach(function (entry) {
+                    var text = '<li style="width: 368px;"><a href="#">' + entry + "</a></li>";
+                    $(".child_type").append(text);
+                });
+               
+               
+            }
+        });
+       
+    });
 
-//$(function () {
-//    $("#test").validate({
-//    rules: {
-//        login: { required: true },
-//        password: { required: true },
-//        email: { email: true, required: true }
-//    },
-//    messages: {
-//        email: "Just check the box<h5 class='text-danger'>You aren't going to read the EULA</h5>"
-//    },
-//    tooltip_options: {
-//        password: { trigger: 'focus' },
-//        login: { placement: 'right', html: true }
-//    },
-//});
-//});
+})
+
+
+
+

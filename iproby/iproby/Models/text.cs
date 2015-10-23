@@ -5,10 +5,8 @@ using System.Web;
 
 namespace iproby.Models
 {
-    public class customer
+    public class text
     {
-        public string login { get; set; }
-        public string password { get; set; }
-       
+        public static List<string> type { get; set; }
     }
 }

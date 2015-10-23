@@ -8,10 +8,29 @@
             <a href="#" style="margin-left: 35px;">ФОРУМ</a>
         </div>
         <div class=" header_top_right" style="  ">
-            <div class=" enter" id="enter" style="float:left;margin-left:230px"><img src="~/Content/img/header_top_login_ico.png" style="margin-left:-10px;padding-right:5px;padding-bottom:3px;" />ВОЙТИ<div style="background-color: #f5ab35; height: 4px; width: 117.656px; margin-left: -16px; "></div></div>
-            <div class=" registration" css="custom" style="float:left;"><img src="~/Content/img/header_top_reg_ico.png" style="margin-left:-20px;padding-right:10px;" />РЕГИСТРАЦИЯ</div>
-
+            <div class="auth_box">
+                <div class=" enter" id="enter" style="float:left;margin-left:230px">
+                    <img src="~/Content/img/header_top_login_ico.png" style="margin-left:-10px;padding-right:5px;padding-bottom:3px;" />ВОЙТИ
+                    <div style="background-color: #f5ab35; height: 4px; width: 117.656px; margin-left: -16px; "></div>
+                </div>
+                <div class=" registration" css="custom" style="float:left;">
+                    <img src="~/Content/img/header_top_reg_ico.png" style="margin-left:-20px;padding-right:10px;" />РЕГИСТРАЦИЯ
+                </div>
+            </div>
+            <div class="personal_account_box">
+                <div class="personal_account_btn" style="float: right; background-color: #f5ab35; width: 200px; height: 52px;">
+                    <img src="~/Content/img/header_top_reg_ico.png" style="padding-right:10px;" />ЛИЧНЫЙ КАБИНЕТ
+                </div>
+            </div>
+         
+            <script>
+            @{if (Session["fio"] != null) { 
+               string fio=Session["fio"].ToString();
+                   @:show_personal_account()
+              }
+                  }
+           </script>
+            
         </div>
     </div>
-    </div>
-
+</div>

@@ -48,6 +48,16 @@
         border: 1px solid white;
     }
 
+.personal_account_box {
+    display: none;
+}
+
+.personal_account_btn:hover {
+    cursor: pointer;
+    background-color: #f6c679;
+    border: 1px solid white;
+}
+
 .header_middle_left_btn {
     /* Для хороших браузеров */
     -moz-border-radius: 40px; /* Firefox */
@@ -147,32 +157,48 @@
 }
 
 .header_get_workers:hover {
-        cursor: pointer;
-        background-color: #88cca5;
-        border: 2px solid white;
-        -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;
+    cursor: pointer;
+    background-color: #88cca5;
+    border: 2px solid white;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -khtml-border-radius: 40px;
+    border-radius: 40px;
 }
 
 .header_get_clients:hover {
-        cursor: pointer;
-        background-color: #f6c679;
-        border: 2px solid white;
-        -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;
-}
-.add_request {
-   width: 260px; height: 60px; background-color: #4b99f7; vertical-align: middle; display: table-cell; text-align: center; font-family: Helvetica Bold; font-size: 18px; color:white;
-     -moz-border-radius: 4px; 
-    -webkit-border-radius: 4px; 
-    -khtml-border-radius: 4px; 
-    border-radius: 4px; 
-    behavior: url(border-radius.htc);
-}
-.add_request:hover {
-    cursor:pointer;
-    border: 1px solid white;
-     background-color: #69aaf8;
+    cursor: pointer;
+    background-color: #f6c679;
+    border: 2px solid white;
+    -moz-border-radius: 40px;
+    -webkit-border-radius: 40px;
+    -khtml-border-radius: 40px;
+    border-radius: 40px;
 }
 
+.add_request {
+    width: 260px;
+    height: 60px;
+    background-color: #4b99f7;
+    vertical-align: middle;
+    display: table-cell;
+    text-align: center;
+    font-family: Helvetica Bold;
+    font-size: 18px;
+    color: white;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -khtml-border-radius: 4px;
+    border-radius: 4px;
+    behavior: url(border-radius.htc);
+}
+
+    .add_request:hover {
+        cursor: pointer;
+        border: 1px solid white;
+        background-color: #69aaf8;
+    }
+
 .sitemapitem a:hover {
-    text-decoration:none;
+    text-decoration: none;
 }

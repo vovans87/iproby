@@ -166,6 +166,12 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Data_Model\announ.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Data_Model\announ_type.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\contact.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -187,6 +193,9 @@
     <Compile Include="Data_Model\customer.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\customer_announ.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\education.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -202,7 +211,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\announ_clients.cs" />
     <Compile Include="Models\registrator.cs" />
+    <Compile Include="Models\text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -436,6 +447,7 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bootstrapValidator.js" />
     <Content Include="Scripts\bootstrapValidator.min.js" />
+    <Content Include="Scripts\head_scripts.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
@@ -456,6 +468,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Validator.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Announ\AddClients.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Announ\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -504,6 +519,8 @@
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+    <Content Include="Views\Status\NoAuthorization.cshtml" />
+    <Content Include="Views\Status\AddAnnounSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

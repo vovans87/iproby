@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "LoginFailed";
+    Layout = "~/Views/Shared/_Status.cshtml";
+}
+@section NoAuthorization{
+    <h5>Вы не авторизованы на сайте!</h5>
+    <p>Пожалуйста, зайдите со своим логином и паролем на сайт. Мы сможем предоставить для Вас полный функционал сайта.</p>
+    <p>Спасибо!</p>
+    
+@Html.ActionLink("Авторизоваться", "Login", "Authorization", null, new { @class = "btn btn-link" })
+
+
+}
+
+

@@ -4,10 +4,15 @@
 }
 
 @section LoginSuccess{
+    <script>show_personal_account()</script>
     <p>Авторизация прошла успешно!<br>
-    Добро пожаловать!
-    </p>
+    Добро пожаловать, @{var fio = Session["fio"];
+    @fio.ToString();
+}!
     
+    </p>
+
+    @Html.ActionLink("Добавить объявление", "AddClients", "Announ", null, new { @class = "btn btn-link" })
 }
 
 

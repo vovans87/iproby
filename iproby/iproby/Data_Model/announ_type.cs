@@ -12,11 +12,18 @@ namespace iproby.Data_Model
     using System;
     using System.Collections.Generic;
     
-    public partial class speciality
+    public partial class announ_type
     {
-        public int speciality_id { get; set; }
-        public string target_table_name { get; set; }
+        public announ_type()
+        {
+            this.announs = new HashSet<announ>();
+        }
+    
+        public int id { get; set; }
         public string type { get; set; }
-        public string desciption { get; set; }
+        public string description { get; set; }
+        public string parent_type { get; set; }
+    
+        public virtual ICollection<announ> announs { get; set; }
     }
 }

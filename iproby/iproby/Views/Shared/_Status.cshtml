@@ -6,15 +6,21 @@
 {
     @RenderSection("RegistrationSuccess")
 }
-
 @if (IsSectionDefined("LoginSuccess"))
 {
     @RenderSection("LoginSuccess")
 }
-
 @if (IsSectionDefined("LoginFailed"))
 {
     @RenderSection("LoginFailed")
+}
+@if (IsSectionDefined("AddAnnounSuccess"))
+{
+    @RenderSection("AddAnnounSuccess")
+}
+@if (IsSectionDefined("NoAuthorization"))
+{
+    @RenderSection("NoAuthorization")
 }
 
 @RenderBody()
