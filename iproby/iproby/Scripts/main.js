@@ -55,10 +55,10 @@ function load_registration() {
                     url: this.action,
                     type: this.method,
                     data: $(this).serialize(),
-                    beforeSend: function () {
-                        $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
+                    //beforeSend: function () {
+                    //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
 
-                    },
+                    //},
                     success: function (result) {
                         //$('.modal-footer').addClass('hide');
                         $('.return_result').html(result);
@@ -99,10 +99,10 @@ function load_authorization() {
                     url: this.action,
                     type: this.method,
                     data: $(this).serialize(),
-                    beforeSend: function () {
-                        $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
+                    //beforeSend: function () {
+                    //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
                         
-                    },
+                    //},
                     success: function (result) {
                         //$('.modal-footer').addClass('hide');
                         $('.return_result').html(result);
