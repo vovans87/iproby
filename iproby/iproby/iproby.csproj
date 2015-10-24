@@ -162,6 +162,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AnnounController.cs" />
     <Compile Include="Controllers\AuthorizationController.cs" />
+    <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
@@ -219,6 +220,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
+    <Content Include="Content\dialogs\Login.html" />
+    <Content Include="Content\dialogs\Registration.html" />
+    <Content Include="Content\dialogs\WaitProcessing.html" />
     <Content Include="Content\img\announ_calend_ico.png" />
     <Content Include="Content\img\announ_letter_ico.png" />
     <Content Include="Content\img\announ_letter_ico2.png" />
@@ -521,6 +525,9 @@
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
     <Content Include="Views\Status\NoAuthorization.cshtml" />
     <Content Include="Views\Status\AddAnnounSuccess.cshtml" />
+    <Content Include="Views\Cabinet\Index.cshtml" />
+    <Content Include="Views\Catalog\ButtonsHead.cshtml" />
+    <Content Include="Views\Catalog\AddRequest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

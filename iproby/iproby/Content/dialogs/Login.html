@@ -1,0 +1,37 @@
+﻿
+            <form role="form" action="/Authorization/Login" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Авторизация пользователя</h4>
+                </div>
+                <div class="modal-body result return_result">
+                    <div class="row return_wait">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+
+
+                            <div class="form-group has-feedback">
+                                <label class="sr-only" for="InputLoginAuth">Login</label>
+                                <input type="text" class="form-control" id="InputLoginAuth" name="login" placeholder="Enter login" required>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label class="sr-only" for="InputPasswordAuth">Пароль</label>
+                                <input type="password" class="form-control" id="InputPasswordAuth" name="password" placeholder="Password" required>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Запомнить меня
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                        <input type="submit" class="btn btn-primary" value="Войти">
+                    </div>
+                </div>
+
+            </form>
+   

@@ -16,3 +16,4 @@ $(document).ajaxSuccess(function() {
         $('#' + $(this).parent().attr('load')).val($(this).text().trim());
     });
 });
+

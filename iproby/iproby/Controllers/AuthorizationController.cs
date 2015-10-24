@@ -59,11 +59,6 @@ namespace iproby.Controllers
         [HttpPost]
         public ActionResult Login(iproby.Data_Model.customer model)
         {
-
-            //if (ModelState.IsValid)
-            //{
-            using (iproby94_cust_dbEntities db = new iproby94_cust_dbEntities())
-            {
                 var Login_Count = (from a in db.customers
                                    where a.login == model.login
                                    where a.password == model.password
@@ -95,8 +90,6 @@ namespace iproby.Controllers
                 {
                     return View("~/Views/Status/LoginFailed.cshtml");
                 }
-            }
-            //}
         }
     }
 }
