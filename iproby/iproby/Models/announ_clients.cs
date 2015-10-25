@@ -14,5 +14,6 @@ namespace iproby.Models
         public string description { get; set; }
         public string subjects { get; set; }
         public string price { get; set; }
+        public static List<string> parent_type_list { get; set; }
     }
 }

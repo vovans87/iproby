@@ -44,13 +44,16 @@ namespace iproby.Controllers
         }
         public ActionResult AddClients()
         {
-            if (Session["login"] != null)
+           
+            if (1==1)
             {    
             GetChildTypes(null);
                 var parent_type_arr = (from a in db.announ_type
                                         select a.parent_type).Distinct();
-                ViewBag.parent_type_arr = parent_type_arr.ToList();     
-                return View(new iproby.Models.announ_clients());
+                ViewBag.parent_type_arr = parent_type_arr.ToList();
+                iproby.Models.announ_clients model = new iproby.Models.announ_clients();
+                
+                return View(model);
                 
             }
             else

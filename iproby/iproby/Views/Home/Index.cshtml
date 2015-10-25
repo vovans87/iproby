@@ -3,9 +3,12 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section AddClients{
+  @Html.Partial(Url.Content("~/Views/Announ/AddClients.cshtml"))
+}
 
 @section HeaderTop{
-@Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
 }
 
 @section HeaderMiddle{

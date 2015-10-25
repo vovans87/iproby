@@ -1,16 +1,4 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-
-@model iproby.Models.announ_clients
-@{
-    List<string> parent_type_arr = ViewBag.parent_type_arr;
-}
-@section AddClients{
-
-    <div class="modal fade">
+﻿    <div class="modal fade" id="add_clients">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form role="form" action="/Announ/AddClients" method="post" data-toggle="validator" data-disable=false data-delay=100>
@@ -18,7 +6,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Добавление объявления</h4>
                     </div>
-                    <div class="modal-body" id="result">
+                    <div class="modal-body return_result" id="result">
                         @{
                             if (Session["login"] == null)
                             {
@@ -34,14 +22,18 @@
                                             <input type="hidden" class="form-control" id="parent_type" placeholder="Раздел" name="parent_type" value="Не установлено" />
                                             <div class="btn-group">
                                                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
-                                                    Выберите раздел: <span class="caret" style="float:right;margin-top:10px;"></span>
+                                                    Выберите раздел:
+                                                    <span class="caret" style="float:right;margin-top:10px;"></span>
                                                 </button>
                                                 <ul class="dropdown-menu parent_type" style="width:368px;" load="parent_type">
-                                                    @foreach (var item in parent_type_arr)
-                                                    {
-                                                        <li style="width: 368px;" action="/Announ/GetChildTypes" method="POST" name="parent_type">
-                                                            <a href="#"> @item</a>
-                                                        </li>
+                                                    @{
+                                                        List<string> parent_types = iproby.Models.announ_clients.parent_type_list;
+                                                        foreach (var item in parent_types)
+                                                        {
+                                                            <li style="width: 368px;" action="/Announ/GetChildTypes" method="POST" name="parent_type">
+                                                                <a href="#"> @item </a>
+                                                            </li>
+                                                        }
                                                     }
                                                 </ul>
                                             </div>
@@ -89,9 +81,10 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                                    <input type="submit" class="btn btn-primary" value="Добавить объявление">
+                                    <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Добавить объявление">
+                                    
                                 </div>
-                            }
+                                                                    }
                         }
                     </div>
 
@@ -101,5 +94,3 @@
             </div>
         </div>
     </div>
-}
-

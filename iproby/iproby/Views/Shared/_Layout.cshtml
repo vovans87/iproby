@@ -15,36 +15,37 @@
                 </div>
             </div>
         </div>
-                   
-                    @if (IsSectionDefined("AddClients"))
-                    {
-                        @RenderSection("AddClients")
-                    }
-                    @if (IsSectionDefined("HeaderTop"))
-                    {
-                        @RenderSection("HeaderTop")
-                    }
-                    @if (IsSectionDefined("HeaderMiddle"))
-                    {
-                        @RenderSection("HeaderMiddle")
-                    }
-                    @if (IsSectionDefined("Categories"))
-                    {
-                        @RenderSection("Categories")
-                    }
-                    @if (IsSectionDefined("Announs"))
-                    {
-                        @RenderSection("Announs")
-                    }
-                    @if (IsSectionDefined("Footer"))
-                    {
-                        @RenderSection("Footer")
-                    }
 
-                </div>
+
+        @if (IsSectionDefined("AddClients"))
+        {
+            @RenderSection("AddClients")
+        }
+        @if (IsSectionDefined("HeaderTop"))
+        {
+            @RenderSection("HeaderTop")
+        }
+        @if (IsSectionDefined("HeaderMiddle"))
+        {
+            @RenderSection("HeaderMiddle")
+        }
+        @if (IsSectionDefined("Categories"))
+        {
+            @RenderSection("Categories")
+        }
+        @if (IsSectionDefined("Announs"))
+        {
+            @RenderSection("Announs")
+        }
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer")
+        }
+
+    </div>
     <script src="~/Scripts/main.js"></script>
 
-                @RenderBody()
+    @RenderBody()
 
 
 
