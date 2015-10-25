@@ -3,3 +3,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
+@section HeaderTop{
+@Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+
+@section HeaderMiddle{
+   @Html.Partial(Url.Content("~/Views/Home/HeaderMiddle.cshtml"))
+}
+
+@section Categories{
+   @Html.Partial(Url.Content("~/Views/Catalog/Categories.cshtml"))
+}
+
+@section Announs{
+    @Html.Partial(Url.Content("~/Views/Catalog/Announs.cshtml"))
+}
+
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml")) 
+}

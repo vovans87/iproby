@@ -9,35 +9,44 @@
 </head>
 <body>
     <div class="container">
-       @if (IsSectionDefined("Registration"))
-{
-    @RenderSection("Registration")
-}
-@if (IsSectionDefined("Login"))
-{
-    @RenderSection("Login")
-}
-@if (IsSectionDefined("AddClients"))
-{
-    @RenderSection("AddClients")
-}
-        
-        
-        @RenderPage("~/Views/Home/HeaderTop.cshtml")
-        @RenderPage("~/Views/Home/HeaderMiddle.cshtml")
-        @RenderPage("~/Views/Catalog/Categories.cshtml")
-        @RenderPage("~/Views/Catalog/Announs.cshtml")
-        @RenderPage("~/Views/Home/Footer.cshtml")
+        <div class="modal fade" id="myDialog">
+            <div class="modal-dialog">
+                <div class="modal-content" id="myContent">
+                </div>
+            </div>
+        </div>
+                   
+                    @if (IsSectionDefined("AddClients"))
+                    {
+                        @RenderSection("AddClients")
+                    }
+                    @if (IsSectionDefined("HeaderTop"))
+                    {
+                        @RenderSection("HeaderTop")
+                    }
+                    @if (IsSectionDefined("HeaderMiddle"))
+                    {
+                        @RenderSection("HeaderMiddle")
+                    }
+                    @if (IsSectionDefined("Categories"))
+                    {
+                        @RenderSection("Categories")
+                    }
+                    @if (IsSectionDefined("Announs"))
+                    {
+                        @RenderSection("Announs")
+                    }
+                    @if (IsSectionDefined("Footer"))
+                    {
+                        @RenderSection("Footer")
+                    }
 
-
-
-
-    </div>
-
-    @RenderBody()
+                </div>
     <script src="~/Scripts/main.js"></script>
 
-    @RenderSection("scripts", required: false)
+                @RenderBody()
+
+
 
 </body>
 </html>

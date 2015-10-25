@@ -4,13 +4,10 @@
 }
 
 
-@if (IsSectionDefined("Registration"))
-{
-    @RenderSection("Registration")
-}
-@if (IsSectionDefined("Login"))
-{
-    @RenderSection("Login")
+@section Login{
+    @Html.Partial(Url.Content("~/Views/Authorization/Login.cshtml"))
 }
 
-@RenderBody()
+@section Registration{
+    @Html.Partial(Url.Content("~/Views/Authorization/Registration.cshtml"))
+}
