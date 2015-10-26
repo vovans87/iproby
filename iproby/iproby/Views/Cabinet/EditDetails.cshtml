@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+
+@section AnnounInfo{
+    @Html.Partial(Url.Content("~/Views/Cabinet/Details.cshtml"))
+    <div class="row" style="height:55px;width:100%;">
+
+    </div>
+}
+
+@section News{
+    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+}
+
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}
+

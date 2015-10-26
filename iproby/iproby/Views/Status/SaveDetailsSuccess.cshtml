@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "LoginSuccess";
+    Layout = "~/Views/Shared/_Status.cshtml";
+}
+
+@section SaveDetailsSuccess{
+   <p>
+        Ваши данные успешно сохранены!
+
+    </p>
+
+    @Html.ActionLink("На главную", "Index", "Home", null, new { @class = "btn btn-link" })
+}
+
+
+
+

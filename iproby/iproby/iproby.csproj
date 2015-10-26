@@ -213,6 +213,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\announ_clients.cs" />
+    <Compile Include="Models\announ_details.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -475,6 +478,9 @@
     <Content Include="Views\Announ\AddClients.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Announ\AnnounInfo.cshtml">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="Views\Announ\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -528,6 +534,11 @@
     <Content Include="Views\Cabinet\Index.cshtml" />
     <Content Include="Views\Catalog\ButtonsHead.cshtml" />
     <Content Include="Views\Catalog\AddRequest.cshtml" />
+    <Content Include="Views\Announ\SiteMap.cshtml" />
+    <Content Include="Views\Cabinet\AnnounInfo.cshtml" />
+    <Content Include="Views\Cabinet\EditDetails.cshtml" />
+    <Content Include="Views\Cabinet\Details.cshtml" />
+    <Content Include="Views\Status\SaveDetailsSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

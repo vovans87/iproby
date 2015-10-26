@@ -29,13 +29,37 @@
         {
             @RenderSection("HeaderMiddle")
         }
+        @if (IsSectionDefined("ButtonsHead"))
+        {
+            @RenderSection("ButtonsHead")
+        }
+        @if (IsSectionDefined("CategoriesMin"))
+        {
+            @RenderSection("CategoriesMin")
+        }
         @if (IsSectionDefined("Categories"))
         {
             @RenderSection("Categories")
         }
+        @if (IsSectionDefined("AddRequest"))
+        {
+            @RenderSection("AddRequest")
+        }
+        @if (IsSectionDefined("SiteMap"))
+        {
+            @RenderSection("SiteMap")
+        }
+        @if (IsSectionDefined("AnnounInfo"))
+        {
+            @RenderSection("AnnounInfo")
+        }
         @if (IsSectionDefined("Announs"))
         {
             @RenderSection("Announs")
+        }
+        @if (IsSectionDefined("News"))
+        {
+            @RenderSection("News")
         }
         @if (IsSectionDefined("Footer"))
         {
