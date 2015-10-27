@@ -7,6 +7,9 @@
     <mvcSiteMapNode title="Объявления" controller="Catalog" action="Index">
       <mvcSiteMapNode title="Объявление" controller="Announ" action="Index"/>
     </mvcSiteMapNode>
+    <mvcSiteMapNode title="Личный кабинет" controller="Cabinet" action="Index">
+      <mvcSiteMapNode title="Редактирование данных" controller="Cabinet" action="EditDetails"/>
+    </mvcSiteMapNode>
   </mvcSiteMapNode>
 
 </mvcSiteMap>

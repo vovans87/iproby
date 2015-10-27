@@ -7,8 +7,24 @@
     @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
 }
 
+@section SiteMap{
+    @Html.Partial(Url.Content("~/Views/Announ/SiteMap.cshtml"))
+}
+
 @section AnnounInfo{
+
+@if (ViewData["saveDetails"] != null && ViewData["saveDetails"].ToString() == "saveDetails")
+{
+    @Html.Partial(Url.Content("~/Views/Cabinet/SaveDetailsResult.cshtml"))
+}
+else if (ViewData["login"] != null && ViewData["login"].ToString() == "isLogin")
+{
     @Html.Partial(Url.Content("~/Views/Cabinet/Details.cshtml"))
+}
+else { 
+    @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
+}
+
     <div class="row" style="height:55px;width:100%;">
 
     </div>

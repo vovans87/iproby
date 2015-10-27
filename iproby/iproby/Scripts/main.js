@@ -62,9 +62,10 @@ $(function () {
                     },
                     success: function (result) {
                         //$('.modal-footer').addClass('hide');
-                        $('.loading-wait-btn').button('loading');
                         $('.return_result').html(result);
-
+                        setTimeout(function () {
+                            locatio.reload();
+                        }, 3000)
                     }
                 });
             }
@@ -177,7 +178,9 @@ function load_authorization() {
                         //$('.modal-footer').addClass('hide');
                         $('.loading-wait-btn').button('reset');
                         $('.return_result').html(result);
-                    
+                        setTimeout(function () {
+                            location.reload();
+                        }, 5000)
                     }
                 });
             }

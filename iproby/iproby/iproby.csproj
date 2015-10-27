@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -539,6 +540,9 @@
     <Content Include="Views\Cabinet\EditDetails.cshtml" />
     <Content Include="Views\Cabinet\Details.cshtml" />
     <Content Include="Views\Status\SaveDetailsSuccess.cshtml" />
+    <Content Include="Views\Cabinet\NoAuthorization.cshtml" />
+    <Content Include="Views\Cabinet\SaveDetailsResult.cshtml" />
+    <Content Include="Views\Dialog\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

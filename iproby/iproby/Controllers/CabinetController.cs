@@ -72,6 +72,7 @@ namespace iproby.Controllers
         public ActionResult EditDetails()
         {
             if (Session["login"] != null) {
+                ViewData["login"] = "isLogin";
                 string login = Session["login"].ToString();
                 var contact_id_arr = (from a in db.customers
                                       where a.login == login
@@ -97,7 +98,8 @@ namespace iproby.Controllers
                 }
                 return View(regist);
             } else {
-                return View("~/Views/Status/NoAuthorization.cshtml");
+                ViewData["login"] = "notLogin";
+                return View();
             }
         }
 
@@ -106,6 +108,7 @@ namespace iproby.Controllers
         {
             if (Session["login"] != null)
             {
+                ViewData["login"] = "isLogin";
                 string login = Session["login"].ToString();
                 var contact_id_arr = (from a in db.customers
                                       where a.login == login
@@ -126,11 +129,13 @@ namespace iproby.Controllers
                     db.SaveChanges();
                 }
 
-                return View("~/Views/Status/SaveDetailsSuccess.cshtml");
+                ViewData["saveDetails"] = "saveDetails";
+                return View("~/Views/Cabinet/EditDetails.cshtml");
             }
             else
             {
-                return View("~/Views/Status/NoAuthorization.cshtml");
+                ViewData["login"] = "notLogin";
+                return View("~/Views/Cabinet/EditDetails.cshtml");
             }
 
         }
