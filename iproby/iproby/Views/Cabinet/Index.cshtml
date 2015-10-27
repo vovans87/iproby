@@ -12,7 +12,19 @@
 }
 
 @section AnnounInfo{
+@if (ViewData["isSaved"] != null && ViewData["isSaved"].ToString() == "isSaved")
+{
+    @Html.Partial(Url.Content("~/Views/Cabinet/SaveDetailsResult.cshtml"))
+}
+
+@if (ViewData["login"] != null && ViewData["login"].ToString() == "isLogin")
+{
     @Html.Partial(Url.Content("~/Views/Cabinet/AnnounInfo.cshtml"))
+}
+else
+{
+    @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
+}
 <div class="row" style="height:55px;width:100%;">
 
     </div>

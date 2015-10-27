@@ -13,6 +13,7 @@ namespace iproby.Controllers
         // GET: /Cabinet/
 
         private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
+        private static bool isSaved=false;
 
         public ActionResult Index()
         {
@@ -62,10 +63,15 @@ namespace iproby.Controllers
                     details.mobile = item.mobile;
                     details.password = string.Empty;
                 }
+                if (isSaved) {
+                    ViewData["isSaved"] = "isSaved";
+                    isSaved = false;
+                }
+                ViewData["login"] = "isLogin";
                 return View(details);
             }
             else {
-                return View("~/Views/Status/NoAuthorization.cshtml");
+                return View();
             }
         }
 
@@ -128,16 +134,111 @@ namespace iproby.Controllers
                     contact.skype = model.skype;
                     db.SaveChanges();
                 }
+                isSaved = true;
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                isSaved = false;
+                return RedirectToAction("Index");
+            }
 
-                ViewData["saveDetails"] = "saveDetails";
-                return View("~/Views/Cabinet/EditDetails.cshtml");
+        }
+
+        public ActionResult EditAnnoun()
+        {
+            if (Session["login"] != null)
+            {
+                ViewData["login"] = "isLogin";
+                string login = Session["login"].ToString();
+                var contact_id_arr = (from a in db.customers
+                                      where a.login == login
+                                      select a);
+                int contact_id = 0; int customer_id = 0;
+                foreach (var item in contact_id_arr)
+                {
+                    contact_id = item.contact_id;
+                    customer_id = item.customer_id;
+                }
+                var announ_id_arr = (from a in db.customer_announ
+                                     where a.customer_id == customer_id
+                                     select a.announ_id);
+                int announ_id = 0;
+                foreach (int item in announ_id_arr)
+                {
+                    announ_id = item;
+                }
+                var announ_arr = (from a in db.announs
+                                  where a.id == announ_id
+                                  select a);
+                iproby.Models.announ_clients announ = new iproby.Models.announ_clients();
+
+                foreach (var item in announ_arr)
+                {
+                    announ.price = item.price;
+                    announ.subjects = item.subjects;
+                    announ.header = item.header;
+                    announ.description = item.description;
+                    announ.about = item.about;
+                }
+                if (isSaved)
+                {
+                    ViewData["isSaved"] = "isSaved";
+                    isSaved = false;
+                }
+                return View(announ);
             }
             else
             {
                 ViewData["login"] = "notLogin";
-                return View("~/Views/Cabinet/EditDetails.cshtml");
+                return View();
             }
+        }
 
+
+        [HttpPost]
+        public ActionResult SaveAnnoun(iproby.Models.announ_clients model)
+        {
+            if (Session["login"] != null)
+            {
+                ViewData["login"] = "isLogin";
+                string login = Session["login"].ToString();
+                var contact_id_arr = (from a in db.customers
+                                      where a.login == login
+                                      select a);
+                int contact_id = 0; int customer_id = 0;
+                foreach (var item in contact_id_arr)
+                {
+                    contact_id = item.contact_id;
+                    customer_id = item.customer_id;
+                }
+                var announ_id_arr = (from a in db.customer_announ
+                                     where a.customer_id == customer_id
+                                     select a.announ_id);
+                int announ_id = 0;
+                foreach (int item in announ_id_arr)
+                {
+                    announ_id = item;
+                }
+                var announ = db.announs.Find(announ_id);
+
+                if (announ != null)
+                {
+                    announ.about = model.about;
+                    announ.description = model.description;
+                    announ.header = model.header;
+                    db.SaveChanges();
+                }
+                isSaved = true;
+                return RedirectToAction("Index");
+
+
+            }
+            else
+            {
+                ViewData["login"] = "notLogin";
+                return View();
+            }
         }
 
 

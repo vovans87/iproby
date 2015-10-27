@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Личный кабинет";
+    ViewBag.Title = "Редактирование объявления";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -14,13 +14,14 @@
 @section AnnounInfo{
 
 
-@if (ViewData["login"] != null && ViewData["login"].ToString() == "isLogin")
-{
-    @Html.Partial(Url.Content("~/Views/Cabinet/Details.cshtml"))
-}
-else { 
-    @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
-}
+    @if (ViewData["login"] != null && ViewData["login"].ToString() == "isLogin")
+    {
+        @Html.Partial(Url.Content("~/Views/Cabinet/Announ.cshtml"))
+    }
+    else
+    {
+        @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
+    }
 
     <div class="row" style="height:55px;width:100%;">
 

@@ -1,0 +1,62 @@
+﻿@model iproby.Models.announ_clients
+
+<div class="row" style="width:1100px;background-color:white; margin:0 auto;">
+    <div style="width: 800px; margin: 0 auto;">
+        <form role="form" action="/Cabinet/SaveAnnoun" method="post" data-toggle="validator" data-disable=false data-delay=100>
+            <div class="modal-header">
+
+                <h4 class="modal-title">Редактирование объявления</h4>
+            </div>
+            <div class="modal-body" id="result">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+
+
+                        <div class="form-group has-feedback">
+                            <label for="header" class="control-label add_asterisk">Заголовок</label>
+                            <input type="text" class="form-control" id="header" placeholder="Заголовок" value="@Model.header" name="header" maxlength="100" required>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="about" class="control-label add_asterisk">Кратко о себе</label>
+                            <textarea class="form-control noresize" id="about" name="about" rows="4" maxlength="400" required>@Model.about</textarea>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="description" class="control-label add_asterisk">Текст объявления</label>
+                            <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>@Model.description</textarea>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <div class="form-group has-feedback education">
+                            <label for="subjects" class="control-label add_asterisk">Названия предметов</label>
+                            <input type="text" class="form-control" id="subjects" placeholder="Например: русский язык" value="@Model.subjects" name="subjects" maxlength="100" required>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <div class="form-group has-feedback education">
+                            <label for="price" class="control-label">Цены за услуги</label>
+                            <input type="text" class="form-control" id="price" placeholder="Например: 2 академических часа - 10 $ " name="price" value="@Model.price" maxlength="100">
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Сохранить изменения">
+                <script>
+                    $('.loading-wait-btn')
+    .click(function () {
+        var btn = $(this)
+        btn.button('loading')
+        setTimeout(function () {
+            btn.button('reset')
+        }, 3000)
+    });
+                </script>
+            </div>
+        </form>
+    </div>
+</div>

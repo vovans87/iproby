@@ -202,3 +202,10 @@
 .sitemapitem a:hover {
     text-decoration: none;
 }
+
+.edit_details:hover {
+    text-decoration: none;
+    cursor: pointer;
+    background-color: #f6c679;
+    border: 1px solid white;
+}

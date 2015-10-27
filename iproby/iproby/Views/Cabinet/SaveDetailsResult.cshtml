@@ -1,15 +1,29 @@
-﻿<div class="row" style="width:1100px;background-color:white; margin:0 auto;">
-    <div style="width: 800px; margin: 0 auto;">
+﻿<div class="modal fade in" style="display:block;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form" action="/Authorization/Login" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="location.reload();">&times;</button>
+                    <h4 class="modal-title">Редактирование личных данных</h4>
+                </div>
+                <div class="modal-body" id="result">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
 
-        <br>
-        <p>Ваши данные успешно сохранены!</p>
-        <p>Спасибо!</p>
+                            <h5>Ваши данные успешно сохранены!</h5>
+                            <h5>Изменения уже вступили в силу, можете убедиться в личном кабинете.</h5>
+                            <p>Надеемся сервис Вам полезен :)</p>
+                            <p>Спасибо.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Закрыть</button>
+                    </div>
+                </div>
 
-        
-        <br><br>
-
-
-
-
+            </form>
+            <div class="col-md-2"></div>
+        </div>
     </div>
 </div>

@@ -50,11 +50,7 @@
                             <label for="InputSkype">Skype</label>
                             <input type="text" class="form-control" id="InputSkype" placeholder="Skype" value="@Model.skype" maxlength="100" name="skype">
                         </div>
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"> C правилами пользования согласен.
-                            </label>
-                        </div>
+                        
 
                     </div>
 
@@ -63,6 +59,16 @@
             <div class="modal-footer">
                
                 <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Сохранить изменения">
+                <script>
+                    $('.loading-wait-btn')
+    .click(function () {
+        var btn = $(this)
+        btn.button('loading')
+        setTimeout(function () {
+            btn.button('reset')
+        }, 3000)
+    });
+                </script>
             </div>
         </form>
     </div>
