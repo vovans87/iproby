@@ -17,27 +17,27 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label for="InputPassword" class="add_asterisk">Пароль</label>
+                    <label for="InputPassword" class="control-label add_asterisk">Пароль</label>
                     <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Пароль" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <label for="InputEmail" class="add_asterisk">Email</label>
+                    <label for="InputEmail" class="control-label add_asterisk">Email</label>
                     <input type="email" class="form-control" id="InputEmail" name="email" placeholder="Enter email" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <label for="InputFio" class="add_asterisk">ФИО</label>
+                    <label for="InputFio" class="control-label add_asterisk">ФИО</label>
                     <input type="text" class="form-control" id="InputFio" placeholder="ФИО" name="first_name" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <label for="address" class="add_asterisk">Город</label>
+                    <label for="address" class="control-label add_asterisk">Город</label>
                     <input type="text" class="form-control" id="address" placeholder="Город " name="address" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <label for="phonenum" class="add_asterisk">Мобильный телефон</label>
+                    <label for="phonenum" class="control-label add_asterisk">Мобильный телефон</label>
                     <input type="tel" class="form-control phone" id="phonenum" placeholder="Mobile " name="mobile" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
 
@@ -46,12 +46,16 @@
                     <label for="InputSkype">Skype</label>
                     <input type="text" class="form-control" id="InputSkype" placeholder="Skype" maxlength="100" name="skype">
                 </div>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox"> C правилами пользования согласен.
-                    </label>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="terms" data-error="Необходимо принять правила пользования" required>
+                            C правилами пользования согласен.
+                        </label>
+                        <div class="help-block with-errors"></div>
+                    </div>
                 </div>
-
+                
             </div>
 
         </div>

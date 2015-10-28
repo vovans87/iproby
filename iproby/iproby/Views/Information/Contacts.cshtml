@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+@section SiteMap{
+    @Html.Partial(Url.Content("~/Views/Announ/SiteMap.cshtml"))
+}
+@section Contacts{
+    <div class="row" style="width:1100px;background-color:white; margin:0 auto;">
+        <div style="width: 800px; margin: 0 auto;">
+            <div style="font-family:Helvetica;">
+                <br /><br /><br />
+                <div>
+                    <h4>КОНТАКТЫ:</h4>
+                    <br><br>
+                    <b>Разработчик: Владимир Александрович Сухов, г. Минск.</b><br><br>
+                    По любым интересующим вопросам пользуйтесь ФОРУМОМ.<br><br>
+                    Связь в разработчиком:
+                    <ul>
+                    <li>Mail: <a href="mailto:excellentwebmaster@rambler.ru">excellentwebmaster@rambler.ru</a></li>
+                    <li>Skype: excellent_webmaster</li><li>Vkontakte: <a href="http://vk.com/sukhovvladimir">Страничка Вконтакте.</a><br></li>
+                   
+                        <li>Если что-то срочное, можно позвонить тел. +37529-777-8579.<br></li>
+                    </ul>
+                    <br><br><br><br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="height:55px;width:100%;">
+    </div>
+}
+@section News{
+    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+}
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}

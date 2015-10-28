@@ -1,0 +1,100 @@
+﻿@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+@section SiteMap{
+    @Html.Partial(Url.Content("~/Views/Announ/SiteMap.cshtml"))
+}
+@section About{
+    <div class="row" style="width:1100px;background-color:white; margin:0 auto;">
+        <div style="width: 800px; margin: 0 auto;">
+            <div style="font-family:Helvetica;">
+             <br/><br /><br />
+                <!--[if gte mso 9]><xml>
+         <o:OfficeDocumentSettings>
+          <o:AllowPNG/>
+         </o:OfficeDocumentSettings>
+        </xml><![endif]-->
+                <p><strong><span style=" font-size: 13.5pt;">1. О КОМПАНИИ IPRO</span></strong></p>
+                <p>
+                    <span style="font-size: 12pt;">Компания "</span><span style=" font-size: 12pt;">IPRO</span><span style=" font-size: 12pt;">
+                        " предоставляет сервис каталога услуг физических и юридических лиц узкого профиля, которые не имеют личного сайта, либо он не приносит достаточного количества клиентов.<br>
+                        Сайт
+                    </span><span style=" font-size: 12pt;">Ipro</span><span style=" font-size: 12pt;">.</span><span style=" font-size: 12pt;">by</span><span style=" font-size: 12pt;"> представляет собой как что-то среднее между фрилансом и доской объявлений, сочетающий в себе лучшие стороны обоих сервисов. </span>
+                </p><br>
+                <p><strong><span style=" font-size: 13.5pt;">2. ЦЕЛЕВАЯ АУДИТОРИЯ:</span></strong></p>
+                <p>
+                    <span style=" font-size: 12pt;">
+                        Физ. и юр. лица предоставляющие услуги в соответствии с каталогом.<br>
+                        <br>
+                        <strong>Пример компаний занимающихся подобным сервисом</strong>:
+                    </span><br>
+                    <br>
+                    <span style=" font-size: 12pt;">deal</span><span style=" font-size: 12pt;"> (http://www.</span><span style=" font-size: 12pt;">deal</span><span style=" font-size: 12pt;">.</span><span style=" font-size: 12pt;">by</span><span style=" font-size: 12pt;">)</span><br>
+                    <span style=" font-size: 12pt;">irr</span><span style=" font-size: 12pt;"> (http://www.</span><span style=" font-size: 12pt;">irr</span><span style=" font-size: 12pt;">.</span><span style=" font-size: 12pt;">by</span><span style=" font-size: 12pt;">)</span><br>
+                    <span style=" font-size: 12pt;">slando</span><span style=" font-size: 12pt;"> (http://www.</span><span style=" font-size: 12pt;">slando</span><span style=" font-size: 12pt;">.</span><span style=" font-size: 12pt;">by</span><span style=" font-size: 12pt;">
+                        )<br>
+                        free-lance (https://www.free-lance.ru)
+                    </span>
+                </p>
+                <br>
+                <p><strong><span style=" font-size: 13.5pt;">3. ЗАДАЧИ ВЕБ САЙТА:</span></strong></p>
+                <p>
+                    <span style=" font-size: 12pt;">
+                        Сайт должен выполнять функцию имиджевой рекламы лиц оказывающих услуги и привлечения новых клиентов.<br>
+                        Вторая функция - информационно-аналитическая, т.е. осуществление удобного и быстрого поиска услуг для потенциальных клиентов.<br>
+                        <br>
+                        <strong>Задачи сайта</strong>:
+                    </span>
+                </p>
+                <ul>
+                    <li><span style=" font-size: 12pt;">информативное и функциональное представление каталога услуг; </span></li>
+                    <li><span style=" font-size: 12pt;">обеспечение удобного поиска по каталогу и в целом по сайту для “не профессиональных” пользователей;</span></li>
+                    <li><span style=" font-size: 12pt;">привлечение новых клиентов и увеличение объемов оказания услуг; </span></li>
+                    <li><span style=" font-size: 12pt;">поиск новых партнеров и установление с ними взаимовыгодных отношений. </span></li>
+                </ul><br>
+                <p><strong><span style=" font-size: 13.5pt;">4. ПРЕДОСТАВЛЯЕМЫЕ УСЛУГИ:</span></strong></p>
+                <table>
+                    <thead>
+                        <tr>
+                            <td style="border: 1px solid black; border-image: none; text-align: center; line-height: 2;"><strong>Наименование</strong></td>
+                            <td style="border: 1px solid black; border-image: none; text-align: center;"><strong>Срок размещения</strong></td>
+                            <td style="border: 1px solid black; border-image: none; text-align: center;"><strong>Стоимость</strong></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid black; border-image: none; text-align: center; line-height: 2;">
+                                @Html.ActionLink("Поднятие объявления в первые позиции выдачи, выделение ВИП рамкой.", "Vip", "Information", null, new { @class = "btn btn-link" })
+                            </td>
+                            <td style="border: 1px solid black; border-image: none; text-align: center;">30 дней</td>
+                            <td style="border: 1px solid black; border-image: none; text-align: center;">1000</td>
+                        </tr>
+                    </tbody>
+                </table><br>
+                <p><strong><span style=" font-size: 13.5pt;">5. ЮРИДИЧЕСКАЯ ИНФОРМАЦИЯ:</span></strong></p>
+                <p>
+                    <span style=" font-size: 12pt;">
+                        ИП 'Шестак Евгений Петрович'<br>
+                        Режим работы: с 9:00 до 17:00;<br>
+                        Адрес: Беларусь, г. Минск, ул. Ваупшасова 16;<br>
+                        Служба поддержки сайта: +375297778579;
+                    </span><br>
+                    <br>
+                    &nbsp;
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="height:55px;width:100%;">
+    </div>
+}
+@section News{
+    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+}
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}

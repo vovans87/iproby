@@ -53,6 +53,14 @@
         {
             @RenderSection("AnnounInfo")
         }
+        @if (IsSectionDefined("About"))
+        {
+            @RenderSection("About")
+        }
+        @if (IsSectionDefined("Contacts"))
+        {
+            @RenderSection("Contacts")
+        }
         @if (IsSectionDefined("Announs"))
         {
             @RenderSection("Announs")

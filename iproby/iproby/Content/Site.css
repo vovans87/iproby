@@ -209,3 +209,10 @@
     background-color: #f6c679;
     border: 1px solid white;
 }
+.send_mail_feedback:hover {
+    cursor:pointer;
+}
+.send_rss_mail:hover {
+    cursor:pointer;
+     border: 1px solid white;
+}

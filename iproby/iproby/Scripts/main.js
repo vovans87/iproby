@@ -192,4 +192,20 @@ function load_authorization() {
     });
 };
 
-  
+$(function () {
+    $('.send_rss_mail').click(function () {
+        var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/;
+        if (pattern.test($('.send_rss_mail_input').val())) { 
+            $.ajax({
+                url: "/Information/SendMail",
+                type: "post",
+                data: "email=" + $('.send_rss_mail_input').val(),
+                success: function (result) {
+                    alert("Ваш email успешно добавлен в почтовую рассылку. Спасибо!");
+                }
+            });
+        } else{
+            alert("Введенный email не соответствует критериям подлинности.Проверьте email.");
+        }
+    });
+});

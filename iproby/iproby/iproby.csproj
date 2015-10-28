@@ -165,6 +165,7 @@
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
+    <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -227,7 +228,6 @@
     <Content Include="Content\dialogs\AddClients.html" />
     <Content Include="Content\dialogs\Login.html" />
     <Content Include="Content\dialogs\Registration.html" />
-    <Content Include="Content\dialogs\SaveDetailsSuccess.html" />
     <Content Include="Content\img\announ_calend_ico.png" />
     <Content Include="Content\img\announ_letter_ico.png" />
     <Content Include="Content\img\announ_letter_ico2.png" />
@@ -278,6 +278,7 @@
     <Content Include="Content\img\header_middle_right_li.png" />
     <Content Include="Content\img\header_top_bg.png" />
     <Content Include="Content\img\header_top_login_ico.png" />
+    <Content Include="Content\img\header_top_login_only.png" />
     <Content Include="Content\img\header_top_reg.png" />
     <Content Include="Content\img\header_top_reg_ico.png" />
     <Content Include="Content\img\header_work_ico.png" />
@@ -546,6 +547,8 @@
     <Content Include="Views\Dialog\Index.cshtml" />
     <Content Include="Views\Cabinet\EditAnnoun.cshtml" />
     <Content Include="Views\Cabinet\Announ.cshtml" />
+    <Content Include="Views\Information\About.cshtml" />
+    <Content Include="Views\Information\Contacts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
