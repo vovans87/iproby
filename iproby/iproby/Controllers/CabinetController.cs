@@ -13,7 +13,7 @@ namespace iproby.Controllers
         // GET: /Cabinet/
 
         private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
-        private static bool isSaved=false;
+        private static bool isSaved = false;
 
         public ActionResult Index()
         {
@@ -33,8 +33,8 @@ namespace iproby.Controllers
                                    where a.contact_id == contact_id
                                    select a);
                 var announ_id_arr = (from a in db.customer_announ
-                                  where a.customer_id == customer_id
-                                   select a.announ_id);
+                                     where a.customer_id == customer_id
+                                     select a.announ_id);
                 int announ_id = 0;
                 foreach (int item in announ_id_arr)
                 {
@@ -44,7 +44,7 @@ namespace iproby.Controllers
                                   where a.id == announ_id
                                   select a);
                 iproby.Models.announ_details details = new iproby.Models.announ_details();
-                
+
                 foreach (var item in announ_arr)
                 {
                     details.price = item.price;
@@ -63,21 +63,24 @@ namespace iproby.Controllers
                     details.mobile = item.mobile;
                     details.password = string.Empty;
                 }
-                if (isSaved) {
+                if (isSaved)
+                {
                     ViewData["isSaved"] = "isSaved";
                     isSaved = false;
                 }
                 ViewData["login"] = "isLogin";
                 return View(details);
             }
-            else {
+            else
+            {
                 return View();
             }
         }
 
         public ActionResult EditDetails()
         {
-            if (Session["login"] != null) {
+            if (Session["login"] != null)
+            {
                 ViewData["login"] = "isLogin";
                 string login = Session["login"].ToString();
                 var contact_id_arr = (from a in db.customers
@@ -90,7 +93,7 @@ namespace iproby.Controllers
                 }
                 var contact_arr = (from a in db.contacts
                                    where a.contact_id == contact_id
-                                      select a);
+                                   select a);
                 iproby.Models.announ_details regist = new iproby.Models.announ_details();
                 foreach (var item in contact_arr)
                 {
@@ -103,7 +106,9 @@ namespace iproby.Controllers
                     regist.password = string.Empty;
                 }
                 return View(regist);
-            } else {
+            }
+            else
+            {
                 ViewData["login"] = "notLogin";
                 return View();
             }
@@ -241,6 +246,17 @@ namespace iproby.Controllers
             }
         }
 
+        public ActionResult MyMessages()
+        {
+            return View();
+        }
 
+        public ActionResult EmptySession()
+        {
+            ViewData["login"] = null;
+            Session["login"] = null;
+            Session["fio"] = null;
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

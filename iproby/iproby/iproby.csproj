@@ -231,6 +231,7 @@
     <Content Include="Content\img\announ_calend_ico.png" />
     <Content Include="Content\img\announ_letter_ico.png" />
     <Content Include="Content\img\announ_letter_ico2.png" />
+    <Content Include="Content\img\announ_letter_ico3.png" />
     <Content Include="Content\img\announ_no_photo.png" />
     <Content Include="Content\img\announ_no_profile_img.gif" />
     <Content Include="Content\img\announ_site_ico.png" />
@@ -549,6 +550,8 @@
     <Content Include="Views\Cabinet\Announ.cshtml" />
     <Content Include="Views\Information\About.cshtml" />
     <Content Include="Views\Information\Contacts.cshtml" />
+    <Content Include="Views\Cabinet\MainMenu.cshtml" />
+    <Content Include="Views\Cabinet\MyMessages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

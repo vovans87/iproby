@@ -10,6 +10,7 @@
     <mvcSiteMapNode title="Личный кабинет" controller="Cabinet" action="Index">
       <mvcSiteMapNode title="Редактирование данных" controller="Cabinet" action="EditDetails"/>
       <mvcSiteMapNode title="Редактирование объявления" controller="Cabinet" action="EditAnnoun"/>
+      <mvcSiteMapNode title="Мои сообщения" controller="Cabinet" action="MyMessages"/>
     </mvcSiteMapNode>
   </mvcSiteMapNode>
 

@@ -49,6 +49,14 @@
         {
             @RenderSection("SiteMap")
         }
+        @if (IsSectionDefined("MainMenu"))
+        {
+            @RenderSection("MainMenu")
+        }
+        @if (IsSectionDefined("MyMessages"))
+        {
+            @RenderSection("MyMessages")
+        }
         @if (IsSectionDefined("AnnounInfo"))
         {
             @RenderSection("AnnounInfo")

@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Мои сообщения";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+
+@section MainMenu{
+    @Html.Partial(Url.Content("~/Views/Cabinet/MainMenu.cshtml"))
+}
+
+@section MyMessages{
+
+    @if (Session["login"] != null )
+    {
+
+        <div class="row" style="width:1100px;background-color:white; margin:0 auto;">
+            <div style="width: 800px; margin: 0 auto;padding:20px;">
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                </blockquote>
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                </blockquote>
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                </blockquote>
+                <blockquote>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+                    <footer>Someone famous in <cite title="Source Title">Source Title</cite></footer>
+                </blockquote>
+            </div>
+        </div>
+
+    }
+    else
+    {
+        @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
+    }
+    <div class="row" style="height:55px;width:100%;">
+
+    </div>
+}
+
+@section News{
+    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+}
+
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}
+
