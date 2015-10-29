@@ -236,8 +236,6 @@ namespace iproby.Controllers
                 }
                 isSaved = true;
                 return RedirectToAction("Index");
-
-
             }
             else
             {
@@ -248,6 +246,7 @@ namespace iproby.Controllers
 
         public ActionResult MyMessages()
         {
+
             return View();
         }
 

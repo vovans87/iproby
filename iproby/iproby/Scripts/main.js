@@ -192,6 +192,43 @@ function load_authorization() {
     });
 };
 
+
+function load_write_message() {
+    $('#myContent').load("/Content/dialogs/WriteMessage.html", function () {
+        $('#myDialog').modal({
+            backdrop: 'static',
+            keyboard: true
+        }, 'show');
+        $('.to_customer_input').val('43');
+        $('form').validator();
+        $('form').submit(function (e) {
+            if (e.isDefaultPrevented()) {
+                //alert('32');
+            } else {
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    beforeSend: function () {
+                        $('.loading-wait-btn').button('loading');
+                    },
+                    success: function (result) {
+                        $('.loading-wait-btn').button('reset');
+                        $('.return_result').html(result);
+                        setTimeout(function () {
+                            location.reload();
+                        }, 5000)
+                    }
+                });
+            }
+            return false;
+        });
+        
+    });
+};
+
+
 $(function () {
     $('.send_rss_mail').click(function () {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/;
@@ -208,4 +245,15 @@ $(function () {
             alert("Введенный email не соответствует критериям подлинности.Проверьте email.");
         }
     });
+});
+
+$(function () {
+    $('.message_author').click(function () {
+        $('.message_author').toggleClass("bg-success");
+        
+    });
+    $('.write_message').click(function () {
+        load_write_message();
+    });
+    
 });

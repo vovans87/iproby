@@ -166,6 +166,7 @@
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -202,6 +203,9 @@
     <Compile Include="Data_Model\education.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\message.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\speciality.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -218,6 +222,7 @@
     <Compile Include="Models\announ_details.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\message.cs" />
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\text.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -228,6 +233,7 @@
     <Content Include="Content\dialogs\AddClients.html" />
     <Content Include="Content\dialogs\Login.html" />
     <Content Include="Content\dialogs\Registration.html" />
+    <Content Include="Content\dialogs\WriteMessage.html" />
     <Content Include="Content\img\announ_calend_ico.png" />
     <Content Include="Content\img\announ_letter_ico.png" />
     <Content Include="Content\img\announ_letter_ico2.png" />
@@ -551,7 +557,8 @@
     <Content Include="Views\Information\About.cshtml" />
     <Content Include="Views\Information\Contacts.cshtml" />
     <Content Include="Views\Cabinet\MainMenu.cshtml" />
-    <Content Include="Views\Cabinet\MyMessages.cshtml" />
+    <Content Include="Views\Message\MyMessages.cshtml" />
+    <Content Include="Views\Status\SendMessageSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

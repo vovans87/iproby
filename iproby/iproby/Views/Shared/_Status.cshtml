@@ -22,6 +22,10 @@
 {
     @RenderSection("NoAuthorization")
 }
+@if (IsSectionDefined("SendMessageSuccess"))
+{
+    @RenderSection("SendMessageSuccess")
+}
 @if (IsSectionDefined("SaveDetailsSuccess"))
 {
     @RenderSection("SaveDetailsSuccess")

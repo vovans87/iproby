@@ -17,6 +17,7 @@ namespace iproby.Data_Model
         public customer()
         {
             this.customer_announ = new HashSet<customer_announ>();
+            this.messages = new HashSet<message>();
         }
     
         public int customer_id { get; set; }
@@ -31,5 +32,6 @@ namespace iproby.Data_Model
         public virtual contact contact { get; set; }
         public virtual status status { get; set; }
         public virtual ICollection<customer_announ> customer_announ { get; set; }
+        public virtual ICollection<message> messages { get; set; }
     }
 }

@@ -216,3 +216,10 @@
     cursor:pointer;
      border: 1px solid white;
 }
+.message_author:hover {
+    cursor:pointer;
+    border-color: #4cae4c;
+}
+.bg-success {
+    border-color: #4cae4c;
+}

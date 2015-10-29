@@ -1,0 +1,38 @@
+﻿<form role="form" action="/Message/SendMessage" method="post" data-toggle="validator" data-disable=false data-delay=100>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Создание личного сообщения</h4>
+    </div>
+    <div class="modal-body result return_result">
+        <div class="row return_wait">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <input type="hidden" name="to_customer" class="to_customer_input" value="0" />
+
+                <div class="form-group has-feedback">
+                    <label for="messageHeader" class="control-label add_asterisk">Заголовок</label>
+                    <input type="text" class="form-control" id="messageHeader" placeholder="Заголовок" name="header" maxlength="200" required>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+
+                </div>
+
+                <div class="form-group has-feedback">
+                    <label for="description" class="control-label add_asterisk">Текст сообщения</label>
+                    <textarea class="form-control noresize" id="description" name="text" rows="8" maxlength="3000" required>Текст сообщения</textarea>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Отправить">
+
+        </div>
+    </div>
+
+</form>
+<div class="col-md-2"></div>

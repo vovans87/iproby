@@ -94,6 +94,17 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="type" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="description" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="messages">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="from_customer_id" Type="int" Nullable="false" />
+          <Property Name="to_customer_id" Type="int" Nullable="false" />
+          <Property Name="text_mess" Type="text" />
+          <Property Name="date_from" Type="datetime" />
+          <Property Name="header" Type="text" />
+        </EntityType>
         <EntityType Name="status">
           <Key>
             <PropertyRef Name="status_id" />
@@ -150,6 +161,18 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_messages_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="messages" Type="Self.messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="messages">
+              <PropertyRef Name="from_customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="iproby94_cust_dbModelStoreContainer">
           <EntitySet Name="specialities" EntityType="Self.specialities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -158,6 +181,7 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <EntitySet Name="contact" EntityType="Self.contact" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="customer_announ" EntityType="Self.customer_announ" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="messages" EntityType="Self.messages" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="status" EntityType="Self.status" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="education" EntityType="Self.education" store:Type="Tables" store:Schema="iproby94_web">
             <DefiningQuery>SELECT 
@@ -181,6 +205,10 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_customers_status" Association="Self.FK_customers_status">
             <End Role="status" EntitySet="status" />
             <End Role="customers" EntitySet="customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_messages_customers" Association="Self.FK_messages_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="messages" EntitySet="messages" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -235,7 +263,8 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="contact" Relationship="Self.FK_customers_contact" FromRole="customers" ToRole="contact" />
           <NavigationProperty Name="status" Relationship="Self.FK_customers_status" FromRole="customers" ToRole="status" />
           <NavigationProperty Name="customer_announ" Relationship="iproby94_cust_dbModel.FK_customer_announ_customers" FromRole="customer" ToRole="customer_announ" />
-        </EntityType>
+          <NavigationProperty Name="messages" Relationship="iproby94_cust_dbModel.FK_messages_customers" FromRole="customer" ToRole="message" />
+          </EntityType>
         <EntityType Name="status">
           <Key>
             <PropertyRef Name="status_id" />
@@ -309,7 +338,12 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <End Role="customer" EntitySet="customers" />
             <End Role="customer_announ" EntitySet="customer_announ" />
           </AssociationSet>
-        </EntityContainer>
+          <EntitySet Name="messages" EntityType="iproby94_cust_dbModel.message" />
+          <AssociationSet Name="FK_messages_customers" Association="iproby94_cust_dbModel.FK_messages_customers">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="message" EntitySet="messages" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="announ">
           <Key>
             <PropertyRef Name="id" />
@@ -383,7 +417,31 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="from_customer_id" Type="Int32" Nullable="false" />
+          <Property Name="to_customer_id" Type="Int32" Nullable="false" />
+          <Property Name="date_from" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_messages_customers" FromRole="message" ToRole="customer" />
+          <Property Name="text_mess" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_messages_customers">
+          <End Type="iproby94_cust_dbModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.message" Role="message" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="message">
+              <PropertyRef Name="from_customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -487,6 +545,18 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
                 <ScalarProperty Name="date_from" ColumnName="date_from" />
                 <ScalarProperty Name="announ_id" ColumnName="announ_id" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="messages">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.message">
+              <MappingFragment StoreEntitySet="messages">
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="text_mess" ColumnName="text_mess" />
+                <ScalarProperty Name="date_from" ColumnName="date_from" />
+                <ScalarProperty Name="to_customer_id" ColumnName="to_customer_id" />
+                <ScalarProperty Name="from_customer_id" ColumnName="from_customer_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
