@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Мои сообщения";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+@section MainMenu{
+    @Html.Partial(Url.Content("~/Views/Cabinet/MainMenu.cshtml"))
+}
+@model List<iproby.Models.message>
+    @section MyMessages{
+        @if (Session["login"] != null)
+    {
+
+            <div class="row" style="width:1100px;background-color:white; margin:0 auto;">
+                <div style="width: 900px; margin: 0 auto;padding:20px;display:table;">
+                    <h4>Последние сообщения</h4><hr><br />
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <div style="display:table-row;width:100%;">
+                                <div style="display:table-cell;width:30%;">
+                                    <blockquote class="message_author">
+                                        <p><a href="#" style="font-size:15px;">@item.fio</a></p>
+                                        <footer>Написал Вам сообщение <br /><cite title="Source Title" style="font-size:8px;">По клику можно открыть форму ответа</cite></footer>
+                                    </blockquote>
+
+                                </div>
+                                <div style="display: table-cell; width: 70%;padding-left:20px;" class="target_messages">
+                                    <blockquote class="answer_message">
+                                        <p>@item.header</p>
+                                        <p style="font-size:14px;">@item.text</p>
+                                        <footer>@item.date_from <cite title="Source Title">@item.email</cite></footer>
+                                    </blockquote>
+                                    <hr />
+                                </div>
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <p>
+                            Пока Вам никто еще не написал. <br>
+                            Все впереди!<br>
+                            Постарайтесь держать объявление на виду.
+                        </p>
+                    }
+
+                </div>
+            </div>
+
+        }
+        else
+        {
+            @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
+        }
+        <div class="row" style="height:55px;width:100%;">
+        </div>
+    }
+    @section News{
+        @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+    }
+    @section Footer{
+        @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+    }

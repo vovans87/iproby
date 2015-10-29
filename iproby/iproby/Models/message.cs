@@ -7,6 +7,7 @@ namespace iproby.Models
 {
     public class message
     {
+        public int id { get; set; }
         public string header { get; set; }
         public string text { get; set; }
         public int from_customer { get; set; }

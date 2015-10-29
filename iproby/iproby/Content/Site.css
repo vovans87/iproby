@@ -220,6 +220,10 @@
     cursor:pointer;
     border-color: #4cae4c;
 }
+.answer_message:hover {
+    cursor:pointer;
+    border-color: #4cae4c;
+}
 .bg-success {
     border-color: #4cae4c;
 }

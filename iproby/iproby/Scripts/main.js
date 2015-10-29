@@ -249,8 +249,8 @@ $(function () {
 
 $(function () {
     $('.message_author').click(function () {
-        $('.message_author').toggleClass("bg-success");
-        
+        $(this).toggleClass("bg-success");
+       
     });
     $('.write_message').click(function () {
         load_write_message();

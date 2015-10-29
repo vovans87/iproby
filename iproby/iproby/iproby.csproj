@@ -559,6 +559,7 @@
     <Content Include="Views\Cabinet\MainMenu.cshtml" />
     <Content Include="Views\Message\MyMessages.cshtml" />
     <Content Include="Views\Status\SendMessageSuccess.cshtml" />
+    <Content Include="Views\Message\Answer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
