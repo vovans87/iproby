@@ -38,6 +38,22 @@ namespace iproby.Controllers
 
         }
 
+        [HttpPost]
+        public void SendMail(string email, string message)
+        {
+            SmtpClient smtpClient = new SmtpClient("iproby.ru", 2525);
+            smtpClient.Credentials = new System.Net.NetworkCredential("info@iproby.ru", "Qlo9s85@");
+            //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
+            //smtpClient.EnableSsl = true;
+            MailMessage mail = new MailMessage();
+            mail.From = new MailAddress("info@iproby.ru", "From IPRO notification");
+            mail.To.Add(new MailAddress("info@iproby.ru"));
+            mail.Subject = "Нотификация с сайта IPRO";
+            mail.Body = message;
+            smtpClient.Send(mail);
+
+        }
+
 
     }
 }

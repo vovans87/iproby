@@ -15,24 +15,24 @@
 
             <div class="row" style="width:1100px;background-color:white; margin:0 auto;">
                 <div style="width: 900px; margin: 0 auto;padding:20px;display:table;">
-                    <h4>Последние сообщения</h4><hr><br />
+                    <h4>Последние сообщения </h4><hr><br />
                     @if (Model.Count > 0)
                     {
                         foreach (var item in Model)
                         {
                             <div style="display:table-row;width:100%;">
                                 <div style="display:table-cell;width:30%;">
-                                    <blockquote class="message_author">
+                                    <blockquote class="" style="@{if (item.is_answer==1){<text>display:none</text>}}">
                                         <p><a href="#" style="font-size:15px;">@item.fio</a></p>
-                                        <footer>Написал Вам сообщение <br /><cite title="Source Title" style="font-size:8px;">По клику можно открыть форму ответа</cite></footer>
+                                        <footer>Написал Вам сообщение @item.is_answer <br /></footer>
                                     </blockquote>
 
                                 </div>
                                 <div style="display: table-cell; width: 70%;padding-left:20px;" class="target_messages">
-                                    <blockquote class="answer_message">
-                                        <p>@item.header</p>
+                                    <blockquote class="@{if (item.is_answer==1){<text>blockquote-reverse</text>}}">
+                                        <p style="font-size:16px;"><b>@item.header</b></p>
                                         <p style="font-size:14px;">@item.text</p>
-                                        <footer>@item.date_from <cite title="Source Title">@item.email</cite></footer>
+                                        <footer>@item.date_from</footer>
                                     </blockquote>
                                     <hr />
                                 </div>
@@ -50,8 +50,58 @@
 
                 </div>
             </div>
+    <div class="row" style="width:1100px;background-color:white; margin:0 auto;">
+        <div style="width: 900px; margin: 0 auto;padding:20px;display:table;">
+            <form role="form" action="/Message/SendMessage" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                <div class="modal-header">
+                    <h4 class="modal-title">Ответ на сообщение</h4>
+                </div>
+                <div class="modal-body" id="result">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            @{var to_customer = 0; 
+                            foreach (var item in Model)
+                            {
+                                to_customer = item.from_customer;
+                            }
+                            }
+                            
+                            <input type="hidden" name="message_id" value="@Request.Params["message_id"]" />
+                            <input type="hidden" name="form_flag"  value="1" />
+                            <input type="hidden" name="to_customer" class="to_customer_input_answer" value="@to_customer" />
+                            <div class="form-group has-feedback">
+                                <label for="header" class="control-label add_asterisk">Заголовок</label>
+                                <input type="text" class="form-control" id="header" placeholder="Заголовок" value="" name="header" maxlength="200" required>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
+                            <div class="form-group has-feedback">
+                                <label for="about" class="control-label add_asterisk">Текст ответа</label>
+                                <textarea class="form-control noresize" id="about" name="text" rows="4" maxlength="1000" required>Текст ответа</textarea>
+                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                            </div>
 
-        }
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Отправить">
+                    <script>
+                        $('.loading-wait-btn')
+        .click(function () {
+            var btn = $(this)
+            btn.button('loading')
+            setTimeout(function () {
+                btn.button('reset')
+            }, 3000)
+        });
+                    </script>
+                </div>
+            </form>
+        </div>
+        </div>
+
+    }
         else
         {
             @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
