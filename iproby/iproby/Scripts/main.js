@@ -199,7 +199,7 @@ function load_write_message() {
             backdrop: 'static',
             keyboard: true
         }, 'show');
-        $('.to_customer_input').val('43');
+        $('.to_customer_input').val($(this).attr('customer_id-'));
         $('form').validator();
         $('form').submit(function (e) {
             if (e.isDefaultPrevented()) {

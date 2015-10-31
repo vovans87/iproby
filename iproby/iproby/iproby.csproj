@@ -222,6 +222,7 @@
     <Compile Include="Models\announ_details.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\announ_preview.cs" />
     <Compile Include="Models\message.cs" />
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\text.cs" />
@@ -502,7 +503,9 @@
     <Content Include="Views\Shared\DisplayTemplates\SiteMapNodeModelList.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapPathHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\SiteMapTitleHelperModel.ascx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

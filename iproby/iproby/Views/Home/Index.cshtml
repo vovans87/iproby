@@ -20,7 +20,7 @@
 }
 
 @section Announs{
-    @Html.Partial(Url.Content("~/Views/Catalog/Announs.cshtml"))
+    @{Html.RenderAction("Announs", "Catalog", null);}
 }
 
 @section Footer{
