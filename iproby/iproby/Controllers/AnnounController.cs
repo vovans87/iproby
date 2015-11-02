@@ -235,6 +235,127 @@ namespace iproby.Controllers
             }
         }
 
+        public int GetLikes(int announ_id)
+        {
+            var likes_arr = (from a in db.likes
+                             where a.announ_id == announ_id
+                             select a.like_num);
+            int like_num = 0;
+            foreach (int item in likes_arr)
+            {
+                like_num = item;
+            }
+            return like_num;
+        }
+
+        public int GetDislikes(int announ_id)
+        {
+            var likes_arr = (from a in db.likes
+                             where a.announ_id == announ_id
+                             select a.disline_num);
+            int dislike_num = 0;
+            foreach (int item in likes_arr)
+            {
+                dislike_num = item;
+            }
+            return dislike_num;
+        }
+
+        [HttpPost]
+        public void AddLike(int announ_id)
+        {
+            if (Session["login"] != null)
+            {
+                string login = Session["login"].ToString();
+                var customer_id_arr = (from a in db.customers
+                                       where a.login == login
+                                       select a.customer_id);
+                int customer_id = 0;
+                foreach (int item in customer_id_arr)
+                {
+                    customer_id = item;
+                }
+                var likes_arr = (from a in db.likes
+                                       where a.announ_id == announ_id
+                                 select a);
+                int like_num = 0;
+                int dislike_num = 0;
+                int like_id = 0;
+                foreach (var item in likes_arr)
+                {
+                    like_num = item.like_num.Value;
+                    dislike_num = item.disline_num.Value;
+                    like_id = item.id;
+                }
+                if (like_num == 0 && dislike_num == 0)
+                {
+                    iproby.Data_Model.like like = new iproby.Data_Model.like();
+                    like.announ_id = announ_id;
+                    like.like_num = like_num + 1;
+                    like.disline_num = dislike_num;
+                    db.likes.Add(like);
+                    db.SaveChanges();
+                }
+                else {
+                    var like = db.likes.Find(like_id);
+                    if (like != null)
+                    {
+                        like.like_num = like_num+1;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            else {      }
+        }
+
+        [HttpPost]
+        public void AddDislike(int announ_id)
+        {
+            if (Session["login"] != null)
+            {
+                string login = Session["login"].ToString();
+                var customer_id_arr = (from a in db.customers
+                                       where a.login == login
+                                       select a.customer_id);
+                int customer_id = 0;
+                foreach (int item in customer_id_arr)
+                {
+                    customer_id = item;
+                }
+                var likes_arr = (from a in db.likes
+                                 where a.announ_id == announ_id
+                                 select a);
+                int like_num = 0;
+                int dislike_num = 0;
+                int like_id = 0;
+                foreach (var item in likes_arr)
+                {
+                    like_num = item.like_num.Value;
+                    dislike_num = item.disline_num.Value;
+                    like_id = item.id;
+                }
+                if (like_num == 0 && dislike_num == 0)
+                {
+                    iproby.Data_Model.like like = new iproby.Data_Model.like();
+                    like.announ_id = announ_id;
+                    like.like_num = like_num + 1;
+                    like.disline_num = dislike_num;
+                    db.likes.Add(like);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    var like = db.likes.Find(like_id);
+                    if (like != null)
+                    {
+                        like.disline_num = dislike_num + 1;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            else
+            {       }
+        }
     }
 }
 

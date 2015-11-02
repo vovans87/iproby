@@ -255,5 +255,27 @@ $(function () {
     $('.write_message').click(function () {
         load_write_message();
     });
+
+    $('.like_btn').click(function () {
+        $.ajax({
+            url: "/Announ/AddLike",
+            type: "post",
+            data: "announ_id=" + $(this).attr('announ_id'),
+            success: function (result) {
+               location.reload();
+            }
+        });
+    });
+
+    $('.dislike_btn').click(function () {
+        $.ajax({
+            url: "/Announ/AddDislike",
+            type: "post",
+            data: "announ_id=" + $(this).attr('announ_id'),
+            success: function (result) {
+                location.reload();
+            }
+        });
+    });
     
 });

@@ -47,8 +47,8 @@
                                    <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />26 сентябрь, 2016
                                    <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " />2.393
                                    <img src="~/Content/img/like_dislike.png" style="margin-left:480px;margin-top:18px;" />
-                                   <span style="font-family: Helvetica; font-size: 11px; color:white; margin-left: -104px; margin-top: 25px; position: absolute;">150</span>
-                                   <span style="font-family: Helvetica; font-size: 11px; color:white; margin-left: -34px; margin-top: 25px; position: absolute;">150</span>
+                                   <div class="like_btn" announ_id="@item.announ_id" style="font-family: Helvetica; font-size: 11px; color:white; margin-left: 730px; margin-top: -23px; position: absolute;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = item.announ_id });}</div>
+                                   <div class="dislike_btn" announ_id="@item.announ_id" style="font-family: Helvetica; font-size: 11px; color:white; margin-left: 797px; margin-top: -23px; position: absolute;">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = item.announ_id });}</div>
 
                                </div>
                            </div>

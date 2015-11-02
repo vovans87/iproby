@@ -203,6 +203,9 @@
     <Compile Include="Data_Model\education.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\like.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\message.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
