@@ -206,6 +206,9 @@
     <Compile Include="Data_Model\message.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\review.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\speciality.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -222,10 +225,11 @@
     <Compile Include="Models\announ_details.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\announ_full.cs" />
     <Compile Include="Models\announ_preview.cs" />
     <Compile Include="Models\message.cs" />
     <Compile Include="Models\registrator.cs" />
-    <Compile Include="Models\text.cs" />
+    <Compile Include="Models\review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -563,6 +567,11 @@
     <Content Include="Views\Message\MyMessages.cshtml" />
     <Content Include="Views\Status\SendMessageSuccess.cshtml" />
     <Content Include="Views\Message\Answer.cshtml" />
+    <Content Include="Views\Announ\ReviewsList.cshtml" />
+    <Content Include="Views\Announ\OldReview.cshtml" />
+    <Content Include="Views\Announ\NoAuthorization.cshtml" />
+    <Content Include="Views\Announ\ReviewSavedSuccess.cshtml" />
+    <Content Include="Views\Announ\ReviewBlock.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,13 +13,100 @@ namespace iproby.Controllers
     {
         //
         // GET: /Announ/
+        private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
+        private static bool isSaved=false;
+        private static bool notLogin = false;
 
-        public ActionResult Index()
+        public ActionResult Index(int announ_id)
         {
-           
-            return View();
+            if (isSaved)
+            {
+                ViewData["isSaved"] = "isSaved";
+                isSaved = false;
+            }
+            if (notLogin)
+            {
+                ViewData["notLogin"] = "notLogin";
+                notLogin = false;
+            }
+            var announ_arr = (from a in db.announs
+                              where a.id == announ_id
+                              select a);
+            iproby.Models.announ_full announ = new iproby.Models.announ_full();
+            foreach (var item_inside in announ_arr)
+            {
+                announ.description = item_inside.description;
+                announ.header = item_inside.header;
+                announ.announ_id = item_inside.id;
+                announ.about = item_inside.about;
+                announ.price = item_inside.price;
+            }
+            var customer_id_arr = (from a in db.customer_announ
+                                   where a.announ_id == announ_id
+                                   select a.customer_id);
+            int customer_id = 0;
+            foreach (int item_inside in customer_id_arr)
+            {
+                customer_id = item_inside;
+            }
+            announ.customer_id = customer_id;
+            var contact_id_arr = (from a in db.customers
+                                  where a.customer_id == customer_id
+                                  select a.contact_id);
+            int contact_id = 0;
+            foreach (int item_inside in contact_id_arr)
+            {
+                contact_id = item_inside;
+            }
+            var contact_arr = (from a in db.contacts
+                               where a.contact_id == contact_id
+                               select a);
+            foreach (var item_inside in contact_arr)
+            {
+                announ.first_name = item_inside.first_name;
+                announ.mobile = item_inside.mobile;
+                announ.address = item_inside.address;
+                announ.skype = item_inside.skype;
+                announ.email = item_inside.email;
+            }
+            
+            return View(announ);
         }
-        
+
+        public ActionResult Reviews(int announ_id)
+        {
+
+            var reviews_arr = (from a in db.reviews
+                               where a.announ_id == announ_id
+                               select a);
+            List<iproby.Models.review> review_list = new List<iproby.Models.review>();
+            foreach (var item in reviews_arr)
+            {
+                iproby.Models.review review = new iproby.Models.review();
+                review.header = item.header;
+                review.description = item.description;
+                review.date_from = item.date_from;
+                review.reviewer_id = item.reviewer_id;
+                var contact_id_arr = (from a in db.customers
+                                       where a.customer_id == item.reviewer_id
+                                       select a.contact_id);
+                int contact_id = 0;
+                foreach (int item_customer in contact_id_arr)
+                {
+                    contact_id = item_customer;
+                }
+                var contact_arr = (from a in db.contacts
+                               where a.contact_id == contact_id
+                               select a);
+                foreach (var item_inside in contact_arr)
+                {
+                    review.first_name = item_inside.first_name;
+                }
+                review_list.Add(review);
+            }
+            return View("~/Views/Announ/ReviewsList.cshtml",review_list);
+        }
+
         [HttpPost]
         public string GetChildTypes(string parent_type)
         {
@@ -62,8 +149,7 @@ namespace iproby.Controllers
             }
         }
 
-        private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
-
+       
         [HttpPost]
         public ActionResult AddClients(iproby.Models.announ_clients model)
         {
@@ -114,6 +200,39 @@ namespace iproby.Controllers
             }
 
             
+        }
+
+        [HttpPost]
+        public ActionResult AddReview(iproby.Models.review model)
+        {
+            if (Session["login"] != null)
+            {
+                string login = Session["login"].ToString();
+                var customer_id_arr = (from a in db.customers
+                                       where a.login == login
+                                       select a.customer_id);
+                int customer_id = 0;
+                foreach (int item in customer_id_arr)
+                {
+                    customer_id = item;
+                }
+                iproby.Data_Model.review review = new iproby.Data_Model.review();
+                review.reviewer_id = customer_id;
+                review.announ_id = model.announ_id;
+                review.customer_id = model.customer_id;
+                review.header = model.header;
+                review.description = model.description;
+                DateTime Now = DateTime.Now;
+                review.date_from = Now;
+                db.reviews.Add(review);
+                db.SaveChanges();
+                isSaved = true;
+                return RedirectToAction("Index", new { announ_id = model.announ_id });
+            }
+            else {
+                notLogin = true;
+                return RedirectToAction("Index", new { announ_id = model.announ_id });
+            }
         }
 
     }

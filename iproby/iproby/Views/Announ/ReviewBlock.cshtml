@@ -1,0 +1,47 @@
+﻿
+<div class="row">
+    <div style="width: 1100px; margin: 0 auto; height: 70px; font-family: Helvetica Bold; font-size: 16px; color: #115a56; line-height:70px;">
+        Отзывы (0):
+    </div>
+   @{Html.RenderAction("Reviews", "Announ", null);}
+    <div style="width: 1100px; margin: 0 auto;">
+        <form action="/Announ/AddReview" method="post" data-toggle="validator" data-disable=false data-delay=100>
+            <div class="modal-header">
+                <h4 class="modal-title"> Добавить отзыв</h4>
+            </div>
+            <div class="modal-body" id="result">
+                <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        <input type="hidden" value="@Model.customer_id" name="customer_id" />
+                        <input type="hidden" value="@Model.announ_id" name="announ_id" />
+                        <div class="form-group has-feedback">
+                            <label for="header" class="control-label add_asterisk">Заголовок</label>
+                            <input type="text" class="form-control" id="header" placeholder="Заголовок" value="" name="header" maxlength="100" required>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+                        <div class="form-group has-feedback">
+                            <label for="description" class="control-label add_asterisk">Текст отзыва</label>
+                            <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>Текст отзыва</textarea>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer" style="margin-right:185px;">
+                <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Отправить отзыв">
+                <script>
+                    $('.loading-wait-btn')
+    .click(function () {
+        var btn = $(this)
+        btn.button('loading')
+        setTimeout(function () {
+            btn.button('reset')
+        }, 3000)
+    });
+                </script>
+            </div>
+        </form>
+    </div>
+</div>

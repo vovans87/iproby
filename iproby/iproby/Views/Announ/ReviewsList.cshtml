@@ -1,0 +1,30 @@
+﻿<div class="row" style="width:1100px;margin:0 auto;">
+    @foreach (var item in Model)
+    {
+        <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:20px;">
+            <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
+                <img src="~/Content/img/no_logo.png" style="margin-left: 20px;margin-top:20px;margin-right:20px; float: left;" />
+                <div style="font-family: Helvetica Bold; font-size: 14px; float: left; margin-top: 20px; width: 130px; height: 40px; color: #115a56;">@item.first_name</div>
+
+                <div style="margin-left: 20px; ">
+                    <img src="~/Content/img/star_active.png" />
+                    <img src="~/Content/img/star_active.png" />
+                    <img src="~/Content/img/star_active.png" />
+                    <img src="~/Content/img/star_active.png" />
+                    <img src="~/Content/img/star_inactive.png" />
+                </div>
+                <div style="margin-top:30px; margin-left:50px; color: #115a56; font-family: Helvetica; font-size: 14px; ">Оценка: <b>5</b></div>
+            </div>
+            <div style="width:855px;height:170px;float:left;display:table;">
+                <div style="font-family: Helvetica Bold; font-size: 14px; color: #151515; margin-left: 20px; margin-top: 17px;"><a href="#" style=" text-decoration: none; color: #151515;">@item.header</a></div>
+
+                <div style="font-family: Helvetica; font-size: 12px; line-height: 2; margin-left: 20px; margin-top:10px;">
+                    @item.description
+                </div>
+                <div style=" color: #888888; font-family: Helvetica; font-size: 11px; display:table-row;">
+                    <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />@item.date_from
+                </div>
+            </div>
+        </div>
+    }
+</div>

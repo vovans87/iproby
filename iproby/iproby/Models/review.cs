@@ -5,14 +5,15 @@ using System.Web;
 
 namespace iproby.Models
 {
-    public class announ_preview
+    public class review
     {
-        public int announ_id { get; set; }
-        public int customer_id { get; set; }
         public string header { get; set; }
         public string description { get; set; }
+        public int announ_id { get; set; }
+        public int customer_id { get; set; }
+        public int reviewer_id { get; set; }
         public string first_name { get; set; }
-        public string address { get; set; }
-        public string mobile { get; set; }
+        public Nullable<System.DateTime> date_from { get; set; }
+
     }
 }

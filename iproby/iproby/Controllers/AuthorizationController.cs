@@ -35,9 +35,8 @@ namespace iproby.Controllers
             customer.login = model.login;
             customer.password = model.password;
             customer.status_id = 0;
-            string dateFromString = "01/01/1911";
-            DateTime dateFrom = DateTime.Parse(dateFromString, System.Globalization.CultureInfo.InvariantCulture);
-            customer.date_from = dateFrom;
+            DateTime Now = DateTime.Now;
+            customer.date_from = Now;
             string dateToString = "09/09/9999";
             DateTime dateTo = DateTime.Parse(dateToString, System.Globalization.CultureInfo.InvariantCulture);
             customer.date_to = dateTo;

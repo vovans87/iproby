@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model iproby.Models.announ_full
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,13 +22,22 @@
         </div>
         <div class="row">
             <div style="width: 1100px; margin: 0 auto; display: table; ">
+                @if (ViewData["isSaved"] != null && ViewData["isSaved"].ToString() == "isSaved")
+                {
+                    @Html.Partial(Url.Content("~/Views/Announ/ReviewSavedSuccess.cshtml"))
+                }
+                @if (ViewData["notLogin"] != null && ViewData["notLogin"].ToString() == "notLogin")
+                {
+                    @Html.Partial(Url.Content("~/Views/Announ/NoAuthorization.cshtml"))
+                }
+
                 <ul style="display: table-row;">
                     <li style="display: table-cell; background-color: white; vertical-align: top; ">
                         <div style="width: 240px; background-color: white; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; ">
                             <img src="~/Content/img/announ_no_photo.png" />
-                            <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">Федор Владимирович</div>
+                            <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">@Model.first_name</div>
                             <div style="font-family: Helvetica; font-size: 13px; float: left; width: 130px; height: 20px; color: #44beb7;line-height:1;">
-                                <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />Москва
+                                <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />@Model.address
                             </div>
                             <br>
                             <div style="width: 100px;float:left;margin-top:-3px;">
@@ -41,7 +51,7 @@
                             <div style="width: 200px; border-bottom: 2px solid #d9e1e5; float: left; margin-top:20px;"></div>
                             <div style="float: left; margin-top: 20px; color: #00a79d; font-family: Helvetica Bold; font-size: 14px; ">О себе:</div>
                             <div style="float: left; font-family: Helvetica; font-size: 14px; color: #446cb3;">
-                                Высшее лингвистическое образование. Репетиторская деятельность - более 4 лет
+                               @Model.about
                             </div>
                         </div>
                     </li>
@@ -66,23 +76,23 @@
                             <div style="padding: 20px 25px 20px 20px; ">
                                 <div style="height:30px;">
                                     <img src="~/Content/img/phone.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Мобильный</span>
-                                    <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">+7 (916) 654-55-66</span>
+                                    <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">@Model.mobile</span>
                                 </div>
                                 <div style="height:30px;">
                                     <img src="~/Content/img/phone.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Мобильный</span>
-                                    <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">+7 (916) 654-55-66</span>
+                                    <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">@Model.mobile</span>
                                 </div>
                                 <div style="height:30px;">
                                     <img src="~/Content/img/announ_skype_ico.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Skype</span>
-                                    <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">test</div>
+                                    <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">@Model.skype</div>
                                 </div>
                                 <div style="height:30px;">
                                     <img src="~/Content/img/announ_letter_ico2.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Email</span>
-                                    <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">test</div>
+                                    <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">@Model.email</div>
                                 </div>
                                 <div style="height:30px;">
                                     <img src="~/Content/img/announ_site_ico.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Site</span>
-                                    <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">test</div>
+                                    <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;"></div>
                                 </div>
                                 <div style="width: 280px; border-bottom: 1px solid #d9e1e5; float: left; margin-top:10px;"></div>
                                 <div style="height:30px;margin-top:30px;">
@@ -108,16 +118,13 @@
                         <div style="width: 540px; background-color: white; padding: 20px; height: 100%;  ">
                             <div>
                                 <div style="width:100%;height:30px;">
-                                    <div style="font-family: Helvetica Bold; font-size: 18px; color: #446cb3; border-bottom: 1px solid #446cb3; float: left; height: 23px;">Веб дизайнер</div>
+                                    <div style="font-family: Helvetica Bold; font-size: 18px; color: #446cb3; border-bottom: 1px solid #446cb3; float: left; height: 23px;">@Model.header</div>
                                 </div>
-                                <div style="font-family: Helvetica; font-size: 14px; color: #44beb7;">Цена: <span style="color: #43af73; font-family: Helvetica Bold; ">Стоимость 1000 знаков с пробелами = 150 руб</span></div>
+                                <div style="font-family: Helvetica; font-size: 14px; color: #44beb7;">Цена: <span style="color: #43af73; font-family: Helvetica Bold; ">@Model.price</span></div>
                             </div>
                             <div style="width: 500px; border-bottom: 1px solid #d9e1e5; float: left; margin-top:15px;"></div>
                             <div style="font-family: Helvetica; font-size: 14px; float: left; margin-top: 10px; line-height: 2; min-height: 100%; ">
-                                Индивидуальный подход Выявление и устранение пробелов в знаниях. Повышение успеваемости по предмету. Изучение материала выше школьного уровня. Подготовка к контрольным, самостоятельным, практическим работам. Возможны занятия в первой половине дня
-                                Сухарево
-                                80297636124
-                                Юлия Владимировна
+                                @Model.description
                             </div>
                         </div>
                     </li>
@@ -138,71 +145,8 @@
                 </ul>
             </div>
         </div>
-        <div class="row">
-            <div style="width: 1100px; margin: 0 auto; height: 70px; font-family: Helvetica Bold; font-size: 16px; color: #115a56; line-height:70px;">
-                Отзывы (0):
-            </div>
-            <div class="row" style="width:1100px;margin:0 auto;">
-                <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;">
-                    <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
-                        <img src="~/Content/img/no_logo.png" style="margin-left: 20px;margin-top:20px;margin-right:20px; float: left;" />
-                        <div style="font-family: Helvetica Bold; font-size: 14px; float: left; margin-top: 20px; width: 130px; height: 40px; color: #115a56;">Эльвира Семеновна</div>
 
-                        <div style="margin-left: 20px; ">
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_inactive.png" />
-                        </div>
-                        <div style="margin-top:30px; margin-left:50px; color: #115a56; font-family: Helvetica; font-size: 14px; ">Оценка: <b>5</b></div>
-                    </div>
-                    <div style="width:855px;height:170px;float:left;display:table;">
-                        <div style="font-family: Helvetica Bold; font-size: 14px; color: #151515; margin-left: 20px; margin-top: 17px;"><a href="#" style=" text-decoration: none; color: #151515;">Веб дизайнер</a></div>
-
-                        <div style="font-family: Helvetica; font-size: 12px; line-height: 2; margin-left: 20px; margin-top:10px;">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </div>
-                        <div style=" color: #888888; font-family: Helvetica; font-size: 11px; display:table-row;">
-                            <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />26 сентябрь, 2016
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row" style="width: 1100px; margin: 0 auto; height: 70px; font-family: Helvetica Bold; font-size: 16px; color: #115a56; line-height:70px;">
-                Добавить отзыв
-            </div>
-            <div class="row" style="width: 1100px; margin: 0 auto;padding-bottom:50px;">
-                <div style="float:left;">
-                    <div style="width:460px;height:50px;background-color:white;-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                        <input type="text" style="width:460px;height:50px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;" value="Введите Ваше имя" />
-                    </div>
-                    <div style="margin-top:15px;width: 460px; height: 50px; background-color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                        <input type="text" style="width:460px;height:50px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;" value="Ваш email" />
-                    </div>
-                    <div style="margin-top: 15px; width: 460px; height: 50px; background-color: white; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                        <input type="text" style="width:460px;height:50px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;" value="Заголовок отзыва" />
-                    </div>
-                    <div style="margin-top: 15px; width: 460px; height: 50px;">
-                        <div style="margin-left: 20px; color: #454545; font-family: Helvetica Bold; font-size: 15px; "> Ваша оценка: <b>4</b></div>
-                        <div style="margin-left: 20px; ">
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_active.png" />
-                            <img src="~/Content/img/star_inactive.png" />
-                        </div>
-                    </div>
-                </div>
-                <div style="width: 620px; height: 180px; background-color: white;float:right;-moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                    <textarea style="width:620px;height:180px;border:none;text-indent:10px;color:#a2e2de;font-family: Helvetica; font-size: 14px;padding:10px;">Текст отзыва</textarea>
-
-                </div>
-                <div style="width: 160px; height: 50px; background-color: #4b99f7;float:right;margin-top:10px;text-align:center;line-height:50px;font-family: Helvetica Bold; font-size: 14px;color:white; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                    Отправить
-                </div>
-            </div>
-        </div>
+        @RenderPage("~/Views/Announ/ReviewBlock.cshtml")
 
         @RenderPage("~/Views/News/Index.cshtml")
 

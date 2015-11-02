@@ -105,6 +105,18 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="date_from" Type="datetime" />
           <Property Name="header" Type="text" />
         </EntityType>
+        <EntityType Name="reviews">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="announ_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="reviewer_id" Type="int" Nullable="false" />
+          <Property Name="header" Type="text" />
+          <Property Name="description" Type="text" />
+          <Property Name="date_from" Type="datetime" />
+        </EntityType>
         <EntityType Name="status">
           <Key>
             <PropertyRef Name="status_id" />
@@ -173,6 +185,30 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_reviews_announ">
+          <End Role="announ" Type="Self.announ" Multiplicity="1" />
+          <End Role="reviews" Type="Self.reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="reviews">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reviews_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="reviews" Type="Self.reviews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="reviews">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="iproby94_cust_dbModelStoreContainer">
           <EntitySet Name="specialities" EntityType="Self.specialities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -182,6 +218,7 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <EntitySet Name="customer_announ" EntityType="Self.customer_announ" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="messages" EntityType="Self.messages" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="reviews" EntityType="Self.reviews" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="status" EntityType="Self.status" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="education" EntityType="Self.education" store:Type="Tables" store:Schema="iproby94_web">
             <DefiningQuery>SELECT 
@@ -209,6 +246,14 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_messages_customers" Association="Self.FK_messages_customers">
             <End Role="customers" EntitySet="customers" />
             <End Role="messages" EntitySet="messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reviews_announ" Association="Self.FK_reviews_announ">
+            <End Role="announ" EntitySet="announ" />
+            <End Role="reviews" EntitySet="reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reviews_customers" Association="Self.FK_reviews_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="reviews" EntitySet="reviews" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -264,6 +309,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="status" Relationship="Self.FK_customers_status" FromRole="customers" ToRole="status" />
           <NavigationProperty Name="customer_announ" Relationship="iproby94_cust_dbModel.FK_customer_announ_customers" FromRole="customer" ToRole="customer_announ" />
           <NavigationProperty Name="messages" Relationship="iproby94_cust_dbModel.FK_messages_customers" FromRole="customer" ToRole="message" />
+          <NavigationProperty Name="reviews" Relationship="iproby94_cust_dbModel.FK_reviews_customers" FromRole="customer" ToRole="review" />
           </EntityType>
         <EntityType Name="status">
           <Key>
@@ -343,6 +389,15 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <End Role="customer" EntitySet="customers" />
             <End Role="message" EntitySet="messages" />
           </AssociationSet>
+          <EntitySet Name="reviews" EntityType="iproby94_cust_dbModel.review" />
+          <AssociationSet Name="FK_reviews_announ" Association="iproby94_cust_dbModel.FK_reviews_announ">
+            <End Role="announ" EntitySet="announs" />
+            <End Role="review" EntitySet="reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_reviews_customers" Association="iproby94_cust_dbModel.FK_reviews_customers">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="review" EntitySet="reviews" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="announ">
           <Key>
@@ -357,7 +412,8 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="announ_type" Relationship="iproby94_cust_dbModel.FK_announ_announ_type" FromRole="announ" ToRole="announ_type" />
           <NavigationProperty Name="customer_announ" Relationship="iproby94_cust_dbModel.FK_customer_announ_announ" FromRole="announ" ToRole="customer_announ" />
           <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-        </EntityType>
+          <NavigationProperty Name="reviews" Relationship="iproby94_cust_dbModel.FK_reviews_announ" FromRole="announ" ToRole="review" />
+          </EntityType>
         <EntityType Name="announ_type">
           <Key>
             <PropertyRef Name="id" />
@@ -438,6 +494,44 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             </Principal>
             <Dependent Role="message">
               <PropertyRef Name="from_customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="review">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="announ_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="reviewer_id" Type="Int32" Nullable="false" />
+          <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_from" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_reviews_announ" FromRole="review" ToRole="announ" />
+          <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_reviews_customers" FromRole="review" ToRole="customer" />
+        </EntityType>
+        <Association Name="FK_reviews_announ">
+          <End Type="iproby94_cust_dbModel.announ" Role="announ" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.review" Role="review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_reviews_customers">
+          <End Type="iproby94_cust_dbModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.review" Role="review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="review">
+              <PropertyRef Name="customer_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -557,6 +651,19 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
                 <ScalarProperty Name="date_from" ColumnName="date_from" />
                 <ScalarProperty Name="to_customer_id" ColumnName="to_customer_id" />
                 <ScalarProperty Name="from_customer_id" ColumnName="from_customer_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reviews">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.review">
+              <MappingFragment StoreEntitySet="reviews">
+                <ScalarProperty Name="date_from" ColumnName="date_from" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="header" ColumnName="header" />
+                <ScalarProperty Name="reviewer_id" ColumnName="reviewer_id" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="announ_id" ColumnName="announ_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
