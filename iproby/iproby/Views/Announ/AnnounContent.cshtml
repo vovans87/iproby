@@ -1,0 +1,128 @@
+﻿@model iproby.Models.announ_full
+<div class="row">
+    <div style="width: 1100px; margin: 0 auto; display: table; ">
+        @if (ViewData["isSaved"] != null && ViewData["isSaved"].ToString() == "isSaved")
+        {
+            @Html.Partial(Url.Content("~/Views/Announ/ReviewSavedSuccess.cshtml"))
+        }
+        @if (ViewData["notLogin"] != null && ViewData["notLogin"].ToString() == "notLogin")
+        {
+            @Html.Partial(Url.Content("~/Views/Announ/NoAuthorization.cshtml"))
+        }
+
+        <ul style="display: table-row;">
+            <li style="display: table-cell; background-color: white; vertical-align: top; ">
+                <div style="width: 240px; background-color: white; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; ">
+                    <img src="~/Content/img/announ_no_photo.png" />
+                    <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">@Model.first_name</div>
+                    <div style="font-family: Helvetica; font-size: 13px; float: left; width: 130px; height: 20px; color: #44beb7;line-height:1;">
+                        <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />@Model.address
+                    </div>
+                    <br>
+                    <div style="width: 100px;float:left;margin-top:-3px;">
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_inactive.png" />
+                    </div>
+                    <div style="color: #1d6cef; font-family: Helvetica Bold; font-size: 14px; width: 80px; float: left;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = Model.announ_id });} отзывов</div>
+                    <div style="width: 200px; border-bottom: 2px solid #d9e1e5; float: left; margin-top:20px;"></div>
+                    <div style="float: left; margin-top: 20px; color: #00a79d; font-family: Helvetica Bold; font-size: 14px; ">О себе:</div>
+                    <div style="float: left; font-family: Helvetica; font-size: 14px; color: #446cb3;">
+                        @Model.about
+                    </div>
+                </div>
+            </li>
+            <li style="display: table-cell; background-color: #f6f8f9; vertical-align: top;  ">
+                <div style="width: 320px; background-color: #f6f8f9; height:100%;">
+                    <div style="height: 80px; width: 320px; background-color: #0d4549; display: table; vertical-align:middle;text-align:center;">
+                        <div style="display: table; vertical-align: middle; text-align: center; width: 300px; height: 80px; margin: 0 auto; ">
+                            <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
+                                <div class="write_message" customer_id="@Model.customer_id" style="margin: 0 auto; width: 135px; height: 40px;line-height:40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc); ">
+                                    <img src="~/Content/img/announ_letter_ico.png" style="margin-top: -5px; margin-right: 5px;  " />
+                                    <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">НАПИСАТЬ</span>
+                                </div>
+                            </div>
+                            <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
+                                <div style="margin: 0 auto; width: 135px; height: 40px; line-height: 40px; background-color: #e4e9eb; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                                    <img src="~/Content/img/announ_star_ico.png" style="margin-top:-5px; margin-right:5px;" />
+                                    <span style="font-family: Helvetica Bold; font-size: 12px; color: #a0a0a0;">В избранное</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding: 20px 25px 20px 20px; ">
+                        <div style="height:30px;">
+                            <img src="~/Content/img/phone.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Мобильный</span>
+                            <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">@Model.mobile</span>
+                        </div>
+                        <div style="height:30px;">
+                            <img src="~/Content/img/phone.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Мобильный</span>
+                            <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">@Model.mobile</span>
+                        </div>
+                        <div style="height:30px;">
+                            <img src="~/Content/img/announ_skype_ico.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Skype</span>
+                            <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">@Model.skype</div>
+                        </div>
+                        <div style="height:30px;">
+                            <img src="~/Content/img/announ_letter_ico2.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Email</span>
+                            <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">@Model.email</div>
+                        </div>
+                        <div style="height:30px;">
+                            <img src="~/Content/img/announ_site_ico.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Site</span>
+                            <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;"></div>
+                        </div>
+                        <div style="width: 280px; border-bottom: 1px solid #d9e1e5; float: left; margin-top:10px;"></div>
+                        <div style="height:30px;margin-top:30px;">
+                            <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Twitter</span>
+                            <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                        </div>
+                        <div style="height:30px;">
+                            <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Facebook</span>
+                            <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                        </div>
+                        <div style="height:30px;">
+                            <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Вконтакте</span>
+                            <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">test</div>
+                        </div>
+                        <div style="height:30px;">
+                            <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Одноклассники</span>
+                            <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; border-bottom: 1px solid #446cb3;">test</div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li style="display: table-cell; height: 100%; background-color: white; vertical-align: top;">
+                <div style="width: 540px; background-color: white; padding: 20px; height: 100%;  ">
+                    <div>
+                        <div style="width:100%;height:30px;">
+                            <div style="font-family: Helvetica Bold; font-size: 18px; color: #446cb3; border-bottom: 1px solid #446cb3; float: left; height: 23px;">@Model.header</div>
+                        </div>
+                        <div style="font-family: Helvetica; font-size: 14px; color: #44beb7;">Цена: <span style="color: #43af73; font-family: Helvetica Bold; ">@Model.price</span></div>
+                    </div>
+                    <div style="width: 500px; border-bottom: 1px solid #d9e1e5; float: left; margin-top:15px;"></div>
+                    <div style="font-family: Helvetica; font-size: 14px; float: left; margin-top: 10px; line-height: 2; min-height: 100%; ">
+                        @Model.description
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul style="display:table-row;">
+            <li style="display: table-cell; background-color: white;"></li>
+            <li style="display: table-cell; background-color: #f6f8f9;"></li>
+            <li style="display:table-cell;background-color:white;height:50px;">
+                <img src="~/Content/img/announ_calend_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />
+                <span style="color: #888888; font-family: Helvetica; font-size: 14px;">@Model.date_from</span>
+                <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " />
+                @{Html.RenderAction("AddVisit", "Announ", new { announ_id = Model.announ_id });}
+                <span style="color: #888888; font-family: Helvetica; font-size: 14px;">Просмотров: <b>@{Html.RenderAction("GetVisits", "Announ", new { announ_id = Model.announ_id });}</b></span>
+                <img src="~/Content/img/like_dislike.png" style="margin-top:30px;margin-left:40px;position:absolute;" />
+                <span class="like_btn" announ_id="@Model.announ_id"  style="position:absolute;margin-top:37px;margin-left:81px;font-family: Helvetica; font-size: 11px;color:white;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = Model.announ_id });}</span>
+                <span class="dislike_btn" announ_id="@Model.announ_id"  style="position:absolute;margin-top:37px;margin-left:146px;font-family: Helvetica; font-size: 11px;color:white;">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = Model.announ_id });}</span>
+
+
+            </li>
+        </ul>
+    </div>
+</div>

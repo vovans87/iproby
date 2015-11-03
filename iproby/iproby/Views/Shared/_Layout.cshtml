@@ -57,6 +57,10 @@
         {
             @RenderSection("MyMessages")
         }
+        @if (IsSectionDefined("AnnounContent"))
+        {
+            @RenderSection("AnnounContent")
+        }
         @if (IsSectionDefined("AnnounInfo"))
         {
             @RenderSection("AnnounInfo")
@@ -72,6 +76,10 @@
         @if (IsSectionDefined("Announs"))
         {
             @RenderSection("Announs")
+        }
+        @if (IsSectionDefined("ReviewBlock"))
+        {
+            @RenderSection("ReviewBlock")
         }
         @if (IsSectionDefined("News"))
         {

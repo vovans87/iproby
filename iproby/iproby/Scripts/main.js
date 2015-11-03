@@ -40,7 +40,7 @@ $(function () {
 
 $(function () {
     $('.find_clients_btn').click(function () {
-      
+       
         $('#add_clients').modal({
             backdrop: 'static',
             keyboard: true
@@ -86,20 +86,16 @@ function load_add_clients() {
             if (e.isDefaultPrevented()) {
                 //alert('32');
             } else {
-
-                $.ajax({
+                    $.ajax({
                     url: this.action,
                     type: this.method,
                     data: $(this).serialize(),
                     beforeSend: function () {
-                        //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
                         $('.loading-wait-btn').button('loading');
                     },
                     success: function (result) {
-                        //$('.modal-footer').addClass('hide');
                         $('.loading-wait-btn').button('loading');
                         $('.return_result').html(result);
-
                     }
                 });
             }
@@ -193,13 +189,14 @@ function load_authorization() {
 };
 
 
-function load_write_message() {
+function load_write_message(customer_id) {
     $('#myContent').load("/Content/dialogs/WriteMessage.html", function () {
         $('#myDialog').modal({
             backdrop: 'static',
             keyboard: true
         }, 'show');
-        $('.to_customer_input').val($(this).attr('customer_id-'));
+        
+        $('.to_customer_input').val(customer_id);
         $('form').validator();
         $('form').submit(function (e) {
             if (e.isDefaultPrevented()) {
@@ -228,6 +225,18 @@ function load_write_message() {
     });
 };
 
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+            return pair[1];
+        } else {
+            return 'no_param';
+        }
+    }
+}
 
 $(function () {
     $('.send_rss_mail').click(function () {
@@ -249,21 +258,32 @@ $(function () {
 
 $(function () {
     $('.find_btn').click(function () {
-        $.ajax({
-            url: "/Announ/SearchResultAll",
-            type: "post",
-            data: "search_text=" + $('.search_text_input').val(),
-            success: function (result) {
-                $('.search_result_block').html(result);
-            }
-        });
+        if (getQueryVariable('type_id').indexOf('no_param') == 0) {
+            $.ajax({
+                url: "/Announ/SearchResultAll",
+                type: "post",
+                data: "search_text=" + $('.search_text_input').val(),
+                success: function (result) {
+                    $('.search_result_block').html(result);
+                }
+            });
+        } else {
+            $.ajax({
+                url: "/Announ/SearchResultInTypes",
+                type: "post",
+                data: "search_text=" + $('.search_text_input').val() + "&type_id=" + getQueryVariable('type_id'),
+                success: function (result) {
+                    $('.search_result_block').html(result);
+                }
+            });
+        }
     });
     $('.message_author').click(function () {
         $(this).toggleClass("bg-success");
        
     });
     $('.write_message').click(function () {
-        load_write_message();
+        load_write_message($(this).attr('customer_id'));
     });
 
     $('.like_btn').click(function () {
@@ -287,5 +307,5 @@ $(function () {
             }
         });
     });
-    
+   
 });
