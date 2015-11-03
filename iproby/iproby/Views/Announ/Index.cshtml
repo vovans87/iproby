@@ -47,7 +47,7 @@
                                 <img src="~/Content/img/star_active.png" />
                                 <img src="~/Content/img/star_inactive.png" />
                             </div>
-                            <div style="color: #1d6cef; font-family: Helvetica Bold; font-size: 14px; width: 80px; float: left;">15 отзывов</div>
+                            <div style="color: #1d6cef; font-family: Helvetica Bold; font-size: 14px; width: 80px; float: left;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = Model.announ_id });} отзывов</div>
                             <div style="width: 200px; border-bottom: 2px solid #d9e1e5; float: left; margin-top:20px;"></div>
                             <div style="float: left; margin-top: 20px; color: #00a79d; font-family: Helvetica Bold; font-size: 14px; ">О себе:</div>
                             <div style="float: left; font-family: Helvetica; font-size: 14px; color: #446cb3;">
@@ -134,13 +134,15 @@
                     <li style="display: table-cell; background-color: #f6f8f9;"></li>
                     <li style="display:table-cell;background-color:white;height:50px;">
                         <img src="~/Content/img/announ_calend_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />
-                        <span style="color: #888888; font-family: Helvetica; font-size: 14px;">26 сентябрь, 2016</span>
+                        <span style="color: #888888; font-family: Helvetica; font-size: 14px;">@Model.date_from</span>
                         <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " />
-                        <span style="color: #888888; font-family: Helvetica; font-size: 14px;">Просмотров: <b>2.393</b></span>
+                        @{Html.RenderAction("AddVisit", "Announ", new { announ_id = Model.announ_id });}
+                        <span style="color: #888888; font-family: Helvetica; font-size: 14px;">Просмотров: <b>@{Html.RenderAction("GetVisits", "Announ", new { announ_id = Model.announ_id });}</b></span>
                         <img src="~/Content/img/like_dislike.png" style="margin-top:30px;margin-left:40px;position:absolute;" />
-                        <span style="position:absolute;margin-top:37px;margin-left:81px;font-family: Helvetica; font-size: 11px;color:white;">150</span>
-                        <span style="position:absolute;margin-top:37px;margin-left:146px;font-family: Helvetica; font-size: 11px;color:white;">150</span>
-
+                        <span style="position:absolute;margin-top:37px;margin-left:81px;font-family: Helvetica; font-size: 11px;color:white;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = Model.announ_id });}</span>
+                        <span style="position:absolute;margin-top:37px;margin-left:146px;font-family: Helvetica; font-size: 11px;color:white;">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = Model.announ_id });}</span>
+                        
+                        
                     </li>
                 </ul>
             </div>

@@ -12,12 +12,11 @@ namespace iproby.Data_Model
     using System;
     using System.Collections.Generic;
     
-    public partial class like
+    public partial class visit
     {
         public int id { get; set; }
         public int announ_id { get; set; }
-        public int like_num { get; set; }
-        public int disline_num { get; set; }
+        public Nullable<int> visits_num { get; set; }
     
         public virtual announ announ { get; set; }
     }

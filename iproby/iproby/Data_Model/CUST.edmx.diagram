@@ -26,6 +26,8 @@
         <AssociationConnector Association="iproby94_cust_dbModel.FK_reviews_customers" />
         <EntityTypeShape EntityType="iproby94_cust_dbModel.like" Width="1.5" PointX="11.25" PointY="6.125" />
         <AssociationConnector Association="iproby94_cust_dbModel.FK_likes_announ_id" />
+        <EntityTypeShape EntityType="iproby94_cust_dbModel.visit" Width="1.5" PointX="11.25" PointY="9.25" />
+        <AssociationConnector Association="iproby94_cust_dbModel.FK_visits_announ_id" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

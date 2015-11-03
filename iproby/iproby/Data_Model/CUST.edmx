@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="iproby94_cust_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="iproby94_cust_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="specialities">
           <Key>
             <PropertyRef Name="speciality_id" />
@@ -100,8 +100,8 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="announ_id" Type="int" Nullable="false" />
-          <Property Name="like_num" Type="int" />
-          <Property Name="disline_num" Type="int" />
+          <Property Name="like_num" Type="int" Nullable="false" />
+          <Property Name="disline_num" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="messages">
           <Key>
@@ -133,6 +133,14 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="status_id" Type="int" Nullable="false" />
           <Property Name="status_flag" Type="int" Nullable="false" />
           <Property Name="status_description" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="visits">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="announ_id" Type="int" Nullable="false" />
+          <Property Name="visits_num" Type="int" />
         </EntityType>
         <Association Name="FK_announ_announ_type">
           <End Role="announ_type" Type="Self.announ_type" Multiplicity="0..1" />
@@ -230,6 +238,18 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_visits_announ_id">
+          <End Role="announ" Type="Self.announ" Multiplicity="1" />
+          <End Role="visits" Type="Self.visits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visits">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="iproby94_cust_dbModelStoreContainer">
           <EntitySet Name="specialities" EntityType="Self.specialities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
@@ -242,6 +262,7 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <EntitySet Name="messages" EntityType="Self.messages" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="reviews" EntityType="Self.reviews" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="status" EntityType="Self.status" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="visits" EntityType="Self.visits" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="education" EntityType="Self.education" store:Type="Tables" store:Schema="iproby94_web">
             <DefiningQuery>SELECT 
 [education].[education_id] AS [education_id], 
@@ -280,6 +301,10 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_reviews_customers" Association="Self.FK_reviews_customers">
             <End Role="customers" EntitySet="customers" />
             <End Role="reviews" EntitySet="reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_visits_announ_id" Association="Self.FK_visits_announ_id">
+            <End Role="announ" EntitySet="announ" />
+            <End Role="visits" EntitySet="visits" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -429,6 +454,11 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <End Role="announ" EntitySet="announs" />
             <End Role="like" EntitySet="likes" />
           </AssociationSet>
+          <EntitySet Name="visits" EntityType="iproby94_cust_dbModel.visit" />
+          <AssociationSet Name="FK_visits_announ_id" Association="iproby94_cust_dbModel.FK_visits_announ_id">
+            <End Role="announ" EntitySet="announs" />
+            <End Role="visit" EntitySet="visits" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="announ">
           <Key>
@@ -445,6 +475,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="header" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="reviews" Relationship="iproby94_cust_dbModel.FK_reviews_announ" FromRole="announ" ToRole="review" />
           <NavigationProperty Name="likes" Relationship="iproby94_cust_dbModel.FK_likes_announ_id" FromRole="announ" ToRole="like" />
+          <NavigationProperty Name="visits" Relationship="iproby94_cust_dbModel.FK_visits_announ_id" FromRole="announ" ToRole="visit" />
           </EntityType>
         <EntityType Name="announ_type">
           <Key>
@@ -573,8 +604,8 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="announ_id" Type="Int32" Nullable="false" />
-          <Property Name="like_num" Type="Int32" />
-          <Property Name="disline_num" Type="Int32" />
+          <Property Name="like_num" Type="Int32" Nullable="false" />
+          <Property Name="disline_num" Type="Int32" Nullable="false" />
           <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_likes_announ_id" FromRole="like" ToRole="announ" />
         </EntityType>
         <Association Name="FK_likes_announ_id">
@@ -585,6 +616,27 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="like">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="visit">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="announ_id" Type="Int32" Nullable="false" />
+          <Property Name="visits_num" Type="Int32" />
+          <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_visits_announ_id" FromRole="visit" ToRole="announ" />
+        </EntityType>
+        <Association Name="FK_visits_announ_id">
+          <End Type="iproby94_cust_dbModel.announ" Role="announ" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.visit" Role="visit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visit">
               <PropertyRef Name="announ_id" />
             </Dependent>
           </ReferentialConstraint>
@@ -727,6 +779,15 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
               <MappingFragment StoreEntitySet="likes">
                 <ScalarProperty Name="disline_num" ColumnName="disline_num" />
                 <ScalarProperty Name="like_num" ColumnName="like_num" />
+                <ScalarProperty Name="announ_id" ColumnName="announ_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visits">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.visit">
+              <MappingFragment StoreEntitySet="visits">
+                <ScalarProperty Name="visits_num" ColumnName="visits_num" />
                 <ScalarProperty Name="announ_id" ColumnName="announ_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

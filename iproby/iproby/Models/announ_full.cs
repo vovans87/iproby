@@ -18,5 +18,6 @@ namespace iproby.Models
         public string skype { get; set; }
         public string email { get; set; }
         public string price { get; set; }
+        public Nullable<System.DateTime> date_from { get; set; }
     }
 }

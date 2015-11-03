@@ -227,3 +227,6 @@
 .bg-success {
     border-color: #4cae4c;
 }
+.result_count {
+    display:none;
+}

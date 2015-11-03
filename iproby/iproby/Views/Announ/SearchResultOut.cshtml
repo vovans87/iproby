@@ -1,0 +1,65 @@
+﻿@model List<iproby.Models.announ_preview>
+
+<div class="search_message_info" style=" margin: 0 auto; margin-top: 20px; width: 1100px;">
+    <div style="display:table;width:100%;">
+        <div style="display:table-cell;width:30%;">
+            По запросу <span style="color:blue;font-weight:bold;" class="search_text_info"></span>
+            <script>  $('.search_text_info').text($('.search_text_input').val());</script>
+            <br />
+            Было найдено <span style="color:blue;"><b>@Model.Count()</b></span> результатов.
+            <br />
+        </div>
+        <div style="display:table-cell;width:70%;">
+            <span style="font-size:10px;">
+                Если результатов не достаточно попробуйте перефразировать запрос.
+                <br />
+                Используйте слова в именительном падеже.
+            </span>
+        </div>
+</div>
+@foreach (var item in Model)
+{
+    <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:30px;">
+        <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
+            <img src="~/Content/img/no_logo.png" style="margin-left: 20px;margin-top:20px;margin-right:20px; float: left;" />
+            <div style="font-family: Helvetica Bold; font-size: 14px; float: left; margin-top: 20px; width: 130px; height: 40px; color: #115a56;">@item.first_name</div>
+            <div style="font-family: Helvetica; font-size: 11px; float: left; width: 130px; height: 20px; color: #44beb7;">
+                <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />@item.address
+            </div>
+            <div style="margin-left:40px;float:left;margin-top:5px;"><img src="~/Content/img/phone.png" style="padding-right:5px;" /><span style="font-family: Helvetica Bold; font-size: 12px; color: #00a79d;">mobile @item.mobile</span></div>
+            <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
+                <img src="~/Content/img/announ_social_skype.png" />
+                <img src="~/Content/img/announ_social_vkontakte.png" />
+                <img src="~/Content/img/announ_social_odnoklass.png" />
+                <img src="~/Content/img/announ_social_facebook.png" />
+                <img src="~/Content/img/announ_social_twitter.png" />
+                <span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>
+            </div>
+        </div>
+        <div style="width:855px;height:170px;float:left;display:table;">
+            <div style="font-family: Helvetica Bold; font-size: 16px; color: #446cb3; margin-left: 20px; margin-top: 17px;"><a href="/Announ?announ_id=@item.announ_id" style=" border-bottom: 1px solid #446cb3; text-decoration: none;">@item.header</a></div>
+            <img src="~/Content/img/announ_letter_ico3.png" style="margin-right:160px;float:right;margin-top:-12px;" />
+            <div class="write_message" customer_id="@item.customer_id" style="float:right;font-family: Helvetica Bold; font-size: 12px; color: #446cb3;margin-top:-15px;margin-right:30px; border-bottom:1px solid #446cb3;height:16px;">
+                Написать сообщение
+            </div>
+            <div style="margin-left: 20px; ">
+                <img src="~/Content/img/star_active.png" />
+                <img src="~/Content/img/star_active.png" />
+                <img src="~/Content/img/star_active.png" />
+                <img src="~/Content/img/star_active.png" />
+                <img src="~/Content/img/star_inactive.png" />
+                <span style="color: #f5ab35; font-family: Helvetica Bold; font-size: 12px; margin-left:20px;text-decoration:underline;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = item.announ_id });} отзывов</span>
+            </div>
+            <div style="font-family: Helvetica; font-size: 12px; line-height: 2; margin-left: 20px; ">
+                @item.description
+            </div>
+            <div style=" color: #888888; font-family: Helvetica; font-size: 11px; display:table-row;">
+                <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />@item.date_from
+                <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " />@{Html.RenderAction("GetVisits", "Announ", new { announ_id = item.announ_id });}
+                <img src="~/Content/img/like_dislike.png" style="margin-left:480px;margin-top:18px;" />
+                <div class="like_btn" announ_id="@item.announ_id" style="font-family: Helvetica; font-size: 11px; color:white; margin-left: 730px; margin-top: -23px; position: absolute;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = item.announ_id });}</div>
+                <div class="dislike_btn" announ_id="@item.announ_id" style="font-family: Helvetica; font-size: 11px; color:white; margin-left: 797px; margin-top: -23px; position: absolute;">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = item.announ_id });}</div>
+            </div>
+        </div>
+    </div>
+}

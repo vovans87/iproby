@@ -248,6 +248,16 @@ $(function () {
 });
 
 $(function () {
+    $('.find_btn').click(function () {
+        $.ajax({
+            url: "/Announ/SearchResultAll",
+            type: "post",
+            data: "search_text=" + $('.search_text_input').val(),
+            success: function (result) {
+                $('.search_result_block').html(result);
+            }
+        });
+    });
     $('.message_author').click(function () {
         $(this).toggleClass("bg-success");
        

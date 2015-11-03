@@ -14,5 +14,7 @@ namespace iproby.Models
         public string first_name { get; set; }
         public string address { get; set; }
         public string mobile { get; set; }
+        public string search_word { get; set; }
+        public Nullable<System.DateTime> date_from { get; set; }
     }
 }

@@ -33,13 +33,15 @@ namespace iproby.Controllers
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
                 }
+                DateTime date_from = DateTime.Now;
                 var customer_id_arr = (from a in db.customer_announ
                                        where a.announ_id == announ_id
-                                       select a.customer_id);
+                                       select a);
                 int customer_id = 0;
-                foreach (int item_inside in customer_id_arr)
+                foreach (var item_inside in customer_id_arr)
                 {
-                    customer_id = item_inside;
+                    customer_id = item_inside.customer_id.Value;
+                    date_from = item_inside.date_from;
                 }
                 announ.customer_id = customer_id;
                 var contact_id_arr = (from a in db.customers
@@ -58,6 +60,7 @@ namespace iproby.Controllers
                     announ.first_name = item_inside.first_name;
                     announ.mobile = item_inside.mobile;
                     announ.address = item_inside.address;
+                    announ.date_from = date_from;
                 }
                 all_announs.Add(announ);
             }
@@ -91,11 +94,13 @@ namespace iproby.Controllers
                 }
                 var customer_id_arr = (from a in db.customer_announ
                                        where a.announ_id == announ_id
-                                       select a.customer_id);
+                                       select a);
                 int customer_id = 0;
-                foreach (int item_inside in customer_id_arr)
+                DateTime date_from = DateTime.Now;
+                foreach (var item_inside in customer_id_arr)
                 {
-                    customer_id = item_inside;
+                    customer_id = item_inside.customer_id.Value;
+                    date_from = item_inside.date_from;
                 }
                 announ.customer_id = customer_id;
                 var contact_id_arr = (from a in db.customers
@@ -114,6 +119,7 @@ namespace iproby.Controllers
                     announ.first_name = item_inside.first_name;
                     announ.mobile = item_inside.mobile;
                     announ.address = item_inside.address;
+                    announ.date_from = date_from;
                 }
                 all_announs.Add(announ);
             }

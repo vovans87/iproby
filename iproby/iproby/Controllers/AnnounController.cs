@@ -43,11 +43,13 @@ namespace iproby.Controllers
             }
             var customer_id_arr = (from a in db.customer_announ
                                    where a.announ_id == announ_id
-                                   select a.customer_id);
+                                   select a);
             int customer_id = 0;
-            foreach (int item_inside in customer_id_arr)
+            DateTime date_from = DateTime.Now;
+            foreach (var item_inside in customer_id_arr)
             {
-                customer_id = item_inside;
+                customer_id = item_inside.customer_id.Value;
+                date_from = item_inside.date_from;
             }
             announ.customer_id = customer_id;
             var contact_id_arr = (from a in db.customers
@@ -68,6 +70,7 @@ namespace iproby.Controllers
                 announ.address = item_inside.address;
                 announ.skype = item_inside.skype;
                 announ.email = item_inside.email;
+                announ.date_from = date_from;
             }
             
             return View(announ);
@@ -202,6 +205,81 @@ namespace iproby.Controllers
             
         }
 
+        public int GetReviews(int announ_id)
+        {
+            int reviews_count = (from a in db.reviews
+                             where a.announ_id == announ_id
+                             select a).Count();
+
+            return reviews_count;
+        }
+
+        public ActionResult SearchResultAll(string search_text)
+        {
+            if (search_text.Length > 2 && search_text.Length < 200)
+            {
+                var announ_id_arr = (from a in db.announs
+                                     where (a.description.Contains(search_text)
+                                     || a.header.Contains(search_text)
+                                     || a.about.Contains(search_text)
+                                     || a.subjects.Contains(search_text))
+                                     select a);
+                int announ_id = 0;
+                List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
+                foreach (var item in announ_id_arr)
+                {
+                    announ_id = item.id;
+                    var announ_arr = (from a in db.announs
+                                      where a.id == announ_id
+                                      select a);
+                    iproby.Models.announ_preview announ = new iproby.Models.announ_preview();
+                    foreach (var item_inside in announ_arr)
+                    {
+                        announ.description = item_inside.description;
+                        announ.header = item_inside.header;
+                        announ.announ_id = item_inside.id;
+                    }
+                    var customer_id_arr = (from a in db.customer_announ
+                                           where a.announ_id == announ_id
+                                           select a);
+                    int customer_id = 0;
+                    DateTime date_from = DateTime.Now;
+                    foreach (var item_inside in customer_id_arr)
+                    {
+                        customer_id = item_inside.customer_id.Value;
+                        date_from = item_inside.date_from;
+                    }
+                    announ.customer_id = customer_id;
+                    var contact_id_arr = (from a in db.customers
+                                          where a.customer_id == customer_id
+                                          select a.contact_id);
+                    int contact_id = 0;
+                    foreach (int item_inside in contact_id_arr)
+                    {
+                        contact_id = item_inside;
+                    }
+                    var contact_arr = (from a in db.contacts
+                                       where a.contact_id == contact_id
+                                       select a);
+                    foreach (var item_inside in contact_arr)
+                    {
+                        announ.first_name = item_inside.first_name;
+                        announ.mobile = item_inside.mobile;
+                        announ.address = item_inside.address;
+                        announ.date_from = date_from;
+                        announ.search_word = search_text;
+                    }
+                    all_announs.Add(announ);
+                }
+
+                return View("~/Views/Announ/SearchResultOut.cshtml", all_announs);
+            }
+            else {
+                List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
+                return View("~/Views/Announ/SearchResultOut.cshtml", all_announs);
+            }
+        }
+        
         [HttpPost]
         public ActionResult AddReview(iproby.Models.review model)
         {
@@ -283,8 +361,8 @@ namespace iproby.Controllers
                 int like_id = 0;
                 foreach (var item in likes_arr)
                 {
-                    like_num = item.like_num.Value;
-                    dislike_num = item.disline_num.Value;
+                    like_num = item.like_num;
+                    dislike_num = item.disline_num;
                     like_id = item.id;
                 }
                 if (like_num == 0 && dislike_num == 0)
@@ -330,8 +408,8 @@ namespace iproby.Controllers
                 int like_id = 0;
                 foreach (var item in likes_arr)
                 {
-                    like_num = item.like_num.Value;
-                    dislike_num = item.disline_num.Value;
+                    like_num = item.like_num;
+                    dislike_num = item.disline_num;
                     like_id = item.id;
                 }
                 if (like_num == 0 && dislike_num == 0)
@@ -356,6 +434,51 @@ namespace iproby.Controllers
             else
             {       }
         }
+
+        public int GetVisits(int announ_id)
+        {
+            var visits_arr = (from a in db.visits
+                             where a.announ_id == announ_id
+                             select a.visits_num);
+            int visits_num = 0;
+            foreach (int item in visits_arr)
+            {
+                visits_num = item;
+            }
+            return visits_num;
+        }
+
+        public void AddVisit(int announ_id)
+        {
+            var visit_arr = (from a in db.visits
+                                   where a.announ_id == announ_id
+                                   select a);
+            int visit_num = 0;
+            int visit_id = 0;
+            foreach (var item in visit_arr)
+            {
+                visit_num = item.visits_num.Value;
+                visit_id = item.id;
+            }
+            if (visit_num == 0)
+            {
+                iproby.Data_Model.visit visit = new iproby.Data_Model.visit();
+                visit.announ_id = announ_id;
+                visit.visits_num = visit_num + 1;
+                db.visits.Add(visit);
+                db.SaveChanges();
+            }
+            else
+            {
+                var visit = db.visits.Find(visit_id);
+                if (visit != null)
+                {
+                    visit.visits_num = visit_num + 1;
+                    db.SaveChanges();
+                }
+            }
+        }
+
     }
 }
 

@@ -221,6 +221,9 @@
     <Compile Include="Data_Model\sysdiagram.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\visit.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -575,6 +578,7 @@
     <Content Include="Views\Announ\NoAuthorization.cshtml" />
     <Content Include="Views\Announ\ReviewSavedSuccess.cshtml" />
     <Content Include="Views\Announ\ReviewBlock.cshtml" />
+    <Content Include="Views\Announ\SearchResultOut.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
