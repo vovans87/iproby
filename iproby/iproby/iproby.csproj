@@ -267,6 +267,7 @@
     <Content Include="Content\img\announ_social_twitter.png" />
     <Content Include="Content\img\announ_social_vkontakte.png" />
     <Content Include="Content\img\announ_star_ico.png" />
+    <Content Include="Content\img\announ_target_ico.png" />
     <Content Include="Content\img\big_clock_ico.png" />
     <Content Include="Content\img\calendar_ico.png" />
     <Content Include="Content\img\category_comp_li_ico_1.png" />
@@ -589,6 +590,7 @@
     <Content Include="Views\Announ\AnnounContent.cshtml" />
     <Content Include="Views\Catalog\Description.cshtml" />
     <Content Include="Views\Announ\AddWorkers.cshtml" />
+    <Content Include="Views\Catalog\AnnounTarget.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,10 +13,11 @@ namespace iproby.Controllers
         // GET: /Catalog/
         private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
 
-        public ActionResult Index(int type_id)
+        public ActionResult Index(int type_id,string target="workers")
         {
             var announ_id_arr = (from a in db.announs
                                  where a.type_id == type_id
+                                 join db_target in db.announ_target on a.id equals db_target.announ_id where db_target.target_type.Contains(target)
                                  select a);
             var type_arr = (from a in db.announ_type
                                  where a.id == type_id
@@ -77,9 +78,11 @@ namespace iproby.Controllers
             return View(all_announs);
         }
 
-        public ActionResult Announs()
+        public ActionResult Announs(string target = "workers")
         {
             var announ_id_arr = (from a in db.announs
+                                 join db_target in db.announ_target on a.id equals db_target.announ_id
+                                 where db_target.target_type.Contains(target)
                                  group a by a.type_id into g
                                  select new
                                  {

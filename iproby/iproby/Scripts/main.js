@@ -300,6 +300,21 @@ function getQueryVariable(variable) {
     }
 }
 
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+$(function () {
+    if (getParameterByName('target').indexOf('clients') > -1) {
+        $('.spros').css('background-image', 'url(/Content/img/announ_target_ico.png)');
+        $('.spros').css('color', 'white');
+        $('.predlojenie').css('color', '#115a56');
+        $('.predlojenie').css('background-image', 'none');
+    }
+});
 $(function () {
     $('.send_rss_mail').click(function () {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/;
@@ -368,5 +383,29 @@ $(function () {
                 location.reload();
             }
         });
+    });
+
+    $('.spros').click(function () {
+        $('.spros').css('background-image', 'url(/Content/img/announ_target_ico.png)');
+        $('.spros').css('color', 'white');
+        $('.predlojenie').css('color', '#115a56');
+        $('.predlojenie').css('background-image', 'none');
+        if (getParameterByName('type_id').length > 0) {
+            location.href = '/Catalog?type_id=' + getParameterByName('type_id') + '&target=clients';
+        } else {
+            location.href = '?target=clients';
+        }
+    });
+
+    $('.predlojenie').click(function () {
+        $('.predlojenie').css('background-image', 'url(/Content/img/announ_target_ico.png)');
+        $('.predlojenie').css('color', 'white');
+        $('.spros').css('color', '#115a56');
+        $('.spros').css('background-image', 'none');
+        if (getParameterByName('type_id').length > 0) {
+            location.href = '/Catalog?type_id=' + getParameterByName('type_id') + '&target=workers';
+        } else {
+            location.href = '?target=workers';
+        }
     });
 });
