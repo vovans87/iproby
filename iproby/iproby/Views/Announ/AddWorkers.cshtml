@@ -1,0 +1,95 @@
+﻿<div class="modal fade" id="add_workers">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form" action="/Announ/AddWorkers" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Добавление объявления</h4>
+                </div>
+                <div class="modal-body return_result" id="result">
+                    @{
+                        if (Session["login"] == null)
+                        {
+                            Html.RenderPartial("~/Views/Status/NoAuthorization.cshtml");
+                        }
+                        else
+                        {
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="form-group has-feedback">
+                                        <label for="parent_type" class="control-label add_asterisk">Раздел</label>
+                                        <input type="hidden" class="form-control parent_type" placeholder="Раздел" name="parent_type" value="Не установлено" />
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
+                                                Выберите раздел:
+                                                <span class="caret" style="float:right;margin-top:10px;"></span>
+                                            </button>
+                                            <ul class="dropdown-menu parent_type" style="width:368px;" load="parent_type">
+                                                @{
+                            List<string> parent_types = iproby.Models.announ_clients.parent_type_list;
+                            foreach (var item in parent_types)
+                            {
+                                <li style="width: 368px;" action="/Announ/GetChildTypes" method="POST" name="parent_type">
+                                    <a href="#"> @item </a>
+                                </li>
+                            }
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label for="type" class="control-label add_asterisk">Подраздел</label>
+                                        <input type="hidden" class="form-control type" placeholder="Подраздел" name="type" value="Не установлено" />
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
+                                                Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>
+                                            </button>
+                                            <ul class="dropdown-menu child_type" style="width:368px;" load="type">
+                                                <li style="width: 368px;">
+                                                    <a href="#"> Сначала выберите раздел</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label for="header" class="control-label add_asterisk">Заголовок</label>
+                                        <input type="text" class="form-control" id="header" placeholder="Заголовок" name="header" maxlength="100" required>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label for="about" class="control-label add_asterisk">Кратко о себе</label>
+                                        <textarea class="form-control noresize" id="about" name="about" rows="4" maxlength="400" required>Кратко о себе</textarea>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="form-group has-feedback">
+                                        <label for="description" class="control-label add_asterisk">Текст объявления</label>
+                                        <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>Текст объявления</textarea>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="form-group has-feedback education">
+                                        <label for="subjects" class="control-label add_asterisk">Названия предметов</label>
+                                        <input type="text" class="form-control" id="subjects" placeholder="Например: русский язык" name="subjects" maxlength="100" required>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="form-group has-feedback education">
+                                        <label for="price" class="control-label">Цены за услуги</label>
+                                        <input type="text" class="form-control" id="price" placeholder="Например: 2 академических часа - 10 $ " name="price" maxlength="100">
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                                <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Добавить объявление">
+
+                            </div>
+                        }
+                    }
+                </div>
+
+            </form>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>

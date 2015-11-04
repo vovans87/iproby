@@ -6,6 +6,9 @@
 @section AddClients{
     @Html.Partial(Url.Content("~/Views/Announ/AddClients.cshtml"))
 }
+@section AddClients{
+    @Html.Partial(Url.Content("~/Views/Announ/AddWorkers.cshtml"))
+}
 @section HeaderTop{
     @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
 }
@@ -15,9 +18,12 @@
 @section CategoriesMin{
     @Html.Partial(Url.Content("~/Views/Catalog/CategoriesMin.cshtml"))
 }
-@section AddRequest{
-    @Html.Partial(Url.Content("~/Views/Catalog/AddRequest.cshtml"))
+@section Description{
+    @Html.Partial(Url.Content("~/Views/Catalog/Description.cshtml"))
 }
+@*@section AddRequest{
+    @Html.Partial(Url.Content("~/Views/Catalog/AddRequest.cshtml"))
+}*@
 @section Announs{
     @Html.Partial(Url.Content("~/Views/Catalog/Announs.cshtml"))
 }

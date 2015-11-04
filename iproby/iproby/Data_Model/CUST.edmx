@@ -36,6 +36,15 @@
           <Property Name="subjects" Type="text" />
           <Property Name="header" Type="text" />
         </EntityType>
+        <EntityType Name="announ_target">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="announ_id" Type="int" Nullable="false" />
+          <Property Name="target_type" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="text" />
+        </EntityType>
         <EntityType Name="announ_type">
           <Key>
             <PropertyRef Name="id" />
@@ -114,6 +123,15 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="date_from" Type="datetime" />
           <Property Name="header" Type="text" />
         </EntityType>
+        <EntityType Name="requests">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="from_customer_id" Type="int" Nullable="false" />
+          <Property Name="request_rext" Type="text" />
+          <Property Name="date_from" Type="datetime" />
+        </EntityType>
         <EntityType Name="reviews">
           <Key>
             <PropertyRef Name="id" />
@@ -151,6 +169,18 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
             </Principal>
             <Dependent Role="announ">
               <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_announ_target_announ">
+          <End Role="announ" Type="Self.announ" Multiplicity="1" />
+          <End Role="announ_target" Type="Self.announ_target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="announ_target">
+              <PropertyRef Name="announ_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -214,6 +244,18 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_requests_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="requests" Type="Self.requests" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="requests">
+              <PropertyRef Name="from_customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_reviews_announ">
           <End Role="announ" Type="Self.announ" Multiplicity="1" />
           <End Role="reviews" Type="Self.reviews" Multiplicity="*" />
@@ -254,12 +296,14 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <EntitySet Name="specialities" EntityType="Self.specialities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="announ" EntityType="Self.announ" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="announ_target" EntityType="Self.announ_target" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="announ_type" EntityType="Self.announ_type" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="contact" EntityType="Self.contact" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="customer_announ" EntityType="Self.customer_announ" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="likes" EntityType="Self.likes" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="messages" EntityType="Self.messages" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="requests" EntityType="Self.requests" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="reviews" EntityType="Self.reviews" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="status" EntityType="Self.status" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="visits" EntityType="Self.visits" Schema="iproby94_web" store:Type="Tables" />
@@ -273,6 +317,10 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_announ_announ_type" Association="Self.FK_announ_announ_type">
             <End Role="announ_type" EntitySet="announ_type" />
             <End Role="announ" EntitySet="announ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_announ_target_announ" Association="Self.FK_announ_target_announ">
+            <End Role="announ" EntitySet="announ" />
+            <End Role="announ_target" EntitySet="announ_target" />
           </AssociationSet>
           <AssociationSet Name="FK_customer_announ_announ" Association="Self.FK_customer_announ_announ">
             <End Role="announ" EntitySet="announ" />
@@ -293,6 +341,10 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_messages_customers" Association="Self.FK_messages_customers">
             <End Role="customers" EntitySet="customers" />
             <End Role="messages" EntitySet="messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_requests_customers" Association="Self.FK_requests_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="requests" EntitySet="requests" />
           </AssociationSet>
           <AssociationSet Name="FK_reviews_announ" Association="Self.FK_reviews_announ">
             <End Role="announ" EntitySet="announ" />
@@ -361,6 +413,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="customer_announ" Relationship="iproby94_cust_dbModel.FK_customer_announ_customers" FromRole="customer" ToRole="customer_announ" />
           <NavigationProperty Name="messages" Relationship="iproby94_cust_dbModel.FK_messages_customers" FromRole="customer" ToRole="message" />
           <NavigationProperty Name="reviews" Relationship="iproby94_cust_dbModel.FK_reviews_customers" FromRole="customer" ToRole="review" />
+          <NavigationProperty Name="requests" Relationship="iproby94_cust_dbModel.FK_requests_customers" FromRole="customer" ToRole="request" />
           </EntityType>
         <EntityType Name="status">
           <Key>
@@ -459,6 +512,16 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <End Role="announ" EntitySet="announs" />
             <End Role="visit" EntitySet="visits" />
           </AssociationSet>
+          <EntitySet Name="announ_target" EntityType="iproby94_cust_dbModel.announ_target" />
+          <EntitySet Name="requests" EntityType="iproby94_cust_dbModel.request" />
+          <AssociationSet Name="FK_announ_target_announ" Association="iproby94_cust_dbModel.FK_announ_target_announ">
+            <End Role="announ" EntitySet="announs" />
+            <End Role="announ_target" EntitySet="announ_target" />
+          </AssociationSet>
+          <AssociationSet Name="FK_requests_customers" Association="iproby94_cust_dbModel.FK_requests_customers">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="request" EntitySet="requests" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="announ">
           <Key>
@@ -476,6 +539,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="reviews" Relationship="iproby94_cust_dbModel.FK_reviews_announ" FromRole="announ" ToRole="review" />
           <NavigationProperty Name="likes" Relationship="iproby94_cust_dbModel.FK_likes_announ_id" FromRole="announ" ToRole="like" />
           <NavigationProperty Name="visits" Relationship="iproby94_cust_dbModel.FK_visits_announ_id" FromRole="announ" ToRole="visit" />
+          <NavigationProperty Name="announ_target" Relationship="iproby94_cust_dbModel.FK_announ_target_announ" FromRole="announ" ToRole="announ_target" />
           </EntityType>
         <EntityType Name="announ_type">
           <Key>
@@ -641,6 +705,50 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="announ_target">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="announ_id" Type="Int32" Nullable="false" />
+          <Property Name="target_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_announ_target_announ" FromRole="announ_target" ToRole="announ" />
+        </EntityType>
+        <EntityType Name="request">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="from_customer_id" Type="Int32" Nullable="false" />
+          <Property Name="request_rext" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_from" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_requests_customers" FromRole="request" ToRole="customer" />
+        </EntityType>
+        <Association Name="FK_announ_target_announ">
+          <End Type="iproby94_cust_dbModel.announ" Role="announ" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.announ_target" Role="announ_target" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="announ_target">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_requests_customers">
+          <End Type="iproby94_cust_dbModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.request" Role="request" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="request">
+              <PropertyRef Name="from_customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -789,6 +897,26 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
               <MappingFragment StoreEntitySet="visits">
                 <ScalarProperty Name="visits_num" ColumnName="visits_num" />
                 <ScalarProperty Name="announ_id" ColumnName="announ_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="announ_target">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.announ_target">
+              <MappingFragment StoreEntitySet="announ_target">
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="target_type" ColumnName="target_type" />
+                <ScalarProperty Name="announ_id" ColumnName="announ_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="requests">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.request">
+              <MappingFragment StoreEntitySet="requests">
+                <ScalarProperty Name="date_from" ColumnName="date_from" />
+                <ScalarProperty Name="request_rext" ColumnName="request_rext" />
+                <ScalarProperty Name="from_customer_id" ColumnName="from_customer_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

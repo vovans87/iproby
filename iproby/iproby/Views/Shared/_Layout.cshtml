@@ -21,6 +21,10 @@
         {
             @RenderSection("AddClients")
         }
+        @if (IsSectionDefined("AddWorkers"))
+        {
+            @RenderSection("AddWorkers")
+        }
         @if (IsSectionDefined("HeaderTop"))
         {
             @RenderSection("HeaderTop")
@@ -40,6 +44,10 @@
         @if (IsSectionDefined("Categories"))
         {
             @RenderSection("Categories")
+        }
+        @if (IsSectionDefined("Description"))
+        {
+            @RenderSection("Description")
         }
         @if (IsSectionDefined("AddRequest"))
         {

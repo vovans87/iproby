@@ -19,6 +19,7 @@ namespace iproby.Data_Model
             this.customer_announ = new HashSet<customer_announ>();
             this.messages = new HashSet<message>();
             this.reviews = new HashSet<review>();
+            this.requests = new HashSet<request>();
         }
     
         public int customer_id { get; set; }
@@ -35,5 +36,6 @@ namespace iproby.Data_Model
         public virtual ICollection<customer_announ> customer_announ { get; set; }
         public virtual ICollection<message> messages { get; set; }
         public virtual ICollection<review> reviews { get; set; }
+        public virtual ICollection<request> requests { get; set; }
     }
 }

@@ -20,6 +20,7 @@ namespace iproby.Data_Model
             this.reviews = new HashSet<review>();
             this.likes = new HashSet<like>();
             this.visits = new HashSet<visit>();
+            this.announ_target = new HashSet<announ_target>();
         }
     
         public int id { get; set; }
@@ -35,5 +36,6 @@ namespace iproby.Data_Model
         public virtual ICollection<review> reviews { get; set; }
         public virtual ICollection<like> likes { get; set; }
         public virtual ICollection<visit> visits { get; set; }
+        public virtual ICollection<announ_target> announ_target { get; set; }
     }
 }

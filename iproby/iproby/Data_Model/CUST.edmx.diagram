@@ -28,6 +28,10 @@
         <AssociationConnector Association="iproby94_cust_dbModel.FK_likes_announ_id" />
         <EntityTypeShape EntityType="iproby94_cust_dbModel.visit" Width="1.5" PointX="11.25" PointY="9.25" />
         <AssociationConnector Association="iproby94_cust_dbModel.FK_visits_announ_id" />
+        <EntityTypeShape EntityType="iproby94_cust_dbModel.announ_target" Width="1.5" PointX="12.875" PointY="0.5" />
+        <EntityTypeShape EntityType="iproby94_cust_dbModel.request" Width="1.5" PointX="6.875" PointY="12" />
+        <AssociationConnector Association="iproby94_cust_dbModel.FK_announ_target_announ" />
+        <AssociationConnector Association="iproby94_cust_dbModel.FK_requests_customers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

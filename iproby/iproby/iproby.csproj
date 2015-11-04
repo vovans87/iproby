@@ -173,6 +173,9 @@
     <Compile Include="Data_Model\announ.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\announ_target.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\announ_type.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -209,6 +212,9 @@
     <Compile Include="Data_Model\message.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\request.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\review.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -235,6 +241,7 @@
     <Compile Include="Models\announ_preview.cs" />
     <Compile Include="Models\message.cs" />
     <Compile Include="Models\registrator.cs" />
+    <Compile Include="Models\request.cs" />
     <Compile Include="Models\review.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -580,6 +587,8 @@
     <Content Include="Views\Announ\ReviewBlock.cshtml" />
     <Content Include="Views\Announ\SearchResultOut.cshtml" />
     <Content Include="Views\Announ\AnnounContent.cshtml" />
+    <Content Include="Views\Catalog\Description.cshtml" />
+    <Content Include="Views\Announ\AddWorkers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

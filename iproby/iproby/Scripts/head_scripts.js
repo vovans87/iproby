@@ -5,15 +5,14 @@
 $( document ).ready(function() {
     $('.dropdown-menu li').click(function () {
         $(this).parent().parent().children('.btn').html($(this).text().trim());
-     $('#' + $(this).parent().attr('load')).val($(this).text().trim());
-    
-});
+     $('.' + $(this).parent().attr('load')).val($(this).text().trim());
+    });
 });
 
 $(document).ajaxSuccess(function() {
     $('.dropdown-menu li').click(function () {
         $(this).parent().parent().children('.btn').html($(this).text().trim());
-        $('#' + $(this).parent().attr('load')).val($(this).text().trim());
+        $('.' + $(this).parent().attr('load')).val($(this).text().trim());
     });
 });
 

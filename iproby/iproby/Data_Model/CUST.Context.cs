@@ -38,5 +38,7 @@ namespace iproby.Data_Model
         public DbSet<review> reviews { get; set; }
         public DbSet<like> likes { get; set; }
         public DbSet<visit> visits { get; set; }
+        public DbSet<announ_target> announ_target { get; set; }
+        public DbSet<request> requests { get; set; }
     }
 }

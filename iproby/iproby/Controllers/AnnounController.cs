@@ -196,9 +196,70 @@ namespace iproby.Controllers
                 customer_announ.active = 1;
                 db.customer_announ.Add(customer_announ);
                 db.SaveChanges();
+                iproby.Data_Model.announ_target announ_target = new iproby.Data_Model.announ_target();
+                announ_target.target_type="clients";
+                announ_target.announ_id = announ.id;
+                db.announ_target.Add(announ_target);
+                db.SaveChanges();
                 return View("~/Views/Status/AddAnnounSuccess.cshtml");
             }
             else {
+                return View("~/Views/Status/NoAuthorization.cshtml");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddWorkers(iproby.Models.announ_clients model)
+        {
+            if (Session["login"] != null)
+            {
+                iproby.Data_Model.announ announ = new iproby.Data_Model.announ();
+                announ.about = model.about;
+                var type_id_arr = (from a in db.announ_type
+                                   where a.type == model.type
+                                   select a.id);
+                int type_id = 0;
+                foreach (int item in type_id_arr)
+                {
+                    type_id = item;
+                }
+                announ.type_id = type_id;
+                announ.description = model.description;
+                announ.header = model.header;
+                announ.subjects = model.subjects;
+                announ.price = model.price;
+                db.announs.Add(announ);
+                db.SaveChanges();
+
+                iproby.Data_Model.customer_announ customer_announ = new iproby.Data_Model.customer_announ();
+                customer_announ.announ_id = announ.id;
+                string login = Session["login"].ToString();
+                var customer_id_arr = (from a in db.customers
+                                       where a.login == login
+                                       select a.customer_id);
+                int customer_id = 0;
+                foreach (int item in customer_id_arr)
+                {
+                    customer_id = item;
+                }
+                customer_announ.customer_id = customer_id;
+                DateTime Now = DateTime.Now;
+                customer_announ.date_from = Now;
+                string dateToString = "09/09/9999";
+                DateTime dateTo = DateTime.Parse(dateToString, System.Globalization.CultureInfo.InvariantCulture);
+                customer_announ.date_to = dateTo;
+                customer_announ.active = 1;
+                db.customer_announ.Add(customer_announ);
+                db.SaveChanges();
+                iproby.Data_Model.announ_target announ_target = new iproby.Data_Model.announ_target();
+                announ_target.target_type = "workers";
+                announ_target.announ_id = announ.id;
+                db.announ_target.Add(announ_target);
+                db.SaveChanges();
+                return View("~/Views/Status/AddAnnounSuccess.cshtml");
+            }
+            else
+            {
                 return View("~/Views/Status/NoAuthorization.cshtml");
             }
         }
@@ -343,6 +404,12 @@ namespace iproby.Controllers
                 List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
                 return View("~/Views/Announ/SearchResultOut.cshtml", all_announs);
             }
+        }
+
+        [HttpPost]
+        public ActionResult AddRequest(iproby.Models.request model)
+        {
+            return RedirectToAction("Index");
         }
         
         [HttpPost]
