@@ -38,7 +38,7 @@ namespace iproby.Controllers
                 iproby.Models.announ_preview announ = new iproby.Models.announ_preview();
                 foreach (var item_inside in announ_arr)
                 {
-                    announ.description = item_inside.description;
+                    announ.description = item_inside.description.Trim();
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
                 }

@@ -197,7 +197,7 @@ namespace iproby.Controllers
                 db.customer_announ.Add(customer_announ);
                 db.SaveChanges();
                 iproby.Data_Model.announ_target announ_target = new iproby.Data_Model.announ_target();
-                announ_target.target_type="clients";
+                announ_target.target_type="workers";
                 announ_target.announ_id = announ.id;
                 db.announ_target.Add(announ_target);
                 db.SaveChanges();
@@ -252,7 +252,7 @@ namespace iproby.Controllers
                 db.customer_announ.Add(customer_announ);
                 db.SaveChanges();
                 iproby.Data_Model.announ_target announ_target = new iproby.Data_Model.announ_target();
-                announ_target.target_type = "workers";
+                announ_target.target_type = "clients";
                 announ_target.announ_id = announ.id;
                 db.announ_target.Add(announ_target);
                 db.SaveChanges();
