@@ -18,6 +18,9 @@ namespace iproby.Controllers
             var announ_id_arr = (from a in db.announs
                                  where a.type_id == type_id
                                  join db_target in db.announ_target on a.id equals db_target.announ_id where db_target.target_type.Contains(target)
+                                 join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
+                                 orderby db_cust_ann.date_from descending
+                                 where db_target.target_type.Contains(target)
                                  select a);
             var type_arr = (from a in db.announ_type
                                  where a.id == type_id
@@ -83,6 +86,8 @@ namespace iproby.Controllers
             var announ_id_arr = (from a in db.announs
                                  join db_target in db.announ_target on a.id equals db_target.announ_id
                                  where db_target.target_type.Contains(target)
+                                 join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
+                                 orderby db_cust_ann.date_from descending
                                  group a by a.type_id into g
                                  select new
                                  {
