@@ -5,11 +5,14 @@
 
 @section RegistrationSuccess{
     <h3>Спасибо за регистрацию!</h3>
-    <p>Теперь вы можете воспользоваться своим<br/> логином и паролем.</p>
+    <p>Теперь вы можете пользоваться своим<br/> логином и паролем.</p>
     <p>Надеемся Вам доставит удовольствие пользование сервисом. Если возникнут вопросы обязательно пишите на Форуме или лично разработчику.</p>
     <p>Спасибо и Добро Пожаловать!</p>
 
     @Html.ActionLink("На главную", "Index", "Home", null, new { @class = "btn btn-link" })
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Закрыть</button>
+</div>
 }
 
 

@@ -108,9 +108,9 @@ namespace iproby.Controllers
                 iproby.Models.announ_preview announ = new iproby.Models.announ_preview();
                 foreach (var item_inside in announ_arr)
                 {
-                    announ.description = item_inside.description;
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
+                    announ.description = item_inside.description;
                 }
                 var customer_id_arr = (from a in db.customer_announ
                                        where a.announ_id == announ_id

@@ -207,7 +207,7 @@ function add_mask() {
     $.mask.definitions['~'] = '[А-Я,а-я,0-9,\,,\.," "]';
     $('#inputLogin').mask('**?******************', { placeholder: "" });
     $('#InputPassword').mask('**?******************', { placeholder: "" });
-    $('#InputFio').mask('~~~?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', { placeholder: "" });
+    
     $('#address').mask('~~~?~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~', { placeholder: "" });
     $(".phone").mask('+7 (999) 999-99-99');
 };

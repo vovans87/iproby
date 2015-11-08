@@ -43,7 +43,8 @@ namespace iproby.Controllers
             customer.active = 1;
             db.customers.Add(customer);
             db.SaveChanges();
-
+            Session["fio"] = model.first_name;
+            Session["login"] = model.login;
 
             return View("~/Views/Status/RegistrationSuccess.cshtml");
         }
