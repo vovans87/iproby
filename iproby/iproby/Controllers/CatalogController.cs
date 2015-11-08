@@ -24,11 +24,13 @@ namespace iproby.Controllers
                                  select a);
             var type_arr = (from a in db.announ_type
                                  where a.id == type_id
-                                 select a.description);
+                                 select a);
             string type_desc = string.Empty;
+            string seo_header = string.Empty;
             foreach (var item in type_arr)
             {
-                type_desc = item;
+                type_desc = item.description;
+                seo_header = item.seo_header;
             }
             int announ_id = 0;
             List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
@@ -74,6 +76,7 @@ namespace iproby.Controllers
                     announ.address = item_inside.address;
                     announ.date_from = date_from;
                     announ.type_desc = type_desc;
+                    announ.seo_header = seo_header;
                 }
                 all_announs.Add(announ);
             }

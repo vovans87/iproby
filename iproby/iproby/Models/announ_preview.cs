@@ -16,6 +16,7 @@ namespace iproby.Models
         public string mobile { get; set; }
         public string search_word { get; set; }
         public string type_desc { get; set; }
+        public string seo_header { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }
     }
 }
