@@ -1,4 +1,4 @@
-﻿<div class="modal fade" id="add_workers">
+﻿<div class="modal fade main_form_load" id="add_workers">
     <div class="modal-dialog">
         <div class="modal-content">
             <form role="form" action="/Announ/AddWorkers" method="post" data-toggle="validator" data-disable=false data-delay=100>
@@ -15,22 +15,22 @@
                         else
                         {
                             <div class="row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10">
                                     <div class="form-group has-feedback">
                                         <label for="parent_type" class="control-label add_asterisk">Раздел</label>
                                         <input type="hidden" class="form-control parent_type" placeholder="Раздел" name="parent_type" value="Не установлено" />
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
+                                        <div class="btn-group" style="width:100%;">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
                                                 Выберите раздел:
                                                 <span class="caret" style="float:right;margin-top:10px;"></span>
                                             </button>
-                                            <ul class="dropdown-menu parent_type" style="width:368px;" load="parent_type">
+                                            <ul class="dropdown-menu parent_type" style="width:100%;" load="parent_type">
                                                 @{
                             List<string> parent_types = iproby.Models.announ_clients.parent_type_list;
                             foreach (var item in parent_types)
                             {
-                                <li style="width: 368px;" action="/Announ/GetChildTypes" method="POST" name="parent_type">
+                                <li style="width:100%;" action="/Announ/GetChildTypes" method="POST" name="parent_type">
                                     <a href="#"> @item </a>
                                 </li>
                             }
@@ -41,12 +41,12 @@
                                     <div class="form-group has-feedback">
                                         <label for="type" class="control-label add_asterisk">Подраздел</label>
                                         <input type="hidden" class="form-control type" placeholder="Подраздел" name="type" value="Не установлено" />
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
+                                        <div class="btn-group" style="width:100%;">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
                                                 Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>
                                             </button>
-                                            <ul class="dropdown-menu child_type" style="width:368px;" load="type">
-                                                <li style="width: 368px;">
+                                            <ul class="dropdown-menu child_type" style="width:100%;" load="type">
+                                                <li style="width:100%;">
                                                     <a href="#"> Сначала выберите раздел</a>
                                                 </li>
                                             </ul>
@@ -78,6 +78,7 @@
                                         <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                     </div>
                                 </div>
+                                <div class="col-md-1"></div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
@@ -89,7 +90,43 @@
                 </div>
 
             </form>
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <script>
+                        $(function () {
+                            $('.parent_type li').click(function () {
+                                if ($(this).text().trim().indexOf('Образование') > -1) {
+                                    $(".education").css("display", "block");
+                                } else {
+                                    $(".education").css("display", "none");
+                                };
+
+
+                                $.ajax({
+                                    url: $(this).attr('action'),
+                                    type: $(this).attr('method'),
+                                    data: $(this).attr('name') + "=" + $(this).text().trim(),
+
+                                    success: function (result) {
+                                        //$('.modal-footer').addClass('hide');
+                                        obj = JSON.parse(result);
+                                        $(".child_type").prev().html('Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>');
+                                        $(".child_type li").remove();
+                                        obj.forEach(function (entry) {
+                                            var text = '<li style="width: 368px;"><a href="#" class="child_type_click">' + entry + "</a></li>";
+                                            $(".child_type").append(text);
+                                        });
+                                        $('.child_type_click').click(function () { $(".main_form_load").find(':input').removeAttr('disabled'); });
+
+
+                                    }
+                                });
+
+                            });
+
+                        });
+                </script>
+
+            </div>
         </div>
     </div>
 </div>

@@ -1,12 +1,13 @@
-﻿    <div class="modal fade" id="add_clients">
-        <div class="modal-dialog">
+﻿@*<script type="text/javascript" src="~/Content/tinymce/tinymce.min.js"></script>*@   
+<div class="modal fade main_form_load" id="add_clients">
+        <div class="modal-dialog" style="width:900px;">
             <div class="modal-content">
                 <form role="form" action="/Announ/AddClients" method="post" data-toggle="validator" data-disable=false data-delay=100>
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" onclick="location.reload();" aria-hidden="true">&times;</button>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         <h4 class="modal-title">Добавление объявления</h4>
                     </div>
-                    <div class="modal-body return_result" id="result">
+                    <div class="modal-body return_result_clients" id="result">
                         @{
                             if (Session["login"] == null)
                             {
@@ -15,22 +16,22 @@
                             else
                             {
                                 <div class="row">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-10">
                                         <div class="form-group has-feedback">
                                             <label for="parent_type" class="control-label add_asterisk">Раздел</label>
                                             <input type="hidden" class="form-control parent_type"  placeholder="Раздел" name="parent_type" value="Не установлено" />
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
+                                            <div class="btn-group" style="width:100%;">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
                                                     Выберите раздел:
                                                     <span class="caret" style="float:right;margin-top:10px;"></span>
                                                 </button>
-                                                <ul class="dropdown-menu parent_type" style="width:368px;" load="parent_type">
+                                                <ul class="dropdown-menu parent_type" style="width:100%;" load="parent_type">
                                                     @{
                                                         List<string> parent_types = iproby.Models.announ_clients.parent_type_list;
                                                         foreach (var item in parent_types)
                                                         {
-                                                            <li style="width: 368px;" action="/Announ/GetChildTypes" method="POST" name="parent_type" >
+                                                            <li style="width:100%;" action="/Announ/GetChildTypes" method="POST" name="parent_type" >
                                                                 <a href="#"> @item </a>
                                                             </li>
                                                         }
@@ -41,12 +42,12 @@
                                         <div class="form-group has-feedback">
                                             <label for="type" class="control-label add_asterisk">Подраздел</label>
                                             <input type="hidden" class="form-control type" placeholder="Подраздел" name="type" value="Не установлено" />
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:368px;">
+                                            <div class="btn-group" style="width:100%;">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:100%;">
                                                     Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>
                                                 </button>
-                                                <ul class="dropdown-menu child_type" style="width:368px;" load="type">
-                                                    <li style="width: 368px;">
+                                                <ul class="dropdown-menu child_type" style="width:100%;" load="type">
+                                                    <li sstyle="width:100%;">
                                                         <a href="#"> Сначала выберите раздел</a>
                                                     </li>
                                                 </ul>
@@ -54,17 +55,17 @@
                                         </div>
                                         <div class="form-group has-feedback">
                                             <label for="header" class="control-label add_asterisk">Заголовок</label>
-                                            <input type="text" class="form-control" id="header" placeholder="Заголовок" name="header" maxlength="100" required>
+                                            <input type="text" class="form-control" id="header" placeholder="Заголовок" name="header" maxlength="100" required disabled>
                                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         </div>
                                         <div class="form-group has-feedback">
                                             <label for="about" class="control-label add_asterisk">Кратко о себе</label>
-                                            <textarea class="form-control noresize" id="about" name="about" rows="4" maxlength="400" required>Кратко о себе</textarea>
+                                            <textarea class="form-control noresize" id="about" name="about" rows="4" maxlength="400" required disabled></textarea>
                                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         </div>
                                         <div class="form-group has-feedback">
                                             <label for="description" class="control-label add_asterisk">Текст объявления</label>
-                                            <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>Текст объявления</textarea>
+                                            <textarea class="form-control noresize description" id="description" name="description" rows="12" maxlength="3000" required disabled></textarea>
                                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         </div>
                                         <div class="form-group has-feedback education">
@@ -78,6 +79,7 @@
                                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         </div>
                                     </div>
+                                    <div class="col-md-1"></div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
@@ -90,7 +92,43 @@
 
 
                 </form>
-                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <script>
+                        $(function () {
+                            $('.parent_type li').click(function () {
+                                if ($(this).text().trim().indexOf('Образование') > -1) {
+                                    $(".education").css("display", "block");
+                                } else {
+                                    $(".education").css("display", "none");
+                                };
+
+
+                                $.ajax({
+                                    url: $(this).attr('action'),
+                                    type: $(this).attr('method'),
+                                    data: $(this).attr('name') + "=" + $(this).text().trim(),
+
+                                    success: function (result) {
+                                        //$('.modal-footer').addClass('hide');
+                                        obj = JSON.parse(result);
+                                        $(".child_type").prev().html('Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>');
+                                        $(".child_type li").remove();
+                                        obj.forEach(function (entry) {
+                                            var text = '<li style="width: 368px;"><a href="#" class="child_type_click">' + entry + "</a></li>";
+                                            $(".child_type").append(text);
+                                        });
+                                        $('.child_type_click').click(function () { $(".main_form_load").find(':input').removeAttr('disabled'); });
+                                        
+
+                                    }
+                                });
+
+                            });
+
+                        });
+                    </script>
+
+                </div>
             </div>
         </div>
     </div>

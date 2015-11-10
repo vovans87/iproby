@@ -134,25 +134,24 @@ namespace iproby.Controllers
         }
         public ActionResult AddClients()
         {
-           
-            if (1==1)
-            {    
-            GetChildTypes(null);
                 var parent_type_arr = (from a in db.announ_type
                                         select a.parent_type).Distinct();
                 ViewBag.parent_type_arr = parent_type_arr.ToList();
                 iproby.Models.announ_clients model = new iproby.Models.announ_clients();
                 
                 return View(model);
-                
-            }
-            else
-            {
-                return View();
-            }
+        }
+        public ActionResult AddWorkers()
+        {
+            var parent_type_arr = (from a in db.announ_type
+                                   select a.parent_type).Distinct();
+            ViewBag.parent_type_arr = parent_type_arr.ToList();
+            iproby.Models.announ_clients model = new iproby.Models.announ_clients();
+
+            return View(model);
         }
 
-       
+
         [HttpPost]
         public ActionResult AddClients(iproby.Models.announ_clients model)
         {
