@@ -268,3 +268,7 @@
     cursor:pointer;
     text-decoration:underline;
 }
+
+.write_message:hover {
+    cursor:pointer;
+}
