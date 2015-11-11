@@ -27,6 +27,10 @@ namespace iproby.Controllers
             contact.mobile = model.mobile;
             contact.skype = model.skype;
             contact.address = model.address;
+            contact.facebook = model.facebook;
+            contact.site = model.site;
+            contact.vkontakte = model.vkontakte;
+            contact.icq = model.icq;
             db.contacts.Add(contact);
             db.SaveChanges();
 

@@ -21,5 +21,9 @@ namespace iproby.Models
         public string address { get; set; }
         public string mobile { get; set; }
         public string skype { get; set; }
+        public string icq { get; set; }
+        public string facebook { get; set; }
+        public string vkontakte { get; set; }
+        public string site { get; set; }
     }
 }

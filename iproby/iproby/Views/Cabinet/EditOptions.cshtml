@@ -10,11 +10,15 @@
 }
 @section EditOptions{
 
-    @if (Session["login"] != null )
+    @if (Session["login"] != null&&@Model.send_email_from_clients==1)
     {
         @Html.Partial(Url.Content("~/Views/Cabinet/Options.cshtml"))
     }
-    else
+    else if(Session["login"] != null && @Model.send_email_from_clients != 1)
+    {
+        @Html.Partial(Url.Content("~/Views/Cabinet/NoEmailConfirm.cshtml"))
+    }
+    else 
     {
         @Html.Partial(Url.Content("~/Views/Cabinet/NoAuthorization.cshtml"))
     }

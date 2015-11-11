@@ -58,6 +58,10 @@ namespace iproby.Controllers
                     details.address = item.address;
                     details.email = item.email;
                     details.skype = item.skype;
+                    details.facebook = item.facebook;
+                    details.site = item.site;
+                    details.vkontakte = item.vkontakte;
+                    details.icq = item.icq;
                     details.first_name = item.first_name;
                     details.login = Session["login"].ToString();
                     details.mobile = item.mobile;
@@ -100,6 +104,10 @@ namespace iproby.Controllers
                     regist.address = item.address;
                     regist.email = item.email;
                     regist.skype = item.skype;
+                    regist.facebook = item.facebook;
+                    regist.site = item.site;
+                    regist.vkontakte = item.vkontakte;
+                    regist.icq = item.icq;
                     regist.first_name = item.first_name;
                     regist.login = Session["login"].ToString();
                     regist.mobile = item.mobile;
@@ -137,6 +145,10 @@ namespace iproby.Controllers
                     contact.first_name = model.first_name;
                     contact.mobile = model.mobile;
                     contact.skype = model.skype;
+                    contact.facebook = model.facebook;
+                    contact.site = model.site;
+                    contact.vkontakte = model.vkontakte;
+                    contact.icq = model.icq;
                     db.SaveChanges();
                 }
                 isSaved = true;

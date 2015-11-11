@@ -604,6 +604,7 @@
     <Content Include="Views\Catalog\AnnounTarget.cshtml" />
     <Content Include="Views\Cabinet\EditOptions.cshtml" />
     <Content Include="Views\Confirmation\Index.cshtml" />
+    <Content Include="Views\Cabinet\NoEmailConfirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
