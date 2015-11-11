@@ -300,6 +300,24 @@ $(function () {
     }
 });
 $(function () {
+    if (getParameterByName('emailstatus').indexOf('confirmed') > -1) {
+        $('#myContent').load("/Content/dialogs/ConfirmSuccess.html", function () {
+            $('#myDialog').modal({
+                backdrop: 'static',
+                keyboard: true
+            }, 'show');
+        });
+    } ;
+    if (getParameterByName('emailstatus').indexOf('notconfirmed') > -1) {
+        $('#myContent').load("/Content/dialogs/ConfirmFail.html", function () {
+            $('#myDialog').modal({
+                backdrop: 'static',
+                keyboard: true
+            }, 'show');
+        });
+    }
+});
+$(function () {
     $('.send_rss_mail').click(function () {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/;
         if (pattern.test($('.send_rss_mail_input').val())) { 

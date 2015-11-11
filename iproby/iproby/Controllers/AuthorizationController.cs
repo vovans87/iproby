@@ -45,7 +45,24 @@ namespace iproby.Controllers
             db.SaveChanges();
             Session["fio"] = model.first_name;
             Session["login"] = model.login;
+            InformationController notification = new InformationController();
+            ConfirmationController confirmation = new ConfirmationController();
+            string code = Session["login"].ToString();
+            string hash_login = confirmation.GetCode(code);
+            string email_text = @"
+            Благодарим за регистрацию на сайте IPRO!
 
+            Ваш логин: " + code + @"
+            Пароль: " + code + @"
+            
+            Пожалуйста подтвердите Ваш email перейдя по ссылке http://localhost:49184/Confirmation?user_code=" + hash_login + "&login=" + code + @"
+            или скопируйте текст: 'http://localhost:49184/Confirmation?user_code=" + hash_login + "&login=" + code + @"'
+            в адресную строку браузера и нажмите enter.
+
+            Спасибо!
+            Письмо сгенерировано автоматически, если у вас есть вопросы пишите на почту info@iproby.ru";
+            notification.SendMail("excellentwebmaster@rambler.ru", email_text);
+            
             return View("~/Views/Status/RegistrationSuccess.cshtml");
         }
 

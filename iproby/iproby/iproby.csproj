@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AuthorizationController.cs" />
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
+    <Compile Include="Controllers\ConfirmationController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -212,6 +213,9 @@
     <Compile Include="Data_Model\message.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\option.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\request.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -240,6 +244,7 @@
     <Compile Include="Models\announ_full.cs" />
     <Compile Include="Models\announ_preview.cs" />
     <Compile Include="Models\message.cs" />
+    <Compile Include="Models\options.cs" />
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\request.cs" />
     <Compile Include="Models\review.cs" />
@@ -249,6 +254,8 @@
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
     <Content Include="Content\dialogs\AddClients.html" />
+    <Content Include="Content\dialogs\ConfirmFail.html" />
+    <Content Include="Content\dialogs\ConfirmSuccess.html" />
     <Content Include="Content\dialogs\Login.html" />
     <Content Include="Content\dialogs\Registration.html" />
     <Content Include="Content\dialogs\WriteMessage.html" />
@@ -516,6 +523,7 @@
     <Content Include="Views\Announ\Index.cshtml">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="Views\Cabinet\Options.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.ascx" />
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.ascx" />
@@ -594,6 +602,8 @@
     <Content Include="Views\Catalog\Description.cshtml" />
     <Content Include="Views\Announ\AddWorkers.cshtml" />
     <Content Include="Views\Catalog\AnnounTarget.cshtml" />
+    <Content Include="Views\Cabinet\EditOptions.cshtml" />
+    <Content Include="Views\Confirmation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

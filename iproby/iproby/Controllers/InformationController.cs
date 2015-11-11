@@ -46,7 +46,7 @@ namespace iproby.Controllers
             //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             //smtpClient.EnableSsl = true;
             MailMessage mail = new MailMessage();
-            mail.From = new MailAddress("info@iproby.ru", "From IPRO notification");
+            mail.From = new MailAddress("info@iproby.ru", "IPRO notification");
             mail.To.Add(new MailAddress("info@iproby.ru"));
             mail.Subject = "Нотификация с сайта IPRO";
             mail.Body = message;

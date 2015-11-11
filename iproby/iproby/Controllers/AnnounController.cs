@@ -200,6 +200,11 @@ namespace iproby.Controllers
                 announ_target.announ_id = announ.id;
                 db.announ_target.Add(announ_target);
                 db.SaveChanges();
+                iproby.Data_Model.option options = new iproby.Data_Model.option();
+                options.customer_id = customer_id;
+                options.send_email_from_clients_flag = 1;
+                db.options.Add(options);
+                db.SaveChanges();
                 return View("~/Views/Status/AddAnnounSuccess.cshtml");
             }
             else {

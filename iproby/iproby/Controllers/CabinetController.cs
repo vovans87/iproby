@@ -257,5 +257,61 @@ namespace iproby.Controllers
             Session["fio"] = null;
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult EditOptions(iproby.Models.options model)
+        {
+            string login = Session["login"].ToString();
+            var contact_id_arr = (from a in db.customers
+                                  where a.login == login
+                                  select a);
+            int customer_id = 0;
+            foreach (var item in contact_id_arr)
+            {
+                customer_id = item.customer_id;
+            }
+            var options_arr = (from a in db.options
+                                  where a.customer_id == customer_id
+                                  select a);
+            int flag_send_from_clients = 0;
+            foreach (var item in options_arr)
+            {
+                flag_send_from_clients = item.send_email_from_clients_flag.Value;
+            }
+            iproby.Models.options options = new iproby.Models.options();
+            options.customer_id = customer_id;
+            options.send_email_from_clients = flag_send_from_clients;
+
+            return View(options);
+        }
+
+        [HttpPost]
+        public ActionResult SaveOptions(iproby.Data_Model.option model)
+        {
+            string login = Session["login"].ToString();
+            var contact_id_arr = (from a in db.customers
+                                  where a.login == login
+                                  select a);
+            int customer_id = 0;
+            foreach (var item in contact_id_arr)
+            {
+                customer_id = item.customer_id;
+            }
+            var option_id = (from a in db.options
+                                   where a.customer_id == customer_id
+                                  select a.id);
+            int opt_id = 0;
+            foreach (var item in option_id)
+            {
+                opt_id = item;
+            }
+            var options = db.options.Find(opt_id);
+
+            if (options != null)
+            {
+                options.send_email_from_clients_flag = model.send_email_from_clients_flag;
+                db.SaveChanges();
+            }
+            return RedirectToAction("EditOptions", "Cabinet"); ;
+        }
     }
 }

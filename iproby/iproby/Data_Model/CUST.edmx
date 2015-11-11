@@ -91,9 +91,10 @@
           <Property Name="date_from" Type="datetime" Nullable="false" />
           <Property Name="date_to" Type="datetime" Nullable="false" />
           <Property Name="active" Type="int" Nullable="false" />
+          <Property Name="confirmed_flag" Type="int" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "iproby94_cust_db.iproby94_web.education" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="education">
           <Key>
             <PropertyRef Name="education_id" />
@@ -123,6 +124,14 @@
           <Property Name="text_mess" Type="text" />
           <Property Name="date_from" Type="datetime" />
           <Property Name="header" Type="text" />
+        </EntityType>
+        <EntityType Name="options">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="send_email_from_clients_flag" Type="int" />
         </EntityType>
         <EntityType Name="requests">
           <Key>
@@ -245,6 +254,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_options_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="options" Type="Self.options" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="options">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_requests_customers">
           <End Role="customers" Type="Self.customers" Multiplicity="1" />
           <End Role="requests" Type="Self.requests" Multiplicity="*" />
@@ -304,6 +325,7 @@
           <EntitySet Name="customers" EntityType="Self.customers" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="likes" EntityType="Self.likes" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="messages" EntityType="Self.messages" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="options" EntityType="Self.options" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="requests" EntityType="Self.requests" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="reviews" EntityType="Self.reviews" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="status" EntityType="Self.status" Schema="iproby94_web" store:Type="Tables" />
@@ -342,6 +364,10 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_messages_customers" Association="Self.FK_messages_customers">
             <End Role="customers" EntitySet="customers" />
             <End Role="messages" EntitySet="messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_options_customers" Association="Self.FK_options_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="options" EntitySet="options" />
           </AssociationSet>
           <AssociationSet Name="FK_requests_customers" Association="Self.FK_requests_customers">
             <End Role="customers" EntitySet="customers" />
@@ -415,6 +441,8 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="messages" Relationship="iproby94_cust_dbModel.FK_messages_customers" FromRole="customer" ToRole="message" />
           <NavigationProperty Name="reviews" Relationship="iproby94_cust_dbModel.FK_reviews_customers" FromRole="customer" ToRole="review" />
           <NavigationProperty Name="requests" Relationship="iproby94_cust_dbModel.FK_requests_customers" FromRole="customer" ToRole="request" />
+          <NavigationProperty Name="options" Relationship="iproby94_cust_dbModel.FK_options_customers" FromRole="customer" ToRole="option" />
+          <Property Name="confirmed_flag" Type="Int32" />
           </EntityType>
         <EntityType Name="status">
           <Key>
@@ -522,6 +550,11 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_requests_customers" Association="iproby94_cust_dbModel.FK_requests_customers">
             <End Role="customer" EntitySet="customers" />
             <End Role="request" EntitySet="requests" />
+          </AssociationSet>
+          <EntitySet Name="options" EntityType="iproby94_cust_dbModel.option" />
+          <AssociationSet Name="FK_options_customers" Association="iproby94_cust_dbModel.FK_options_customers">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="option" EntitySet="options" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="announ">
@@ -751,6 +784,27 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="option">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="send_email_from_clients_flag" Type="Int32" />
+          <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_options_customers" FromRole="option" ToRole="customer" />
+        </EntityType>
+        <Association Name="FK_options_customers">
+          <End Type="iproby94_cust_dbModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.option" Role="option" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="option">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -795,6 +849,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.customer">
               <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="confirmed_flag" ColumnName="confirmed_flag" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="login" ColumnName="login" />
                 <ScalarProperty Name="password" ColumnName="password" />
@@ -920,6 +975,15 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
                 <ScalarProperty Name="date_from" ColumnName="date_from" />
                 <ScalarProperty Name="request_rext" ColumnName="request_rext" />
                 <ScalarProperty Name="from_customer_id" ColumnName="from_customer_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="options">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.option">
+              <MappingFragment StoreEntitySet="options">
+                <ScalarProperty Name="send_email_from_clients_flag" ColumnName="send_email_from_clients_flag" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -78,6 +78,10 @@
         {
             @RenderSection("AnnounInfo")
         }
+        @if (IsSectionDefined("EditOptions"))
+        {
+            @RenderSection("EditOptions")
+        }
         @if (IsSectionDefined("About"))
         {
             @RenderSection("About")
