@@ -244,6 +244,7 @@
     <Compile Include="Models\announ_full.cs" />
     <Compile Include="Models\announ_preview.cs" />
     <Compile Include="Models\message.cs" />
+    <Compile Include="Models\news.cs" />
     <Compile Include="Models\options.cs" />
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\request.cs" />
@@ -605,6 +606,7 @@
     <Content Include="Views\Cabinet\EditOptions.cshtml" />
     <Content Include="Views\Confirmation\Index.cshtml" />
     <Content Include="Views\Cabinet\NoEmailConfirm.cshtml" />
+    <Content Include="Views\News\News.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

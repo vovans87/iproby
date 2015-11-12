@@ -20,7 +20,7 @@
 }
 
 @section News{
-    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+    @{Html.RenderAction("Index", "News");}
 }
 
 @section Footer{
