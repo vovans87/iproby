@@ -13,9 +13,19 @@
         <ul style="display: table-row;">
             <li style="display: table-cell; background-color: white; vertical-align: top; ">
                 <div style="width: 240px; background-color: white; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; ">
-                    <img src="~/Content/img/announ_no_photo.png" />
+                    @{
+                        if (@Model.avatar != null)
+                        {
+                            <img src="~/Content/img/user_img/@Model.avatar" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/img/announ_no_photo.png" />
+                        }
+                    }
+                    
                     <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">@Model.first_name</div>
-                    <div style="font-family: Helvetica; font-size: 13px; float: left; width: 130px; height: 20px; color: #44beb7;line-height:1;">
+                    <div style="font-family: Helvetica; font-size: 13px; float: left; width: 90%; height: 20px; color: #44beb7;line-height:1;">
                         <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />@Model.address
                     </div>
                     <br>

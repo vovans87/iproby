@@ -65,7 +65,7 @@ namespace iproby.Controllers
 
             Спасибо!
             Письмо сгенерировано автоматически, если у вас есть вопросы пишите на почту info@iproby.ru";
-            notification.SendMail("excellentwebmaster@rambler.ru", email_text);
+            notification.SendMail(model.email, email_text);
             
             return View("~/Views/Status/RegistrationSuccess.cshtml");
         }

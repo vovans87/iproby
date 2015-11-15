@@ -51,35 +51,45 @@ $(function () {
        
      });
 
+    function replaceThemAll() {
+        var ans = $("#tiny_text_to_edit").text();
+        ans = ans.replace(/"/g, '&quot;');
+        ans = ans.replace(/'/g, '&#39;');
+        ans = ans.replace(/</g, '&lt;');
+        ans = ans.replace(/>/g, '&gt;');
+        ans = ans.replace(/&/g, '&amp;');
+        alert(ans);
+        $("#tiny_text_to_edit").text(ans);
+    }
+
     $('.find_workers_btn').click(function () {
         $.ajax({
             url: '/Announ/AddWorkers',
             type: 'GET',
             success: function (result) {
                 $('#dialogAddClients').html(result);
-                
+             
                 $('#add_workers').modal({
                     backdrop: 'static',
                     keyboard: true
                 }, 'show');
-                
-                $('form').validator();
-                $('form').submit(function (e) {
+               
+                $('#add_workers form').validator();
+                $('#add_workers form').submit(function (e) {
                     if (e.isDefaultPrevented()) {
-                        //alert('32');
+                    // data: 'parent_type=' + $("input[name='parent_type']").val() + '&type=' + $("input[name='type']").val() + '&name=' + $("input[name='name']").val() + '&about=' + $("input[name='about']").val() + '&description=' + $("input[name='description']").val() + '&subjects=' + $("input[name='subjects']").val() + '&price=' + $("input[name='price']").val(),
                     } else {
-                
+                       
                         $.ajax({
-                            url: this.action,
-                            type: this.method,
-                            data: $(this).serialize(),
+                            url: '/Announ/AddWorkers',
+                            type: 'POST',
+                            data: $('#add_workers form').serialize(),
                             beforeSend: function () {
                                 //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
-                                $('.loading-wait-btn').button('loading');
+                                $('#add_workers .loading-wait-btn').button('loading');
                             },
                             success: function (result) {
-                                //$('.modal-footer').addClass('hide');
-                                $('.return_result').html(result);
+                                $('#add_workers .return_result').html(result);
                                 //setTimeout(function () {
                                 //    location.reload();
                                 //}, 3000)
@@ -320,9 +330,9 @@ $(function () {
 $(function () {
     $('.send_rss_mail').click(function () {
         var pattern = /^([a-z0-9_\.-])+@[a-z0-9-]+\.([a-z]{2,4}\.)?[a-z]{2,4}$/;
-        if (pattern.test($('.send_rss_mail_input').val())) { 
+        if (pattern.test($('.send_rss_mail_input').val())) {
             $.ajax({
-                url: "/Information/SendMail",
+                url: "/Information/SendMailRss",
                 type: "post",
                 data: "email=" + $('.send_rss_mail_input').val(),
                 success: function (result) {
@@ -392,23 +402,39 @@ $(function () {
         $('.spros').css('color', 'white');
         $('.predlojenie').css('color', '#115a56');
         $('.predlojenie').css('background-image', 'none');
-        if (getParameterByName('type_id').length > 0) {
-            location.href = '/Catalog?type_id=' + getParameterByName('type_id') + '&target=clients';
-        } else {
-            location.href = '?target=clients';
-        }
+        
     });
+
+    var target = location.href;
+   
+    if (target.indexOf("Klienty") > 0) {
+        $('.spros').css('background-image', 'url(/Content/img/announ_target_ico.png)');
+        $('.spros').css('color', 'white');
+        $('.predlojenie').css('color', '#115a56');
+        $('.predlojenie').css('background-image', 'none');
+        var predlojenie = target.substring(0, target.indexOf("Klienty") - 1);
+        var spros = target + "/Klienty";
+        spros = spros.replace('//', '/');
+        $('.spros').attr('href', target);
+        $('.predlojenie').attr('href', predlojenie);
+    } else {
+        $('.predlojenie').css('background-image', 'url(/Content/img/announ_target_ico.png)');
+        $('.predlojenie').css('color', 'white');
+        $('.spros').css('color', '#115a56');
+        $('.spros').css('background-image', 'none');
+        var spros = target + "/Klienty";
+        
+        $('.spros').attr('href', spros);
+        $('.predlojenie').attr('href', target);
+
+    }
 
     $('.predlojenie').click(function () {
         $('.predlojenie').css('background-image', 'url(/Content/img/announ_target_ico.png)');
         $('.predlojenie').css('color', 'white');
         $('.spros').css('color', '#115a56');
         $('.spros').css('background-image', 'none');
-        if (getParameterByName('type_id').length > 0) {
-            location.href = '/Catalog?type_id=' + getParameterByName('type_id') + '&target=workers';
-        } else {
-            location.href = '?target=workers';
-        }
+        
     });
     $('.close').click(function () {
         

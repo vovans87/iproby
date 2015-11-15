@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using iproby.Data_Model;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 
 namespace iproby.Controllers
 {
@@ -14,6 +18,8 @@ namespace iproby.Controllers
 
         private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
         private static bool isSaved = false;
+        private static bool incorrectFile = false;
+        private static bool editAvatar = false;
 
         public ActionResult Index()
         {
@@ -63,6 +69,7 @@ namespace iproby.Controllers
                     details.vkontakte = item.vkontakte;
                     details.icq = item.icq;
                     details.first_name = item.first_name;
+                    details.avatar = item.avatar;
                     details.login = Session["login"].ToString();
                     details.mobile = item.mobile;
                     details.password = string.Empty;
@@ -71,6 +78,16 @@ namespace iproby.Controllers
                 {
                     ViewData["isSaved"] = "isSaved";
                     isSaved = false;
+                }
+                if (incorrectFile)
+                {
+                    ViewData["incorrectFile"] = "incorrectFile";
+                    incorrectFile = false;
+                }
+                if (editAvatar)
+                {
+                    ViewData["editAvatar"] = "editAvatar";
+                    editAvatar = false;
                 }
                 ViewData["login"] = "isLogin";
                 return View(details);
@@ -324,6 +341,147 @@ namespace iproby.Controllers
                 db.SaveChanges();
             }
             return RedirectToAction("EditOptions", "Cabinet"); ;
+        }
+
+        [HttpPost]
+        public ActionResult FileUpload(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+
+                string path = AppDomain.CurrentDomain.BaseDirectory + "Content/img/user_img";
+                string filename = Path.GetFileName(file.FileName);
+                int length = file.ContentLength;
+                string new_filename = filename.Substring(filename.IndexOf("."), filename.Length - filename.IndexOf("."));
+                if (length < 100000 || new_filename.ToUpper()==".JPG"||new_filename.ToUpper()==".PNG"||new_filename.ToUpper()==".JPEG")
+                {
+                    new_filename = Session["login"] + "ava" + new_filename;
+                    if (filename != null)
+                    {
+                        file.SaveAs(Path.Combine(path, new_filename));
+                        string fileName = Path.Combine(path, new_filename);
+                        Size size = new Size();
+                        size.Width = 100;
+                        size.Height = 100;
+                        Image img = Image.FromFile(fileName);
+                        Bitmap tmp = new Bitmap(img,size);
+                        string WorkingDirectory = path;
+                        Image imgPhotoVert = Image.FromFile(fileName);
+                        Image imgPhotoHoriz = Image.FromFile(fileName);
+                        Image imgPhoto = null;
+                        imgPhoto = Crop(imgPhotoVert, 60, 60, AnchorPosition.Center);
+                        string target_img = Session["login"] + "ava_cropped.jpg";
+                        imgPhoto.Save(WorkingDirectory +"/"+
+                               target_img, ImageFormat.Jpeg);
+                        imgPhoto.Dispose();
+
+                        string login = Session["login"].ToString();
+                        var contact_id_arr = (from a in db.customers
+                                              where a.login == login
+                                              select a.contact_id);
+                        int contact_id = 0;
+                        foreach (int item in contact_id_arr)
+                        {
+                            contact_id = item;
+                        }
+                        var contact = db.contacts.Find(contact_id);
+
+                        if (contact != null)
+                        {
+                            contact.avatar = new_filename;
+                            contact.avatar_cropped = target_img;
+                            db.SaveChanges();
+                            editAvatar = false;
+                        }
+                    }
+                }
+                else {
+                    incorrectFile = true;
+                }
+            }
+            return RedirectToAction("Index","Cabinet");
+        }
+
+        enum AnchorPosition
+        {
+            Top,
+            Center,
+            Bottom,
+            Left,
+            Right
+        }
+
+        static Image Crop(Image imgPhoto, int Width, int Height, AnchorPosition Anchor)
+        {
+            int sourceWidth = imgPhoto.Width;
+            int sourceHeight = imgPhoto.Height;
+            int sourceX = 0;
+            int sourceY = 0;
+            int destX = 0;
+            int destY = 0;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)Width / (float)sourceWidth);
+            nPercentH = ((float)Height / (float)sourceHeight);
+
+            if (nPercentH < nPercentW)
+            {
+                nPercent = nPercentW;
+                switch (Anchor)
+                {
+                    case AnchorPosition.Top:
+                        destY = 0;
+                        break;
+                    case AnchorPosition.Bottom:
+                        destY = (int)
+                            (Height - (sourceHeight * nPercent));
+                        break;
+                    default:
+                        destY = (int)
+                            ((Height - (sourceHeight * nPercent)) / 2);
+                        break;
+                }
+            }
+            else
+            {
+                nPercent = nPercentH;
+                switch (Anchor)
+                {
+                    case AnchorPosition.Left:
+                        destX = 0;
+                        break;
+                    case AnchorPosition.Right:
+                        destX = (int)
+                          (Width - (sourceWidth * nPercent));
+                        break;
+                    default:
+                        destX = (int)
+                          ((Width - (sourceWidth * nPercent)) / 2);
+                        break;
+                }
+            }
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap bmPhoto = new Bitmap(Width,
+                    Height, PixelFormat.Format24bppRgb);
+            bmPhoto.SetResolution(imgPhoto.HorizontalResolution,
+                    imgPhoto.VerticalResolution);
+
+            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            grPhoto.InterpolationMode =InterpolationMode.HighQualityBicubic;
+
+            grPhoto.DrawImage(imgPhoto,
+                new Rectangle(destX, destY, destWidth, destHeight),
+                new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+            return bmPhoto;
         }
     }
 }

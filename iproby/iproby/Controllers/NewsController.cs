@@ -25,7 +25,7 @@ namespace iproby.Controllers
                 DbCommand.CommandText = "SELECT `post_title`,`post_content`,`post_date`,`guid` FROM `wp_posts` WHERE `post_status`='publish'";
                 OdbcDataReader DbReader = DbCommand.ExecuteReader();
                 int fCount = DbReader.FieldCount;
-                
+
                 while (DbReader.Read())
                 {
                     iproby.Models.news news = new iproby.Models.news();
@@ -35,14 +35,15 @@ namespace iproby.Controllers
                     {
                         news.description = DbReader.GetString(1).Substring(0, 320);
                     }
-                    else {
+                    else
+                    {
                         news.description = DbReader.GetString(1);
                     }
                     news.date_from = DbReader.GetDateTime(2);
                     news.link = DbReader.GetString(3);
                     newsList.Add(news);
                 }
-                
+
 
                 DbReader.Close();
                 DbCommand.Dispose();
@@ -56,6 +57,11 @@ namespace iproby.Controllers
             
 
             return View(newsList);
+        }
+
+        public ActionResult SeoFooter(int type_id)
+        {
+            return View();
         }
 
     }

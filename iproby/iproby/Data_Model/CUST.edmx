@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="iproby94_cust_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="iproby94_cust_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="specialities">
           <Key>
             <PropertyRef Name="speciality_id" />
@@ -71,6 +71,8 @@
           <Property Name="vkontakte" Type="varchar" MaxLength="50" />
           <Property Name="icq" Type="varchar" MaxLength="50" />
           <Property Name="site" Type="varchar" MaxLength="50" />
+          <Property Name="avatar" Type="varchar" MaxLength="50" />
+          <Property Name="avatar_cropped" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="customer_announ">
           <Key>
@@ -97,8 +99,8 @@
           <Property Name="active" Type="int" Nullable="false" />
           <Property Name="confirmed_flag" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "iproby94_cust_db.iproby94_web.education" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="education">
           <Key>
             <PropertyRef Name="education_id" />
@@ -430,6 +432,8 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="vkontakte" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="icq" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="site" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="avatar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="avatar_cropped" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -843,6 +847,8 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <EntitySetMapping Name="contacts">
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.contact">
               <MappingFragment StoreEntitySet="contact">
+                <ScalarProperty Name="avatar_cropped" ColumnName="avatar_cropped" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
                 <ScalarProperty Name="site" ColumnName="site" />
                 <ScalarProperty Name="icq" ColumnName="icq" />
                 <ScalarProperty Name="vkontakte" ColumnName="vkontakte" />

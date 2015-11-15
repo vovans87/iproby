@@ -12,9 +12,17 @@
 }
 
 @section AnnounInfo{
+@if (ViewData["editAvatar"] != null && ViewData["editAvatar"].ToString() == "editAvatar")
+{
+    @Html.Partial(Url.Content("~/Views/Cabinet/EditAvatar.cshtml"))
+}
 @if (ViewData["isSaved"] != null && ViewData["isSaved"].ToString() == "isSaved")
 {
     @Html.Partial(Url.Content("~/Views/Cabinet/SaveDetailsResult.cshtml"))
+}
+@if (ViewData["incorrectFile"] != null && ViewData["incorrectFile"].ToString() == "incorrectFile")
+{
+    @Html.Partial(Url.Content("~/Views/Cabinet/IncorrectFileResult.cshtml"))
 }
 
 @if (ViewData["login"] != null && ViewData["login"].ToString() == "isLogin")

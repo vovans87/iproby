@@ -6,7 +6,9 @@
 @section LoginFailed{
     <h5>Неправильный логин или пароль!</h5>
     @Html.ActionLink("Попробуйте еще раз", "Index", "Home", null, new { @class = "btn btn-link" })
-    
+    <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal" >Закрыть</button>
+</div>
 
 }
 

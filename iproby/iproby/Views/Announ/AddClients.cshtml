@@ -114,7 +114,7 @@
                                         $(".child_type").prev().html('Выберите подраздел: <span class="caret" style="float:right;margin-top:10px;"></span>');
                                         $(".child_type li").remove();
                                         obj.forEach(function (entry) {
-                                            var text = '<li style="width: 368px;"><a href="#" class="child_type_click">' + entry + "</a></li>";
+                                            var text = '<li style="width: 100%;"><a href="#" class="child_type_click">' + entry + "</a></li>";
                                             $(".child_type").append(text);
                                         });
                                         $('.child_type_click').click(function () { $(".main_form_load").find(':input').removeAttr('disabled'); });

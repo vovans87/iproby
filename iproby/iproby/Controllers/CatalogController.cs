@@ -17,6 +17,7 @@ namespace iproby.Controllers
         {
             var announ_id_arr = (from a in db.announs
                                  where a.type_id == type_id
+                                 where a.description!=null
                                  join db_target in db.announ_target on a.id equals db_target.announ_id where db_target.target_type.Contains(target)
                                  join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
                                  orderby db_cust_ann.date_from descending
@@ -77,6 +78,7 @@ namespace iproby.Controllers
                     announ.date_from = date_from;
                     announ.type_desc = type_desc;
                     announ.seo_header = seo_header;
+                    announ.avatar = item_inside.avatar_cropped;
                 }
                 all_announs.Add(announ);
             }
@@ -87,6 +89,7 @@ namespace iproby.Controllers
         public ActionResult Announs(string target = "workers")
         {
             var announ_id_arr = (from a in db.announs
+                                 where a.description!=null
                                  join db_target in db.announ_target on a.id equals db_target.announ_id
                                  where db_target.target_type.Contains(target)
                                  join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
@@ -139,6 +142,7 @@ namespace iproby.Controllers
                     announ.first_name = item_inside.first_name;
                     announ.mobile = item_inside.mobile;
                     announ.address = item_inside.address;
+                    announ.avatar = item_inside.avatar_cropped;
                     announ.date_from = date_from;
                 }
                 all_announs.Add(announ);

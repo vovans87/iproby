@@ -4,9 +4,25 @@
         <ul style="display: table-row;">
             <li style="display: table-cell; background-color: white; vertical-align: top; ">
                 <div style="width: 240px; background-color: white; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; ">
-                    <img src="~/Content/img/announ_no_photo.png" />
+                    <div style="text-align: center;width:100%;">
+                    @{
+                        if (@Model.avatar != null)
+                        {
+                            <img src="~/Content/img/user_img/@Model.avatar" style="max-width:200px;max-height:400px;margin:0 auto;"/>
+                        }
+                        else { 
+                            <img src="~/Content/img/announ_no_photo.png" style="max-width:200px;max-height:400px;"/>
+                        }
+                    }
+                    </div>
+                    
+                    <form role="form" action="/Cabinet/FileUpload" method='post' enctype='multipart/form-data' data-toggle="validator" data-disable=false data-delay=100>
+                        <input type="file" class="form-control" name="file" style="width:90%;" /><br />
+                        <input type="submit" class="btn btn-primary" style="width:90%;" name="Submit" id="SubmitSingle" value="Загрузить" />
+                    </form>
+                    
                     <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">@Model.first_name</div>
-                    <div style="font-family: Helvetica; font-size: 13px; float: left; width: 130px; height: 20px; color: #44beb7;line-height:1;">
+                    <div style="font-family: Helvetica; font-size: 13px; float: left; width: 90%; height: 20px; color: #44beb7;line-height:1;">
                         <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />@Model.address
                     </div>
                     <br>
@@ -19,18 +35,23 @@
                 <div style="width: 320px; background-color: #f6f8f9; height:100%;">
                     <div style="height: 80px; width: 320px; background-color: #0d4549; display: table; vertical-align:middle;text-align:center;">
                         <div style="display: table; vertical-align: middle; text-align: center; width: 300px; height: 80px; margin: 0 auto; ">
-                            <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
-                                <a class="edit_details" href="/Cabinet/EditDetails" style="display:block; margin: 0 auto; width: 135px; height: 40px;line-height:40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc); ">
-                                    <img src="~/Content/img/header_top_reg_ico.png" style="margin-top: -5px; margin-right: 5px;  " />
-                                    <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">КОНТАКТЫ</span>
-                                </a>
-                            </div>
-                            <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
-                                <a class="edit_details" href="/Cabinet/EditAnnoun" style="display:block;height: 40px; margin: 0 auto; width: 135px; height: 40px; line-height: 40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                                    <img src="~/Content/img/header_top_reg_ico.png" style="margin-top:-5px; margin-right:5px;" />
-                                    <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">ОБЪЯВЛЕНИЕ</span>
-                                </a>
-                            </div>
+                            @{
+                                if (@Model.description != null)
+                                 {
+                                  <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
+                                      <a class="edit_details" href="/Cabinet/EditDetails" style="display:block; margin: 0 auto; width: 135px; height: 40px;line-height:40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc); ">
+                                          <img src="~/Content/img/header_top_reg_ico.png" style="margin-top: -5px; margin-right: 5px;  " />
+                                          <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">КОНТАКТЫ</span>
+                                      </a>
+                                  </div>
+                                  <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
+                                      <a class="edit_details" href="/Cabinet/EditAnnoun" style="display:block;height: 40px; margin: 0 auto; width: 135px; height: 40px; line-height: 40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
+                                          <img src="~/Content/img/header_top_reg_ico.png" style="margin-top:-5px; margin-right:5px;" />
+                                          <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">ОБЪЯВЛЕНИЕ</span>
+                                      </a>
+                                  </div>
+                                }
+                            }
                         </div>
                     </div>
                     <div style="padding: 20px 25px 20px 20px; ">

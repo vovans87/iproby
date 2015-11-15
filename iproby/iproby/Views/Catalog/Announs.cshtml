@@ -12,23 +12,34 @@
                    </div>
                 
                        <div style="width: 1100px; margin:20px auto; font-family: Helvetica Bold; font-size: 18px;height:15px;">
-                           <div class="predlojenie" >
+                           <a class="predlojenie" >
                             РАБОТНИКИ
-                           </div>
-                           <div class="spros" >
+                           </a>
+                           <a class="spros" >
                             КЛИЕНТЫ
-                           </div>
+                           </a>
                        </div>
                 
                 <div class="search_result_block">
-                       @foreach (var item in Model)
+                    @if (Model.Count>0) { 
+                       foreach (var item in Model)
                        {
                            <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:30px;">
                                <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
                                    <div style="display:table;width: 240px; height: 80px;padding:10px;">
                                        <div style="display:table-row;">
                                            <div style="display:table-cell;width:30%;">
-                                               <img src="~/Content/img/no_logo.png" style=" " />
+                                               @{
+                                                   if (item.avatar != null)
+                                                   {
+                                                                   <img src="~/Content/img/user_img/@item.avatar" />
+                                                   }
+                                                   else
+                                                   {
+                                                                   <img src="~/Content/img/no_logo.png" style=" " />
+                                                   }
+                                               }
+                                               
                                            </div>
                                            <div style="display:table-cell;width:70%;vertical-align:top;">
                                                <div style="display:table;height:100%;margin-left:10px;">
@@ -99,6 +110,7 @@
                                    </div>
                            </div>
                        }
+                    }
                    </div>
                </div>
 

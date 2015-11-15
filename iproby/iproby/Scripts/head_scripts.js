@@ -14,14 +14,8 @@ $(document).ajaxSuccess(function() {
         $(this).parent().parent().children('.btn').html($(this).text().trim());
         $('.' + $(this).parent().attr('load')).val($(this).text().trim());
         if ($(this).text().trim().indexOf("Выберите") == -1) {
-            
-            
-            //tinymce.init({
-            //    selector: "#description",
-            //    height: 200,
-            //    menubar: false,
-            //    statusbar: false
-            //});
+
+
         };
     });
     

@@ -1,0 +1,79 @@
+﻿<div class="modal fade in statusDialog">
+    <div class="modal-dialog" style="width:700px;">
+        <div class="modal-content">
+            <form role="form" action="/Authorization/Login" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Редактирование изображения</h4>
+                </div>
+                <div class="modal-body" id="result">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-8">
+                            <img src="~/Content/img/user_img/@Model.avatar" style="max-width:500px;" id="photo"/>
+                        </div>
+                        <div class="col-md-1">
+                            <input type="hidden" name="x1" value="" />
+                            <input type="hidden" name="y1" value="" />
+                            <input type="hidden" name="x2" value="" />
+                            <input type="hidden" name="y2" value="" />
+                            <input type="hidden" name="w" value="" />
+                            <input type="hidden" name="h" value="" />
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Сохранить изменения">
+                        
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
+<script>
+    $('.statusDialog').modal({
+        backdrop: 'static',
+        keyboard: true
+    }, 'show');
+
+function preview(img, selection) {
+    var scaleX = 100 / (selection.width || 1);
+    var scaleY = 100 / (selection.height || 1);
+    $('#photo + div > img').css({
+        width: Math.round(scaleX * 600) + 'px',
+        height: Math.round(scaleY * 400) + 'px',
+        marginLeft: '-' + Math.round(scaleX * selection.x1) + 'px',
+        marginTop: '-' + Math.round(scaleY * selection.y1) + 'px'
+    });
+}
+
+$(document).ready(function () {
+    $('<div><img src="/Content/img/user_img/@Model.avatar" style="position: relative;" /><div>').css({
+        float: 'left',
+        position: 'relative',
+        overflow: 'hidden',
+        width: '100px',
+        height: '100px'
+    }) .insertAfter($('#photo'));
+
+    $('#photo').imgAreaSelect({
+        aspectRatio: '1:1',
+        handles: true,
+        onSelectChange: preview,
+        onSelectEnd: function ( image, selection ) {
+            $('input[name=x1]').val(selection.x1);
+            $('input[name=y1]').val(selection.y1);
+            $('input[name=x2]').val(selection.x2);
+            $('input[name=y2]').val(selection.y2);
+            $('input[name=w]').val(selection.width);
+            $('input[name=h]').val(selection.height);
+        }
+    });
+});
+
+
+
+</script>

@@ -25,5 +25,6 @@ namespace iproby.Models
         public string facebook { get; set; }
         public string vkontakte { get; set; }
         public string site { get; set; }
+        public string avatar { get; set; }
     }
 }

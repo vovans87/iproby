@@ -70,6 +70,7 @@ namespace iproby.Controllers
                 announ.address = item_inside.address;
                 announ.skype = item_inside.skype;
                 announ.email = item_inside.email;
+                announ.avatar = item_inside.avatar;
                 announ.date_from = date_from;
             }
             
@@ -212,6 +213,7 @@ namespace iproby.Controllers
             }
         }
 
+        //[ValidateInput(false)]
         [HttpPost]
         public ActionResult AddWorkers(iproby.Models.announ_clients model)
         {
@@ -228,7 +230,7 @@ namespace iproby.Controllers
                     type_id = item;
                 }
                 announ.type_id = type_id;
-                announ.description = model.description;
+                announ.description = model.description.Replace("&lt;", "").Replace("&gt;", "");
                 announ.header = model.header;
                 announ.subjects = model.subjects;
                 announ.price = model.price;
