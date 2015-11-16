@@ -79,7 +79,7 @@ $(function () {
                     if (e.isDefaultPrevented()) {
                     // data: 'parent_type=' + $("input[name='parent_type']").val() + '&type=' + $("input[name='type']").val() + '&name=' + $("input[name='name']").val() + '&about=' + $("input[name='about']").val() + '&description=' + $("input[name='description']").val() + '&subjects=' + $("input[name='subjects']").val() + '&price=' + $("input[name='price']").val(),
                     } else {
-                       
+                        
                         $.ajax({
                             url: '/Announ/AddWorkers',
                             type: 'POST',

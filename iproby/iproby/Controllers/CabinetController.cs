@@ -139,6 +139,7 @@ namespace iproby.Controllers
             }
         }
 
+
         [HttpPost]
         public ActionResult SaveDetails(iproby.Models.announ_details model)
         {
@@ -229,7 +230,7 @@ namespace iproby.Controllers
             }
         }
 
-
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult SaveAnnoun(iproby.Models.announ_clients model)
         {

@@ -250,6 +250,7 @@
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\request.cs" />
     <Compile Include="Models\review.cs" />
+    <Compile Include="Models\seo_model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

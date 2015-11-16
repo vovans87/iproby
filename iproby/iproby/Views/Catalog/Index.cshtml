@@ -28,6 +28,11 @@
 @section Announs{
     @Html.Partial(Url.Content("~/Views/Catalog/Announs.cshtml"))
 }
+
+@{
+    Html.RenderAction("SeoFooter", "News", new { type_id = Model[0].type_id });
+ }
+
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
 }

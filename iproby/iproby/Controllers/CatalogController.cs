@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using iproby.Data_Model;
+using System.Text.RegularExpressions;
 
 namespace iproby.Controllers
 {
@@ -12,6 +13,14 @@ namespace iproby.Controllers
         //
         // GET: /Catalog/
         private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
+        
+        private string SkipHtml(string html) {
+            Regex regex = new Regex("\\<[^\\>]*\\>");
+            string clear_text = regex.Replace(html, String.Empty);
+            clear_text = clear_text.Replace("&nbsp;", " ").Replace("&laquo;", "«").Replace("&raquo;", "»");
+
+            return clear_text;
+        }
 
         public ActionResult Index(int type_id,string target="workers")
         {
@@ -30,7 +39,7 @@ namespace iproby.Controllers
             string seo_header = string.Empty;
             foreach (var item in type_arr)
             {
-                type_desc = item.description;
+                type_desc = SkipHtml(item.description);
                 seo_header = item.seo_header;
             }
             int announ_id = 0;
@@ -44,9 +53,10 @@ namespace iproby.Controllers
                 iproby.Models.announ_preview announ = new iproby.Models.announ_preview();
                 foreach (var item_inside in announ_arr)
                 {
-                    announ.description = item_inside.description.Trim();
+                    announ.description = SkipHtml(item_inside.description.Trim());
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
+                    announ.type_id = item_inside.type_id.Value;
                 }
                 DateTime date_from = DateTime.Now;
                 var customer_id_arr = (from a in db.customer_announ
@@ -113,7 +123,8 @@ namespace iproby.Controllers
                 {
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
-                    announ.description = item_inside.description;
+                    announ.description = SkipHtml(item_inside.description);
+                    announ.type_id = item_inside.type_id.Value;
                 }
                 var customer_id_arr = (from a in db.customer_announ
                                        where a.announ_id == announ_id

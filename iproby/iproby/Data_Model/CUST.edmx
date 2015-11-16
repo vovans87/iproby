@@ -54,6 +54,7 @@
           <Property Name="description" Type="text" />
           <Property Name="parent_type" Type="varchar" MaxLength="50" />
           <Property Name="seo_header" Type="text" />
+          <Property Name="seo_text" Type="text" />
         </EntityType>
         <EntityType Name="contact">
           <Key>
@@ -99,8 +100,8 @@
           <Property Name="active" Type="int" Nullable="false" />
           <Property Name="confirmed_flag" Type="int" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "iproby94_cust_db.iproby94_web.education" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="education">
           <Key>
             <PropertyRef Name="education_id" />
@@ -189,7 +190,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_announ_target_announ">
-          <End Role="announ" Type="Self.announ" Multiplicity="1" />
+          <End Role="announ" Type="Self.announ" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="announ_target" Type="Self.announ_target" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="announ">
@@ -201,7 +204,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_customer_announ_announ">
-          <End Role="announ" Type="Self.announ" Multiplicity="0..1" />
+          <End Role="announ" Type="Self.announ" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="customer_announ" Type="Self.customer_announ" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="announ">
@@ -309,7 +314,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_visits_announ_id">
-          <End Role="announ" Type="Self.announ" Multiplicity="1" />
+          <End Role="announ" Type="Self.announ" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="visits" Type="Self.visits" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="announ">
@@ -597,6 +604,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="announs" Relationship="iproby94_cust_dbModel.FK_announ_announ_type" FromRole="announ_type" ToRole="announ" />
           <Property Name="parent_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="seo_header" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="customer_announ">
           <Key>
@@ -913,6 +921,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <EntitySetMapping Name="announ_type">
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.announ_type">
               <MappingFragment StoreEntitySet="announ_type">
+                <ScalarProperty Name="seo_text" ColumnName="seo_text" />
                 <ScalarProperty Name="seo_header" ColumnName="seo_header" />
                 <ScalarProperty Name="parent_type" ColumnName="parent_type" />
                 <ScalarProperty Name="description" ColumnName="description" />

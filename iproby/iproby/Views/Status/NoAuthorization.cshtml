@@ -3,15 +3,20 @@
     Layout = "~/Views/Shared/_Status.cshtml";
 }
 @section NoAuthorization{
-    <h5>Вы не авторизованы на сайте!</h5>
-    <p>Пожалуйста, зайдите со своим логином и паролем на сайт. Мы сможем предоставить для Вас полный функционал сайта.</p>
-    <p>Спасибо!</p>
-    
-@Html.ActionLink("Авторизоваться", "Index", "Home", null, new { @class = "btn btn-link" })
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h5>Вы не авторизованы на сайте!</h5>
+            <p>Пожалуйста, зайдите со своим логином и паролем на сайт. Мы сможем предоставить для Вас полный функционал сайта.</p>
+            <p>Спасибо!</p>
 
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal" >Закрыть</button>
-</div>
+            @Html.ActionLink("Авторизоваться", "Index", "Home", null, new { @class = "btn btn-link" })
+            </div>
+            <div class="col-md-2"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            </div>
 
 }
 

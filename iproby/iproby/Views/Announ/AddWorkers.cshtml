@@ -118,14 +118,29 @@
                                     $('.child_type_click').click(function () {
                                         $(".main_form_load").find(':input').removeAttr('disabled');
 
-                                        //tinymce.init({
-                                        //    selector: "#tiny_text_to_edit",
-                                        //    height: 200,
-                                        //    content_css: "/Content/tinymcie.css",
-                                        //    menubar: false,
-                                        //    statusbar: false
+                                        tinymce.init({
+                                            selector: "#tiny_text_to_edit",
+                                            height: 300,
+                                            content_css: "/Content/tinymcie.css",
+                                            menubar: false,
+                                            statusbar: false,
+                                            valid_elements: "h1,h2,h3,h4,h5,h6,b,strong,i,u,p,pre,em,span,ol,ul,li",
+                                            invalid_elements: "a",
+                                            setup: function (editor) {
+                                                editor.on('submit', function (e) {
+                                                    $('#tiny_text_to_edit').text(tinyMCE.activeEditor.getContent());
+                                                    console.log('submit event', $('#tiny_text_to_edit').text());
+                                                });
+                                            },
+                                            setup: function (editor) {
+                                                editor.on('change', function (e) {
+                                                    $('#tiny_text_to_edit').text(tinyMCE.activeEditor.getContent());
+                                                    console.log('change event', $('#tiny_text_to_edit').text());
+                                                });
+                                            }
 
-                                        //});
+
+                                        });
                                     });
 
 

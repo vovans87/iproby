@@ -9,8 +9,8 @@
             </div>
             <div class="modal-body" id="result">
                 <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-8">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-10">
 
 
                         <div class="form-group has-feedback">
@@ -25,7 +25,7 @@
                         </div>
                         <div class="form-group has-feedback">
                             <label for="description" class="control-label add_asterisk">Текст объявления</label>
-                            <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>@Model.description</textarea>
+                            <textarea class="form-control noresize" id="tiny_text_to_edit_cab" name="description" rows="8" maxlength="3000" required>@Html.Raw(Model.description)</textarea>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         </div>
                         <div class="form-group has-feedback education">
@@ -40,21 +40,43 @@
                         </div>
 
                     </div>
-
+                    <div class="col-md-1"></div>
                 </div>
             </div>
             <div class="modal-footer">
 
                 <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Сохранить изменения">
                 <script>
-                    $('.loading-wait-btn')
-    .click(function () {
-        var btn = $(this)
-        btn.button('loading')
-        setTimeout(function () {
-            btn.button('reset')
-        }, 3000)
-    });
+                    $('.loading-wait-btn').click(function () {
+                                                var btn = $(this)
+                                                btn.button('loading')
+                                                setTimeout(function () {
+                                                    btn.button('reset')
+                                                }, 3000)
+                    });
+                    tinymce.init({
+                        selector: "#tiny_text_to_edit_cab",
+                        height: 300,
+                        content_css: "/Content/tinymcie.css",
+                        menubar: false,
+                        statusbar: false,
+                        valid_elements: "h1,h2,h3,h4,h5,h6,b,strong,i,u,p,pre,em,span,ol,ul,li",
+                        invalid_elements: "a",
+                        setup: function (editor) {
+                            editor.on('submit', function (e) {
+                                $('#tiny_text_to_edit_cab').text(tinyMCE.activeEditor.getContent());
+                                //console.log('submit event', $('#tiny_text_to_edit').text());
+                            });
+                        },
+                        setup: function (editor) {
+                            editor.on('change', function (e) {
+                                $('#tiny_text_to_edit_cab').text(tinyMCE.activeEditor.getContent());
+                                //console.log('change event', $('#tiny_text_to_edit').text());
+                            });
+                        }
+
+
+                    });
                 </script>
             </div>
         </form>

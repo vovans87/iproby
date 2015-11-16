@@ -213,7 +213,7 @@ namespace iproby.Controllers
             }
         }
 
-        //[ValidateInput(false)]
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult AddWorkers(iproby.Models.announ_clients model)
         {

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Odbc;
+using iproby.Data_Model;
+using iproby.Models;
 
 namespace iproby.Controllers
 {
@@ -11,6 +13,7 @@ namespace iproby.Controllers
     {
         //
         // GET: /News/
+        private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
 
         public ActionResult Index()
         {
@@ -61,7 +64,18 @@ namespace iproby.Controllers
 
         public ActionResult SeoFooter(int type_id)
         {
-            return View();
+            var type_arr = (from a in db.announ_type
+                            where a.id == type_id
+                            select a.seo_text);
+            string seo_text = string.Empty;
+            foreach (string item in type_arr)
+            {
+                seo_text = item;
+            }
+            seo_model seo = new seo_model();
+            seo.seo_text = seo_text;
+
+            return View(seo);
         }
 
     }
