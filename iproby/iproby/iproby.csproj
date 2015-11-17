@@ -251,6 +251,7 @@
     <Compile Include="Models\request.cs" />
     <Compile Include="Models\review.cs" />
     <Compile Include="Models\seo_model.cs" />
+    <Compile Include="Models\service_model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -703,6 +704,7 @@
     <Content Include="Views\Cabinet\IncorrectFileResult.cshtml" />
     <Content Include="Views\Cabinet\EditAvatar.cshtml" />
     <Content Include="Views\News\SeoFooter.cshtml" />
+    <Content Include="Views\News\SeoFooterContent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

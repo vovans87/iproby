@@ -152,7 +152,7 @@ namespace iproby.Controllers
             return View(model);
         }
 
-
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult AddClients(iproby.Models.announ_clients model)
         {
@@ -206,7 +206,9 @@ namespace iproby.Controllers
                 options.send_email_from_clients_flag = 1;
                 db.options.Add(options);
                 db.SaveChanges();
-                return View("~/Views/Status/AddAnnounSuccess.cshtml");
+                service_model service_model = new service_model();
+                service_model.announ_id = announ.id;
+                return View("~/Views/Status/AddAnnounSuccess.cshtml", service_model);
             }
             else {
                 return View("~/Views/Status/NoAuthorization.cshtml");
@@ -262,7 +264,9 @@ namespace iproby.Controllers
                 announ_target.announ_id = announ.id;
                 db.announ_target.Add(announ_target);
                 db.SaveChanges();
-                return View("~/Views/Status/AddAnnounSuccess.cshtml");
+                service_model service_model= new service_model();
+                service_model.announ_id=announ.id;
+                return View("~/Views/Status/AddAnnounSuccess.cshtml", service_model);
             }
             else
             {

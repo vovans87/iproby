@@ -3,13 +3,18 @@
     Layout = "~/Views/Shared/_Status.cshtml";
 }
 @section AddAnnounSuccess{
-    <h5>Ваше объявление успешно добавлено!</h5>
-<p>Теперь вы можете пользоваться полным функционалом сайта, и следить за обновлениями.</p>
-<p>Спасибо!</p>
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Закрыть</button>
-</div>
-
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h5>Ваше объявление успешно добавлено!</h5>
+            <p>Теперь вы можете пользоваться полным функционалом сайта, и следить за обновлениями.</p>
+            <p>Спасибо!</p>
+            @Html.ActionLink("Ваше объявление", "Index", "Announ", new { announ_id = @Model.announ_id })
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Закрыть</button>
+    </div>
 }
-
 

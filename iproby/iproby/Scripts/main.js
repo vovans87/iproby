@@ -51,17 +51,6 @@ $(function () {
        
      });
 
-    function replaceThemAll() {
-        var ans = $("#tiny_text_to_edit").text();
-        ans = ans.replace(/"/g, '&quot;');
-        ans = ans.replace(/'/g, '&#39;');
-        ans = ans.replace(/</g, '&lt;');
-        ans = ans.replace(/>/g, '&gt;');
-        ans = ans.replace(/&/g, '&amp;');
-        alert(ans);
-        $("#tiny_text_to_edit").text(ans);
-    }
-
     $('.find_workers_btn').click(function () {
         $.ajax({
             url: '/Announ/AddWorkers',

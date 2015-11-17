@@ -1,11 +1,11 @@
-﻿<div class="row category" style="height: 340px;">
+﻿<div class="row category" >
     <div class="col-md-2 category_left_clear"></div>
     <div class="col-md-2" style="width: 275px;">
         <img src="~/Content/img/category_comp_top.png" style="margin-top:40px;" />
         <div style="height: 65px; font-family: Helvetica Bold; font-size: 23px; line-height:2.8;">Компьютеры</div>
         <ul style="text-align:left;">
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_comp_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-kompjuterov">Ремонт компьютеров</a></li>
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_comp_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-orgtehniki">Ремонт оргтехники</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_comp_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-kompjuterov@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Ремонт компьютеров</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_comp_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-orgtehniki@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Ремонт оргтехники</a></li>
             @*<li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_comp_li_ico_3.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="@Url.Action("Index", "Catalog", new { type_id = 11 })">Обслуживание сетей</a></li>*@
         </ul>
     </div>
@@ -13,17 +13,17 @@
         <img src="~/Content/img/category_internet_top.png" style="margin-top:40px;" />
         <div style="height: 65px; font-family: Helvetica Bold; font-size: 23px; line-height:2.8;">Интернет</div>
         <ul style="text-align:left;">
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_internet_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Sozdanie-sajtov">Создание сайтов</a></li>
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_internet_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Prodvizhenie-reklama">Продвижение реклама</a></li>
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_internet_li_ico_3.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Dizajn">Дизайн</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_internet_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Sozdanie-sajtov@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Создание сайтов</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_internet_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Prodvizhenie-reklama@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Продвижение реклама</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_internet_li_ico_3.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Dizajn@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Дизайн</a></li>
         </ul>
     </div>
     <div class="col-md-2" style="width: 275px; ">
         <img src="~/Content/img/category_mobile_top.png" style="margin-top:40px;" />
         <div style="height: 65px; font-family: Helvetica Bold; font-size: 23px; line-height:2.8;">Мобильные</div>
         <ul style="text-align:left;">
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_mobile_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-telefonov">Ремонт телефонов</a></li>
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_mobile_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-navigatorov">Ремонт навигаторов</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_mobile_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-telefonov@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Ремонт телефонов</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_mobile_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Remont-navigatorov@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Ремонт навигаторов</a></li>
             @*<li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_mobile_li_ico_3.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="@Url.Action("Index", "Catalog", new { type_id = 5 })">Ремонт аксессуаров</a></li>*@
         </ul>
     </div>
@@ -31,8 +31,8 @@
         <img src="~/Content/img/category_edu_top.png" style="margin-top:40px;" />
         <div style="height: 65px; font-family: Helvetica Bold; font-size: 23px; line-height:2.8;">Образование</div>
         <ul style="text-align:left;">
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_edu_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Kontrolnye-Kursovye-Referaty-Diplomy">Контрольные работы</a></li>
-            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_edu_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Repetitory">Репетиторы</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_edu_li_ico_1.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Kontrolnye-Kursovye-Referaty-Diplomy@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Контрольные работы</a></li>
+            <li style="list-style: none; width:250px; padding-left: 30px; margin-left:0px;background: url(/Content/img/category_edu_li_ico_2.png) no-repeat left; font-family: Helvetica; font-size: 17px; color: #446cb3; line-height: 1.9; "><a href="~/Catalog/Repetitory@{if(Request.Params["target"] != null){<text>/Klienty</text>}}">Репетиторы</a></li>
 
         </ul>
     </div>

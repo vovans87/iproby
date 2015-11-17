@@ -75,7 +75,7 @@ namespace iproby.Controllers
             seo_model seo = new seo_model();
             seo.seo_text = seo_text;
 
-            return View(seo);
+            return View("~/Views/News/SeoFooterContent.cshtml", seo);
         }
 
     }

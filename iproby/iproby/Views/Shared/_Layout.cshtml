@@ -102,6 +102,10 @@
         {
             @RenderSection("News")
         }
+        @if (IsSectionDefined("SeoFooter"))
+        {
+            @RenderSection("SeoFooter")
+        }
         @if (IsSectionDefined("Footer"))
         {
             @RenderSection("Footer")

@@ -2,21 +2,25 @@
     ViewBag.Title = "LoginSuccess";
     Layout = "~/Views/Shared/_Status.cshtml";
 }
-
 @section LoginSuccess{
-    <script>show_personal_account()</script>
-    <p>Авторизация прошла успешно!<br>
-    Добро пожаловать, @{var fio = Session["fio"];
-    @fio.ToString();
-}!
-    
-    </p>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <script>show_personal_account()</script>
+            <p>
+                Авторизация прошла успешно!<br>
+                Добро пожаловать, @{var fio = Session["fio"];
+                @fio.ToString();
+                }!
+
+            </p>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
     @Html.ActionLink("Личный кабинет", "Index", "Cabinet", null, new { @class = "btn btn-link" })
-<div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal" >Закрыть</button>
-</div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+    </div>
 }
-
-
 
 
