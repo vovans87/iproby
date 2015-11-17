@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="iproby94_cust_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="iproby94_cust_dbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="specialities">
           <Key>
             <PropertyRef Name="speciality_id" />
@@ -159,6 +159,14 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="reviewer_id" Type="int" Nullable="false" />
           <Property Name="header" Type="text" />
           <Property Name="description" Type="text" />
+          <Property Name="date_from" Type="datetime" />
+        </EntityType>
+        <EntityType Name="search_texts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="search_input" Type="text" />
           <Property Name="date_from" Type="datetime" />
         </EntityType>
         <EntityType Name="status">
@@ -341,6 +349,7 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <EntitySet Name="options" EntityType="Self.options" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="requests" EntityType="Self.requests" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="reviews" EntityType="Self.reviews" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="search_texts" EntityType="Self.search_texts" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="status" EntityType="Self.status" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="visits" EntityType="Self.visits" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="education" EntityType="Self.education" store:Type="Tables" store:Schema="iproby94_web">
@@ -575,6 +584,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <End Role="customer" EntitySet="customers" />
             <End Role="option" EntitySet="options" />
           </AssociationSet>
+          <EntitySet Name="search_texts" EntityType="iproby94_cust_dbModel.search_texts" />
           </EntityContainer>
         <EntityType Name="announ">
           <Key>
@@ -825,6 +835,14 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="search_texts">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="search_input" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_from" Type="DateTime" Precision="3" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1011,6 +1029,15 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
               <MappingFragment StoreEntitySet="options">
                 <ScalarProperty Name="send_email_from_clients_flag" ColumnName="send_email_from_clients_flag" />
                 <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="search_texts">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.search_texts">
+              <MappingFragment StoreEntitySet="search_texts">
+                <ScalarProperty Name="date_from" ColumnName="date_from" />
+                <ScalarProperty Name="search_input" ColumnName="search_input" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

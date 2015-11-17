@@ -223,6 +223,9 @@
     <Compile Include="Data_Model\review.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\search_texts.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\speciality.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>

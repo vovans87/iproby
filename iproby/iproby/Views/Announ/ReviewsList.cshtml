@@ -3,17 +3,46 @@
     {
         <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:20px;">
             <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
-                <img src="~/Content/img/no_logo.png" style="margin-left: 20px;margin-top:20px;margin-right:20px; float: left;" />
-                <div style="font-family: Helvetica Bold; font-size: 14px; float: left; margin-top: 20px; width: 130px; height: 40px; color: #115a56;">@item.first_name</div>
+                <div style="display:table;width: 240px; height: 80px;padding:10px;">
+                    <div style="display:table-row;">
+                        <div style="display:table-cell;width:30%;">
+                            @{
+                                if (item.avatar != null)
+                                {
+                                    <img src="~/Content/img/user_img/@item.avatar" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/img/no_logo.png" style=" " />
+                                }
+                            }
 
-                <div style="margin-left: 20px; ">
+                        </div>
+                        <div style="display:table-cell;width:70%;vertical-align:top;">
+                            <div style="display:table;height:100%;margin-left:10px;">
+                                <div style="display:table-row;">
+                                    <div style="font-family: Helvetica Bold; font-size: 14px;   color: #115a56;">@item.first_name</div>
+                                </div>
+                                <div style="display:table-row;">
+                                    <div style="font-family: Helvetica; font-size: 11px;  color: #44beb7;">
+                                        <img src="~/Content/img/city_ico.png" style="" />&nbsp;@item.address
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                @*<div style="margin-left: 20px; ">
                     <img src="~/Content/img/star_active.png" />
                     <img src="~/Content/img/star_active.png" />
                     <img src="~/Content/img/star_active.png" />
                     <img src="~/Content/img/star_active.png" />
                     <img src="~/Content/img/star_inactive.png" />
                 </div>
-                <div style="margin-top:30px; margin-left:50px; color: #115a56; font-family: Helvetica; font-size: 14px; ">Оценка: <b>5</b></div>
+                <div style="margin-top:30px; margin-left:50px; color: #115a56; font-family: Helvetica; font-size: 14px; ">Оценка: <b>5</b></div>*@
             </div>
             <div style="width:855px;height:170px;float:left;display:table;">
                 <div style="font-family: Helvetica Bold; font-size: 14px; color: #151515; margin-left: 20px; margin-top: 17px;"><a href="#" style=" text-decoration: none; color: #151515;">@item.header</a></div>

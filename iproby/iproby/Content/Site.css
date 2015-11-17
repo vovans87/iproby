@@ -1,4 +1,24 @@
-﻿.add_asterisk:after {
+﻿.waiting_modal_bg {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('http://sampsonresume.com/labs/pIkfp.gif') 
+                50% 50% 
+                no-repeat;
+}
+body.loading_bg {
+    overflow: hidden;   
+}
+body.loading_bg .waiting_modal_bg {
+    display: block;
+}
+
+.add_asterisk:after {
     content: "*";
     font-weight: bold;
     color: red;
@@ -28,6 +48,12 @@
         border: 1px solid white;
     }
 
+    #enter:active {
+        cursor: pointer;
+        background-color: #97dab4;
+        border: 1px solid white;
+    }
+
 .registration {
     background-image: none;
     background-color: #f5ab35;
@@ -48,6 +74,12 @@
         border: 1px solid white;
     }
 
+    .registration:active {
+        cursor: pointer;
+        background-color: #fed48f;
+        border: 1px solid white;
+    }
+
 .personal_account_box {
     display: none;
 }
@@ -55,6 +87,12 @@
 .personal_account_btn:hover {
     cursor: pointer;
     background-color: #f6c679;
+    border: 1px solid white;
+}
+
+.personal_account_btn:active {
+    cursor: pointer;
+    background-color: #fed48f;
     border: 1px solid white;
 }
 
@@ -83,6 +121,12 @@
         border: 1px solid white;
     }
 
+    .header_middle_left_btn:active {
+        cursor: pointer;
+        background-color: #fed48f;
+        border: 1px solid white;
+    }
+
 .header_middle_right_btn {
     /* Для хороших браузеров */
     -moz-border-radius: 40px; /* Firefox */
@@ -105,6 +149,11 @@
     .header_middle_right_btn:hover {
         cursor: pointer;
         background-color: #88cca5;
+        border: 1px solid white;
+    }
+        .header_middle_right_btn:active {
+        cursor: pointer;
+        background-color: #97dab4;
         border: 1px solid white;
     }
 
@@ -138,6 +187,11 @@
     .find_btn:hover {
         cursor: pointer;
         background-color: #666667;
+        border: 1px solid white;
+    }
+        .find_btn:active {
+        cursor: pointer;
+        background-color: #858586;
         border: 1px solid white;
     }
 

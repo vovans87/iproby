@@ -1,9 +1,9 @@
-﻿<div class="modal fade in" style="display:block;">
+﻿<div class="modal fade in review_send_success" >
     <div class="modal-dialog">
         <div class="modal-content">
             <form role="form" action="/Authorization/Login" method="post" data-toggle="validator" data-disable=false data-delay=100>
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="location.reload();">&times;</button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
                     <h4 class="modal-title">Добавление отзыва</h4>
                 </div>
                 <div class="modal-body" id="result">
@@ -11,13 +11,13 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
                             <h5>Ваши отзыв успешно добавлен!</h5>
-                            <h5>Честные отзывы очень важны для последующих клиентов работника, а также и для самого работника.</h5>
-                            <p>Надеемся сервис Вам полезен :)</p>
+                            <h5>Автор уведомлен о вашем сообщении.</h5>
+                            <p>Надеемся сервис Вам полезен :) </p>
                             <p>Спасибо.</p>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" onclick="location.reload();">Закрыть</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal" >Закрыть</button>
                     </div>
                 </div>
             </form>
@@ -25,3 +25,9 @@
         </div>
     </div>
 </div>
+<script>
+    $('.review_send_success').modal({
+        backdrop: 'static',
+        keyboard: true
+    }, 'show');
+</script>

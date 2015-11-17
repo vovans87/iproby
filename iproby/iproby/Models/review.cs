@@ -13,6 +13,8 @@ namespace iproby.Models
         public int customer_id { get; set; }
         public int reviewer_id { get; set; }
         public string first_name { get; set; }
+        public string address { get; set; }
+        public string avatar { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }
 
     }

@@ -8,7 +8,17 @@ $( document ).ready(function() {
      $('.' + $(this).parent().attr('load')).val($(this).text().trim());
     });
 });
+//$body = $("body");
 
+//$.ajaxSetup({
+//    beforeSend:function(){
+//        console.log('send');
+//    },
+//    complete:function(){
+//        // hide gif here, eg:
+//        console.log('receive');
+//    }
+//});
 $(document).ajaxSuccess(function() {
     $('.dropdown-menu li').click(function () {
         $(this).parent().parent().children('.btn').html($(this).text().trim());

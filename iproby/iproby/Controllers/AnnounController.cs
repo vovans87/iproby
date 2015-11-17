@@ -105,6 +105,8 @@ namespace iproby.Controllers
                 foreach (var item_inside in contact_arr)
                 {
                     review.first_name = item_inside.first_name;
+                    review.address = item_inside.address;
+                    review.avatar = item_inside.avatar;
                 }
                 review_list.Add(review);
             }
@@ -286,6 +288,12 @@ namespace iproby.Controllers
         {
             if (search_text.Length > 2 && search_text.Length < 200)
             {
+                iproby.Data_Model.search_texts search_text_db = new iproby.Data_Model.search_texts();
+                search_text_db.search_input = search_text;
+                DateTime date_from1 = DateTime.Now;
+                search_text_db.date_from = date_from1;
+                db.search_texts.Add(search_text_db);
+                db.SaveChanges();
                 var announ_id_arr = (from a in db.announs
                                      where ((a.description.Contains(search_text)
                                      || a.header.Contains(search_text)
@@ -354,6 +362,12 @@ namespace iproby.Controllers
         {
             if (search_text.Length > 2 && search_text.Length < 200)
             {
+                iproby.Data_Model.search_texts search_text_db = new iproby.Data_Model.search_texts();
+                search_text_db.search_input = search_text;
+                DateTime date_from1 = DateTime.Now;
+                search_text_db.date_from = date_from1;
+                db.search_texts.Add(search_text_db);
+                db.SaveChanges();
                 var announ_id_arr = (from a in db.announs
                                      where (a.description.Contains(search_text)
                                      || a.header.Contains(search_text)
@@ -440,12 +454,34 @@ namespace iproby.Controllers
                 review.reviewer_id = customer_id;
                 review.announ_id = model.announ_id;
                 review.customer_id = model.customer_id;
+                var to_contact_id_arr = (from a in db.customers
+                                       where a.customer_id == model.customer_id
+                                          select a.contact_id);
+                int to_contact_id = 0;
+                foreach (int item in to_contact_id_arr)
+                {
+                    to_contact_id = item;
+                }
+                var contact_arr = (from a in db.contacts
+                                       where a.contact_id == to_contact_id
+                                   select a);
+                string email = string.Empty;
+                foreach (var item in contact_arr)
+                {
+                    email = item.email;
+                }
                 review.header = model.header;
                 review.description = model.description;
                 DateTime Now = DateTime.Now;
                 review.date_from = Now;
                 db.reviews.Add(review);
                 db.SaveChanges();
+                InformationController notification = new InformationController();
+                notification.SendMail(email, 
+                @"К вашему объявлению добавили комментарий на сайте IPRO. 
+                Пожалуйста, проверьте в личном кабинете и по возможости напишите ответ (ответить автору сообщения возможно в Личном кабинете).
+
+                Письмо сгенерировано автоматически. По всем вопросам пишите на info@iproby.ru");
                 isSaved = true;
                 return RedirectToAction("Index", new { announ_id = model.announ_id });
             }

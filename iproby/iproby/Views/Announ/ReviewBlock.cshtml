@@ -1,13 +1,13 @@
 ﻿
 <div class="row">
     <div style="width: 1100px; margin: 0 auto; height: 70px; font-family: Helvetica Bold; font-size: 16px; color: #115a56; line-height:70px;">
-        Отзывы (0):
+        Обсуждение (@{Html.RenderAction("GetReviews", "Announ", new { announ_id = Model.announ_id });} ):
     </div>
    @{Html.RenderAction("Reviews", "Announ", null);}
     <div style="width: 1100px; margin: 0 auto;">
         <form action="/Announ/AddReview" method="post" data-toggle="validator" data-disable=false data-delay=100>
             <div class="modal-header">
-                <h4 class="modal-title"> Добавить отзыв</h4>
+                <h4 class="modal-title"> Добавить комментарий или вопрос</h4>
             </div>
             <div class="modal-body" id="result">
                 <div class="row">
@@ -21,8 +21,8 @@
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         </div>
                         <div class="form-group has-feedback">
-                            <label for="description" class="control-label add_asterisk">Текст отзыва</label>
-                            <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>Текст отзыва</textarea>
+                            <label for="description" class="control-label add_asterisk">Текст сообщения</label>
+                            <textarea class="form-control noresize" id="description" name="description" rows="8" maxlength="3000" required>Текст сообщения</textarea>
                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                         </div>
 
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="modal-footer" style="margin-right:185px;">
-                <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Отправить отзыв">
+                <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Отправить">
                 <script>
                     $('.loading-wait-btn')
     .click(function () {
