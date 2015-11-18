@@ -7,6 +7,7 @@ namespace iproby.Models
 {
     public class announ_details
     {
+        public int announ_id { get; set; }
         public string parent_type { get; set; }
         public string type { get; set; }
         public string header { get; set; }

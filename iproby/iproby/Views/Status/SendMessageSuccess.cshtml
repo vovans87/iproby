@@ -3,14 +3,16 @@
     Layout = "~/Views/Shared/_Status.cshtml";
 }
 @section SendMessageSuccess{
-    <script>show_personal_account()</script>
+    
     <p>
         Ваше сообщение отправлено!<br>
         Адресат будет уведомлен по почте что вы ему писали.<br>
         Вы будете уведомлены, если на ваше сообщение придет ответ.
 
     </p>
-   
+   <div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+</div>
 }
 
 

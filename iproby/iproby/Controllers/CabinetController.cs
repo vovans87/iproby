@@ -50,7 +50,7 @@ namespace iproby.Controllers
                                   where a.id == announ_id
                                   select a);
                 iproby.Models.announ_details details = new iproby.Models.announ_details();
-
+                details.announ_id = announ_id;
                 foreach (var item in announ_arr)
                 {
                     details.price = item.price;
@@ -137,6 +137,42 @@ namespace iproby.Controllers
                 ViewData["login"] = "notLogin";
                 return View();
             }
+        }
+
+        public ActionResult Reviews(int announ_id)
+        {
+
+            var reviews_arr = (from a in db.reviews
+                               where a.announ_id == announ_id
+                               select a);
+            List<iproby.Models.review> review_list = new List<iproby.Models.review>();
+            foreach (var item in reviews_arr)
+            {
+                iproby.Models.review review = new iproby.Models.review();
+                review.header = item.header;
+                review.description = item.description;
+                review.date_from = item.date_from;
+                review.reviewer_id = item.reviewer_id;
+                var contact_id_arr = (from a in db.customers
+                                      where a.customer_id == item.reviewer_id
+                                      select a.contact_id);
+                int contact_id = 0;
+                foreach (int item_customer in contact_id_arr)
+                {
+                    contact_id = item_customer;
+                }
+                var contact_arr = (from a in db.contacts
+                                   where a.contact_id == contact_id
+                                   select a);
+                foreach (var item_inside in contact_arr)
+                {
+                    review.first_name = item_inside.first_name;
+                    review.address = item_inside.address;
+                    review.avatar = item_inside.avatar;
+                }
+                review_list.Add(review);
+            }
+            return View("~/Views/Cabinet/ReviewListCabinet.cshtml", review_list);
         }
 
 

@@ -708,6 +708,8 @@
     <Content Include="Views\Cabinet\EditAvatar.cshtml" />
     <Content Include="Views\News\SeoFooter.cshtml" />
     <Content Include="Views\News\SeoFooterContent.cshtml" />
+    <Content Include="Views\Cabinet\ReviewCabinet.cshtml" />
+    <Content Include="Views\Cabinet\ReviewListCabinet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

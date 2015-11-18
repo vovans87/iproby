@@ -36,16 +36,19 @@
 
 
                 @*<div style="margin-left: 20px; ">
-                    <img src="~/Content/img/star_active.png" />
-                    <img src="~/Content/img/star_active.png" />
-                    <img src="~/Content/img/star_active.png" />
-                    <img src="~/Content/img/star_active.png" />
-                    <img src="~/Content/img/star_inactive.png" />
-                </div>
-                <div style="margin-top:30px; margin-left:50px; color: #115a56; font-family: Helvetica; font-size: 14px; ">Оценка: <b>5</b></div>*@
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_active.png" />
+                        <img src="~/Content/img/star_inactive.png" />
+                    </div>
+                    <div style="margin-top:30px; margin-left:50px; color: #115a56; font-family: Helvetica; font-size: 14px; ">Оценка: <b>5</b></div>*@
             </div>
             <div style="width:855px;height:170px;float:left;display:table;">
-                <div style="font-family: Helvetica Bold; font-size: 14px; color: #151515; margin-left: 20px; margin-top: 17px;"><a href="#" style=" text-decoration: none; color: #151515;">@item.header</a></div>
+                <div style="font-family: Helvetica Bold; font-size: 14px; color: #151515; margin-left: 20px; margin-top: 17px;width:100%;">
+                <a href="#" style=" text-decoration: none; color: #151515;">@item.header</a> 
+                <button style="float:right;margin-right:35px;" customer_id="@item.customer_id" class="btn btn-primary write_message">ОТВЕТИТЬ</button>
+                </div>
 
                 <div style="font-family: Helvetica; font-size: 12px; line-height: 2; margin-left: 20px; margin-top:10px;">
                     @item.description
@@ -55,5 +58,5 @@
                 </div>
             </div>
         </div>
-    }
-</div>
+                                }
+</div>3
