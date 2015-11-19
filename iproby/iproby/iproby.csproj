@@ -260,7 +260,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrapValidator.css" />
     <Content Include="Content\bootstrapValidator.min.css" />
-    <Content Include="Content\dialogs\AddClients.html" />
+    <Content Include="Content\bootstrap\bootstrap.css" />
     <Content Include="Content\dialogs\ConfirmFail.html" />
     <Content Include="Content\dialogs\ConfirmSuccess.html" />
     <Content Include="Content\dialogs\Login.html" />

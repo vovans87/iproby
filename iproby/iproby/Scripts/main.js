@@ -365,23 +365,27 @@ $(function () {
     });
 
     $('.like_btn').click(function () {
+        $(this).addClass('like_clicked');
         $.ajax({
             url: "/Announ/AddLike",
             type: "post",
             data: "announ_id=" + $(this).attr('announ_id'),
             success: function (result) {
-               location.reload();
+                $('.like_clicked').html('&nbsp;&nbsp;&nbsp;' + result);
+                $('.like_clicked').removeClass('like_clicked');
             }
         });
     });
     
     $('.dislike_btn').click(function () {
+        $(this).addClass('like_clicked');
         $.ajax({
             url: "/Announ/AddDislike",
             type: "post",
             data: "announ_id=" + $(this).attr('announ_id'),
             success: function (result) {
-                location.reload();
+                $('.like_clicked').html('&nbsp;&nbsp;&nbsp;' + result);
+                $('.like_clicked').removeClass('like_clicked');
             }
         });
     });

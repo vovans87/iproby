@@ -518,7 +518,7 @@ namespace iproby.Controllers
         }
 
         [HttpPost]
-        public void AddLike(int announ_id)
+        public int AddLike(int announ_id)
         {
             if (Session["login"] != null)
             {
@@ -537,6 +537,7 @@ namespace iproby.Controllers
                 int like_num = 0;
                 int dislike_num = 0;
                 int like_id = 0;
+                int likes_final=0;
                 foreach (var item in likes_arr)
                 {
                     like_num = item.like_num;
@@ -551,6 +552,7 @@ namespace iproby.Controllers
                     like.disline_num = dislike_num;
                     db.likes.Add(like);
                     db.SaveChanges();
+                    likes_final = like.like_num;
                 }
                 else {
                     var like = db.likes.Find(like_id);
@@ -558,14 +560,33 @@ namespace iproby.Controllers
                     {
                         like.like_num = like_num+1;
                         db.SaveChanges();
+                        likes_final = like.like_num;
                     }
                 }
+                return likes_final;
             }
-            else {      }
+            else
+            {
+                var likes_arr = (from a in db.likes
+                                 where a.announ_id == announ_id
+                                 select a);
+                int like_num = 0;
+                int dislike_num = 0;
+                int like_id = 0;
+                int likes_final = 0;
+                foreach (var item in likes_arr)
+                {
+                    like_num = item.like_num;
+                    dislike_num = item.disline_num;
+                    like_id = item.id;
+                }
+                likes_final = like_num;
+                return likes_final;
+            }
         }
 
         [HttpPost]
-        public void AddDislike(int announ_id)
+        public int AddDislike(int announ_id)
         {
             if (Session["login"] != null)
             {
@@ -584,6 +605,7 @@ namespace iproby.Controllers
                 int like_num = 0;
                 int dislike_num = 0;
                 int like_id = 0;
+                int likes_final = 0;
                 foreach (var item in likes_arr)
                 {
                     like_num = item.like_num;
@@ -598,6 +620,7 @@ namespace iproby.Controllers
                     like.disline_num = dislike_num;
                     db.likes.Add(like);
                     db.SaveChanges();
+                    likes_final = like.disline_num;
                 }
                 else
                 {
@@ -606,11 +629,29 @@ namespace iproby.Controllers
                     {
                         like.disline_num = dislike_num + 1;
                         db.SaveChanges();
+                        likes_final = like.disline_num;
                     }
                 }
+                return likes_final;
             }
             else
-            {       }
+            {
+                var likes_arr = (from a in db.likes
+                                 where a.announ_id == announ_id
+                                 select a);
+                int like_num = 0;
+                int dislike_num = 0;
+                int like_id = 0;
+                int likes_final = 0;
+                foreach (var item in likes_arr)
+                {
+                    like_num = item.like_num;
+                    dislike_num = item.disline_num;
+                    like_id = item.id;
+                }
+                likes_final = dislike_num;
+                return likes_final;
+            }
         }
 
         public int GetVisits(int announ_id)

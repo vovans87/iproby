@@ -326,3 +326,10 @@ body.loading_bg .waiting_modal_bg {
 .write_message:hover {
     cursor:pointer;
 }
+
+.like_btn:hover {
+    cursor:pointer;
+}
+.dislike_btn:hover {
+    cursor:pointer;
+}
