@@ -40,6 +40,7 @@ namespace iproby.Controllers
                 announ.announ_id = item_inside.id;
                 announ.about = item_inside.about;
                 announ.price = item_inside.price;
+                announ.type_id = item_inside.type_id.Value;
             }
             var customer_id_arr = (from a in db.customer_announ
                                    where a.announ_id == announ_id

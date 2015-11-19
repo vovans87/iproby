@@ -19,6 +19,7 @@ namespace iproby.Models
         public string email { get; set; }
         public string price { get; set; }
         public string avatar { get; set; }
+        public int type_id { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }
     }
 }

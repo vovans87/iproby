@@ -25,6 +25,7 @@ namespace iproby.Controllers
         public ActionResult Index(int type_id,string target="workers")
         {
             var announ_id_arr = (from a in db.announs
+                                 orderby a.id descending
                                  where a.type_id == type_id
                                  where a.description!=null
                                  join db_target in db.announ_target on a.id equals db_target.announ_id where db_target.target_type.Contains(target)
@@ -104,12 +105,13 @@ namespace iproby.Controllers
                                  where db_target.target_type.Contains(target)
                                  join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
                                  orderby db_cust_ann.date_from descending
-                                 group a by a.type_id into g
+                                 group new{db_cust_ann.date_from,a.id} by a.type_id into g
                                  select new
                                  {
                                      announ_id = g.Key,
-                                     id = (from t2 in g select t2.id).Max()
-                                 });
+                                     id = (from t2 in g select t2.id).Max(),
+                                     date_from = (from t3 in g select t3.date_from).Max()
+                                 }).OrderByDescending(a=>a.date_from);
             int announ_id = 0;
             List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
             foreach (var item in announ_id_arr)
