@@ -6,12 +6,13 @@
                 <div style="width: 240px; background-color: white; padding-left: 20px; padding-top: 20px; padding-bottom: 20px; ">
                     <div style="text-align: center;width:100%;">
                     @{
-                        if (@Model.avatar != null)
-                        {
-                            <img src="~/Content/img/user_img/@Model.avatar" style="max-width:200px;max-height:400px;margin:0 auto;"/>
-                        }
-                        else { 
-                            <img src="~/Content/img/announ_no_photo.png" style="max-width:200px;max-height:400px;"/>
+    if (@Model.avatar != null)
+    {
+        <img src="~/Content/img/user_img/@Model.avatar" style="max-width:200px;max-height:400px;margin:0 auto;" alt="avatar" />
+    }
+    else
+    {
+                        <img src="~/Content/img/announ_no_photo.png" style="max-width:200px;max-height:400px;" alt="avatar" />
                         }
                     }
                     </div>
@@ -23,7 +24,7 @@
                     
                     <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">@Model.first_name</div>
                     <div style="font-family: Helvetica; font-size: 13px; float: left; width: 90%; height: 20px; color: #44beb7;line-height:1;">
-                        <img src="~/Content/img/city_ico.png" style="padding-right:5px;" />@Model.address
+                        <img src="~/Content/img/city_ico.png" style="padding-right:5px;" alt="address" />@Model.address
                     </div>
                     <br>
 
@@ -39,14 +40,14 @@
                                 if (@Model.description != null)
                                  {
                                   <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
-                                      <a class="edit_details" href="/Cabinet/EditDetails" style="display:block; margin: 0 auto; width: 135px; height: 40px;line-height:40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc); ">
-                                          <img src="~/Content/img/header_top_reg_ico.png" style="margin-top: -5px; margin-right: 5px;  " />
+                                      <a class="edit_details" href="/Cabinet/EditDetails" style="display:block; margin: 0 auto; width: 135px; height: 40px;line-height:40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; ">
+                                          <img src="~/Content/img/header_top_reg_ico.png" style="margin-top: -5px; margin-right: 5px;  " alt="contacts" />
                                           <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">КОНТАКТЫ</span>
                                       </a>
                                   </div>
                                   <div style="height: 40px; display: table-cell;vertical-align: middle; text-align: center; ">
-                                      <a class="edit_details" href="/Cabinet/EditAnnoun" style="display:block;height: 40px; margin: 0 auto; width: 135px; height: 40px; line-height: 40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; behavior: url(border-radius.htc);">
-                                          <img src="~/Content/img/header_top_reg_ico.png" style="margin-top:-5px; margin-right:5px;" />
+                                      <a class="edit_details" href="/Cabinet/EditAnnoun" style="display:block;height: 40px; margin: 0 auto; width: 135px; height: 40px; line-height: 40px; background-color: #f5ab35; text-align: center; -moz-border-radius: 4px; -webkit-border-radius: 4px; -khtml-border-radius: 4px; border-radius: 4px; ">
+                                          <img src="~/Content/img/header_top_reg_ico.png" style="margin-top:-5px; margin-right:5px;" alt="announ" />
                                           <span style="font-family: Helvetica Bold; font-size: 14px; color: white;">ОБЪЯВЛЕНИЕ</span>
                                       </a>
                                   </div>
@@ -56,11 +57,11 @@
                     </div>
                     <div style="padding: 20px 25px 20px 20px; ">
                         <div style="height:40px;">
-                            <img src="~/Content/img/phone.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Мобильный</span>
+                            <img src="~/Content/img/phone.png" style="padding-right:10px;" alt="phone" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Мобильный</span>
                             <span style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #454545; ">@Model.mobile</span>
                         </div>
                         <div style="height:40px;">
-                            <img src="~/Content/img/announ_skype_ico.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Skype</span>
+                            <img src="~/Content/img/announ_skype_ico.png" style="padding-right:10px;" alt="skype" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Skype</span>
                             <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">@{
                                 if (@Model.skype!=null)
                                 {
@@ -73,7 +74,7 @@
                             }</div>
                         </div>
                         <div style="height:40px;">
-                            <img src="~/Content/img/announ_letter_ico2.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Email</span>
+                            <img src="~/Content/img/announ_letter_ico2.png" style="padding-right:10px;" alt="letter" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Email</span>
                             <div style="float: right; text-align:right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; width:180px;text-decoration:underline;" id="resize_div">
                                 <div id="mob_zoom" >@Model.email</div>
                             </div>
@@ -85,7 +86,7 @@
                              </script>
                         </div>
                         <div style="height:40px;font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
-                            <img src="~/Content/img/announ_site_ico.png" style="padding-right:10px;" /><span style="font-family: Helvetica Bold; font-size: 14px;color: #00a79d;">Site</span>
+                            <img src="~/Content/img/announ_site_ico.png" style="padding-right:10px;" alt="site" /><span style="font-family: Helvetica Bold; font-size: 14px;color: #00a79d;">Site</span>
                             <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
                                 @{ if (@Model.site != null)
                                     {

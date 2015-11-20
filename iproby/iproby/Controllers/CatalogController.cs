@@ -22,6 +22,14 @@ namespace iproby.Controllers
             return clear_text;
         }
 
+        private static string TruncateAtWord(string input, int length)
+        {
+            if (input == null || input.Length < length)
+                return input;
+            int iNextSpace = input.LastIndexOf(" ", length);
+            return string.Format("{0}...", input.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
+        }
+
         public ActionResult Index(int type_id,string target="workers")
         {
             var announ_id_arr = (from a in db.announs
@@ -54,7 +62,7 @@ namespace iproby.Controllers
                 iproby.Models.announ_preview announ = new iproby.Models.announ_preview();
                 foreach (var item_inside in announ_arr)
                 {
-                    announ.description = SkipHtml(item_inside.description.Trim());
+                    announ.description = TruncateAtWord(SkipHtml(item_inside.description.Trim()),360);
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
                     announ.type_id = item_inside.type_id.Value;
@@ -125,7 +133,7 @@ namespace iproby.Controllers
                 {
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
-                    announ.description = SkipHtml(item_inside.description);
+                    announ.description = TruncateAtWord(SkipHtml(item_inside.description),360);
                     announ.type_id = item_inside.type_id.Value;
                 }
                 var customer_id_arr = (from a in db.customer_announ

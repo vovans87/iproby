@@ -31,6 +31,9 @@
 @*@section SeoFooter{
     @Html.Partial(Url.Content("~/Views/News/SeoFooter.cshtml"))
 }*@
+@section News{
+    @{Html.RenderAction("Index", "News");}
+}
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
 }

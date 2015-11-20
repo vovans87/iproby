@@ -7,15 +7,15 @@
                     <div style="display:table-row;">
                         <div style="display:table-cell;width:30%;">
                             @{
-                                if (item.avatar != null)
-                                {
-                                    <img src="~/Content/img/user_img/@item.avatar" />
-                                }
-                                else
-                                {
-                                    <img src="~/Content/img/no_logo.png" style=" " />
-                                }
-                            }
+        if (item.avatar != null)
+        {
+            <img src="~/Content/img/user_img/@item.avatar" alt="avatar" />
+        }
+        else
+        {
+            <img src="~/Content/img/no_logo.png" style=" " alt="avatar" />
+        }
+}
 
                         </div>
                         <div style="display:table-cell;width:70%;vertical-align:top;">
@@ -25,7 +25,7 @@
                                 </div>
                                 <div style="display:table-row;">
                                     <div style="font-family: Helvetica; font-size: 11px;  color: #44beb7;">
-                                        <img src="~/Content/img/city_ico.png" style="" />&nbsp;@item.address
+                                        <img src="~/Content/img/city_ico.png" style="" alt="city" />&nbsp;@item.address
                                     </div>
                                 </div>
                             </div>
@@ -51,7 +51,7 @@
                     @item.description
                 </div>
                 <div style=" color: #888888; font-family: Helvetica; font-size: 11px; display:table-row;">
-                    <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" />@item.date_from
+                    <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" alt="calendar" />@item.date_from
                 </div>
             </div>
         </div>

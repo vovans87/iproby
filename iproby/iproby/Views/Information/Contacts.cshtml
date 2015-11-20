@@ -22,7 +22,7 @@
                     
                     <p>Сайт написан на языке программирования С#.Net с использованием MVC фреймворка</p>
                     <br><br>
-                    По любым интересующим вопросам пользуйтесь ФОРУМОМ.<br><br>
+                    По любым интересующим вопросам пользуйтесь Блогом или пишите на почту.<br><br>
                     Связь в разработчиком:
                     <ul>
                     <li>Mail: <a href="mailto:excellentwebmaster@rambler.ru">excellentwebmaster@rambler.ru</a></li>
@@ -39,7 +39,7 @@
     </div>
 }
 @section News{
-    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+    @{Html.RenderAction("Index", "News");}
 }
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))

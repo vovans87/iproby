@@ -99,7 +99,7 @@
     </div>
 }
 @section News{
-    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+    @{Html.RenderAction("Index", "News");}
 }
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))

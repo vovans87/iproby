@@ -17,7 +17,7 @@ namespace iproby.Controllers
 
         public ActionResult Index()
         {
-            string connetionString = "Driver={MySQL ODBC 3.51 Driver};Server = mssql2.win.agava.net; UID = iprob_wordpres_2; PWD = Se9sa2^9; Database = iproby94_wordpress_8; ";
+            string connetionString = "Driver={MySQL ODBC 3.51 Driver};Server = MSSQL2; UID = iprob_wordpres_2; PWD = aE5fv0*1; Database = iproby94_wordpress_8; ";
             OdbcConnection cnn;
             List<iproby.Models.news> newsList = new List<Models.news>();
             cnn = new OdbcConnection(connetionString);
@@ -25,7 +25,7 @@ namespace iproby.Controllers
             {
                 cnn.Open();
                 OdbcCommand DbCommand = cnn.CreateCommand();
-                DbCommand.CommandText = "SELECT `post_title`,`post_content`,`post_date`,`guid` FROM `wp_posts` WHERE `post_status`='publish'";
+                DbCommand.CommandText = "SELECT `post_title`,`post_content`,`post_date`,`guid` FROM `wp_posts` WHERE `post_status`='publish' LIMIT 3";
                 OdbcDataReader DbReader = DbCommand.ExecuteReader();
                 int fCount = DbReader.FieldCount;
 
@@ -36,7 +36,7 @@ namespace iproby.Controllers
                     string description = DbReader.GetString(1);
                     if (description.Length > 320)
                     {
-                        news.description = DbReader.GetString(1).Substring(0, 320);
+                        news.description = TruncateAtWord(DbReader.GetString(1),320);
                     }
                     else
                     {
@@ -55,11 +55,22 @@ namespace iproby.Controllers
             }
             catch (Exception ex)
             {
-               
+                List<iproby.Models.news> newsList1 = new List<Models.news>();
+                iproby.Models.news news = new iproby.Models.news();
+                news.description = ex.Message.ToString();
+                newsList.Add(news);
             }
             
 
             return View(newsList);
+        }
+
+        private static string TruncateAtWord(string input, int length)
+        {
+            if (input == null || input.Length < length)
+                return input;
+            int iNextSpace = input.LastIndexOf(" ", length);
+            return string.Format("{0}...", input.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
         }
 
         public ActionResult SeoFooter(int type_id)

@@ -361,7 +361,7 @@ $(function () {
        
     });
     $('.write_message').click(function () {
-        load_write_message($(this).attr('customer_id'));
+        load_write_message($(this).attr('data-customer_id'));
     });
 
     $('.like_btn').click(function () {
@@ -369,7 +369,7 @@ $(function () {
         $.ajax({
             url: "/Announ/AddLike",
             type: "post",
-            data: "announ_id=" + $(this).attr('announ_id'),
+            data: "announ_id=" + $(this).attr('data-announ_id'),
             success: function (result) {
                 $('.like_clicked').html('&nbsp;&nbsp;&nbsp;' + result);
                 $('.like_clicked').removeClass('like_clicked');
@@ -382,7 +382,7 @@ $(function () {
         $.ajax({
             url: "/Announ/AddDislike",
             type: "post",
-            data: "announ_id=" + $(this).attr('announ_id'),
+            data: "announ_id=" + $(this).attr('data-announ_id'),
             success: function (result) {
                 $('.like_clicked').html('&nbsp;&nbsp;&nbsp;' + result);
                 $('.like_clicked').removeClass('like_clicked');
