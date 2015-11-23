@@ -19,6 +19,7 @@ namespace iproby.Models
         public string seo_header { get; set; }
         public string avatar { get; set; }
         public int type_id { get; set; }
+        public int status_vip_flag { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }
     }
 }

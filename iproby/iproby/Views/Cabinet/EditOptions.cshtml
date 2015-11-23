@@ -10,11 +10,14 @@
 }
 @section EditOptions{
 
-    @if (Session["login"] != null&&@Model.send_email_from_clients==1)
+    @if (Session["login"] != null&&@Model.confirmed_flag==1)
     {
         @Html.Partial(Url.Content("~/Views/Cabinet/Options.cshtml"))
+        if(ViewData["showPaymentDialog"] !=null&&ViewData["showPaymentDialog"]=="showPaymentDialog"){
+            @Html.Partial(Url.Content("~/Views/Cabinet/showPaymentDialog.cshtml"))
+        }
     }
-    else if(Session["login"] != null && @Model.send_email_from_clients != 1)
+    else if (Session["login"] != null && @Model.confirmed_flag != 1)
     {
         @Html.Partial(Url.Content("~/Views/Cabinet/NoEmailConfirm.cshtml"))
     }
@@ -26,7 +29,7 @@
     </div>
 }
 @section News{
-    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+    @{Html.RenderAction("Index", "News");}
 }
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))

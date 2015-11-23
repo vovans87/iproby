@@ -7,6 +7,7 @@
     @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
 }
 
+
 @section MainMenu{
     @Html.Partial(Url.Content("~/Views/Cabinet/MainMenu.cshtml"))
 }
@@ -42,10 +43,8 @@ else
     @Html.Partial(Url.Content("~/Views/Cabinet/ReviewCabinet.cshtml"))
 }
 
-
-
 @section News{
-    @Html.Partial(Url.Content("~/Views/News/Index.cshtml"))
+    @{Html.RenderAction("Index", "News");}
 }
 
 @section Footer{

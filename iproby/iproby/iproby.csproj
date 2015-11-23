@@ -175,6 +175,9 @@
     <Compile Include="Data_Model\announ.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\announ_status.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\announ_target.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -710,6 +713,7 @@
     <Content Include="Views\News\SeoFooterContent.cshtml" />
     <Content Include="Views\Cabinet\ReviewCabinet.cshtml" />
     <Content Include="Views\Cabinet\ReviewListCabinet.cshtml" />
+    <Content Include="Views\Cabinet\ShowPaymentDialog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

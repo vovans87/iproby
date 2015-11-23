@@ -42,5 +42,6 @@ namespace iproby.Data_Model
         public DbSet<request> requests { get; set; }
         public DbSet<option> options { get; set; }
         public DbSet<search_texts> search_texts { get; set; }
+        public DbSet<announ_status> announ_status { get; set; }
     }
 }

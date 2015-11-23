@@ -1,0 +1,31 @@
+﻿<div class="modal fade in paymentDialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form role="form" action="" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Оплата выделения объявления</h4>
+                </div>
+                <div class="modal-body" id="result">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <h5>Стоимость поднятия объявления составляет 1000 рублей на 20 дней</h5>
+                            <button type="button" class="btn btn-primary">ОПЛАТИТЬ</button>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </form>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+<script>
+    $('.paymentDialog').modal({
+        backdrop: 'static',
+        keyboard: true
+    }, 'show');
+</script>

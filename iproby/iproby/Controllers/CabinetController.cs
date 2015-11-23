@@ -20,6 +20,7 @@ namespace iproby.Controllers
         private static bool isSaved = false;
         private static bool incorrectFile = false;
         private static bool editAvatar = false;
+        private static bool showPaymentDialog = false;
 
         public ActionResult Index()
         {
@@ -321,6 +322,7 @@ namespace iproby.Controllers
             ViewData["login"] = null;
             Session["login"] = null;
             Session["fio"] = null;
+            ViewData["showPaymentDialog"] = null;
             return RedirectToAction("Index", "Home");
         }
 
@@ -331,9 +333,11 @@ namespace iproby.Controllers
                                   where a.login == login
                                   select a);
             int customer_id = 0;
+            int confirmed_flag = 0;
             foreach (var item in contact_id_arr)
             {
                 customer_id = item.customer_id;
+                confirmed_flag = item.confirmed_flag.Value;
             }
             var options_arr = (from a in db.options
                                   where a.customer_id == customer_id
@@ -346,12 +350,17 @@ namespace iproby.Controllers
             iproby.Models.options options = new iproby.Models.options();
             options.customer_id = customer_id;
             options.send_email_from_clients = flag_send_from_clients;
+            options.confirmed_flag = confirmed_flag;
+            if (showPaymentDialog) {
+                ViewData["showPaymentDialog"] = "showPaymentDialog";
+                showPaymentDialog = false;
+            }
 
             return View(options);
         }
 
         [HttpPost]
-        public ActionResult SaveOptions(iproby.Data_Model.option model)
+        public ActionResult SaveOptions(iproby.Models.options model)
         {
             string login = Session["login"].ToString();
             var contact_id_arr = (from a in db.customers
@@ -371,11 +380,17 @@ namespace iproby.Controllers
                 opt_id = item;
             }
             var options = db.options.Find(opt_id);
-
             if (options != null)
             {
-                options.send_email_from_clients_flag = model.send_email_from_clients_flag;
+                options.send_email_from_clients_flag = model.send_email_from_clients;
                 db.SaveChanges();
+            }
+            if (model.status_vip_flag == 1)
+            {
+                showPaymentDialog = true;
+            }
+            else {
+                showPaymentDialog = false;
             }
             return RedirectToAction("EditOptions", "Cabinet"); ;
         }

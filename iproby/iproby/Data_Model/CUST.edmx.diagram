@@ -35,6 +35,8 @@
         <EntityTypeShape EntityType="iproby94_cust_dbModel.option" Width="1.5" PointX="3.75" PointY="7.75" />
         <AssociationConnector Association="iproby94_cust_dbModel.FK_options_customers" />
         <EntityTypeShape EntityType="iproby94_cust_dbModel.search_texts" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="iproby94_cust_dbModel.announ_status" Width="1.5" PointX="11.25" PointY="12.5" />
+        <AssociationConnector Association="iproby94_cust_dbModel.FK_announ_status_announ" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

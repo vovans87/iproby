@@ -13,24 +13,41 @@
                         <div class="checkbox">
                             <label>
                                 @{
-    if (@Model.send_email_from_clients == 1)
-    {
-
-        <input type="checkbox"  name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients_flag').val(1) } else { $('.send_email_from_clients_flag').val(0) }" checked>
-    <input type="hidden" value="0" name="send_email_from_clients_flag" checked class="send_email_from_clients_flag" />
-
-    }
-    else
-    {
-        <input type="checkbox"  name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients_flag').val(1) } else { $('.send_email_from_clients_flag').val(0) }" >
-        <input type="hidden" value="1" name="send_email_from_clients_flag" class="send_email_from_clients_flag" />
-    }
-}
-                                
+                                    if (@Model.send_email_from_clients == 1)
+                                    {
+                                        <input type="hidden" value="0" name="send_email_from_clients_flag" checked class="send_email_from_clients_flag" />
+                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients_flag').val(1) } else { $('.send_email_from_clients_flag').val(0) }" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" value="1" name="send_email_from_clients_flag" class="send_email_from_clients_flag" />
+                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients_flag').val(1) } else { $('.send_email_from_clients_flag').val(0) }">
+                                    }
+                                }
                                 Получать информационную рассылку IPRO на email при появлении клиентов в моей специализации
                             </label>
                         </div>
-                        
+
+                        <div class="checkbox">
+                            <label>
+                                @{
+                                    if (@Model.status_vip_flag == 1)
+                                    {
+                                        <input type="hidden" value="1" name="status_vip_flag" checked class="status_vip_flag" />
+                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.status_vip_flag').val(1) } else { $('.status_vip_flag').val(0) }" checked>
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" value="0" name="status_vip_flag" class="status_vip_flag" />
+                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.status_vip_flag').val(1) } else { $('.status_vip_flag').val(0) }">
+                                    }
+                                }
+                                Выделить объявление и поднять в ТОП на 20 дней (услуга платная стоимость: 1000 руб)
+                            </label>
+                        </div>
+
+
+
 
                     </div>
                 </div>
