@@ -11,5 +11,6 @@ namespace iproby.Models
         public int confirmed_flag { get; set; }
         public int send_email_from_clients { get; set; }
         public int status_vip_flag { get; set; }
+        public payment payment { get; set; }
     }
 }

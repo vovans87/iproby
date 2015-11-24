@@ -170,6 +170,7 @@
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data_Model\announ.cs">
@@ -220,6 +221,9 @@
     <Compile Include="Data_Model\option.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
+    <Compile Include="Data_Model\payment.cs">
+      <DependentUpon>CUST.tt</DependentUpon>
+    </Compile>
     <Compile Include="Data_Model\request.cs">
       <DependentUpon>CUST.tt</DependentUpon>
     </Compile>
@@ -253,6 +257,7 @@
     <Compile Include="Models\message.cs" />
     <Compile Include="Models\news.cs" />
     <Compile Include="Models\options.cs" />
+    <Compile Include="Models\payment.cs" />
     <Compile Include="Models\registrator.cs" />
     <Compile Include="Models\request.cs" />
     <Compile Include="Models\review.cs" />
@@ -714,6 +719,7 @@
     <Content Include="Views\Cabinet\ReviewCabinet.cshtml" />
     <Content Include="Views\Cabinet\ReviewListCabinet.cshtml" />
     <Content Include="Views\Cabinet\ShowPaymentDialog.cshtml" />
+    <Content Include="Views\Cabinet\OKPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,6 +8,8 @@ using System.IO;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace iproby.Controllers
 {
@@ -352,8 +354,21 @@ namespace iproby.Controllers
             options.send_email_from_clients = flag_send_from_clients;
             options.confirmed_flag = confirmed_flag;
             if (showPaymentDialog) {
+                iproby.Models.payment payment = new iproby.Models.payment();
+                payment.desc = "Оплата поднятия объявления";
+                payment.invid = 1;
+                payment.mrchlogin = "testipro";
+                payment.outsum = 100;
+                payment.password1 = "N9qxZ9di";
+                string source=payment.mrchlogin+":"+payment.outsum+":"+payment.invid+":"+payment.password1;
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    string hash = GetMd5Hash(md5Hash, source);
+                    payment.signaturevalue = hash;
+                }
                 ViewData["showPaymentDialog"] = "showPaymentDialog";
                 showPaymentDialog = false;
+                options.payment = payment;
             }
 
             return View(options);
@@ -392,7 +407,7 @@ namespace iproby.Controllers
             else {
                 showPaymentDialog = false;
             }
-            return RedirectToAction("EditOptions", "Cabinet"); ;
+            return RedirectToAction("EditOptions", "Cabinet"); 
         }
 
         [HttpPost]
@@ -534,6 +549,17 @@ namespace iproby.Controllers
 
             grPhoto.Dispose();
             return bmPhoto;
+        }
+
+        static string GetMd5Hash(MD5 md5Hash, string input)
+        {
+            byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
+            StringBuilder sBuilder = new StringBuilder();
+            for (int i = 0; i < data.Length; i++)
+            {
+                sBuilder.Append(data[i].ToString("x2"));
+            }
+            return sBuilder.ToString();
         }
     }
 }

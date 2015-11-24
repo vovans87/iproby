@@ -148,6 +148,21 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="customer_id" Type="int" Nullable="false" />
           <Property Name="send_email_from_clients_flag" Type="int" />
         </EntityType>
+        <EntityType Name="payments">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="announ_id" Type="int" Nullable="false" />
+          <Property Name="customer_id" Type="int" Nullable="false" />
+          <Property Name="mrchlogin" Type="varchar" MaxLength="50" />
+          <Property Name="outsum" Type="float" />
+          <Property Name="invid" Type="int" />
+          <Property Name="description" Type="text" />
+          <Property Name="signaturevalue" Type="varchar" MaxLength="50" />
+          <Property Name="date_from" Type="datetime" />
+          <Property Name="status" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="requests">
           <Key>
             <PropertyRef Name="id" />
@@ -305,6 +320,30 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_payments_announ">
+          <End Role="announ" Type="Self.announ" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payments_customers">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="payments" Type="Self.payments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="payments">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_requests_customers">
           <End Role="customers" Type="Self.customers" Multiplicity="1" />
           <End Role="requests" Type="Self.requests" Multiplicity="*" />
@@ -368,6 +407,7 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <EntitySet Name="likes" EntityType="Self.likes" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="messages" EntityType="Self.messages" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="options" EntityType="Self.options" Schema="iproby94_web" store:Type="Tables" />
+          <EntitySet Name="payments" EntityType="Self.payments" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="requests" EntityType="Self.requests" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="reviews" EntityType="Self.reviews" Schema="iproby94_web" store:Type="Tables" />
           <EntitySet Name="search_texts" EntityType="Self.search_texts" Schema="iproby94_web" store:Type="Tables" />
@@ -415,6 +455,14 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <AssociationSet Name="FK_options_customers" Association="Self.FK_options_customers">
             <End Role="customers" EntitySet="customers" />
             <End Role="options" EntitySet="options" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_announ" Association="Self.FK_payments_announ">
+            <End Role="announ" EntitySet="announ" />
+            <End Role="payments" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_customers" Association="Self.FK_payments_customers">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="payments" EntitySet="payments" />
           </AssociationSet>
           <AssociationSet Name="FK_requests_customers" Association="Self.FK_requests_customers">
             <End Role="customers" EntitySet="customers" />
@@ -496,6 +544,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="requests" Relationship="iproby94_cust_dbModel.FK_requests_customers" FromRole="customer" ToRole="request" />
           <NavigationProperty Name="options" Relationship="iproby94_cust_dbModel.FK_options_customers" FromRole="customer" ToRole="option" />
           <Property Name="confirmed_flag" Type="Int32" />
+          <NavigationProperty Name="payments" Relationship="iproby94_cust_dbModel.FK_payments_customers" FromRole="customer" ToRole="payment" />
           </EntityType>
         <EntityType Name="status">
           <Key>
@@ -615,6 +664,15 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <End Role="announ" EntitySet="announs" />
             <End Role="announ_status" EntitySet="announ_status" />
           </AssociationSet>
+          <EntitySet Name="payments" EntityType="iproby94_cust_dbModel.payment" />
+          <AssociationSet Name="FK_payments_announ" Association="iproby94_cust_dbModel.FK_payments_announ">
+            <End Role="announ" EntitySet="announs" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_payments_customers" Association="iproby94_cust_dbModel.FK_payments_customers">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="announ">
           <Key>
@@ -634,6 +692,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <NavigationProperty Name="visits" Relationship="iproby94_cust_dbModel.FK_visits_announ_id" FromRole="announ" ToRole="visit" />
           <NavigationProperty Name="announ_target" Relationship="iproby94_cust_dbModel.FK_announ_target_announ" FromRole="announ" ToRole="announ_target" />
           <NavigationProperty Name="announ_status" Relationship="iproby94_cust_dbModel.FK_announ_status_announ" FromRole="announ" ToRole="announ_status" />
+          <NavigationProperty Name="payments" Relationship="iproby94_cust_dbModel.FK_payments_announ" FromRole="announ" ToRole="payment" />
           </EntityType>
         <EntityType Name="announ_type">
           <Key>
@@ -895,6 +954,47 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="payment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="announ_id" Type="Int32" Nullable="false" />
+          <Property Name="customer_id" Type="Int32" Nullable="false" />
+          <Property Name="mrchlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="outsum" Type="Double" />
+          <Property Name="invid" Type="Int32" />
+          <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="signaturevalue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="date_from" Type="DateTime" Precision="3" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_payments_announ" FromRole="payment" ToRole="announ" />
+          <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_payments_customers" FromRole="payment" ToRole="customer" />
+        </EntityType>
+        <Association Name="FK_payments_announ">
+          <End Type="iproby94_cust_dbModel.announ" Role="announ" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="announ">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="announ_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_payments_customers">
+          <End Type="iproby94_cust_dbModel.customer" Role="customer" Multiplicity="1" />
+          <End Type="iproby94_cust_dbModel.payment" Role="payment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="customer_id" />
+            </Principal>
+            <Dependent Role="payment">
+              <PropertyRef Name="customer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1098,6 +1198,22 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.announ_status">
               <MappingFragment StoreEntitySet="announ_status">
                 <ScalarProperty Name="status_vip_flag" ColumnName="status_vip_flag" />
+                <ScalarProperty Name="announ_id" ColumnName="announ_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="payments">
+            <EntityTypeMapping TypeName="iproby94_cust_dbModel.payment">
+              <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="date_from" ColumnName="date_from" />
+                <ScalarProperty Name="signaturevalue" ColumnName="signaturevalue" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="invid" ColumnName="invid" />
+                <ScalarProperty Name="outsum" ColumnName="outsum" />
+                <ScalarProperty Name="mrchlogin" ColumnName="mrchlogin" />
+                <ScalarProperty Name="customer_id" ColumnName="customer_id" />
                 <ScalarProperty Name="announ_id" ColumnName="announ_id" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

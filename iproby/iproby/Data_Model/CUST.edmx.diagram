@@ -37,6 +37,9 @@
         <EntityTypeShape EntityType="iproby94_cust_dbModel.search_texts" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="iproby94_cust_dbModel.announ_status" Width="1.5" PointX="11.25" PointY="12.5" />
         <AssociationConnector Association="iproby94_cust_dbModel.FK_announ_status_announ" />
+        <EntityTypeShape EntityType="iproby94_cust_dbModel.payment" Width="1.5" PointX="14.25" PointY="3.5" />
+        <AssociationConnector Association="iproby94_cust_dbModel.FK_payments_announ" />
+        <AssociationConnector Association="iproby94_cust_dbModel.FK_payments_customers" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

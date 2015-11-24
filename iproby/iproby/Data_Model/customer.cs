@@ -21,6 +21,7 @@ namespace iproby.Data_Model
             this.reviews = new HashSet<review>();
             this.requests = new HashSet<request>();
             this.options = new HashSet<option>();
+            this.payments = new HashSet<payment>();
         }
     
         public int customer_id { get; set; }
@@ -40,5 +41,6 @@ namespace iproby.Data_Model
         public virtual ICollection<review> reviews { get; set; }
         public virtual ICollection<request> requests { get; set; }
         public virtual ICollection<option> options { get; set; }
+        public virtual ICollection<payment> payments { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace iproby.Data_Model
             this.visits = new HashSet<visit>();
             this.announ_target = new HashSet<announ_target>();
             this.announ_status = new HashSet<announ_status>();
+            this.payments = new HashSet<payment>();
         }
     
         public int id { get; set; }
@@ -39,5 +40,6 @@ namespace iproby.Data_Model
         public virtual ICollection<visit> visits { get; set; }
         public virtual ICollection<announ_target> announ_target { get; set; }
         public virtual ICollection<announ_status> announ_status { get; set; }
+        public virtual ICollection<payment> payments { get; set; }
     }
 }
