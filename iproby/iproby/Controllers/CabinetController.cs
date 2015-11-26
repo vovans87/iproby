@@ -360,11 +360,45 @@ namespace iproby.Controllers
                 payment.mrchlogin = "testipro";
                 payment.outsum = 100;
                 payment.password1 = "N9qxZ9di";
+                var announ_arr = (from a in db.customer_announ
+                                  where a.customer_id == customer_id
+                                  select a);
+                int announ_id = 0;
+                foreach (var item in announ_arr)
+                {
+                    announ_id = item.announ_id.Value;
+                }
+                iproby.Data_Model.payment payment_db = new iproby.Data_Model.payment();
+                payment_db.customer_id = customer_id;
+                payment_db.announ_id = announ_id;
+                payment_db.description = payment.desc;
+                payment_db.invid = payment.invid;
+                payment_db.mrchlogin = payment.mrchlogin;
+                payment_db.outsum = payment.outsum;
+                payment_db.date_from = DateTime.Now;
+                payment_db.status = "try";
                 string source=payment.mrchlogin+":"+payment.outsum+":"+payment.invid+":"+payment.password1;
                 using (MD5 md5Hash = MD5.Create())
                 {
                     string hash = GetMd5Hash(md5Hash, source);
                     payment.signaturevalue = hash;
+                    payment_db.signaturevalue = hash;
+                }
+                db.payments.Add(payment_db);
+                db.SaveChanges();
+                payment.invid = payment_db.id;
+                var payments = db.payments.Find(payment_db.id);
+                if (payments != null)
+                {
+                    payments.invid = payment_db.id;
+                    string source_new = payment.mrchlogin + ":" + payment.outsum + ":" + payment_db.id + ":" + payment.password1;
+                    using (MD5 md5Hash = MD5.Create())
+                    {
+                        string hash = GetMd5Hash(md5Hash, source_new);
+                        payment.signaturevalue = hash;
+                        payment_db.signaturevalue = hash;
+                    }
+                    db.SaveChanges();
                 }
                 ViewData["showPaymentDialog"] = "showPaymentDialog";
                 showPaymentDialog = false;

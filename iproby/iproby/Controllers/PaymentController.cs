@@ -18,80 +18,14 @@ namespace iproby.Controllers
             return View();
         }
 
-        public ActionResult GetResultPayment(iproby.Models.payment model)
-        {
-            if (Session["login"] != null)
-            {
-                string login = Session["login"].ToString();
-                var contact_id_arr = (from a in db.customers
-                                      where a.login == login
-                                      select a);
-                int customer_id = 0;
-                foreach (var item in contact_id_arr)
-                {
-                    customer_id = item.customer_id;
-                }
-                var announ_arr = (from a in db.customer_announ
-                                  where a.customer_id == customer_id
-                                  select a);
-                int announ_id = 0;
-                foreach (var item in announ_arr)
-                {
-                    announ_id = item.announ_id.Value;
-                }
-                string password2 = "4Rq3BjBS";
-                string source = model.outsum + ":" + model.invid + ":" + password2;
-                //var my_crc = h.MD5(out_summ + ":" + inv_id + ":" + mrh_pass2 + ":Shp_item=" + shp_item);
-                string status = string.Empty;
-                using (MD5 md5Hash = MD5.Create())
-                {
-                    string hash = GetMd5Hash(md5Hash, source);
-                    if (VerifyMd5Hash(md5Hash, model.signaturevalue, hash))
-                    {
-                        status = "successresult";
-                    }
-                    else
-                    {
-                        status = "signatureincorrect";
-                    }
-                }
-
-                iproby.Data_Model.payment payment = new iproby.Data_Model.payment();
-                payment.announ_id = announ_id;
-                payment.customer_id = customer_id;
-                payment.invid = model.invid;
-                payment.mrchlogin = model.mrchlogin;
-                payment.outsum = model.outsum;
-                payment.description = model.desc;
-                payment.date_from = DateTime.Now;
-                payment.signaturevalue = model.signaturevalue;
-                payment.status = status;
-                db.payments.Add(payment);
-                db.SaveChanges();
-                iproby.Models.payment paymentModel = new iproby.Models.payment();
-                paymentModel.status_text = "OK" + model.invid + "\n";
-                return View("~/Views/Cabinet/OKPayment.cshtml", paymentModel);
-
-            }
-            else
-            {
-                iproby.Models.payment paymentModel = new iproby.Models.payment();
-                paymentModel.status_text = "OK" + model.invid + "\n";
-                return View("~/Views/Cabinet/OKPayment.cshtml", paymentModel);
-            }
-        }
-
         [HttpPost]
         public ActionResult ResultPayment(iproby.Models.payment model)
         {
-            if (Session["login"] != null)
-            {
-                string login = Session["login"].ToString();
-                var contact_id_arr = (from a in db.customers
-                                      where a.login == login
+                     var invid_arr = (from a in db.payments
+                                      where a.invid == model.invid
                                       select a);
                 int customer_id = 0;
-                foreach (var item in contact_id_arr)
+                foreach (var item in invid_arr)
                 {
                     customer_id = item.customer_id;
                 }
@@ -110,12 +44,14 @@ namespace iproby.Controllers
                 using (MD5 md5Hash = MD5.Create())
                 {
                     string hash = GetMd5Hash(md5Hash, source);
-                    if (VerifyMd5Hash(md5Hash, model.signaturevalue, hash))
+                    StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+                    if (0 == comparer.Compare(model.signaturevalue, hash))
                     {
-                        status = "successresult";
+                        status = "success";
                     }
-                    else {
-                        status = "signatureincorrect";
+                    else
+                    {
+                        status = "signatureincorrect" + hash;
                     }
                 }
                 
@@ -134,26 +70,17 @@ namespace iproby.Controllers
                 iproby.Models.payment paymentModel = new iproby.Models.payment();
                 paymentModel.status_text = "OK" + model.invid + "\n";
                 return View("~/Views/Cabinet/OKPayment.cshtml", paymentModel);
-            }
-            else
-            {
-                iproby.Models.payment paymentModel = new iproby.Models.payment();
-                paymentModel.status_text = "OK" + model.invid + "\n";
-                return View("~/Views/Cabinet/OKPayment.cshtml", paymentModel);
-            }
+            
         }
 
         [HttpPost]
         public ActionResult SuccessPayment(iproby.Models.payment model)
         {
-            if (Session["login"] != null)
-            {
-                string login = Session["login"].ToString();
-                var contact_id_arr = (from a in db.customers
-                                      where a.login == login
-                                      select a);
+                var invid_arr = (from a in db.payments
+                                 where a.invid == model.invid
+                                 select a);
                 int customer_id = 0;
-                foreach (var item in contact_id_arr)
+                foreach (var item in invid_arr)
                 {
                     customer_id = item.customer_id;
                 }
@@ -165,6 +92,22 @@ namespace iproby.Controllers
                 {
                     announ_id = item.announ_id.Value;
                 }
+                string password1 = "N9qxZ9di";
+                string source = model.outsum + ":" + model.invid + ":" + password1;
+                string status = string.Empty;
+                using (MD5 md5Hash = MD5.Create())
+                {
+                    string hash = GetMd5Hash(md5Hash, source);
+                    StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+                    if (0 == comparer.Compare(model.signaturevalue, hash))
+                    {
+                        status = "success";
+                    }
+                    else
+                    {
+                        status = "signatureincorrect" + hash;
+                    }
+                }
             iproby.Data_Model.payment payment = new iproby.Data_Model.payment();
             payment.announ_id = announ_id;
             payment.customer_id = customer_id;
@@ -174,27 +117,20 @@ namespace iproby.Controllers
             payment.description = model.desc;
             payment.date_from = DateTime.Now;
             payment.signaturevalue = model.signaturevalue;
-            payment.status = "success";
+            payment.status = status;
             db.payments.Add(payment);
             db.SaveChanges();
             return RedirectToAction("EditOptions", "Cabinet"); 
-
-            }else{
-                return RedirectToAction("EditOptions", "Cabinet"); 
-            }
         }
 
         [HttpPost]
         public ActionResult FailPayment(iproby.Models.payment model)
         {
-            if (Session["login"] != null)
-            {
-                string login = Session["login"].ToString();
-                var contact_id_arr = (from a in db.customers
-                                      where a.login == login
-                                      select a);
+                var invid_arr = (from a in db.payments
+                                 where a.invid == model.invid
+                                 select a);
                 int customer_id = 0;
-                foreach (var item in contact_id_arr)
+                foreach (var item in invid_arr)
                 {
                     customer_id = item.customer_id;
                 }
@@ -219,12 +155,6 @@ namespace iproby.Controllers
                 db.payments.Add(payment);
                 db.SaveChanges();
                 return RedirectToAction("EditOptions", "Cabinet");
-
-            }
-            else
-            {
-                return RedirectToAction("EditOptions", "Cabinet");
-            }
         }
 
         static string GetMd5Hash(MD5 md5Hash, string input)
