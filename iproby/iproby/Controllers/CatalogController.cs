@@ -32,15 +32,24 @@ namespace iproby.Controllers
 
         public ActionResult Index(int type_id,string target="workers")
         {
-            var announ_id_arr = (from a in db.announs
-                                 orderby a.id descending
-                                 where a.type_id == type_id
-                                 where a.description!=null
-                                 join db_target in db.announ_target on a.id equals db_target.announ_id where db_target.target_type.Contains(target)
-                                 join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
-                                 orderby db_cust_ann.date_from descending
+            var announ_id_arr = (from b in db.announs
+                                 where b.type_id == type_id
+                                 where b.description != null
+                                 join db_target1 in db.payments on b.id equals db_target1.announ_id
+                                 where db_target1.status.Contains("success")
+                                 join db_target in db.announ_target on b.id equals db_target.announ_id
                                  where db_target.target_type.Contains(target)
-                                 select a);
+                                 join db_cust_ann in db.customer_announ on b.id equals db_cust_ann.announ_id
+                                 group new { db_cust_ann.date_from, b.id } by b.id into g
+                                 select new {id = (from t2 in g select t2.id).Max(),
+                                     date_from = (from t3 in g select t3.date_from).Max(),flag = 2 }).Concat(from a in db.announs
+                                                                    where a.type_id == type_id
+                                                                    where a.description != null
+                                                                    where !db.payments.Any(es => (a.id == es.announ_id) && (es.status.Contains("success")))
+                                                                    join db_target in db.announ_target on a.id equals db_target.announ_id
+                                                                    where db_target.target_type.Contains(target)
+                                                                    join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
+                                                                    select new { a.id, db_cust_ann.date_from, flag = 1 }).OrderByDescending(a => a.flag).ThenByDescending(b => b.date_from);
             var type_arr = (from a in db.announ_type
                                  where a.id == type_id
                                  select a);
@@ -99,6 +108,10 @@ namespace iproby.Controllers
                     announ.seo_header = seo_header;
                     announ.avatar = item_inside.avatar_cropped;
                 }
+                if (item.flag == 2)
+                {
+                    announ.status_vip_flag = 1;
+                }
                 all_announs.Add(announ);
             }
 
@@ -124,6 +137,7 @@ namespace iproby.Controllers
                                  }
                                  ).Concat(from a in db.announs
                                  where a.description!=null
+                                 where !db.payments.Any(es => (a.id == es.announ_id) && (es.status.Contains("success")))
                                  join db_target in db.announ_target on a.id equals db_target.announ_id
                                  where db_target.target_type.Contains(target)
                                  join db_cust_ann in db.customer_announ on a.id equals db_cust_ann.announ_id
