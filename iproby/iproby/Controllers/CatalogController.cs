@@ -107,7 +107,22 @@ namespace iproby.Controllers
 
         public ActionResult Announs(string target = "workers")
         {
-            var announ_id_arr = (from a in db.announs
+            var announ_id_arr = (from b in db.announs
+                                 join db_target in db.payments on b.id equals db_target.announ_id
+                                 where db_target.status.Contains("success")
+                                 join db_target1 in db.announ_target on b.id equals db_target1.announ_id
+                                 where db_target1.target_type.Contains(target)
+                                 join db_cust_ann in db.customer_announ on b.id equals db_cust_ann.announ_id
+                                 orderby db_cust_ann.date_from descending
+                                 group new{db_cust_ann.date_from,b.id} by b.type_id into g
+                                 select new
+                                 {
+                                     announ_id = g.Key,
+                                     id = (from t2 in g select t2.id).Max(),
+                                     date_from = (from t3 in g select t3.date_from).Max(),
+                                     flag=2
+                                 }
+                                 ).Concat(from a in db.announs
                                  where a.description!=null
                                  join db_target in db.announ_target on a.id equals db_target.announ_id
                                  where db_target.target_type.Contains(target)
@@ -118,8 +133,9 @@ namespace iproby.Controllers
                                  {
                                      announ_id = g.Key,
                                      id = (from t2 in g select t2.id).Max(),
-                                     date_from = (from t3 in g select t3.date_from).Max()
-                                 }).OrderByDescending(a=>a.date_from);
+                                     date_from = (from t3 in g select t3.date_from).Max(),
+                                     flag = 1
+                                 }).OrderByDescending(a => a.flag).ThenByDescending(a => a.date_from);
             int announ_id = 0;
             List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
             foreach (var item in announ_id_arr)
@@ -165,6 +181,9 @@ namespace iproby.Controllers
                     announ.address = item_inside.address;
                     announ.avatar = item_inside.avatar_cropped;
                     announ.date_from = date_from;
+                }
+                if (item.flag == 2) {
+                    announ.status_vip_flag = 1;
                 }
                 all_announs.Add(announ);
             }

@@ -25,21 +25,21 @@
                        foreach (var item in Model)
                        {
                            <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:30px;">
-                               <div style="width: 240px; height: 170px; border-right: 5px solid #f6f8f9;float:left;">
+                               <div style="width: 240px; height: 170px; border-right: 5px solid @{if(@item.status_vip_flag==1){<text>#f5ab35</text>}else{<text>#f6f8f9</text>}};float:left;">
                                    <div style="display:table;width: 240px; height: 80px;padding:10px;">
                                        <div style="display:table-row;">
                                            <div style="display:table-cell;width:30%;">
                                                @{
-                                                   if (item.avatar != null)
-                                                   {
-                                                                   <img src="~/Content/img/user_img/@item.avatar" alt="avatar" />
-                                                   }
-                                                   else
-                                                   {
-                                                    <img src="~/Content/img/no_logo.png" style=" " alt="avatar" />
-                                                   }
-}
-                                               
+                           if (item.avatar != null)
+                           {
+                               <img src="~/Content/img/user_img/@item.avatar" alt="avatar" />
+                           }
+                           else
+                           {
+                               <img src="~/Content/img/no_logo.png" style=" " alt="avatar" />
+                           }
+                                               }
+
                                            </div>
                                            <div style="display:table-cell;width:70%;vertical-align:top;">
                                                <div style="display:table;height:100%;margin-left:10px;">
@@ -55,26 +55,37 @@
                                            </div>
                                        </div>
                                    </div>
-                                       <div style="display:table;width: 240px; height: 80px;">
-                                           <div style="display:table-row;">
-                                               <div style="margin-left:40px;float:left;margin-top:5px;"><img src="~/Content/img/phone.png" style="padding-right:5px;" alt="phone" /><span style="font-family: Helvetica Bold; font-size: 12px; color: #00a79d;">mobile @item.mobile</span></div>
-                                               <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
-                                                   <img src="~/Content/img/announ_social_skype.png" alt="skype" />
-                                                   <img src="~/Content/img/announ_social_vkontakte.png" alt="vkontakte" />
-                                                   <img src="~/Content/img/announ_social_odnoklass.png" alt="avatar" />
-                                                   <img src="~/Content/img/announ_social_facebook.png" alt="facebook" />
-                                                   <img src="~/Content/img/announ_social_twitter.png" alt="twitter" />
-                                                   @*<span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>*@
-                                               </div>
+                                   <div style="display:table;width: 240px; height: 80px;">
+                                       <div style="display:table-row;">
+                                           <div style="margin-left:40px;float:left;margin-top:5px;"><img src="~/Content/img/phone.png" style="padding-right:5px;" alt="phone" /><span style="font-family: Helvetica Bold; font-size: 12px; color: #00a79d;">mobile @item.mobile</span></div>
+                                           <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
+                                               <img src="~/Content/img/announ_social_skype.png" alt="skype" />
+                                               <img src="~/Content/img/announ_social_vkontakte.png" alt="vkontakte" />
+                                               <img src="~/Content/img/announ_social_odnoklass.png" alt="avatar" />
+                                               <img src="~/Content/img/announ_social_facebook.png" alt="facebook" />
+                                               <img src="~/Content/img/announ_social_twitter.png" alt="twitter" />
+                                               @*<span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>*@
                                            </div>
                                        </div>
                                    </div>
+                               </div>
+
+
+
                               
                               
-                               <div style="width:855px;height:170px;float:left;">
+                               <div style="width:860px;height:170px;float:left;">
                                    
                                        <div style="display:block;height:40px;overflow:hidden;">
                                            <div style="font-family: Helvetica Bold; font-size: 16px; color: #446cb3; margin-left: 20px; margin-top: 17px;"><a href="/Announ?announ_id=@item.announ_id" style=" border-bottom: 1px solid #446cb3; text-decoration: none;">@item.header</a></div>
+                                       @{if (@item.status_vip_flag == 1)
+                                         { 
+                                       <div style="width: 50px; height: 30px; background-color: #f5ab35; float: right; margin-top: -40px; font-family: Helvetica Bold; font-size: 12px; color:white;text-align:center;line-height:30px;">
+                                           VIP
+                                       </div>
+                                         }
+                                         };
+                                           
                                        </div>
                                        <div style="display:block;height:20px;overflow:hidden;">
                                            <div class="write_message" data-customer_id="@item.customer_id" style="float:right;font-family: Helvetica Bold; font-size: 12px; color: #446cb3;margin-top:3px;margin-right:40px; border-bottom:1px solid #446cb3;height:16px;">
