@@ -1,6 +1,8 @@
 ﻿@model List<iproby.Models.announ_preview>
 @{
     ViewBag.Title = @Model[0].seo_header;
+    ViewBag.Description = @Model[0].seo_description;
+    ViewBag.Keywords = @Model[0].seo_keywords;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 

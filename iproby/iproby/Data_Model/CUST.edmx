@@ -63,6 +63,12 @@
           <Property Name="parent_type" Type="varchar" MaxLength="50" />
           <Property Name="seo_header" Type="text" />
           <Property Name="seo_text" Type="text" />
+          <Property Name="seo_description" Type="text" />
+          <Property Name="seo_keywords" Type="text" />
+          <Property Name="seo_keywords_clients" Type="text" />
+          <Property Name="seo_description_clients" Type="text" />
+          <Property Name="seo_header_clients" Type="text" />
+          <Property Name="description_clients" Type="text" />
         </EntityType>
         <EntityType Name="contact">
           <Key>
@@ -705,6 +711,12 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="parent_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="seo_header" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="seo_text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_keywords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_keywords_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_description_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_header_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="description_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="customer_announ">
           <Key>
@@ -1091,6 +1103,12 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <EntitySetMapping Name="announ_type">
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.announ_type">
               <MappingFragment StoreEntitySet="announ_type">
+                <ScalarProperty Name="description_clients" ColumnName="description_clients" />
+                <ScalarProperty Name="seo_header_clients" ColumnName="seo_header_clients" />
+                <ScalarProperty Name="seo_description_clients" ColumnName="seo_description_clients" />
+                <ScalarProperty Name="seo_keywords_clients" ColumnName="seo_keywords_clients" />
+                <ScalarProperty Name="seo_keywords" ColumnName="seo_keywords" />
+                <ScalarProperty Name="seo_description" ColumnName="seo_description" />
                 <ScalarProperty Name="seo_text" ColumnName="seo_text" />
                 <ScalarProperty Name="seo_header" ColumnName="seo_header" />
                 <ScalarProperty Name="parent_type" ColumnName="parent_type" />

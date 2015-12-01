@@ -25,6 +25,12 @@ namespace iproby.Data_Model
         public string parent_type { get; set; }
         public string seo_header { get; set; }
         public string seo_text { get; set; }
+        public string seo_description { get; set; }
+        public string seo_keywords { get; set; }
+        public string seo_keywords_clients { get; set; }
+        public string seo_description_clients { get; set; }
+        public string seo_header_clients { get; set; }
+        public string description_clients { get; set; }
     
         public virtual ICollection<announ> announs { get; set; }
     }

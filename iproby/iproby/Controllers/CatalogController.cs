@@ -55,10 +55,23 @@ namespace iproby.Controllers
                                  select a);
             string type_desc = string.Empty;
             string seo_header = string.Empty;
+            string seo_keywords = string.Empty;
+            string seo_description = string.Empty;
             foreach (var item in type_arr)
             {
+                if (target == "workers") { 
                 type_desc = SkipHtml(item.description);
                 seo_header = item.seo_header;
+                seo_keywords = item.seo_keywords;
+                seo_description = item.seo_description;
+                }
+                else if (target == "clients")
+                {
+                    type_desc = SkipHtml(item.description_clients);
+                    seo_header = item.seo_header_clients;
+                    seo_keywords = item.seo_keywords_clients;
+                    seo_description = item.seo_description_clients;
+                }
             }
             int announ_id = 0;
             List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
@@ -106,6 +119,8 @@ namespace iproby.Controllers
                     announ.date_from = date_from;
                     announ.type_desc = type_desc;
                     announ.seo_header = seo_header;
+                    announ.seo_description = seo_description;
+                    announ.seo_keywords = seo_keywords;
                     announ.avatar = item_inside.avatar_cropped;
                 }
                 if (item.flag == 2)
