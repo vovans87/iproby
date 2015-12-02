@@ -11,3 +11,18 @@
 <script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
 @*<link rel="stylesheet" type="text/css" href="~/Content/imgareaselect-default.css" />
 <script src="~/Scripts/jquery.imgareaselect.pack.js"></script>*@
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('.scrollup_btn').fadeIn();
+            } else {
+                $('.scrollup_btn').fadeOut();
+            }
+        });
+        $('.scrollup_btn').click(function () {
+            $("html, body").animate({ scrollTop: 0 }, 600);
+            return false;
+        });
+    });
+</script>
