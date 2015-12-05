@@ -357,8 +357,8 @@ namespace iproby.Controllers
                 iproby.Models.payment payment = new iproby.Models.payment();
                 payment.desc = "Оплата поднятия объявления";
                 payment.invid = 1;
-                payment.mrchlogin = "testipro";
-                payment.outsum = 100;
+                payment.mrchlogin = "iproru";
+                payment.outsum = 1;
                 payment.password1 = "N9qxZ9di";
                 var announ_arr = (from a in db.customer_announ
                                   where a.customer_id == customer_id

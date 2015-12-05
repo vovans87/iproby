@@ -37,6 +37,15 @@ namespace iproby.Controllers
                 {
                     announ_id = item.announ_id.Value;
                 }
+                var contact_arr = (from a in db.customers
+                                  where a.customer_id == customer_id
+                                   join db_target1 in db.contacts on a.contact_id equals db_target1.contact_id
+                                   select db_target1);
+                string email = string.Empty;
+                foreach (var item in contact_arr)
+                {
+                    email = item.email;
+                }
                 string password2 = "4Rq3BjBS";
                 string source = model.outsum + ":" + model.invid + ":" + password2;
                 //var my_crc = h.MD5(out_summ + ":" + inv_id + ":" + mrh_pass2 + ":Shp_item=" + shp_item);
@@ -62,13 +71,28 @@ namespace iproby.Controllers
                 payment.mrchlogin = model.mrchlogin;
                 payment.outsum = model.outsum;
                 payment.description = model.desc;
-                payment.date_from = DateTime.Now;
+                DateTime date_from=DateTime.Now;
+                payment.date_from = date_from;
                 payment.signaturevalue = model.signaturevalue;
                 payment.status = status;
                 db.payments.Add(payment);
                 db.SaveChanges();
                 iproby.Models.payment paymentModel = new iproby.Models.payment();
                 paymentModel.status_text = "OK" + model.invid + "\n";
+                InformationController info = new InformationController();
+                string text_email=@"Благодарим за платеж!
+
+                Данные платежа:
+                id Объявления: "+announ_id+@"
+                id Пользователя: "+customer_id+@"
+                id Транзакции: "+model.invid+@"
+                Сумма платежа: "   +model.outsum+@"
+                Время платежа: " +date_from.ToString()+@"
+                Статус: "+status+@"
+
+
+                Это сообщение сгенерировано автоматически. По всем вопросам пишите на info@iproby.ru";
+                info.SendMail(email, text_email);
                 return View("~/Views/Cabinet/OKPayment.cshtml", paymentModel);
             
         }
@@ -142,6 +166,15 @@ namespace iproby.Controllers
                 {
                     announ_id = item.announ_id.Value;
                 }
+                var contact_arr = (from a in db.customers
+                                   where a.customer_id == customer_id
+                                   join db_target1 in db.contacts on a.contact_id equals db_target1.contact_id
+                                   select db_target1);
+                string email = string.Empty;
+                foreach (var item in contact_arr)
+                {
+                    email = item.email;
+                }
                 iproby.Data_Model.payment payment = new iproby.Data_Model.payment();
                 payment.announ_id = announ_id;
                 payment.customer_id = customer_id;
@@ -149,11 +182,26 @@ namespace iproby.Controllers
                 payment.mrchlogin = model.mrchlogin;
                 payment.outsum = model.outsum;
                 payment.description = model.desc;
-                payment.date_from = DateTime.Now;
+                DateTime date_from = DateTime.Now;
+                payment.date_from = date_from;
                 payment.signaturevalue = model.signaturevalue;
                 payment.status = "fail";
                 db.payments.Add(payment);
                 db.SaveChanges();
+                string text_email = @"К сожалению что-то пошло не так!
+
+                Данные платежа:
+                id Объявления: " + announ_id + @"
+                id Пользователя: " + customer_id + @"
+                id Транзакции: " + model.invid + @"
+                Сумма платежа: " + model.outsum + @"
+                Время платежа: " + date_from.ToString() + @"
+                Статус: fail
+
+
+                Это сообщение сгенерировано автоматически. По всем вопросам пишите на info@iproby.ru";
+                InformationController info = new InformationController();
+                info.SendMail(email, text_email);
                 return RedirectToAction("EditOptions", "Cabinet");
         }
 

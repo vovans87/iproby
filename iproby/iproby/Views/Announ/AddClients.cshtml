@@ -65,7 +65,7 @@
                                         </div>
                                         <div class="form-group has-feedback">
                                             <label for="description" class="control-label add_asterisk">Текст объявления</label>
-                                            <textarea class="form-control noresize description" id="description" name="description" rows="12" maxlength="3000" required disabled></textarea>
+                                            <textarea class="form-control noresize description" id="tiny_text_to_edit" name="description" rows="12" maxlength="3000" required disabled></textarea>
                                             <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                                         </div>
                                         <div class="form-group has-feedback education">
@@ -117,7 +117,33 @@
                                             var text = '<li style="width: 100%;"><a href="#" class="child_type_click">' + entry + "</a></li>";
                                             $(".child_type").append(text);
                                         });
-                                        $('.child_type_click').click(function () { $(".main_form_load").find(':input').removeAttr('disabled'); });
+                                        $('.child_type_click').click(function () {
+                                            $(".main_form_load").find(':input').removeAttr('disabled');
+
+                                            tinymce.init({
+                                                selector: "#tiny_text_to_edit",
+                                                height: 300,
+                                                content_css: "/Content/tinymcie.css",
+                                                menubar: false,
+                                                statusbar: false,
+                                                valid_elements: "h1,h2,h3,h4,h5,h6,b,strong,i,u,p,pre,em,span,ol,ul,li",
+                                                invalid_elements: "a",
+                                                setup: function (editor) {
+                                                    editor.on('submit', function (e) {
+                                                        $('#tiny_text_to_edit').text(tinyMCE.activeEditor.getContent());
+                                                        console.log('submit event', $('#tiny_text_to_edit').text());
+                                                    });
+                                                },
+                                                setup: function (editor) {
+                                                    editor.on('change', function (e) {
+                                                        $('#tiny_text_to_edit').text(tinyMCE.activeEditor.getContent());
+                                                        console.log('change event', $('#tiny_text_to_edit').text());
+                                                    });
+                                                }
+
+
+                                            });
+                                        });
                                         
 
                                     }

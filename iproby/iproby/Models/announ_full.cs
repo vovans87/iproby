@@ -18,6 +18,10 @@ namespace iproby.Models
         public string skype { get; set; }
         public string email { get; set; }
         public string price { get; set; }
+        public string site { get; set; }
+        public string icq { get; set; }
+        public string facebook { get; set; }
+        public string vkontakte { get; set; }
         public string avatar { get; set; }
         public int type_id { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }
