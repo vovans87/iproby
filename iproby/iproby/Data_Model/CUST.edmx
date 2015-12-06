@@ -168,6 +168,16 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="signaturevalue" Type="varchar" MaxLength="50" />
           <Property Name="date_from" Type="datetime" />
           <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="RequestDate" Type="datetime" />
+          <Property Name="StateDate" Type="datetime" />
+          <Property Name="Info" Type="text" />
+          <Property Name="IncCurrLabel" Type="text" />
+          <Property Name="IncSum" Type="float" />
+          <Property Name="IncAccount" Type="int" />
+          <Property Name="PaymentMethod" Type="text" />
+          <Property Name="Code" Type="text" />
+          <Property Name="OutCurrLabel" Type="text" />
+          <Property Name="state" Type="text" />
         </EntityType>
         <EntityType Name="requests">
           <Key>
@@ -982,6 +992,16 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_payments_announ" FromRole="payment" ToRole="announ" />
           <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_payments_customers" FromRole="payment" ToRole="customer" />
+          <Property Name="RequestDate" Type="DateTime" Precision="3" />
+          <Property Name="StateDate" Type="DateTime" Precision="3" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IncCurrLabel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IncSum" Type="Double" />
+          <Property Name="IncAccount" Type="Int32" />
+          <Property Name="PaymentMethod" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="OutCurrLabel" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="state" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_payments_announ">
           <End Type="iproby94_cust_dbModel.announ" Role="announ" Multiplicity="1" />
@@ -1224,6 +1244,16 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <EntitySetMapping Name="payments">
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.payment">
               <MappingFragment StoreEntitySet="payments">
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="OutCurrLabel" ColumnName="OutCurrLabel" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="IncAccount" ColumnName="IncAccount" />
+                <ScalarProperty Name="IncSum" ColumnName="IncSum" />
+                <ScalarProperty Name="IncCurrLabel" ColumnName="IncCurrLabel" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="StateDate" ColumnName="StateDate" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="date_from" ColumnName="date_from" />
                 <ScalarProperty Name="signaturevalue" ColumnName="signaturevalue" />

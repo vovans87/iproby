@@ -339,7 +339,9 @@ namespace iproby.Controllers
             foreach (var item in contact_id_arr)
             {
                 customer_id = item.customer_id;
+                if (item.confirmed_flag != null) { 
                 confirmed_flag = item.confirmed_flag.Value;
+                }
             }
             var options_arr = (from a in db.options
                                   where a.customer_id == customer_id
@@ -355,11 +357,6 @@ namespace iproby.Controllers
             options.confirmed_flag = confirmed_flag;
             if (showPaymentDialog) {
                 iproby.Models.payment payment = new iproby.Models.payment();
-                payment.desc = "Оплата поднятия объявления";
-                payment.invid = 1;
-                payment.mrchlogin = "iproru";
-                payment.outsum = 1;
-                payment.password1 = "N9qxZ9di";
                 var announ_arr = (from a in db.customer_announ
                                   where a.customer_id == customer_id
                                   select a);

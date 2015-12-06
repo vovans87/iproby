@@ -59,8 +59,8 @@ namespace iproby.Controllers
             Ваш логин: " + code + @"
             Пароль: " + model.password + @"
             
-            Пожалуйста подтвердите Ваш email перейдя по ссылке http://localhost:49184/Confirmation?user_code=" + hash_login + "&login=" + code + @"
-            или скопируйте текст: 'http://localhost:49184/Confirmation?user_code=" + hash_login + "&login=" + code + @"'
+            Пожалуйста подтвердите Ваш email перейдя по ссылке http://iproby.ru/Confirmation?user_code=" + hash_login + "&login=" + code + @"
+            или скопируйте текст: 'http://iproby.ru/Confirmation?user_code=" + hash_login + "&login=" + code + @"'
             в адресную строку браузера и нажмите enter.
 
             Спасибо!

@@ -19,7 +19,7 @@ namespace iproby.Controllers
         }
 
         [HttpPost]
-        public ActionResult ResultPayment(iproby.Models.payment model)
+        public ActionResult ResultPayment(iproby.Data_Model.payment model)
         {
                      var invid_arr = (from a in db.payments
                                       where a.invid == model.invid
@@ -46,8 +46,8 @@ namespace iproby.Controllers
                 {
                     email = item.email;
                 }
-                string password2 = "4Rq3BjBS";
-                string source = model.outsum + ":" + model.invid + ":" + password2;
+                iproby.Models.payment paym = new iproby.Models.payment();
+                string source = paym.outsum + ":" + paym.invid + ":" + paym.password2;
                 //var my_crc = h.MD5(out_summ + ":" + inv_id + ":" + mrh_pass2 + ":Shp_item=" + shp_item);
                 string status = string.Empty;
                 using (MD5 md5Hash = MD5.Create())
@@ -70,11 +70,19 @@ namespace iproby.Controllers
                 payment.invid = model.invid;
                 payment.mrchlogin = model.mrchlogin;
                 payment.outsum = model.outsum;
-                payment.description = model.desc;
+                payment.description = model.description;
                 DateTime date_from=DateTime.Now;
                 payment.date_from = date_from;
                 payment.signaturevalue = model.signaturevalue;
                 payment.status = status;
+                payment.Code = model.Code;
+                payment.IncAccount = model.IncAccount;
+                payment.IncCurrLabel = model.IncCurrLabel;
+                payment.IncSum = model.IncSum;
+                payment.Info = model.Info;
+                payment.OutCurrLabel = model.OutCurrLabel;
+                payment.PaymentMethod = model.PaymentMethod;
+                payment.state = model.state;
                 db.payments.Add(payment);
                 db.SaveChanges();
                 iproby.Models.payment paymentModel = new iproby.Models.payment();
@@ -98,7 +106,7 @@ namespace iproby.Controllers
         }
 
         [HttpPost]
-        public ActionResult SuccessPayment(iproby.Models.payment model)
+        public ActionResult SuccessPayment(iproby.Data_Model.payment model)
         {
                 var invid_arr = (from a in db.payments
                                  where a.invid == model.invid
@@ -116,8 +124,8 @@ namespace iproby.Controllers
                 {
                     announ_id = item.announ_id.Value;
                 }
-                string password1 = "N9qxZ9di";
-                string source = model.outsum + ":" + model.invid + ":" + password1;
+                iproby.Models.payment paym = new iproby.Models.payment();
+                string source = paym.outsum + ":" + paym.invid + ":" + paym.password1;
                 string status = string.Empty;
                 using (MD5 md5Hash = MD5.Create())
                 {
@@ -138,17 +146,25 @@ namespace iproby.Controllers
             payment.invid = model.invid;
             payment.mrchlogin = model.mrchlogin;
             payment.outsum = model.outsum;
-            payment.description = model.desc;
+            payment.description = model.description;
             payment.date_from = DateTime.Now;
             payment.signaturevalue = model.signaturevalue;
             payment.status = status;
+            payment.Code = model.Code;
+            payment.IncAccount = model.IncAccount;
+            payment.IncCurrLabel = model.IncCurrLabel;
+            payment.IncSum = model.IncSum;
+            payment.Info = model.Info;
+            payment.OutCurrLabel = model.OutCurrLabel;
+            payment.PaymentMethod = model.PaymentMethod;
+            payment.state = model.state;
             db.payments.Add(payment);
             db.SaveChanges();
             return RedirectToAction("EditOptions", "Cabinet"); 
         }
 
         [HttpPost]
-        public ActionResult FailPayment(iproby.Models.payment model)
+        public ActionResult FailPayment(iproby.Data_Model.payment model)
         {
                 var invid_arr = (from a in db.payments
                                  where a.invid == model.invid
@@ -181,10 +197,18 @@ namespace iproby.Controllers
                 payment.invid = model.invid;
                 payment.mrchlogin = model.mrchlogin;
                 payment.outsum = model.outsum;
-                payment.description = model.desc;
+                payment.description = model.description;
                 DateTime date_from = DateTime.Now;
                 payment.date_from = date_from;
                 payment.signaturevalue = model.signaturevalue;
+                payment.Code = model.Code;
+                payment.IncAccount = model.IncAccount;
+                payment.IncCurrLabel = model.IncCurrLabel;
+                payment.IncSum = model.IncSum;
+                payment.Info = model.Info;
+                payment.OutCurrLabel = model.OutCurrLabel;
+                payment.PaymentMethod = model.PaymentMethod;
+                payment.state = model.state;
                 payment.status = "fail";
                 db.payments.Add(payment);
                 db.SaveChanges();
@@ -207,22 +231,12 @@ namespace iproby.Controllers
 
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
-
-            // Convert the input string to a byte array and compute the hash.
             byte[] data = md5Hash.ComputeHash(Encoding.UTF8.GetBytes(input));
-
-            // Create a new Stringbuilder to collect the bytes
-            // and create a string.
             StringBuilder sBuilder = new StringBuilder();
-
-            // Loop through each byte of the hashed data 
-            // and format each one as a hexadecimal string.
             for (int i = 0; i < data.Length; i++)
             {
                 sBuilder.Append(data[i].ToString("x2"));
             }
-
-            // Return the hexadecimal string.
             return sBuilder.ToString();
         }
 
