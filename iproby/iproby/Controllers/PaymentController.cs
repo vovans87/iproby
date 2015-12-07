@@ -19,8 +19,25 @@ namespace iproby.Controllers
         }
 
         [HttpPost]
-        public ActionResult ResultPayment(iproby.Data_Model.payment model)
+        public ActionResult ResultPayment()
         {
+            iproby.Data_Model.payment model = new iproby.Data_Model.payment();
+            model.invid = Int32.Parse(GetPrm("InvId"));
+            model.outsum= Int32.Parse(GetPrm("OutSum"));
+            string sCrc = GetPrm("SignatureValue");
+            model.description = GetPrm("Description");
+            DateTime date_from = DateTime.Now;
+            model.date_from = date_from;
+            model.signaturevalue = GetPrm("SignatureValue");
+            model.Code = GetPrm("Code");
+            model.IncAccount = Int32.Parse(GetPrm("IncAccount"));
+            model.IncCurrLabel = GetPrm("IncCurrLabel");
+            model.IncSum = Int32.Parse(GetPrm("IncSum"));
+            model.Info = GetPrm("Info");
+            model.OutCurrLabel = GetPrm("OutCurrLabel");
+            model.PaymentMethod = GetPrm("PaymentMethod");
+            model.state = GetPrm("State");
+
                      var invid_arr = (from a in db.payments
                                       where a.invid == model.invid
                                       select a);
@@ -47,43 +64,23 @@ namespace iproby.Controllers
                     email = item.email;
                 }
                 iproby.Models.payment paym = new iproby.Models.payment();
-                string source = paym.outsum + ":" + paym.invid + ":" + paym.password2;
-                //var my_crc = h.MD5(out_summ + ":" + inv_id + ":" + mrh_pass2 + ":Shp_item=" + shp_item);
-                string status = string.Empty;
-                using (MD5 md5Hash = MD5.Create())
+                string status = "success";
+                string sCrcBase = string.Format("{0}:{1}:{2}",
+                                                 paym.outsum, model.invid, paym.password2);
+                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+                byte[] bSignature = md5.ComputeHash(Encoding.ASCII.GetBytes(sCrcBase));
+                StringBuilder sbSignature = new StringBuilder();
+                foreach (byte b in bSignature)
+                    sbSignature.AppendFormat("{0:x2}", b);
+                string sMyCrc = sbSignature.ToString();
+                if (sMyCrc.ToUpper() != model.signaturevalue.ToUpper())
                 {
-                    string hash = GetMd5Hash(md5Hash, source);
-                    StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-                    if (0 == comparer.Compare(model.signaturevalue, hash))
-                    {
-                        status = "success";
-                    }
-                    else
-                    {
-                        status = "signatureincorrect" + hash;
-                    }
+                    status = "signatureincorrect-" + sMyCrc.ToUpper() + "-" + sCrcBase + "-" + model.signaturevalue.ToUpper() + "-" + model.outsum + model.invid;
                 }
-                
-                iproby.Data_Model.payment payment = new iproby.Data_Model.payment();
-                payment.announ_id = announ_id;
-                payment.customer_id = customer_id;
-                payment.invid = model.invid;
-                payment.mrchlogin = model.mrchlogin;
-                payment.outsum = model.outsum;
-                payment.description = model.description;
-                DateTime date_from=DateTime.Now;
-                payment.date_from = date_from;
-                payment.signaturevalue = model.signaturevalue;
-                payment.status = status;
-                payment.Code = model.Code;
-                payment.IncAccount = model.IncAccount;
-                payment.IncCurrLabel = model.IncCurrLabel;
-                payment.IncSum = model.IncSum;
-                payment.Info = model.Info;
-                payment.OutCurrLabel = model.OutCurrLabel;
-                payment.PaymentMethod = model.PaymentMethod;
-                payment.state = model.state;
-                db.payments.Add(payment);
+                model.announ_id = announ_id;
+                model.customer_id = customer_id;
+                model.status = status;
+                db.payments.Add(model);
                 db.SaveChanges();
                 iproby.Models.payment paymentModel = new iproby.Models.payment();
                 paymentModel.status_text = "OK" + model.invid + "\n";
@@ -125,21 +122,20 @@ namespace iproby.Controllers
                     announ_id = item.announ_id.Value;
                 }
                 iproby.Models.payment paym = new iproby.Models.payment();
-                string source = paym.outsum + ":" + paym.invid + ":" + paym.password1;
-                string status = string.Empty;
-                using (MD5 md5Hash = MD5.Create())
+                string status = "success";
+                string sCrcBase = string.Format("{0}:{1}:{2}",
+                                                 paym.outsum, model.invid, paym.password1);
+                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+                byte[] bSignature = md5.ComputeHash(Encoding.ASCII.GetBytes(sCrcBase));
+                StringBuilder sbSignature = new StringBuilder();
+                foreach (byte b in bSignature)
+                    sbSignature.AppendFormat("{0:x2}", b);
+                string sMyCrc = sbSignature.ToString();
+                if (sMyCrc.ToUpper() != model.signaturevalue.ToUpper())
                 {
-                    string hash = GetMd5Hash(md5Hash, source);
-                    StringComparer comparer = StringComparer.OrdinalIgnoreCase;
-                    if (0 == comparer.Compare(model.signaturevalue, hash))
-                    {
-                        status = "success";
-                    }
-                    else
-                    {
-                        status = "signatureincorrect" + hash;
-                    }
+                    status = "signatureincorrect-" + sMyCrc.ToUpper() + "-" + sCrcBase + "-" + model.signaturevalue.ToUpper() + "-" + model.outsum + model.invid;
                 }
+
             iproby.Data_Model.payment payment = new iproby.Data_Model.payment();
             payment.announ_id = announ_id;
             payment.customer_id = customer_id;
@@ -257,6 +253,20 @@ namespace iproby.Controllers
             {
                 return false;
             }
+        }
+
+        private string GetPrm(string sName)
+        {
+            string sValue;
+            sValue = Request.Form[sName] as string;
+
+            if (string.IsNullOrEmpty(sValue))
+                sValue = Request.QueryString[sName] as string;
+
+            if (string.IsNullOrEmpty(sValue))
+                sValue = String.Empty;
+
+            return sValue;
         }
 
     }

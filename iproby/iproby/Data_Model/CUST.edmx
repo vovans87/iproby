@@ -167,7 +167,7 @@ warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not 
           <Property Name="description" Type="text" />
           <Property Name="signaturevalue" Type="varchar" MaxLength="50" />
           <Property Name="date_from" Type="datetime" />
-          <Property Name="status" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="text" />
           <Property Name="RequestDate" Type="datetime" />
           <Property Name="StateDate" Type="datetime" />
           <Property Name="Info" Type="text" />
@@ -989,7 +989,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="signaturevalue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="date_from" Type="DateTime" Precision="3" />
-          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="announ" Relationship="iproby94_cust_dbModel.FK_payments_announ" FromRole="payment" ToRole="announ" />
           <NavigationProperty Name="customer" Relationship="iproby94_cust_dbModel.FK_payments_customers" FromRole="payment" ToRole="customer" />
           <Property Name="RequestDate" Type="DateTime" Precision="3" />
