@@ -374,8 +374,8 @@ namespace iproby.Controllers
                 payment_db.outsum = payment.outsum;
                 payment_db.date_from = DateTime.Now;
                 payment_db.status = "try";
-                string status = "success";
-                string sCrcBase = string.Format("{0}:{1}:{2}",
+               
+                string sCrcBase = string.Format("{0}:{1}:{2}:{3}",
                                                  payment.mrchlogin, payment.outsum, payment.invid, payment.password1);
                 MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
                 byte[] bSignature = md5.ComputeHash(Encoding.ASCII.GetBytes(sCrcBase));
