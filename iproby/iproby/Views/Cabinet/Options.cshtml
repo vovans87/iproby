@@ -15,13 +15,13 @@
                                 @{
                                     if (@Model.send_email_from_clients == 1)
                                     {
-                                        <input type="hidden" value="0" name="send_email_from_clients_flag" checked class="send_email_from_clients_flag" />
-                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients_flag').val(1) } else { $('.send_email_from_clients_flag').val(0) }" checked>
+                                        <input type="hidden" value="1" name="send_email_from_clients" checked class="send_email_from_clients" />
+                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients').val(1) } else { $('.send_email_from_clients').val(0) }" checked>
                                     }
                                     else
                                     {
-                                        <input type="hidden" value="1" name="send_email_from_clients_flag" class="send_email_from_clients_flag" />
-                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients_flag').val(1) } else { $('.send_email_from_clients_flag').val(0) }">
+                                        <input type="hidden" value="0" name="send_email_from_clients" class="send_email_from_clients" />
+                                        <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.send_email_from_clients').val(1) } else { $('.send_email_from_clients').val(0) }">
                                     }
                                 }
                                 Получать информационную рассылку IPRO на email при появлении клиентов в моей специализации
@@ -42,7 +42,7 @@
                                         <input type="checkbox" name="" onchange="if ($(this).is(':checked')) { $('.status_vip_flag').val(1) } else { $('.status_vip_flag').val(0) }">
                                     }
                                 }
-                                Выделить объявление и поднять в ТОП на 20 дней (услуга платная стоимость: 1000 руб)
+                                Выделить объявление и поднять в ТОП на 20 дней (услуга платная стоимость: 100 руб)
                             </label>
                         </div>
 

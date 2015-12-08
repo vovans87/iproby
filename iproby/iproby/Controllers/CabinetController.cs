@@ -339,7 +339,9 @@ namespace iproby.Controllers
             foreach (var item in contact_id_arr)
             {
                 customer_id = item.customer_id;
+                if (item.confirmed_flag != null) { 
                 confirmed_flag = item.confirmed_flag.Value;
+                }
             }
             var options_arr = (from a in db.options
                                   where a.customer_id == customer_id
@@ -355,11 +357,6 @@ namespace iproby.Controllers
             options.confirmed_flag = confirmed_flag;
             if (showPaymentDialog) {
                 iproby.Models.payment payment = new iproby.Models.payment();
-                payment.desc = "Оплата поднятия объявления";
-                payment.invid = 1;
-                payment.mrchlogin = "testipro";
-                payment.outsum = 100;
-                payment.password1 = "N9qxZ9di";
                 var announ_arr = (from a in db.customer_announ
                                   where a.customer_id == customer_id
                                   select a);
@@ -377,13 +374,17 @@ namespace iproby.Controllers
                 payment_db.outsum = payment.outsum;
                 payment_db.date_from = DateTime.Now;
                 payment_db.status = "try";
-                string source=payment.mrchlogin+":"+payment.outsum+":"+payment.invid+":"+payment.password1;
-                using (MD5 md5Hash = MD5.Create())
-                {
-                    string hash = GetMd5Hash(md5Hash, source);
-                    payment.signaturevalue = hash;
-                    payment_db.signaturevalue = hash;
-                }
+                string status = "success";
+                string sCrcBase = string.Format("{0}:{1}:{2}",
+                                                 payment.mrchlogin, payment.outsum, payment.invid, payment.password1);
+                MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+                byte[] bSignature = md5.ComputeHash(Encoding.ASCII.GetBytes(sCrcBase));
+                StringBuilder sbSignature = new StringBuilder();
+                foreach (byte b in bSignature)
+                    sbSignature.AppendFormat("{0:x2}", b);
+                string sMyCrc = sbSignature.ToString();
+                payment.signaturevalue = sMyCrc;
+                payment_db.signaturevalue = sMyCrc;
                 db.payments.Add(payment_db);
                 db.SaveChanges();
                 payment.invid = payment_db.id;
@@ -391,6 +392,7 @@ namespace iproby.Controllers
                 if (payments != null)
                 {
                     payments.invid = payment_db.id;
+                    payment.invid = payment_db.id;
                     string source_new = payment.mrchlogin + ":" + payment.outsum + ":" + payment_db.id + ":" + payment.password1;
                     using (MD5 md5Hash = MD5.Create())
                     {

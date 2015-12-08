@@ -72,6 +72,10 @@ namespace iproby.Controllers
                 announ.skype = item_inside.skype;
                 announ.email = item_inside.email;
                 announ.avatar = item_inside.avatar;
+                announ.site = item_inside.site;
+                announ.facebook = item_inside.facebook;
+                announ.icq = item_inside.icq;
+                announ.vkontakte = item_inside.vkontakte;
                 announ.date_from = date_from;
             }
             
@@ -172,7 +176,7 @@ namespace iproby.Controllers
                     type_id = item;
                 }
                 announ.type_id = type_id;
-                announ.description = model.description;
+                announ.description = model.description.Replace("&lt;", "").Replace("&gt;", "");
                 announ.header = model.header;
                 announ.subjects = model.subjects;
                 announ.price = model.price;

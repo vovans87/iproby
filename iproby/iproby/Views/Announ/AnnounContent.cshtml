@@ -93,20 +93,64 @@
                     </div>
                     <div style="height:40px;">
                         <img src="~/Content/img/announ_site_ico.png" style="padding-right:10px;" alt="site" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Site</span>
-                        <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                        <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
+                            @{
+    if (@Model.site != null)
+    {
+        <a href="@Model.site" rel="nofollow" style="text-decoration:underline;">@Model.site.ToLower().Replace("http", "").Replace("/", "").Replace(":", "")</a>
+    }
+    else
+    {
+                                    <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                                }
+                            }
+                        </div>
                     </div>
                     <div style="width: 280px; border-bottom: 1px solid #d9e1e5; float: left; margin-top:10px;"></div>
                     <div style="height:30px;margin-top:30px;">
                         <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Facebook</span>
-                        <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                        <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
+                            @{
+                                if (@Model.facebook != null)
+                                {
+                                    <a href="@Model.facebook" rel="nofollow" style="text-decoration:underline;">@Model.facebook.ToLower().Replace("http", "").Replace("/", "").Replace(":", "")</a>
+                                }
+                                else
+                                {
+                                    <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                                }
+                            }
+                        </div>
                     </div>
                     <div style="height:30px;">
                         <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Вконтакте</span>
-                        <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                        <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
+                            @{
+                                if (@Model.vkontakte != null)
+                                {
+                                    <a href="@Model.vkontakte" rel="nofollow" style="text-decoration:underline;">@Model.vkontakte.ToLower().Replace("http", "").Replace("/", "").Replace(":", "").Replace("vk.com", "")</a>
+                                }
+                                else
+                                {
+                                    <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                                }
+                            }
+                        </div>
                     </div>
                     <div style="height:30px;">
                         <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">ICQ</span>
-                        <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                        <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
+                            @{
+                                if (@Model.icq != null)
+                                {
+                                    <span style="text-decoration:underline;">@Model.icq</span>
+                                }
+                                else
+                                {
+                                    <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
+                                }
+                            }
+                        </div>
                     </div>
                     </div>
                 </div>

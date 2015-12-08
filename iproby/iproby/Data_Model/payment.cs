@@ -24,6 +24,16 @@ namespace iproby.Data_Model
         public string signaturevalue { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }
         public string status { get; set; }
+        public Nullable<System.DateTime> RequestDate { get; set; }
+        public Nullable<System.DateTime> StateDate { get; set; }
+        public string Info { get; set; }
+        public string IncCurrLabel { get; set; }
+        public Nullable<double> IncSum { get; set; }
+        public Nullable<int> IncAccount { get; set; }
+        public string PaymentMethod { get; set; }
+        public string Code { get; set; }
+        public string OutCurrLabel { get; set; }
+        public string state { get; set; }
     
         public virtual announ announ { get; set; }
         public virtual customer customer { get; set; }

@@ -2,7 +2,7 @@
 <div class="modal fade in paymentDialog">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form role="form" action="http://test.robokassa.ru/Index.aspx" method="post" data-toggle="validator" data-disable=false data-delay=100>
+            <form role="form" action="https://merchant.roboxchange.com/Index.aspx" method="post" data-toggle="validator" data-disable=false data-delay=100>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h4 class="modal-title">Оплата выделения объявления</h4>
@@ -11,14 +11,12 @@
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-8">
-                            <!-- для реального режима измените action формы на "http://test.robokassa.ru/Index.aspx" -->
-
                             <input type="hidden" name="MrchLogin" value="@Model.payment.mrchlogin" />
                             <input type="hidden" name="OutSum" value="@Model.payment.outsum" />
                             <input type="hidden" name="InvId" value="@Model.payment.invid" />
                             <input type="hidden" name="Desc" value="@Model.payment.desc" />
                             <input type="hidden" name="SignatureValue" value="@Model.payment.signaturevalue" />
-
+                            <input type="hidden" name="IsTest" value="@Model.payment.istest" />
                             <h5>Стоимость поднятия объявления составляет 1000 рублей на 20 дней</h5>
                             <br />
                             <input type="submit" value="ОПЛАТИТЬ" class="btn btn-primary" />
