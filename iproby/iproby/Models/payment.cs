@@ -17,10 +17,10 @@ namespace iproby.Models
         public string desc { get { return _desc; } set { _desc = value; } }
         public string signaturevalue { get; set; }
         //private string _password1 = test "mESNR1J5NUSMe16W8cIg"; real wOKw20G8EmR3X6iJyDMM 12345678q
-        private string _password1 = "qjw46trTDWOQZ3dkY47c";
+        private string _password1 = "12345678q";
         public string password1 { get { return _password1; } set { _password1 = value; } }
         //private string _password2 = "T8p49zrpAN8IjClQdK5Y"; PXISDNIs50NHUy0lgP08 87654321q
-        private string _password2 = "INRJTSY45Eh318LGCROj";
+        private string _password2 = "87654321q";
         public string password2 { get { return _password2; } set { _password2 = value; } }
         public string status_text { get; set; }
         private int _istest = 0;

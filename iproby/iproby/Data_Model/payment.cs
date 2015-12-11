@@ -18,7 +18,7 @@ namespace iproby.Data_Model
         public int announ_id { get; set; }
         public int customer_id { get; set; }
         public string mrchlogin { get; set; }
-        public Nullable<double> outsum { get; set; }
+        public string outsum { get; set; }
         public Nullable<int> invid { get; set; }
         public string description { get; set; }
         public string signaturevalue { get; set; }

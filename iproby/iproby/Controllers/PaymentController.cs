@@ -21,11 +21,7 @@ namespace iproby.Controllers
         [HttpPost]
         public ActionResult ResultPayment(iproby.Data_Model.payment model)
         {
-            DateTime date_from = DateTime.Now;
-            model.date_from = date_from;
-            
-
-                     var invid_arr = (from a in db.payments
+                var invid_arr = (from a in db.payments
                                       where a.invid == model.invid
                                       select a);
                 int customer_id = 0;
@@ -51,24 +47,48 @@ namespace iproby.Controllers
                     email = item.email;
                 }
                 iproby.Models.payment paym = new iproby.Models.payment();
-                string status = "success";
+                // HTTP parameters
+                string sOutSum = GetPrm("OutSum");
+                string sInvId = GetPrm("InvId");
+                string sCrc = GetPrm("SignatureValue");
                 string sCrcBase = string.Format("{0}:{1}:{2}",
-                                                 paym.outsum, model.invid, paym.password2);
+                                                 sOutSum, sInvId, paym.password2);
                 MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
                 byte[] bSignature = md5.ComputeHash(Encoding.ASCII.GetBytes(sCrcBase));
                 StringBuilder sbSignature = new StringBuilder();
                 foreach (byte b in bSignature)
                     sbSignature.AppendFormat("{0:x2}", b);
                 string sMyCrc = sbSignature.ToString();
-                status = "success1" + sMyCrc.ToUpper() + "-" + sCrcBase + "-" + model.signaturevalue.ToUpper() + "-" + model.outsum + model.invid; 
-
-                if (sMyCrc.ToUpper() != model.signaturevalue.ToUpper())
+                string status = "success";
+                if (sCrc.ToUpper() != sMyCrc.ToUpper())
                 {
-                    status = "1signatureincorrect-" + sMyCrc.ToUpper() + "-" + sCrcBase + "-" + model.signaturevalue.ToUpper() + "-" + model.outsum + model.invid ;
+                    status = "signatureincorrect-" + sCrc.ToUpper() + "-" + sMyCrc.ToUpper() + "-" + sOutSum + "-" + sInvId + "-";
                 }
                 model.announ_id = announ_id;
                 model.customer_id = customer_id;
                 model.status = status;
+                model.outsum = sOutSum.ToString();
+                model.signaturevalue = sCrc;
+                model.mrchlogin = paym.mrchlogin;
+                DateTime date_from = DateTime.Now;
+                model.date_from = date_from;
+                if (string.IsNullOrEmpty(model.state))
+                    model.state = GetPrm("State");
+                if (string.IsNullOrEmpty(model.Code))
+                    model.Code = GetPrm("Code");
+                if (string.IsNullOrEmpty(model.Info))
+                    model.Info = GetPrm("Info");
+                if (string.IsNullOrEmpty(model.IncCurrLabel))
+                    model.IncCurrLabel = GetPrm("IncCurrLabel");
+                if (string.IsNullOrEmpty(model.PaymentMethod))
+                    model.PaymentMethod = GetPrm("PaymentMethod");
+                if (string.IsNullOrEmpty(model.description))
+                    model.description = GetPrm("Description");
+                if (string.IsNullOrEmpty(model.description))
+                    model.description = paym.desc;
+                if (string.IsNullOrEmpty(model.OutCurrLabel))
+                    model.OutCurrLabel = GetPrm("OutCurrLabel");
+
                 db.payments.Add(model);
                 db.SaveChanges();
                 iproby.Models.payment paymentModel = new iproby.Models.payment();
@@ -80,7 +100,7 @@ namespace iproby.Controllers
                 id Объявления: "+announ_id+@"
                 id Пользователя: "+customer_id+@"
                 id Транзакции: "+model.invid+@"
-                Сумма платежа: "   +model.outsum+@"
+                Сумма платежа: " + sOutSum + @"
                 Время платежа: " +date_from.ToString()+@"
                 Статус: "+status+@"
 
@@ -111,39 +131,60 @@ namespace iproby.Controllers
                     announ_id = item.announ_id.Value;
                 }
                 iproby.Models.payment paym = new iproby.Models.payment();
-                string status = "success2";
+                // HTTP parameters
+                string sOutSum = GetPrm("OutSum");
+                string sInvId = GetPrm("InvId");
+                string sCrc = GetPrm("SignatureValue");
+
                 string sCrcBase = string.Format("{0}:{1}:{2}",
-                                                 paym.outsum, model.invid, paym.password1);
+                                                 sOutSum, sInvId, paym.password1);
                 MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
                 byte[] bSignature = md5.ComputeHash(Encoding.ASCII.GetBytes(sCrcBase));
                 StringBuilder sbSignature = new StringBuilder();
                 foreach (byte b in bSignature)
                     sbSignature.AppendFormat("{0:x2}", b);
                 string sMyCrc = sbSignature.ToString();
-                status = "success2" + sMyCrc.ToUpper() + "-" + sCrcBase + "-" + model.signaturevalue.ToUpper() + "-" + model.outsum + model.invid; 
-                if (sMyCrc.ToUpper() != model.signaturevalue.ToUpper())
+                string status = "success";
+                if (sMyCrc.ToUpper() != sCrc.ToUpper())
                 {
-                    status = "2signatureincorrect-" + sMyCrc.ToUpper() + "-" + sCrcBase + "-" + model.signaturevalue.ToUpper() + "-" + model.outsum + model.invid;
+                    status = "2signatureincorrect-" + sCrc.ToUpper() + "-" + sMyCrc.ToUpper() + "-" + sOutSum + "-" + sInvId + "-";
                 }
 
             iproby.Data_Model.payment payment = new iproby.Data_Model.payment();
             payment.announ_id = announ_id;
             payment.customer_id = customer_id;
             payment.invid = model.invid;
-            payment.mrchlogin = model.mrchlogin;
-            payment.outsum = model.outsum;
-            payment.description = model.description;
-            payment.date_from = DateTime.Now;
-            payment.signaturevalue = model.signaturevalue;
+            payment.mrchlogin = paym.mrchlogin;
+            payment.outsum = sOutSum.ToString();
+            payment.signaturevalue = sCrc;
             payment.status = status;
-            payment.Code = model.Code;
-            payment.IncAccount = model.IncAccount;
-            payment.IncCurrLabel = model.IncCurrLabel;
-            payment.IncSum = model.IncSum;
-            payment.Info = model.Info;
-            payment.OutCurrLabel = model.OutCurrLabel;
-            payment.PaymentMethod = model.PaymentMethod;
-            payment.state = model.state;
+            DateTime date_from = DateTime.Now;
+            payment.date_from = date_from;
+
+            if (string.IsNullOrEmpty(model.state))
+                payment.state = GetPrm("State");
+            else payment.state = model.state;
+            if (string.IsNullOrEmpty(model.Code))
+                payment.Code = GetPrm("Code");
+            else payment.Code = model.Code;
+            if (string.IsNullOrEmpty(model.Info))
+                payment.Info = GetPrm("Info");
+            else payment.Info = model.Info;
+            if (string.IsNullOrEmpty(model.IncCurrLabel))
+                payment.IncCurrLabel = GetPrm("IncCurrLabel");
+            else payment.IncCurrLabel = model.IncCurrLabel;
+            if (string.IsNullOrEmpty(model.PaymentMethod))
+                payment.PaymentMethod = GetPrm("PaymentMethod");
+            else payment.PaymentMethod = model.PaymentMethod;
+            if (string.IsNullOrEmpty(model.description))
+                payment.description = GetPrm("Description");
+            else payment.description = model.description;
+            if (string.IsNullOrEmpty(model.description))
+                payment.description = paym.desc;
+            if (string.IsNullOrEmpty(model.OutCurrLabel))
+                payment.OutCurrLabel = GetPrm("OutCurrLabel");
+            else payment.OutCurrLabel = model.OutCurrLabel;
+            
             db.payments.Add(payment);
             db.SaveChanges();
             return RedirectToAction("EditOptions", "Cabinet"); 
