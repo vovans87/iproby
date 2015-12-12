@@ -30,9 +30,9 @@
 @section Announs{
     @Html.Partial(Url.Content("~/Views/Catalog/Announs.cshtml"))
 }
-@*@section SeoFooter{
-    @Html.Partial(Url.Content("~/Views/News/SeoFooter.cshtml"))
-}*@
+@section SeoFooter{
+   @{Html.RenderAction("SeoFooter", "News");}
+}
 @section News{
     @{Html.RenderAction("Index", "News");}
 }

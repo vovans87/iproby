@@ -64,7 +64,7 @@ namespace iproby.Controllers
 
             return View(newsList);
         }
-
+               
         private static string TruncateAtWord(string input, int length)
         {
             if (input == null || input.Length < length)
@@ -73,20 +73,28 @@ namespace iproby.Controllers
             return string.Format("{0}...", input.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
         }
 
-        public ActionResult SeoFooter(int type_id)
+        public ActionResult SeoFooter(int type_id, string target = "workers")
         {
             var type_arr = (from a in db.announ_type
                             where a.id == type_id
-                            select a.seo_text);
+                            select a);
             string seo_text = string.Empty;
-            foreach (string item in type_arr)
+            foreach (var item in type_arr)
             {
-                seo_text = item;
+                if (target == "workers")
+                {
+                    seo_text = item.seo_text;
+
+                }
+                else if (target == "clients")
+                {
+                    seo_text = item.seo_text_clients;
+                }
             }
             seo_model seo = new seo_model();
             seo.seo_text = seo_text;
 
-            return View("~/Views/News/SeoFooterContent.cshtml", seo);
+            return View("~/Views/News/SeoFooter.cshtml", seo);
         }
 
     }

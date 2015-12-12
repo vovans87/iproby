@@ -82,6 +82,7 @@ namespace iproby.Controllers
                                   where a.id == announ_id
                                   select a);
                 iproby.Models.announ_preview announ = new iproby.Models.announ_preview();
+                announ.target = target;
                 foreach (var item_inside in announ_arr)
                 {
                     announ.description = TruncateAtWord(SkipHtml(item_inside.description.Trim()),360);

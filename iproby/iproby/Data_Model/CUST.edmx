@@ -69,6 +69,7 @@
           <Property Name="seo_description_clients" Type="text" />
           <Property Name="seo_header_clients" Type="text" />
           <Property Name="description_clients" Type="text" />
+          <Property Name="seo_text_clients" Type="text" />
         </EntityType>
         <EntityType Name="contact">
           <Key>
@@ -114,8 +115,8 @@
           <Property Name="active" Type="int" Nullable="false" />
           <Property Name="confirmed_flag" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'iproby94_cust_db.iproby94_web.education' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "iproby94_cust_db.iproby94_web.education" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="education">
           <Key>
             <PropertyRef Name="education_id" />
@@ -727,6 +728,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="seo_description_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="seo_header_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="description_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="seo_text_clients" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="customer_announ">
           <Key>
@@ -984,7 +986,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <Property Name="announ_id" Type="Int32" Nullable="false" />
           <Property Name="customer_id" Type="Int32" Nullable="false" />
           <Property Name="mrchlogin" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="outsum" Type="String" />
+          <Property Name="outsum" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="invid" Type="Int32" />
           <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="signaturevalue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -1123,6 +1125,7 @@ FROM [iproby94_web].[education] AS [education]</DefiningQuery>
           <EntitySetMapping Name="announ_type">
             <EntityTypeMapping TypeName="iproby94_cust_dbModel.announ_type">
               <MappingFragment StoreEntitySet="announ_type">
+                <ScalarProperty Name="seo_text_clients" ColumnName="seo_text_clients" />
                 <ScalarProperty Name="description_clients" ColumnName="description_clients" />
                 <ScalarProperty Name="seo_header_clients" ColumnName="seo_header_clients" />
                 <ScalarProperty Name="seo_description_clients" ColumnName="seo_description_clients" />
