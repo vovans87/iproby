@@ -60,14 +60,14 @@ namespace iproby.Controllers
             foreach (var item in type_arr)
             {
                 if (target == "workers") { 
-                type_desc = SkipHtml(item.description);
+                type_desc = TruncateAtWord(SkipHtml(item.description),150);
                 seo_header = item.seo_header;
                 seo_keywords = item.seo_keywords;
                 seo_description = item.seo_description;
                 }
                 else if (target == "clients")
                 {
-                    type_desc = SkipHtml(item.description_clients);
+                    type_desc = TruncateAtWord(SkipHtml(item.description_clients), 150);
                     seo_header = item.seo_header_clients;
                     seo_keywords = item.seo_keywords_clients;
                     seo_description = item.seo_description_clients;

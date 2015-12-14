@@ -40,7 +40,10 @@ else
 }
 
 @section ReviewBlock{
+    @if (ViewData["login"] != null && ViewData["login"].ToString() == "isLogin")
+    {
     @Html.Partial(Url.Content("~/Views/Cabinet/ReviewCabinet.cshtml"))
+    }
 }
 
 @section News{

@@ -97,7 +97,7 @@
                             @{
     if (@Model.site != null)
     {
-        <a href="@Model.site" rel="nofollow" style="text-decoration:underline;">@Model.site.ToLower().Replace("http", "").Replace("/", "").Replace(":", "")</a>
+        <a href="http://@Model.site.ToLower().Replace("http", "").Replace("/", "").Replace(":", "")" rel="nofollow" target="_blank" style="text-decoration:underline;">@Model.site.ToLower().Replace("http", "").Replace("/", "").Replace(":", "")</a>
     }
     else
     {

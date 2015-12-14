@@ -1,5 +1,12 @@
 ﻿@{
-    ViewBag.Title = "IPROby.ru - Портал услуг. Компьютеры, Интернет, Мобильные, Образование.";
+    if (ViewData["title"] != null)
+    {
+        ViewBag.Title = "IPROby.ru - Поиск работы. Компьютеры, Интернет, Мобильные, Образование. Работа.";
+    }
+    else
+    {
+        ViewBag.Title = "IPROby.ru - Поиск работников. Компьютеры, Интернет, Мобильные, Образование.";
+        }
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
