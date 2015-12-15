@@ -1,6 +1,6 @@
 ﻿@{
     ViewBag.Title = @Model.header;
-    ViewBag.Description = @Model.about.Substring(0, (Model.about.LastIndexOf(" ", 150) > 0) ? Model.about.LastIndexOf(" ", 150) : 150).Trim();
+    ViewBag.Description = @Model.about_truncated;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 

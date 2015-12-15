@@ -39,6 +39,7 @@ namespace iproby.Controllers
                 announ.header = item_inside.header;
                 announ.announ_id = item_inside.id;
                 announ.about = item_inside.about;
+                announ.about_truncated = TruncateAtWord(item_inside.about,150);
                 announ.price = item_inside.price;
                 announ.type_id = item_inside.type_id.Value;
             }
@@ -701,6 +702,14 @@ namespace iproby.Controllers
                     db.SaveChanges();
                 }
             }
+        }
+
+        private static string TruncateAtWord(string input, int length)
+        {
+            if (input == null || input.Length < length)
+                return input;
+            int iNextSpace = input.LastIndexOf(" ", length);
+            return string.Format("{0}...", input.Substring(0, (iNextSpace > 0) ? iNextSpace : length).Trim());
         }
 
     }

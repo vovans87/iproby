@@ -15,6 +15,7 @@ namespace iproby.Models
         public string address { get; set; }
         public string mobile { get; set; }
         public string about { get; set; }
+        public string about_truncated { get; set; }
         public string skype { get; set; }
         public string email { get; set; }
         public string price { get; set; }
