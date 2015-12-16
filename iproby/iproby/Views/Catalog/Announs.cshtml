@@ -32,7 +32,9 @@
                                                @{
                            if (item.avatar != null)
                            {
-                               <img src="~/Content/img/user_img/@item.avatar" alt="avatar" />
+                               <div style="width: 58px; height: 58px; -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;overflow:hidden;">
+                                               <img src="~/Content/img/user_img/@item.avatar" alt="avatar" style="margin-top:-1px;margin-left:-1px;"/>
+                                               </div>
                            }
                            else
                            {
@@ -102,7 +104,7 @@
                                                <img src="~/Content/img/star_active.png" alt="star" />
                                                <img src="~/Content/img/star_active.png" alt="star" />
                                                <img src="~/Content/img/star_inactive.png" alt="star" />
-                                               <span style="color: #f5ab35; font-family: Helvetica Bold; font-size: 12px; margin-left:20px;text-decoration:underline;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = item.announ_id });} отзывов</span>
+                                               <a href="/Announ?announ_id=@item.announ_id" style="color: #f5ab35; font-family: Helvetica Bold; font-size: 12px; margin-left:20px;text-decoration:underline;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = item.announ_id });} отзывов</a>
                                            </div>
                                        </div>
                                        <div style="display:block;height:83px;width:825px;overflow:hidden;">
@@ -116,8 +118,10 @@
                                                <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" alt="calendar" />@item.date_from
                                                <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " alt="visits" />@{Html.RenderAction("GetVisits", "Announ", new { announ_id = item.announ_id });}
                                                <div style="position: absolute; display: table; margin-left: 700px; margin-top:-8px; position: absolute; z-index: 1; width:141px;height:30px; vertical-align:middle;text-align:center; background-image: url(/Content/img/like_dislike.png)">
-                                               <div class="like_btn" data-announ_id="@item.announ_id" style="display: table-cell; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle;">&nbsp;&nbsp;&nbsp;@{Html.RenderAction("GetLikes", "Announ", new { announ_id = item.announ_id });}</div>
-                                               <div class="dislike_btn" data-announ_id="@item.announ_id" style="display: table-cell; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle; ">&nbsp;&nbsp;&nbsp;@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = item.announ_id });}</div>
+                                                 <span>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                               <div class="like_btn" data-announ_id="@item.announ_id" style="display: table-cell; text-align:center; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = item.announ_id });}</div>
+                                                   <span>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                               <div class="dislike_btn" data-announ_id="@item.announ_id" style="display: table-cell; text-align: center; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle; ">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = item.announ_id });}</div>
                                                    </div>
                                            </div>
                                            

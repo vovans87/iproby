@@ -371,7 +371,7 @@ $(function () {
             type: "post",
             data: "announ_id=" + $(this).attr('data-announ_id'),
             success: function (result) {
-                $('.like_clicked').html('&nbsp;&nbsp;&nbsp;' + result);
+                $('.like_clicked').html('' + result);
                 $('.like_clicked').removeClass('like_clicked');
             }
         });
@@ -384,7 +384,7 @@ $(function () {
             type: "post",
             data: "announ_id=" + $(this).attr('data-announ_id'),
             success: function (result) {
-                $('.like_clicked').html('&nbsp;&nbsp;&nbsp;' + result);
+                $('.like_clicked').html('' + result);
                 $('.like_clicked').removeClass('like_clicked');
             }
         });

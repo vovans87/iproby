@@ -9,7 +9,7 @@ namespace iproby.Models
     {
         private string _mrchlogin = "iproru";
         public string mrchlogin { get { return _mrchlogin; } set { _mrchlogin = value; } }
-        private float _outsum = 1;
+        private float _outsum = 100;
         public float outsum { get { return _outsum; } set { _outsum = value; } }
         private static int _invid = 1;
         public int invid { get { return _invid; } set { _invid = value; } }

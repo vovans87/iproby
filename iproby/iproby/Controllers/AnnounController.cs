@@ -526,17 +526,17 @@ namespace iproby.Controllers
         [HttpPost]
         public int AddLike(int announ_id)
         {
-            if (Session["login"] != null)
-            {
-                string login = Session["login"].ToString();
-                var customer_id_arr = (from a in db.customers
-                                       where a.login == login
-                                       select a.customer_id);
-                int customer_id = 0;
-                foreach (int item in customer_id_arr)
-                {
-                    customer_id = item;
-                }
+            //if (Session["login"] != null)
+            //{
+                //string login = Session["login"].ToString();
+                //var customer_id_arr = (from a in db.customers
+                //                       where a.login == login
+                //                       select a.customer_id);
+                //int customer_id = 0;
+                //foreach (int item in customer_id_arr)
+                //{
+                //    customer_id = item;
+                //}
                 var likes_arr = (from a in db.likes
                                        where a.announ_id == announ_id
                                  select a);
@@ -570,41 +570,41 @@ namespace iproby.Controllers
                     }
                 }
                 return likes_final;
-            }
-            else
-            {
-                var likes_arr = (from a in db.likes
-                                 where a.announ_id == announ_id
-                                 select a);
-                int like_num = 0;
-                int dislike_num = 0;
-                int like_id = 0;
-                int likes_final = 0;
-                foreach (var item in likes_arr)
-                {
-                    like_num = item.like_num;
-                    dislike_num = item.disline_num;
-                    like_id = item.id;
-                }
-                likes_final = like_num;
-                return likes_final;
-            }
+            //}
+            //else
+            //{
+            //    var likes_arr = (from a in db.likes
+            //                     where a.announ_id == announ_id
+            //                     select a);
+            //    int like_num = 0;
+            //    int dislike_num = 0;
+            //    int like_id = 0;
+            //    int likes_final = 0;
+            //    foreach (var item in likes_arr)
+            //    {
+            //        like_num = item.like_num;
+            //        dislike_num = item.disline_num;
+            //        like_id = item.id;
+            //    }
+            //    likes_final = like_num;
+            //    return likes_final;
+            //}
         }
 
         [HttpPost]
         public int AddDislike(int announ_id)
         {
-            if (Session["login"] != null)
-            {
-                string login = Session["login"].ToString();
-                var customer_id_arr = (from a in db.customers
-                                       where a.login == login
-                                       select a.customer_id);
-                int customer_id = 0;
-                foreach (int item in customer_id_arr)
-                {
-                    customer_id = item;
-                }
+            //if (Session["login"] != null)
+            //{
+                //string login = Session["login"].ToString();
+                //var customer_id_arr = (from a in db.customers
+                //                       where a.login == login
+                //                       select a.customer_id);
+                //int customer_id = 0;
+                //foreach (int item in customer_id_arr)
+                //{
+                //    customer_id = item;
+                //}
                 var likes_arr = (from a in db.likes
                                  where a.announ_id == announ_id
                                  select a);
@@ -639,25 +639,25 @@ namespace iproby.Controllers
                     }
                 }
                 return likes_final;
-            }
-            else
-            {
-                var likes_arr = (from a in db.likes
-                                 where a.announ_id == announ_id
-                                 select a);
-                int like_num = 0;
-                int dislike_num = 0;
-                int like_id = 0;
-                int likes_final = 0;
-                foreach (var item in likes_arr)
-                {
-                    like_num = item.like_num;
-                    dislike_num = item.disline_num;
-                    like_id = item.id;
-                }
-                likes_final = dislike_num;
-                return likes_final;
-            }
+            //}
+            //else
+            //{
+            //    var likes_arr = (from a in db.likes
+            //                     where a.announ_id == announ_id
+            //                     select a);
+            //    int like_num = 0;
+            //    int dislike_num = 0;
+            //    int like_id = 0;
+            //    int likes_final = 0;
+            //    foreach (var item in likes_arr)
+            //    {
+            //        like_num = item.like_num;
+            //        dislike_num = item.disline_num;
+            //        like_id = item.id;
+            //    }
+            //    likes_final = dislike_num;
+            //    return likes_final;
+            //}
         }
 
         public int GetVisits(int announ_id)
