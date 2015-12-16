@@ -39,7 +39,7 @@ namespace iproby.Controllers
                 announ.header = item_inside.header;
                 announ.announ_id = item_inside.id;
                 announ.about = item_inside.about;
-                announ.about_truncated = TruncateAtWord(item_inside.about,150);
+                announ.about_truncated = TruncateAtWord(item_inside.about,145);
                 announ.price = item_inside.price;
                 announ.type_id = item_inside.type_id.Value;
             }
