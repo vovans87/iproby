@@ -78,6 +78,16 @@ namespace iproby.Controllers
                 announ.icq = item_inside.icq;
                 announ.vkontakte = item_inside.vkontakte;
                 announ.date_from = date_from;
+               
+            }
+            var target_arr = (from a in db.announ_target
+                              where a.announ_id == announ_id
+                               select a.target_type);
+            string target = string.Empty;
+            foreach (string item in target_arr)
+            {
+                target = item;
+                announ.target = target;
             }
             
             return View(announ);

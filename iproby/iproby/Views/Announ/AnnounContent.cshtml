@@ -24,7 +24,7 @@
     }
 }
                     
-                    <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px; line-height: 2; ">@Model.first_name</div>
+                    <div style="color: #115a56; font-family: Helvetica Bold; font-size: 16px; margin-top: 20px;  ">@Model.first_name</div><br>
                     <div style="font-family: Helvetica; font-size: 13px; float: left; width: 90%; height: 20px; color: #44beb7;line-height:1;">
                         <img src="~/Content/img/city_ico.png" style="padding-right:5px;" alt="address" />@Model.address
                     </div>
@@ -184,6 +184,8 @@
                                 
                                 @Html.Raw(Model.description)
                             </div>
+                            <input type="hidden" value="@Model.type_id" class="announ_type_hidden"/>
+                            <input type="hidden" value="@Model.target" class="announ_target_hidden" />
                         </div>
                     </div>
                 </div>
@@ -208,9 +210,90 @@
     </div>
 </div>
 <script>
-    $('.sitemapitem a').each(function () {
-        if ($(this).attr('href').length > 4) {
-            
+$('.sitemapitem a').each(function () {
+    if ($(this).attr('href').indexOf('/Catalog/Repetitory') > -1) {
+        switch ($('.announ_target_hidden').val()) {
+            case 'workers':
+                switch ($('.announ_type_hidden').val()) {
+                    case '6':
+                        $(this).attr('href', '/Catalog/Sozdanie-sajtov');
+                        $(this).text('Создание сайтов');
+                        break
+                    case '1':
+                        $(this).attr('href', '/Catalog/Repetitory');
+                        $(this).text('Репетиторы');
+                        break
+                    case '3':
+                        $(this).attr('href', '/Catalog/Remont-telefonov');
+                        $(this).text('Ремонт телефонов');
+                        break
+                    case '4':
+                        $(this).attr('href', '/Catalog/Remont-navigatorov-videoregistratorov');
+                        $(this).text('Ремонт навигаторов');
+                        break
+                    case '9':
+                        $(this).attr('href', '/Catalog/Remont-kompjuterov-noutbukov');
+                        $(this).text('Ремонт компьютеров');
+                        break
+                    case '10':
+                        $(this).attr('href', '/Catalog/Remont-orgtehniki');
+                        $(this).text('Ремонт оргтехники');
+                        break
+                    case '7':
+                        $(this).attr('href', '/Catalog/Prodvizhenie-reklama');
+                        $(this).text('Продвижение реклама');
+                        break
+                    case '8':
+                        $(this).attr('href', '/Catalog/Dizajn');
+                        $(this).text('Дизайн');
+                        break
+                    case '2':
+                        $(this).attr('href', '/Catalog/Kontrolnye-Kursovye-Referaty-Diplomy');
+                        $(this).text('Контрольные работы');
+                        break
+                } break
+                    case 'clients':
+                        switch ($('.announ_type_hidden').val()) {
+                            case '6':
+                                $(this).attr('href', '/Catalog/Sozdanie-sajtov/Rabota');
+                                $(this).text('Создание сайтов');
+                                break
+                            case '1':
+                                $(this).attr('href', '/Catalog/Repetitory/Rabota');
+                                $(this).text('Репетиторы');
+                                break
+                            case '3':
+                                $(this).attr('href', '/Catalog/Remont-telefonov/Rabota');
+                                $(this).text('Ремонт телефонов');
+                                break
+                            case '4':
+                                $(this).attr('href', '/Catalog/Remont-navigatorov-videoregistratorov/Rabota');
+                                $(this).text('Ремонт навигаторов');
+                                break
+                            case '9':
+                                $(this).attr('href', '/Catalog/Remont-kompjuterov-noutbukov/Rabota');
+                                $(this).text('Ремонт компьютеров');
+                                break
+                            case '10':
+                                $(this).attr('href', '/Catalog/Remont-orgtehniki/Rabota');
+                                $(this).text('Ремонт оргтехники');
+                                break
+                            case '7':
+                                $(this).attr('href', '/Catalog/Prodvizhenie-reklama/Rabota');
+                                $(this).text('Продвижение реклама');
+                                break
+                            case '8':
+                                $(this).attr('href', '/Catalog/Dizajn/Rabota');
+                                $(this).text('Дизайн');
+                                break
+                            case '2':
+                                $(this).attr('href', '/Catalog/Kontrolnye-Kursovye-Referaty-Diplomy/Rabota');
+                                $(this).text('Контрольные работы');
+                                break
+                                
+                        } break
+                
         }
-    })
-</script>
+
+    };
+})</script>
