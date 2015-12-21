@@ -111,12 +111,12 @@
                         <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Facebook</span>
                         <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
                             @{
-                                if (@Model.facebook != null)
-                                {
-                                    <a href="@Model.facebook" rel="nofollow" style="text-decoration:underline;">@Model.facebook.ToLower().Replace("http", "").Replace("/", "").Replace(":", "")</a>
-                                }
-                                else
-                                {
+    if (@Model.facebook != null)
+    {
+        <a href="http://@Model.facebook.ToLower().Replace("http", "").Replace(":", "")" rel="nofollow" target="_blank" style="text-decoration:underline;">@Model.facebook.ToLower().Replace("http", "").Replace("/", "").Replace(":", "").Replace("vk.ru", "").Replace("facebook.com", "").Replace("linkedin.com", "")</a>
+    }
+    else
+    {
                                     <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
                                 }
                             }
@@ -126,12 +126,12 @@
                         <span style="font-family: Helvetica ; font-size: 14px; color: #00a79d;">Вконтакте</span>
                         <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
                             @{
-                                if (@Model.vkontakte != null)
-                                {
-                                    <a href="@Model.vkontakte" rel="nofollow" style="text-decoration:underline;">@Model.vkontakte.ToLower().Replace("http", "").Replace("/", "").Replace(":", "").Replace("vk.com", "")</a>
-                                }
-                                else
-                                {
+    if (@Model.vkontakte != null)
+    {
+        <a href="http://@Model.vkontakte.ToLower().Replace("http", "").Replace("http", "")" rel="nofollow" target="_blank" style="text-decoration:underline;">@Model.vkontakte.ToLower().Replace("http", "").Replace("/", "").Replace(":", "").Replace("vk.com", "").Replace("vk.ru", "").Replace("vkontakte.ru", "")</a>
+    }
+    else
+    {
                                     <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
                                 }
                             }
