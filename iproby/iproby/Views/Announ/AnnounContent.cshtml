@@ -68,12 +68,12 @@
                             <img src="~/Content/img/announ_skype_ico.png" style="padding-right:10px;" alt="skype" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Skype</span>
                             <div style="float: right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; ">
                                 @{
-                                if (@Model.skype != null)
-                                {
-                                    <span style="text-decoration:underline;">@Model.skype</span>
-                                }
-                                else
-                                {
+    if (@Model.skype != null)
+    {
+        <a href="skype:@Model.skype?chat" style="text-decoration:underline;">@Model.skype</a>
+    }
+    else
+    {
                                     <div style="float: right; font-family: Helvetica; font-size: 14px; color: #d1d4d5; ">не указано</div>
                                 }
                             }
@@ -82,7 +82,7 @@
                     <div style="height:40px;">
                         <img src="~/Content/img/announ_letter_ico2.png" style="padding-right:10px;" alt="letter" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Email</span>
                         <div style="float: right; text-align:right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; width:180px;text-decoration:underline;" id="resize_div">
-                            <div id="mob_zoom">@Model.email</div>
+                            <a href="mailto:@Model.email" id="mob_zoom">@Model.email</a>
                         </div>
                         <script>
                                 if (document.getElementById("resize_div").offsetHeight < document.getElementById("resize_div").scrollHeight ||
@@ -128,7 +128,7 @@
                             @{
     if (@Model.vkontakte != null)
     {
-        <a href="http://@Model.vkontakte.ToLower().Replace("http", "").Replace("http", "")" rel="nofollow" target="_blank" style="text-decoration:underline;">@Model.vkontakte.ToLower().Replace("http", "").Replace("/", "").Replace(":", "").Replace("vk.com", "").Replace("vk.ru", "").Replace("vkontakte.ru", "")</a>
+        <a href="http://@Model.vkontakte.ToLower().Replace("http", "").Replace(":", "")" rel="nofollow" target="_blank" style="text-decoration:underline;">@Model.vkontakte.ToLower().Replace("http", "").Replace("/", "").Replace(":", "").Replace("vk.com", "").Replace("vk.ru", "").Replace("vkontakte.ru", "")</a>
     }
     else
     {
