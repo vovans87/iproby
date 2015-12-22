@@ -59,19 +59,27 @@
                                    </div>
                                    <div style="display:table;width: 240px; height: 80px;">
                                        <div style="display:table-row;">
-                                           <div style="margin-left:40px;float:left;margin-top:5px;"><img src="~/Content/img/phone.png" style="padding-right:5px;" alt="phone" />
+                                           <div style="margin-left:40px;float:left;margin-top:0px;"><img src="~/Content/img/phone.png" style="padding-right:5px;" alt="phone" />
                                            <span style="font-family: Helvetica Bold; font-size: 12px; color: #00a79d;">mobile&nbsp;&nbsp;
                                                <span style="text-decoration:underline" data-mobile="@item.mobile" onclick="$(this).text($(this).attr('data-mobile'))">Показать</span>
                                            </span>
                                            </div>
-                                           <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
-                                               <img src="~/Content/img/announ_social_skype.png" alt="skype" />
-                                               <img src="~/Content/img/announ_social_vkontakte.png" alt="vkontakte" />
-                                               <img src="~/Content/img/announ_social_odnoklass.png" alt="avatar" />
-                                               <img src="~/Content/img/announ_social_facebook.png" alt="facebook" />
-                                               <img src="~/Content/img/announ_social_twitter.png" alt="twitter" />
-                                               @*<span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>*@
-                                           </div>
+                                            <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
+                                                <a style="text-decoration: none; margin-left: 35px;" data-toggle="tooltip" title="@item.email" rel="nofollow" href="mailto:@item.email">
+                                                    <img src="~/Content/img/announ_social_mail_ico.png" alt="skype" />
+                                                </a>
+                                                <a style="text-decoration:none;margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.skype" rel="nofollow" href="skype:@item.skype?chat">
+                                                    <img src="~/Content/img/announ_social_skype_ico.png" alt="skype" />
+                                                </a>
+                                                <a style="text-decoration: none; margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.vkontakte" rel="nofollow" href="#">
+                                                    <img src="~/Content/img/announ_social_vkontakte_ico.png" alt="vkontakte" />
+                                                </a>
+                                                <a style="text-decoration: none; margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.facebook" rel="nofollow" href="#">
+                                                    <img src="~/Content/img/announ_social_facebook_ico.png" alt="facebook" />
+                                                </a>
+                                                
+                                                            @*<span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>*@
+</div>
                                        </div>
                                    </div>
                                </div>

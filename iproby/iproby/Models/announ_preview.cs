@@ -14,6 +14,10 @@ namespace iproby.Models
         public string first_name { get; set; }
         public string address { get; set; }
         public string mobile { get; set; }
+        public string email { get; set; }
+        public string vkontakte { get; set; }
+        public string facebook { get; set; }
+        public string skype { get; set; }
         public string search_word { get; set; }
         public string type_desc { get; set; }
         public string seo_header { get; set; }

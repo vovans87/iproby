@@ -116,6 +116,10 @@ namespace iproby.Controllers
                 {
                     announ.first_name = item_inside.first_name;
                     announ.mobile = item_inside.mobile;
+                    announ.email = item_inside.email;
+                    announ.vkontakte = (item_inside.vkontakte != null) ? item_inside.vkontakte : "не указан";
+                    announ.skype = (item_inside.skype != null) ? item_inside.skype : "не указан";
+                    announ.facebook = (item_inside.facebook != null) ? item_inside.facebook : "не указан";
                     announ.address = item_inside.address;
                     announ.date_from = date_from;
                     announ.type_desc = type_desc;
@@ -208,6 +212,10 @@ namespace iproby.Controllers
                 {
                     announ.first_name = item_inside.first_name;
                     announ.mobile = item_inside.mobile;
+                    announ.email = item_inside.email;
+                    announ.vkontakte = (item_inside.vkontakte != null) ? item_inside.vkontakte : "не указан";
+                    announ.skype = (item_inside.skype != null) ? item_inside.skype : "не указан";
+                    announ.facebook = (item_inside.facebook != null) ? item_inside.facebook : "не указан";
                     announ.address = item_inside.address;
                     announ.avatar = item_inside.avatar_cropped;
                     announ.date_from = date_from;

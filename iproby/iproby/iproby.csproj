@@ -286,10 +286,14 @@
     <Content Include="Content\img\announ_skype_ico.png" />
     <Content Include="Content\img\announ_social_bg.png" />
     <Content Include="Content\img\announ_social_facebook.png" />
+    <Content Include="Content\img\announ_social_facebook_ico.png" />
+    <Content Include="Content\img\announ_social_mail_ico.png" />
     <Content Include="Content\img\announ_social_odnoklass.png" />
     <Content Include="Content\img\announ_social_skype.png" />
+    <Content Include="Content\img\announ_social_skype_ico.png" />
     <Content Include="Content\img\announ_social_twitter.png" />
     <Content Include="Content\img\announ_social_vkontakte.png" />
+    <Content Include="Content\img\announ_social_vkontakte_ico.png" />
     <Content Include="Content\img\announ_star_ico.png" />
     <Content Include="Content\img\announ_target_ico.png" />
     <Content Include="Content\img\big_clock_ico.png" />
