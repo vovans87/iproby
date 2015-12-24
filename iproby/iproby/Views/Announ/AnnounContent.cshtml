@@ -82,14 +82,14 @@
                     <div style="height:40px;">
                         <img src="~/Content/img/announ_letter_ico2.png" style="padding-right:10px;" alt="letter" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Email</span>
                         <div style="float: right; text-align:right; font-family: Helvetica Bold; font-size: 14px; color: #446cb3; width:180px;text-decoration:underline;" id="resize_div">
-                            <a href="mailto:@Model.email" id="mob_zoom">@Model.email</a>
+                            <a href="mailto:@Model.email" id="mob_zoom" style="zoom:0.7">@Model.email</a>
                         </div>
-                        <script>
+                        @*<script>
                                 if (document.getElementById("resize_div").offsetHeight < document.getElementById("resize_div").scrollHeight ||
                                     document.getElementById("resize_div").offsetWidth < document.getElementById("resize_div").scrollWidth) {
                                     document.getElementById("mob_zoom").style.zoom = 0.8;
                                 }
-                        </script>
+                        </script>*@
                     </div>
                     <div style="height:40px;">
                         <img src="~/Content/img/announ_site_ico.png" style="padding-right:10px;" alt="site" /><span style="font-family: Helvetica Bold; font-size: 14px; color: #00a79d;">Site</span>
