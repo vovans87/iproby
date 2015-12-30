@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using iproby.Data_Model;
+using effetto.Sape;
 
 
 
@@ -26,6 +27,12 @@ namespace iproby.Controllers
             ViewData["title"] = "Work";
             }
             return View();
+        }
+
+        public string ReturnLinks()
+        {
+            string test=SapeFactory.Factory.GetUser().GetHost().GetPageOrDefault().GetLinksAsString();
+            return test;
         }
 
         
