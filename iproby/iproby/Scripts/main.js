@@ -336,25 +336,34 @@ $(function () {
 
 $(function () {
     $('.find_btn').click(function () {
-        if (getQueryVariable('type_id').indexOf('no_param') == 0) {
+        if ($('.is_index_flag').val() == 1) {
             $.ajax({
                 url: "/Announ/SearchResultAll",
                 type: "post",
                 data: "search_text=" + $('.search_text_input').val(),
                 success: function (result) {
                     $('.search_result_block').html(result);
+                    $('.search_text_info').text($('.search_text_input').val());
+                    $('.write_message').click(function () {
+                        load_write_message($(this).attr('data-customer_id'));
+                    });
                 }
             });
         } else {
             $.ajax({
                 url: "/Announ/SearchResultInTypes",
                 type: "post",
-                data: "search_text=" + $('.search_text_input').val() + "&type_id=" + getQueryVariable('type_id'),
+                data: "search_text=" + $('.search_text_input').val() + "&type_id=" + $('.announ_type_id').val(),
                 success: function (result) {
                     $('.search_result_block').html(result);
+                    $('.search_text_info').text($('.search_text_input').val());
+                    $('.write_message').click(function () {
+                        load_write_message($(this).attr('data-customer_id'));
+                    });
                 }
             });
         }
+         
     });
     $('.message_author').click(function () {
         $(this).toggleClass("bg-success");

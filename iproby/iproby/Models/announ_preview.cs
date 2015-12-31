@@ -27,6 +27,10 @@ namespace iproby.Models
         public int type_id { get; set; }
         public string target { get; set; }
         public int status_vip_flag { get; set; }
+        int _from_search_flag = 0;
+        public int from_search_flag { get{return _from_search_flag;} set{_from_search_flag=value;} }
+        int _is_index_flag = 0;
+        public int is_index_flag { get { return _is_index_flag; } set { _is_index_flag = value; } }
         public Nullable<System.DateTime> date_from { get; set; }
     }
 }

@@ -185,6 +185,7 @@ namespace iproby.Controllers
                     announ.announ_id = item_inside.id;
                     announ.description = TruncateAtWord(SkipHtml(item_inside.description),360);
                     announ.type_id = item_inside.type_id.Value;
+                    announ.is_index_flag = 1;
                 }
                 var customer_id_arr = (from a in db.customer_announ
                                        where a.announ_id == announ_id
