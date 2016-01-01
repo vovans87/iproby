@@ -89,6 +89,7 @@ namespace iproby.Controllers
                     announ.header = item_inside.header;
                     announ.announ_id = item_inside.id;
                     announ.type_id = item_inside.type_id.Value;
+                    announ.subjects = item_inside.subjects;
                 }
                 DateTime date_from = DateTime.Now;
                 var customer_id_arr = (from a in db.customer_announ
@@ -186,6 +187,7 @@ namespace iproby.Controllers
                     announ.description = TruncateAtWord(SkipHtml(item_inside.description),360);
                     announ.type_id = item_inside.type_id.Value;
                     announ.is_index_flag = 1;
+                    announ.subjects = item_inside.subjects;
                 }
                 var customer_id_arr = (from a in db.customer_announ
                                        where a.announ_id == announ_id

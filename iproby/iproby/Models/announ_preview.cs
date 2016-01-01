@@ -20,6 +20,7 @@ namespace iproby.Models
         public string skype { get; set; }
         public string search_word { get; set; }
         public string type_desc { get; set; }
+        public string subjects { get; set; }
         public string seo_header { get; set; }
         public string seo_keywords { get; set; }
         public string seo_description { get; set; }
