@@ -42,6 +42,7 @@ namespace iproby.Controllers
                 announ.about = item_inside.about;
                 announ.about_truncated = TruncateAtWord(item_inside.about,135);
                 announ.price = item_inside.price;
+                announ.subjects = item_inside.subjects;
                 announ.type_id = item_inside.type_id.Value;
             }
             var customer_id_arr = (from a in db.customer_announ

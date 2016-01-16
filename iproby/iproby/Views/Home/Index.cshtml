@@ -42,6 +42,10 @@
     @{Html.RenderAction("SeoFooter", "News", new { type_id = 11});}
 }
 
+@section News{
+    @{Html.RenderAction("Index", "News");}
+}
+
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml")) 
 }

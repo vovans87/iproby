@@ -24,6 +24,7 @@ namespace iproby.Models
         public string facebook { get; set; }
         public string vkontakte { get; set; }
         public string avatar { get; set; }
+        public string subjects { get; set; }
         public int type_id { get; set; }
         public string target { get; set; }
         public Nullable<System.DateTime> date_from { get; set; }

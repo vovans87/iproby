@@ -15,7 +15,7 @@ namespace iproby.Controllers
         // GET: /News/
         private iproby94_cust_dbEntities db = new iproby94_cust_dbEntities();
 
-        public ActionResult Index()
+        public ActionResult Index(int type_id=0, string target = "workers")
         {
             string connetionString = "Driver={MySQL ODBC 3.51 Driver};Server = MSSQL2; UID = iprob_wordpres_2; PWD = aE5fv0*1; Database = iproby94_wordpress_8; ";
             OdbcConnection cnn;
@@ -24,33 +24,99 @@ namespace iproby.Controllers
             try
             {
                 cnn.Open();
-                OdbcCommand DbCommand = cnn.CreateCommand();
-                DbCommand.CommandText = "SELECT `post_title`,`post_content`,`post_date`,`guid` FROM `wp_posts` WHERE `post_status`='publish' LIMIT 3";
-                OdbcDataReader DbReader = DbCommand.ExecuteReader();
-                int fCount = DbReader.FieldCount;
-
-                while (DbReader.Read())
+                if (type_id != 0)
                 {
-                    iproby.Models.news news = new iproby.Models.news();
-                    news.header = DbReader.GetString(0);
-                    string description = DbReader.GetString(1);
-                    if (description.Length > 320)
+                    int type_num = 4;
+                    switch (type_id)
                     {
-                        news.description = TruncateAtWord(DbReader.GetString(1),320);
+                        case 2:
+                            type_num = 4;
+                            break;
+                        case 1:
+                            type_num = 4;
+                            break;
+                        case 3:
+                            type_num = 8;
+                            break;
+                        case 4:
+                            type_num = 9;
+                            break;
+                        case 9:
+                            type_num = 3;
+                            break;
+                        case 10:
+                            type_num = 3;
+                            break;
+                        case 6:
+                            type_num = 6;
+                            break;
+                        case 7:
+                            type_num = 6;
+                            break;
+                        case 8:
+                            type_num = 6;
+                            break;
+                        default:
+                            type_num = 4;
+                            break;
                     }
-                    else
+
+                    OdbcCommand DbCommand = cnn.CreateCommand();
+                    DbCommand.CommandText = "SELECT `post_title`,`post_content`,`post_date`,`guid` FROM `wp_posts`,`wp_term_relationships` WHERE `post_status`='publish' and wp_term_relationships.object_id=wp_posts.ID and wp_term_relationships.term_taxonomy_id=" + type_num + " ORDER BY RAND() LIMIT 3";
+                    OdbcDataReader DbReader = DbCommand.ExecuteReader();
+                    int fCount = DbReader.FieldCount;
+
+                    while (DbReader.Read())
                     {
-                        news.description = DbReader.GetString(1);
+                        iproby.Models.news news = new iproby.Models.news();
+                        news.header = DbReader.GetString(0);
+                        string description = DbReader.GetString(1);
+                        if (description.Length > 320)
+                        {
+                            news.description = TruncateAtWord(DbReader.GetString(1), 320);
+                        }
+                        else
+                        {
+                            news.description = DbReader.GetString(1);
+                        }
+                        news.date_from = DbReader.GetDateTime(2);
+                        news.link = DbReader.GetString(3);
+                        newsList.Add(news);
                     }
-                    news.date_from = DbReader.GetDateTime(2);
-                    news.link = DbReader.GetString(3);
-                    newsList.Add(news);
+                    DbReader.Close();
+                    DbCommand.Dispose();
+                    cnn.Close();
+
                 }
+                else {
+                    OdbcCommand DbCommand = cnn.CreateCommand();
+                    DbCommand.CommandText = "SELECT `post_title`,`post_content`,`post_date`,`guid` FROM `wp_posts`,`wp_term_relationships` WHERE `post_status`='publish' and wp_term_relationships.object_id=wp_posts.ID ORDER BY RAND() LIMIT 3";
+                    OdbcDataReader DbReader = DbCommand.ExecuteReader();
+                    int fCount = DbReader.FieldCount;
 
-
-                DbReader.Close();
-                DbCommand.Dispose();
-                cnn.Close();
+                    while (DbReader.Read())
+                    {
+                        iproby.Models.news news = new iproby.Models.news();
+                        news.header = DbReader.GetString(0);
+                        string description = DbReader.GetString(1);
+                        if (description.Length > 320)
+                        {
+                            news.description = TruncateAtWord(DbReader.GetString(1), 320);
+                        }
+                        else
+                        {
+                            news.description = DbReader.GetString(1);
+                        }
+                        news.date_from = DbReader.GetDateTime(2);
+                        news.link = DbReader.GetString(3);
+                        newsList.Add(news);
+                    }
+                    DbReader.Close();
+                    DbCommand.Dispose();
+                    cnn.Close();
+                
+                }
+               
              
             }
             catch (Exception ex)
