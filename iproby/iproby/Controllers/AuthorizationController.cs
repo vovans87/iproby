@@ -20,23 +20,34 @@ namespace iproby.Controllers
         [HttpPost]
         public ActionResult Registration(iproby.Models.registrator model)
         {
-            
-            iproby.Data_Model.contact contact = new iproby.Data_Model.contact();
-            contact.first_name = model.first_name;
-            contact.email = model.email;
-            contact.mobile = model.mobile;
-            contact.skype = model.skype;
-            contact.address = model.address;
-            contact.facebook = model.facebook;
-            contact.site = model.site;
-            contact.vkontakte = model.vkontakte;
-            contact.icq = model.icq;
-            db.contacts.Add(contact);
-            db.SaveChanges();
+            if (model.first_name != null) {
+                iproby.Data_Model.contact contact = new iproby.Data_Model.contact();
+                contact.first_name = model.first_name;
+                contact.email = Session["login"].ToString();
+                contact.mobile = model.mobile;
+                contact.skype = model.skype;
+                contact.address = model.address;
+                contact.facebook = model.facebook;
+                contact.site = model.site;
+                contact.vkontakte = model.vkontakte;
+                contact.icq = model.icq;
+                db.contacts.Add(contact);
+                db.SaveChanges();
+
+                var login=Session["login"].ToString();
+                var customer_id = (from a in db.customers
+                                   where a.login == login
+                                   select a.customer_id);
+
+                var customer_ex = db.customers.Find(customer_id.First());
+                customer_ex.contact_id = contact.contact_id;
+                db.SaveChanges();
+            }
+            else { 
 
             iproby.Data_Model.customer customer = new iproby.Data_Model.customer();
-            customer.contact_id = contact.contact_id;
-            customer.login = model.login;
+            //customer.contact_id = contact.contact_id;
+            customer.login = model.email;
             customer.password = model.password;
             customer.status_id = 0;
             DateTime Now = DateTime.Now;
@@ -47,8 +58,8 @@ namespace iproby.Controllers
             customer.active = 1;
             db.customers.Add(customer);
             db.SaveChanges();
-            Session["fio"] = model.first_name;
-            Session["login"] = model.login;
+            Session["fio"] = model.email;
+            Session["login"] = model.email;
             InformationController notification = new InformationController();
             ConfirmationController confirmation = new ConfirmationController();
             string code = Session["login"].ToString();
@@ -66,7 +77,7 @@ namespace iproby.Controllers
             Спасибо!
             Письмо сгенерировано автоматически, если у вас есть вопросы пишите на почту info@iproby.ru";
             notification.SendMail(model.email, email_text);
-            
+            }
             return View("~/Views/Status/RegistrationSuccess.cshtml");
         }
 

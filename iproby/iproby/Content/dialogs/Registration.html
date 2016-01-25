@@ -1,7 +1,7 @@
 ﻿<form role="form" action="/Authorization/Registration" method="post" data-toggle="validator" data-disable=false data-delay=100>
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"  aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Регистрация нового пользователя</h4>
+        <h4 class="modal-title">Регистрируйся через почту</h4>
     </div>
     <div class="modal-body result return_result">
         <div class="row return_wait">
@@ -9,7 +9,7 @@
             <div class="col-md-8">
 
 
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback" style="display:none;">
                     <label for="inputLogin" class="control-label add_asterisk">Логин</label>
                     <input type="text" class="form-control" id="inputLogin" placeholder="Login" name="login" data-remote="/Status/CheckLogin" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
@@ -17,52 +17,53 @@
                 </div>
 
                 <div class="form-group has-feedback">
-                    <label for="InputPassword" class="control-label add_asterisk">Пароль</label>
-                    <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Пароль" maxlength="100" required>
-                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                </div>
-                <div class="form-group has-feedback">
                     <label for="InputEmail" class="control-label add_asterisk">Email</label>
                     <input type="email" class="form-control" id="InputEmail" name="email" placeholder="Enter email" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
+                
                 <div class="form-group has-feedback">
+                    <label for="InputPassword" class="control-label add_asterisk">Пароль</label>
+                    <input type="password" class="form-control" id="InputPassword" name="password" placeholder="Пароль" maxlength="100" required>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                
+                <div class="form-group has-feedback" style="display:none;">
                     <label for="InputFio" class="control-label add_asterisk">ФИО</label>
                     <input type="text" class="form-control" id="InputFio" placeholder="ФИО" name="first_name" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback" style="display:none;">
                     <label for="address" class="control-label add_asterisk">Город</label>
                     <input type="text" class="form-control" id="address" placeholder="Город " name="address" maxlength="100" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
                 </div>
-                <div class="form-group has-feedback">
+                <div class="form-group has-feedback" style="display:none;">
                     <label for="phonenum" class="control-label add_asterisk">Мобильный телефон</label>
                     <input type="tel" class="form-control phone" id="phonenum" placeholder="Mobile " name="mobile" required>
                     <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="InputSkype">Skype</label>
                     <input type="text" class="form-control" id="InputSkype" placeholder="Skype" maxlength="100" name="skype">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="facebook">Facebook</label>
                     <input type="text" class="form-control" id="InputFacebook" placeholder="Facebook" maxlength="100" name="facebook">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="vkontakte">Vkontakte</label>
                     <input type="text" class="form-control" id="InputVkontakte" placeholder="Vkontakte" maxlength="100" name="vkontakte">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="site">Site</label>
                     <input type="text" class="form-control" id="InputSite" placeholder="Site" maxlength="100" name="site">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <label for="icq">ICQ</label>
                     <input type="text" class="form-control" id="Inputicq" placeholder="ICQ" maxlength="100" name="icq">
                 </div>
-                <div class="form-group">
+                <div class="form-group" style="display:none;">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" id="terms" data-error="Необходимо принять правила пользования" required>

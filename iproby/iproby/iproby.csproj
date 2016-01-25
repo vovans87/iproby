@@ -278,6 +278,7 @@
     <Content Include="Content\dialogs\ConfirmSuccess.html" />
     <Content Include="Content\dialogs\Login.html" />
     <Content Include="Content\dialogs\Registration.html" />
+    <Content Include="Content\dialogs\RegistrationStep2.html" />
     <Content Include="Content\dialogs\WriteMessage.html" />
     <Content Include="Content\imgareaselect-default.css" />
     <Content Include="Content\img\announ_calend_ico.png" />
