@@ -1,0 +1,18 @@
+﻿@{
+        ViewBag.Title = "IPROby.ru Регистрация";
+        ViewBag.Description = "IPROby.ru - Зарегистрируйтесь на сайте и расширьте свою клиенскую базу.";
+        ViewBag.Keywords = "поиск работников, работники в сфере компьютеры интернет мобильные образование";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+
+@section RegistrationForm{
+    @Html.Partial(Url.Content("~/Views/Registration/RegistrationForm.cshtml"))
+}
+
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}

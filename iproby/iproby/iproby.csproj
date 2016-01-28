@@ -170,6 +170,7 @@
     <Compile Include="Controllers\CabinetController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Controllers\ConfirmationController.cs" />
+    <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\TransliterationController.cs" />
     <Compile Include="Controllers\DialogController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
@@ -277,7 +278,9 @@
     <Content Include="Content\dialogs\ConfirmFail.html" />
     <Content Include="Content\dialogs\ConfirmSuccess.html" />
     <Content Include="Content\dialogs\Login.html" />
+    <Content Include="Content\dialogs\Login_old.html" />
     <Content Include="Content\dialogs\Registration.html" />
+    <Content Include="Content\dialogs\Registration_old.html" />
     <Content Include="Content\dialogs\RegistrationStep2.html" />
     <Content Include="Content\dialogs\WriteMessage.html" />
     <Content Include="Content\imgareaselect-default.css" />
@@ -320,6 +323,7 @@
     <Content Include="Content\img\category_mobile_top.png" />
     <Content Include="Content\img\city_ico.png" />
     <Content Include="Content\img\edit_ico.png" />
+    <Content Include="Content\img\facebook_ico_reg.png" />
     <Content Include="Content\img\find_ico.png" />
     <Content Include="Content\img\footer_address_ico.png" />
     <Content Include="Content\img\footer_calend_ico.png" />
@@ -348,6 +352,7 @@
     <Content Include="Content\img\master.png" />
     <Content Include="Content\img\news_ico.png" />
     <Content Include="Content\img\no_logo.png" />
+    <Content Include="Content\img\odnoklassniki_ico_reg.png" />
     <Content Include="Content\img\paypal.png" />
     <Content Include="Content\img\phone.png" />
     <Content Include="Content\img\star_active.png" />
@@ -358,6 +363,7 @@
     <Content Include="Content\img\user_img\7771ava_cropped.jpg" />
     <Content Include="Content\img\view_ico.png" />
     <Content Include="Content\img\visa.png" />
+    <Content Include="Content\img\vk_ico_btn.png" />
     <Content Include="Content\skeleton.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -731,6 +737,8 @@
     <Content Include="Views\Cabinet\ReviewListCabinet.cshtml" />
     <Content Include="Views\Cabinet\ShowPaymentDialog.cshtml" />
     <Content Include="Views\Cabinet\OKPayment.cshtml" />
+    <Content Include="Views\Registration\Index.cshtml" />
+    <Content Include="Views\Registration\RegistrationForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

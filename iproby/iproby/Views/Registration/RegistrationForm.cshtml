@@ -1,0 +1,156 @@
+﻿<div class="row b-layout g-txt_center" style="text-align: center">
+
+    <form id="form_reg" name="form_reg" method="POST">
+        <input type="hidden" name="action" value="step1">
+        <input type="hidden" name="user_action" value="">
+        <input type="hidden" name="redirect" value="">
+
+
+
+        <div class="b-layout b-layout_gradpane ">
+
+            <h1 style="font-size: 22px; padding-bottom: 28px; margin-top:0; ">
+                Регистрация
+            </h1>
+
+            <div data-element-radiobox="role" style="font-family: Arial,Helvetica,sans-serif; line-height: 1; text-align: center ;width:666px;margin:0 auto;">
+                <div class="freelance_label" style="display: inline-block; width: 333px; height: 66px; padding: 0; margin: 0; font-size: 13px; border-color: #ff7300; border-left: 2px solid #ff7300; border-top: 2px solid #ff7300; border-bottom: 2px solid #ff7300; border-top-left-radius: 4px; border-bottom-left-radius: 4px; float: left; ">
+                    <input style="display: none;" type="radio" name="freelancer" value="1" checked="checked" id="freelancer">
+                    <label class="freelancer_label" for="freelancer" style="font-size: 20px; height: 100%; width: 100%; text-align: center;display: inline-block; padding-left: 2px; line-height: 3; color: #414141; vertical-align: top; font-family: Tahoma,Geneva,sans-serif; background: #ff7300; color: #fff; display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: normal; ">
+                        Я фрилансер, ищу работу
+                    </label>
+                </div>
+                <div class="employer_label" style="display: inline-block; width: 333px; height: 66px; padding: 0; margin: 0; font-size: 13px; border-right: 2px solid #ffb980; border-top: 2px solid #ffb980; border-bottom: 2px solid #ffb980; border-top-right-radius: 4px; border-bottom-right-radius: 4px; float: left; ">
+                    <input style="display: none;" type="radio" name="employer" value="2" id="employer">
+                    <label class="employer_label" for="employer" style="font-size: 20px; height: 100%; width: 100%; text-align: center; display: inline-block; padding-left: 2px; line-height: 3; color: #414141; vertical-align: top; font-family: Tahoma,Geneva,sans-serif; background: #fff; color: #ffb980; display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: normal; ">
+                        Я заказчик, ищу исполнителя
+                    </label>
+                </div>
+            </div>
+
+            <div id="employer-txt" style="display:none; margin-top:100px; width:100%; color: #333 !important; line-height: 44px; font-size: 30px;" >
+                Зарегистрируйся и размести проект: <br>
+                мы подберем тебе <strong>лучших исполнителей</strong> с гарантией <br>
+                выполнения работы <strong>в срок</strong> через <strong>безопасную сделку!</strong>
+            </div>
+
+            <div id="freelancer-txt" style="color: #333 !important; margin-top: 110px; width: 100%; line-height: 44px; font-size: 30px; " >
+                Регистрируйся и зарабатывай <strong>с гарантией оплаты</strong> проектов <br>
+                от более чем <strong>10&nbsp;000 лучших заказчиков</strong> рунета, <br>
+                увеличивай свой рейтинг и доход <strong>на постоянном потоке заказов.</strong>
+            </div>
+
+        </div>
+
+
+        <div style="padding: 40px 20px 0px 20px;background-color: white;">
+
+            <h2 style="font-size: 24px !important; padding-bottom: 25px !important; line-height: 1; margin: 0 !important; ">
+                Регистрируйся через почту
+            </h2>
+
+            <div style=" width: 330px;margin:0 auto;">
+
+
+                <table style="width:100%;;">
+                    <tbody>
+                        <tr >
+                            <td >
+                                <div style="padding-bottom: 30px;">
+                                    <div style=" height:60px;">
+                                        <input type="text" style=" width:100%;   height: 60px;
+    line-height: 60px!important;
+    font-size: 18px!important;
+    padding-left: 20px!important;
+    padding-right: 20px!important;" placeholder="Email">
+                                        <label class="b-combo__label" for="reg_email"></label>
+                                    </div>
+                                </div>
+
+                               
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div style="padding-bottom: 30px;">
+                                    <div style="height: 60px;">
+                                        <a onclick="show_password()" href="javascript:void(0)" tabindex="10000"></a>
+                                        <input style=" width:100%;   height: 60px;
+    line-height: 60px!important;
+    font-size: 18px!important;
+    padding-left: 20px!important;
+    padding-right: 20px!important;" type="password" autocomplete="off" placeholder="Пароль">
+                                        <label class="b-combo__label" for="reg_password"></label>
+                                    </div>
+                                </div>
+
+                                
+                            </td>
+                        </tr>
+
+                        <tr >
+                            <td >
+                                <div style=" padding: 0; margin: 0; border: 0;">
+                                    <button type="submit" id="send_btn" style=" width:100%;color: #FFF; background: #d9d9d9; border-bottom-color: #d9d9d9; height: 80px !important; font-size: 18px; text-transform: uppercase; ">
+                                        Зарегистрироваться
+                                    </button>
+                                    <div style="color: #838383 !important; font-size: 12px; text-align: left; padding-top: 10px; ">
+                                        Нажимая на кнопку «Зарегистрироваться», я соглашаюсь с
+                                        <a href="//userecho.com/terms-of-service/" target="_blank">правилами пользования сайтом.</a>
+                                        
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+
+            <h2 style="padding-bottom: 25px ; color: #333 ; line-height: 1; font-size: 24px ;margin-top:80px; ">
+                Быстрая регистрация
+            </h2>
+
+            <div style="width:550px;margin:0 auto;height:100px;">
+                <a class="vk_regist" style="display:block;float:left;background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px;  line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; width: 154px; background: url('/Content/img/vk_ico_btn.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'vk'}" href="/auth/?param=vkontakte"></a>
+                <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 145px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/facebook_ico_reg.png'); "  data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
+                <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/odnoklassniki_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
+            </div>
+
+            <div class="b-layout__txt" style="height:100px;">
+                <a href="/login/" style="color: #026dc0; font-family: Arial,Helvetica,sans-serif; font-size: 18px; ">
+                    У меня есть аккаунт
+                </a>
+            </div>
+        </div>
+
+
+
+        <input type="hidden" value="3c3ca8d09bd01c375ca1ca08ae134b3c" name="u_token_key">
+    </form>
+</div>
+<script>
+    $(function () {
+        $('input[type="radio"]').click(function () {
+            
+            if ($(this).val() == '1') {
+                $('.freelancer_label').css('background', '#ff7300');
+                $('.employer_label').css('background', 'white');
+                $('.freelancer_label').css('color', 'white');
+                $('#freelancer-txt').css('display', 'block');
+                $('#employer-txt').css('display', 'none');
+            } else {
+                
+                $('.freelancer_label').css('border-color', '#53b523!important');
+                $('.freelancer_label').css('background', 'white');
+                $('.freelancer_label').css('color', '#a9da91');
+                $('.employer_label').css('background', '#53b523');
+                $('.employer_label').css('color', 'white');
+                $('#employer-txt').css('display', 'block');
+                $('#freelancer-txt').css('display', 'none');
+            }
+
+        });
+    });
+</script>

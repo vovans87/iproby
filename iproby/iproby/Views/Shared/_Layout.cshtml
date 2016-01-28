@@ -96,6 +96,10 @@
         {
             @RenderSection("Announs")
         }
+        @if (IsSectionDefined("RegistrationForm"))
+        {
+            @RenderSection("RegistrationForm")
+        }
         @if (IsSectionDefined("ReviewBlock"))
         {
             @RenderSection("ReviewBlock")

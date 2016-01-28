@@ -155,7 +155,10 @@ function load_registration() {
         $('#myDialog').modal({
             backdrop: 'static',
             keyboard: true
-        }, 'show');
+        }, 'show').css({
+            width: '660px',
+           margin: '0 auto'
+        });;
         $('form').validator();
         $('form').submit(function (e) {
             if (e.isDefaultPrevented()) {

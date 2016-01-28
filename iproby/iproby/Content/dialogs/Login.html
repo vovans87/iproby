@@ -1,40 +1,119 @@
-﻿
-            <form role="form" action="/Authorization/Login" method="post" data-toggle="validator" data-disable=false data-delay=100>
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
-                    <h4 class="modal-title">Авторизация пользователя</h4>
-                </div>
-                <div class="modal-body result return_result">
-                    <div class="row return_wait">
-                        <div class="col-md-2"></div>
-                        <div class="col-md-8">
+﻿    <div class="modal-body result return_result">
+        <button type="button" class="close close-signin" data-dismiss="modal" aria-hidden="true">×</button>
+
+        <div id="via_social" class="row">
+
+            <div class="col-xs-12" style="border-bottom: solid 1px rgb(229, 228, 228);padding-bottom: 13px;">
+                <h4 style="margin-top: 5px;">Войдите на IPRO, используя свой аккаунт в:</h4>
+
+                <ul class="auth-buttons">
+                    <li>
+                        <button type="button" onclick="openSocialAuth('vk-oauth2');return false;" class="btn btn-sm btn-vk"><i class="fa fa-vk"></i> VK</button>
+                    </li>
+                    <li>
+                        <button type="button" onclick="openSocialAuth('facebook');return false;" class="btn btn-sm btn-facebook"><i class="fa fa-facebook"></i> Facebook</button>
+                    </li>
+
+                    <li>
+                        <button type="button" onclick="openSocialAuth('google-oauth2');return false;" class="btn btn-sm btn-google"><i class="fa fa-google-plus"></i> Google</button>
+                    </li>
+                    <li>
+                        <button type="button" onclick="openSocialAuth('twitter');return false;" class="btn btn-sm btn-twitter"><i class="fa fa-twitter"></i> Twitter</button>
+                    </li>
+
+                    <li id="more-btn">
+                        <button type="button" onclick="$('#more-btn').hide();$('#more').show();return false;" class="btn btn-sm btn-default">Еще <i class="fa fa-caret-down"></i></button>
+                    </li>
+
+                    <span id="more" style="display:none;">
+                        <li>
+                            <button type="button" onclick="openSocialAuth('yahoo');return false;" class="btn btn-sm btn-default"><i class="fa fa-yahoo"></i> Yahoo</button>
+                        </li>
+                        <li>
+                            <button type="button" onclick="openSocialAuth('live');return false;" class="btn btn-sm btn-default"><i class="fa fa-windows"></i> Live</button>
+                        </li>
+                        <li>
+                            <button type="button" onclick="openSocialAuth('github');return false;" class="btn btn-sm btn-default"><i class="fa fa-github"></i> GitHub</button>
+                        </li>
+                        <li>
+                            <button type="button" onclick="openSocialAuth('yandex-oauth2');return false;" class="btn btn-sm btn-default"><i class="fa fa-yandex"></i> Yandex</button>
+                        </li>
+                        <li>
+                            <button type="button" onclick="signInOpenId();" class="btn btn-sm btn-default"><i class="fa fa-openid"></i> OpenId</button>
+                        </li>
+                    </span>
+
+                </ul>
+
+            </div>
+        </div>
+
+        <div id="via_ue" class="row">
+            <div class="col-xs-12">
+                <h4>или войти с помощью аккаунта IPRO</h4>
+
+                <form role="form" action="/Authorization/Login" method="post" data-toggle="validator" data-disable=false data-delay=100>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="8Lw6xryyTl2xyBavDi5gyQVkOZ1PXDnK">
+                    <input type="hidden" name="signin_action" id="id_signin_action" value="login">
 
 
-                            <div class="form-group has-feedback">
-                                <label class="sr-only" for="InputLoginAuth">Login</label>
-                                <input type="text" class="form-control" id="InputLoginAuth" name="login" placeholder="Enter login" required>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            </div>
-                            <div class="form-group has-feedback">
-                                <label class="sr-only" for="InputPasswordAuth">Пароль</label>
-                                <input type="password" class="form-control" id="InputPasswordAuth" name="password" placeholder="Password" required>
-                                <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Запомнить меня
-                                </label>
-                            </div>
+                    <div class="row">
+                        <div class="form-group has-feedback col-sm-4" >
+                            <label class="sr-only" for="InputLoginAuth">Login</label>
+                            <input type="email" class="form-control" name="login" placeholder="Email" required>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right:15px;"></span>
+                        </div>
+                        <div class="form-group col-sm-4 has-feedback">
+                            <label class="sr-only" for="InputPasswordAuth">Пароль</label>
+                            <input type="password" class="form-control" id="InputPasswordAuth" name="password" placeholder="Пароль" required>
+                            <span class="glyphicon form-control-feedback" aria-hidden="true" style="margin-right:15px;"></span>
+                        </div>
+
+                        <div class="form-group col-sm-4">
+                            <button id="id_signin_submit" type="submit" data-loading-text="Обработка..." style="width:100%;" class="btn btn-primary">Войти</button>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
-                        <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Войти">
 
-                
+                </form>
+            </div>
 
-                    </div>
+
+            <div class="col-xs-12 col-sm-4" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px;">
+                <div style="margin-top:10px;">
+                    <a href="#" onclick="signUp();">Зарегистрироваться</a>
                 </div>
+            </div>
 
-            </form>
-   
+
+            <div class="col-xs-12 col-sm-4" style="font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 13px;">
+                <div style="margin-top:10px;">
+                    <a href="#" onclick="passReset();">Забыли пароль?</a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- pass_reset -->
+        <div id="pass_reset" class="row" style="display:none">
+            <div class="col-xs-12">
+
+                <h4 style="margin-top: 5px;">Забыли пароль?</h4>
+                <p>Предоставьте нам Ваш адрес электронной почты и инструкции по сбросу пароля будут отправлены на этот адрес.</p>
+                <form novalidate="novalidate">
+                    <input type="hidden" name="csrfmiddlewaretoken" value="8Lw6xryyTl2xyBavDi5gyQVkOZ1PXDnK">
+                    <div class="form-group">
+                        <input class="form-control" id="id_email" name="email" type="text" placeholder="Ваш адрес электронной почты">
+                    </div>
+                    <button id="reset-btn" class="btn btn-primary" data-loading-text="<i class='fa fa-refresh fa-spin'></i>" type="submit">Сбросить мой пароль</button>
+                    <buttom class="btn btn-default" onclick="signInMain();" type="button">Отмена</buttom>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
