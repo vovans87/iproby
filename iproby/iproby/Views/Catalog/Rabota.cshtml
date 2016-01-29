@@ -1,0 +1,31 @@
+﻿@{
+    if (ViewData["title"] != null)
+    {
+        ViewBag.Title = "IPROby.ru - Поиск работы. Компьютеры Интернет Мобильные Образование.";
+        ViewBag.Description = "IPROby.ru - Поиск работы. Компьютеры Интернет Мобильные Образование. Контакты и обратная связь на сайте.";
+        ViewBag.Keywords = "поиск работы, работа с компьютерами интернетом мобильными образованием";
+    }
+    else
+    {
+        ViewBag.Title = "IPROby.ru Поиск работников Компьютеры Интернет Мобильные Образование.";
+        ViewBag.Description = "IPROby.ru - Поиск работников в сфере Компьютеры Интернет Мобильные Образование. Контакты и обратная связь на сайте.";
+        ViewBag.Keywords = "поиск работников, работники в сфере компьютеры интернет мобильные образование";
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+@section Announs{
+    @{Html.RenderAction("Announs", "Catalog", new { target = "clients" });}
+}
+@section SeoFooter{
+    @{Html.RenderAction("SeoFooter", "News", new { type_id = 11 });}
+}
+@section News{
+    @{Html.RenderAction("Index", "News");}
+}
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}

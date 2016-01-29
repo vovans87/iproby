@@ -447,8 +447,8 @@ $(function () {
         $('.spros').css('color', 'white');
         $('.predlojenie').css('color', '#115a56');
         $('.predlojenie').css('background-image', 'none');
-        var predlojenie = target.substring(0, target.indexOf("Rabota#Rabota") - 1) + '#Rabotniki';
-        var spros = target + "/Rabota#Rabota";
+        var predlojenie = target.substring(0, target.indexOf("Rabota") - 1) + '/Service';
+        var spros = target + "/Rabota";
         spros = spros.replace('//', '/');
         $('.spros').attr('href', target);
         $('.predlojenie').attr('href', predlojenie);
@@ -457,7 +457,7 @@ $(function () {
         $('.predlojenie').css('color', 'white');
         $('.spros').css('color', '#115a56');
         $('.spros').css('background-image', 'none');
-        var spros = target.substring(0, target.indexOf("#Rabotniki") - 1) + "/Rabota#Rabota";
+        var spros = target.substring(0, target.indexOf("Service") - 1) + "/Rabota";
         
         $('.spros').attr('href', spros);
         $('.predlojenie').attr('href', target);

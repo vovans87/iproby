@@ -32,6 +32,11 @@ body.loading_bg .waiting_modal_bg {
     color: white;
 }
 
+.header_top_left > a:hover {
+        color: #fff000;
+}
+
+
 #enter {
     font-size: 13px;
     line-height: 3.7;
@@ -430,4 +435,10 @@ width: 880px; height: 45px; border: 2px solid #4C8EFA;
 }
 .vk_regist:hover {
     opacity:0.7;
+}
+.select_categ:hover {
+    cursor:pointer;
+}
+.select_categ option {
+    background-color: #f5f5f5;
 }

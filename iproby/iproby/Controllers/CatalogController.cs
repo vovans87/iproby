@@ -231,5 +231,15 @@ namespace iproby.Controllers
 
             return View(all_announs);
         }
+
+        public ActionResult Rabota(string target = "workers")
+        {
+            return View();
+        }
+
+        public ActionResult Service(string target = "workers")
+        {
+            return View();
+        }
     }
 }

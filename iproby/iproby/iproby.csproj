@@ -739,6 +739,8 @@
     <Content Include="Views\Cabinet\OKPayment.cshtml" />
     <Content Include="Views\Registration\Index.cshtml" />
     <Content Include="Views\Registration\RegistrationForm.cshtml" />
+    <Content Include="Views\Catalog\Rabota.cshtml" />
+    <Content Include="Views\Catalog\Service.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
