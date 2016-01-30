@@ -7,18 +7,19 @@
             <form role="form" action="/Announ/SearchResultAll" method="post" id="search_form">
                 <div style="margin-left:30px; width: 880px; height: 45px; background-color: white; -moz-border-radius: 4px;  -webkit-border-radius: 4px;  -khtml-border-radius: 4px; border-radius: 4px;  ">
                     <input style="width: 600px; float: left; border-top-right-radius: 0px; border-bottom-right-radius: 0px; " class="form-control search_text_input" type="text" placeholder="Введите ключевое слово. Например: биология" />
-                    <select class="select_categ" style="text-indent: 10px; background-color: #f5f5f5; float: left; height: 45px; width: 280px; border: 2px solid #4C8EFA; border-left: none; border-top-left-radius: 0px; border-bottom-left-radius: 0px; " class="form-control">
-                        <option>Все категории</option>
-                        <option>Ремонт компьютеров</option>
-                        <option>Ремонт оргтехники</option>
-                        <option>Создание сайтов</option>
-                        <option>Продвижение реклама</option>
-                        <option>Дизайн</option>
-                        <option>Ремонт телефонов</option>
-                        <option>Ремонт навигаторов</option>
-                        <option>Контрольные работы</option>
-                        <option>Репетиторы</option>
+                    <select onchange="location = this.options[this.selectedIndex].value;" class="select_categ" style="text-indent: 10px; background-color: #f5f5f5; float: left; height: 45px; width: 280px; border: 2px solid #4C8EFA; border-left: none; border-top-left-radius: 0px; border-bottom-left-radius: 0px; " class="form-control">
+                        <option value="/Catalog/Rabota">Все категории</option>
+                        <option value="/Catalog/Rabota/Remont-kompjuterov-noutbukov">Ремонт компьютеров</option>
+                        <option value="/Catalog/Rabota/Remont-orgtehniki">Ремонт оргтехники</option>
+                        <option value="/Catalog/Rabota/Sozdanie-sajtov">Создание сайтов</option>
+                        <option value="/Catalog/Rabota/Prodvizhenie-reklama">Продвижение реклама</option>
+                        <option value="/Catalog/Rabota/Dizajn">Дизайн</option>
+                        <option value="/Catalog/Rabota/Remont-telefonov">Ремонт телефонов</option>
+                        <option value="/Catalog/Rabota/Remont-navigatorov-videoregistratorov">Ремонт навигаторов</option>
+                        <option value="/Catalog/Rabota/Kontrolnye-Kursovye-Referaty-Diplomy">Контрольные работы</option>
+                        <option value="/Catalog/Rabota/Repetitory">Репетиторы</option>
                     </select>
+                    <script>$(".select_categ").val(location.href.substr(location.href.indexOf('/Catalog/Rabota/'), location.href.length)); </script>
                 </div>
                 <div class="find_btn">
                     <img src="~/Content/img/find_ico.png" style="margin-left:-15px;margin-top:-5px;" alt="search" /> <span style="font-family: Helvetica Bold; font-size: 16px; line-height: 2.8;color:white;margin-left:6px;">НАЙТИ</span>
