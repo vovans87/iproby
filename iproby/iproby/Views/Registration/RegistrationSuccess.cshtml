@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "IPROby.ru Регистрация";
+    ViewBag.Description = "IPROby.ru - Зарегистрируйтесь на сайте и расширьте свою клиенскую базу.";
+    ViewBag.Keywords = "поиск работников, работники в сфере компьютеры интернет мобильные образование";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderTop{
+    @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
+}
+
+@section RegistrationForm{
+
+    <h3>Спасибо за регистрацию!</h3>
+    <p>Теперь вы можете пользоваться своим<br /> логином и паролем.</p>
+    <p>Надеемся Вам доставит удовольствие пользование сервисом. Если возникнут вопросы обязательно пишите на Форуме или лично разработчику.</p>
+    <p>Спасибо и Добро Пожаловать!</p>
+
+    @Html.ActionLink("На главную", "Index", "Home", null, new { @class = "btn btn-link" })
+    
+}
+
+@section Footer{
+    @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))
+}

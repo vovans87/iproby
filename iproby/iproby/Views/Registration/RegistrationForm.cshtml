@@ -1,10 +1,7 @@
 ﻿<div class="row b-layout g-txt_center" style="text-align: center">
 
-    <form id="form_reg" name="form_reg" method="POST">
-        <input type="hidden" name="action" value="step1">
-        <input type="hidden" name="user_action" value="">
-        <input type="hidden" name="redirect" value="">
-
+    <form class="reg_form_st" role="form" action="/Authorization/Registration" method="post" data-toggle="validator" data-disable=false data-delay=100>
+    
 
 
         <div class="b-layout b-layout_gradpane ">
@@ -28,15 +25,15 @@
                 </div>
             </div>
 
-            <div id="employer-txt" style="display:none; margin-top:100px; width:100%; color: #333 !important; line-height: 44px; font-size: 30px;" >
+            <div id="employer-txt" style="display:none; margin-top:100px; width:100%; color: #333 !important; line-height: 44px; font-size: 30px;">
                 Зарегистрируйся и размести проект: <br>
                 мы подберем тебе <strong>лучших исполнителей</strong> с гарантией <br>
-                выполнения работы <strong>в срок</strong> через <strong>безопасную сделку!</strong>
+                выполнения работы <strong>в срок</strong> через <strong> сделку!</strong>
             </div>
 
-            <div id="freelancer-txt" style="color: #333 !important; margin-top: 100px;  width: 100%; line-height: 44px; font-size: 30px; " >
+            <div id="freelancer-txt" style="color: #333 !important; margin-top: 100px;  width: 100%; line-height: 44px; font-size: 30px; ">
                 Регистрируйся и зарабатывай <strong>с гарантией оплаты</strong> проектов <br>
-                от более чем <strong>10&nbsp;000 лучших заказчиков</strong> рунета, <br>
+                от более чем <strong>1&nbsp;000 лучших заказчиков</strong> рунета, <br>
                 увеличивай свой рейтинг и доход <strong>на постоянном потоке заказов.</strong>
             </div>
 
@@ -54,50 +51,51 @@
 
                 <table style="width:100%;;">
                     <tbody>
-                        <tr >
-                            <td >
-                                <div style="padding-bottom: 30px;">
+                        <tr>
+                            <td>
+                                <div style="padding-bottom: 30px; margin-bottom: 0px; " class="form-group has-feedback">
                                     <div style=" height:60px;">
-                                        <input type="text" style=" width:100%;   height: 60px;
+                                        <label class="b-combo__label" for="email"></label>
+                                        <input type="email" data-error="Bruh, that email address is invalid" data-minlength="6" style=" width:100%;   height: 60px; border-radius:0px;
     line-height: 60px!important;
     font-size: 18px!important;
     padding-left: 20px!important;
-    padding-right: 20px!important;" placeholder="Email">
-                                        <label class="b-combo__label" for="reg_email"></label>
+    padding-right: 20px!important;" placeholder="Email" class="form-control" id="InputEmail" name="email" maxlength="100" required>
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true" style="display:inline-block;height:100%;line-height:3.5"></span>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
 
-                               
+
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <div style="padding-bottom: 30px;">
+                                <div style="padding-bottom: 30px; margin-bottom: 0px;height:110px;" class="form-group has-feedback">
                                     <div style="height: 60px;">
                                         <a onclick="show_password()" href="javascript:void(0)" tabindex="10000"></a>
-                                        <input style=" width:100%;   height: 60px;
-    line-height: 60px!important;
-    font-size: 18px!important;
-    padding-left: 20px!important;
-    padding-right: 20px!important;" type="password" autocomplete="off" placeholder="Пароль">
                                         <label class="b-combo__label" for="reg_password"></label>
+                                        <input data-error="Minimum of 6 characters" data-minlength="6" style="width: 100%; height: 60px; border-radius: 0px;  line-height: 60px !important; font-size: 18px !important; padding-left: 20px !important; padding-right: 20px !important; " type="password" autocomplete="off" placeholder="Пароль" class="form-control" id="InputPassword" name="password" maxlength="100" required />
+
+                                        <span class="glyphicon form-control-feedback" aria-hidden="true" style="display:inline-block;height:100%;line-height:3.5"></span>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
 
-                                
+
                             </td>
                         </tr>
 
-                        <tr >
-                            <td >
+                        <tr>
+                            <td>
                                 <div style=" padding: 0; margin: 0; border: 0;">
-                                    <button type="submit" id="send_btn" style=" width:100%;color: #FFF; background: #d9d9d9; border-bottom-color: #d9d9d9; height: 80px !important; font-size: 18px; text-transform: uppercase; ">
+                                    <button type="submit" class="btn btn-primary" id="send_btn" style="border-radius: 0px; border:0px; width: 100%; color: #FFF; background: #d9d9d9; border-bottom-color: #d9d9d9; height: 80px !important; font-size: 18px; text-transform: uppercase; ">
                                         Зарегистрироваться
                                     </button>
                                     <div style="color: #838383 !important; font-size: 12px; text-align: left; padding-top: 10px; ">
                                         Нажимая на кнопку «Зарегистрироваться», я соглашаюсь с
                                         <a href="//userecho.com/terms-of-service/" target="_blank">правилами пользования сайтом.</a>
-                                        
+
                                     </div>
                                 </div>
                             </td>
@@ -114,7 +112,7 @@
 
             <div style="width:550px;margin:0 auto;height:100px;">
                 <a class="vk_regist" style="display:block;float:left;background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px;  line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; width: 154px; background: url('/Content/img/vk_ico_btn.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'vk'}" href="/auth/?param=vkontakte"></a>
-                <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 145px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/facebook_ico_reg.png'); "  data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
+                <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 145px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/facebook_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
                 <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/odnoklassniki_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
             </div>
 
@@ -131,6 +129,34 @@
     </form>
 </div>
 <script>
+    $(document).ready(function () {
+        $('#InputEmail').validator().on('valid.bs.validator', function (e) {
+            if (e.type == 'valid') {
+                $('#send_btn').css('background', '#44b275');
+            };
+        }
+        );
+        $('#InputEmail').validator().on('invalid.bs.validator', function (e) {
+            if (e.type == 'invalid') {
+                 $('#send_btn').css('background', '#d9d9d9');
+            };
+        }
+);
+        $('#InputPassword').validator().on('valid.bs.validator', function (e) {
+         
+            if (e.type == 'valid') {
+                $('#send_btn').css('background', '#44b275');
+            };
+        }
+        );
+        $('#InputPassword').validator().on('invalid.bs.validator', function (e) {
+            if (e.type == 'invalid') {
+                $('#send_btn').css('background', '#d9d9d9');
+            };
+        }
+);
+        
+    })
     $(function () {
         $('input[type="radio"]').click(function () {
             

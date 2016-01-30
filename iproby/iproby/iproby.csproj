@@ -76,8 +76,9 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
-    <Reference Include="SAPE">
-      <HintPath>..\..\..\iproby\iproby\bin\SAPE.dll</HintPath>
+    <Reference Include="SAPE, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\SAPE.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -741,6 +742,9 @@
     <Content Include="Views\Registration\RegistrationForm.cshtml" />
     <Content Include="Views\Catalog\Rabota.cshtml" />
     <Content Include="Views\Catalog\Service.cshtml" />
+    <Content Include="Views\Registration\RegistrationStep2.cshtml" />
+    <Content Include="Views\Registration\RegistrationStep2Form.cshtml" />
+    <Content Include="Views\Registration\RegistrationSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

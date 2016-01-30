@@ -1,0 +1,66 @@
+﻿<form role="form" action="/Authorization/Registration" method="post" data-toggle="validator" data-disable=false data-delay=100>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Укажите Ваши контактные данные</h4>
+    </div>
+    <div class="modal-body result return_result">
+        <div class="row return_wait">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+
+
+                <div class="form-group has-feedback">
+                    <label for="InputFio" class="control-label add_asterisk">ФИО</label>
+                    <input type="text" class="form-control" id="InputFio" placeholder="ФИО" name="first_name" maxlength="100" required>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="address" class="control-label add_asterisk">Город</label>
+                    <input type="text" class="form-control" id="address" placeholder="Город " name="address" maxlength="100" required>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <label for="phonenum" class="control-label add_asterisk">Мобильный телефон</label>
+                    <input type="tel" class="form-control phone" id="phonenum" placeholder="Mobile " name="mobile" required>
+                    <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <div class="form-group">
+                    <label for="InputSkype">Skype</label>
+                    <input type="text" class="form-control" id="InputSkype" placeholder="Skype" maxlength="100" name="skype">
+                </div>
+                <div class="form-group">
+                    <label for="facebook">Facebook</label>
+                    <input type="text" class="form-control" id="InputFacebook" placeholder="Facebook" maxlength="100" name="facebook">
+                </div>
+                <div class="form-group">
+                    <label for="vkontakte">Vkontakte</label>
+                    <input type="text" class="form-control" id="InputVkontakte" placeholder="Vkontakte" maxlength="100" name="vkontakte">
+                </div>
+                <div class="form-group">
+                    <label for="site">Site</label>
+                    <input type="text" class="form-control" id="InputSite" placeholder="Site" maxlength="100" name="site">
+                </div>
+                <div class="form-group">
+                    <label for="icq">ICQ</label>
+                    <input type="text" class="form-control" id="Inputicq" placeholder="ICQ" maxlength="100" name="icq">
+                </div>
+                <div class="form-group" style="display:none;">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="terms" data-error="Необходимо принять правила пользования" required>
+                            C правилами пользования согласен.
+                        </label>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+            <input type="submit" class="btn btn-primary loading-wait-btn" data-loading-text="Обработка..." value="Продолжить">
+        </div>
+    </div>
+
+</form>
+<div class="col-md-2"></div>
