@@ -18,7 +18,7 @@
     @Html.Partial(Url.Content("~/Views/Home/HeaderTop.cshtml"))
 }
 @section Announs{
-    @{Html.RenderAction("Announs", "Catalog", null);}
+    @Html.Partial(Url.Content("~/Views/Catalog/Announs.cshtml"))
 }
 @section Footer{
     @Html.Partial(Url.Content("~/Views/Home/Footer.cshtml"))

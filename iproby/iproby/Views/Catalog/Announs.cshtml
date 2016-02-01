@@ -3,29 +3,55 @@
                
              @if (Model.Count > 0 && Model[0].from_search_flag == 0)
              {
+                 var target="Service";
+                 if (Model[0].target=="clients"){
+                     target = "Rabota";
+                 }
+                 var short_type = Request.Params["short_type"];
+                 var type_id = Request.Params["type_id"];                     
+                 if (short_type != null) { 
         <div style="padding-top: 28px; margin: 0 auto; margin-top: 33px; width: 1100px; height: 100px; background-color: #44b375; -moz-border-radius: 4px; -webkit-border-radius: 4px; /* Safari, Chrome */ -khtml-border-radius: 4px; /* KHTML */ border-radius: 4px; ">
+            <form role="form" action="/Announ/SearchResultAllTarget" method="post" id="search_form">
+                <div style="margin-left:30px; width: 880px; height: 45px; background-color: white; -moz-border-radius: 4px;  -webkit-border-radius: 4px;  -khtml-border-radius: 4px; border-radius: 4px;  ">
+                    <input type="hidden" name="target" value="@Model[0].target">
+                    <input type="hidden" name="type_id" value="@type_id">
+                    <input name="search_text" style="width: 600px; float: left; border-top-right-radius: 0px; border-bottom-right-radius: 0px; " class="form-control search_text_input" type="text" placeholder="Введите ключевое слово. Например: биология" />
+                    <select onchange="location = this.options[this.selectedIndex].value;" class="select_categ form-control" style="text-indent: 10px; background-color: #f5f5f5; float: left; height: 45px; width: 280px; border: 2px solid #4C8EFA; border-left: none; border-top-left-radius: 0px; border-bottom-left-radius: 0px; ">
+                        <option value="/Catalog/@target">Все категории</option>
+                        <option value="/Catalog/@target/Remont-kompjuterov-noutbukov">Ремонт компьютеров</option>
+                        <option value="/Catalog/@target/Remont-orgtehniki">Ремонт оргтехники</option>
+                        <option value="/Catalog/@target/Sozdanie-sajtov">Создание сайтов</option>
+                        <option value="/Catalog/@target/Prodvizhenie-reklama">Продвижение реклама</option>
+                        <option value="/Catalog/@target/Dizajn">Дизайн</option>
+                        <option value="/Catalog/@target/Remont-telefonov">Ремонт телефонов</option>
+                        <option value="/Catalog/@target/Remont-navigatorov-videoregistratorov">Ремонт навигаторов</option>
+                        <option value="/Catalog/@target/Kontrolnye-Kursovye-Referaty-Diplomy">Контрольные работы</option>
+                        <option value="/Catalog/@target/Repetitory">Репетиторы</option>
+                    </select>
+                    <script>if (location.href.indexOf('/Catalog/Rabota/') > -1) { $(".select_categ").val(location.href.substr(location.href.indexOf('/Catalog/Rabota/'), location.href.length)); }</script>
+                    <script>if (location.href.indexOf('/Catalog/Service/') > -1) { $(".select_categ").val(location.href.substr(location.href.indexOf('/Catalog/Service/'), location.href.length)); }</script>
+                </div>
+
+                <button class="find_btn_types find_btn" style="border:none;" onclick="return false">
+                    <img src="~/Content/img/find_ico.png" style="margin-left:-15px;margin-top:-5px;" alt="search" /> <span style="font-family: Helvetica Bold; font-size: 16px; line-height: 2.8;color:white;margin-left:6px;">НАЙТИ</span>
+                </button>
+            </form>
+        </div>
+                 }
+                 else
+                 {
+<div style="padding-top: 28px; margin: 0 auto; margin-top: 33px; width: 1100px; height: 100px; background-color: #44b375; -moz-border-radius: 4px; -webkit-border-radius: 4px; /* Safari, Chrome */ -khtml-border-radius: 4px; /* KHTML */ border-radius: 4px; ">
             <form role="form" action="/Announ/SearchResultAll" method="post" id="search_form">
                 <div style="margin-left:30px; width: 880px; height: 45px; background-color: white; -moz-border-radius: 4px;  -webkit-border-radius: 4px;  -khtml-border-radius: 4px; border-radius: 4px;  ">
-                    <input style="width: 600px; float: left; border-top-right-radius: 0px; border-bottom-right-radius: 0px; " class="form-control search_text_input" type="text" placeholder="Введите ключевое слово. Например: биология" />
-                    <select onchange="location = this.options[this.selectedIndex].value;" class="select_categ" style="text-indent: 10px; background-color: #f5f5f5; float: left; height: 45px; width: 280px; border: 2px solid #4C8EFA; border-left: none; border-top-left-radius: 0px; border-bottom-left-radius: 0px; " class="form-control">
-                        <option value="/Catalog/Rabota">Все категории</option>
-                        <option value="/Catalog/Rabota/Remont-kompjuterov-noutbukov">Ремонт компьютеров</option>
-                        <option value="/Catalog/Rabota/Remont-orgtehniki">Ремонт оргтехники</option>
-                        <option value="/Catalog/Rabota/Sozdanie-sajtov">Создание сайтов</option>
-                        <option value="/Catalog/Rabota/Prodvizhenie-reklama">Продвижение реклама</option>
-                        <option value="/Catalog/Rabota/Dizajn">Дизайн</option>
-                        <option value="/Catalog/Rabota/Remont-telefonov">Ремонт телефонов</option>
-                        <option value="/Catalog/Rabota/Remont-navigatorov-videoregistratorov">Ремонт навигаторов</option>
-                        <option value="/Catalog/Rabota/Kontrolnye-Kursovye-Referaty-Diplomy">Контрольные работы</option>
-                        <option value="/Catalog/Rabota/Repetitory">Репетиторы</option>
-                    </select>
-                    <script>$(".select_categ").val(location.href.substr(location.href.indexOf('/Catalog/Rabota/'), location.href.length)); </script>
-                </div>
+                    <input style="width: 880px; float: left; border-top-right-radius: 0px; border-bottom-right-radius: 0px; " class="form-control search_text_input" type="text" placeholder="Введите ключевое слово. Например: биология" />
+            </div>
+            
                 <div class="find_btn">
                     <img src="~/Content/img/find_ico.png" style="margin-left:-15px;margin-top:-5px;" alt="search" /> <span style="font-family: Helvetica Bold; font-size: 16px; line-height: 2.8;color:white;margin-left:6px;">НАЙТИ</span>
                 </div>
             </form>
         </div>
+                 }
 
         <div style="width: 1100px; margin:20px auto; font-family: Helvetica Bold; font-size: 18px;height:15px;" class="announ_types">
             <a class="predlojenie">
@@ -58,135 +84,130 @@
             </div>
         </div>
         }
-        <div class="search_result_block">
-            @if (Model.Count > 0)
-                           {
-                               foreach (var item in Model)
-                               {
-                                <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:30px;">
-                                    <div style="width: 240px; height: 170px; border-right: 5px solid @{if(@item.status_vip_flag==1){<text>#f5ab35</text>}else{<text>#f6f8f9</text>}};float:left;">
-                                        <div style="display:table;width: 240px; height: 80px;padding:10px;">
-                                            <div style="display:table-row;">
-                                                <div style="display:table-cell;width:30%;">
-                                                    @{
-                                   if (item.avatar != null)
-                                   {
-                                    <div style="width: 58px; height: 58px; -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;overflow:hidden;">
-                                        <img src="~/Content/img/user_img/@item.avatar" alt="avatar" style="margin-top:-1px;margin-left:-1px;" />
+        <div class="search_result_block return_result_search">
+    @if (Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="row announ" style="width:1100px;height:170px;background-color:white;margin:0 auto;margin-top:30px;">
+                <div style="width: 240px; height: 170px; border-right: 5px solid @{if(@item.status_vip_flag==1){<text>#f5ab35</text>}else{<text>#f6f8f9</text>}};float:left;">
+                    <div style="display:table;width: 240px; height: 80px;padding:10px;">
+                        <div style="display:table-row;">
+                            <div style="display:table-cell;width:30%;">
+                                @{
+            if (item.avatar != null)
+            {
+                <div style="width: 58px; height: 58px; -moz-border-radius: 40px; -webkit-border-radius: 40px; -khtml-border-radius: 40px; border-radius: 40px;overflow:hidden;">
+                    <img src="~/Content/img/user_img/@item.avatar" alt="avatar" style="margin-top:-1px;margin-left:-1px;" />
+                </div>
+            }
+            else
+            {
+                <img src="~/Content/img/no_logo.png" style=" " alt="avatar" />
+            }
+                                }
+                            </div>
+                            <div style="display:table-cell;width:70%;vertical-align:top;">
+                                <div style="display:table;height:100%;margin-left:10px;">
+                                    <div style="display:table-row;">
+                                        <div style="font-family: Helvetica Bold; font-size: 14px;   color: #115a56;">@item.first_name</div>
                                     </div>
-                                   }
-                                   else
-                                   {
-                                    <img src="~/Content/img/no_logo.png" style=" " alt="avatar" />
-                                   }
-                                                    }
-                                                </div>
-                                                <div style="display:table-cell;width:70%;vertical-align:top;">
-                                                    <div style="display:table;height:100%;margin-left:10px;">
-                                                        <div style="display:table-row;">
-                                                            <div style="font-family: Helvetica Bold; font-size: 14px;   color: #115a56;">@item.first_name</div>
-                                                        </div>
-                                                        <div style="display:table-row;">
-                                                            <div style="font-family: Helvetica; font-size: 11px;  color: #44beb7;">
-                                                                <img src="~/Content/img/city_ico.png" style="" alt="address" />&nbsp;@item.address
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                    <div style="display:table-row;">
+                                        <div style="font-family: Helvetica; font-size: 11px;  color: #44beb7;">
+                                            <img src="~/Content/img/city_ico.png" style="" alt="address" />&nbsp;@item.address
                                         </div>
-                                        <div style="display:table;width: 240px; height: 80px;">
-                                            <div style="display:table-row;">
-                                                <div style="margin-left:40px;float:left;margin-top:0px;">
-                                                    <img src="~/Content/img/phone.png" style="padding-right:5px;" alt="phone" />
-                                                    <span style="font-family: Helvetica Bold; font-size: 12px; color: #00a79d;">
-                                                        mobile&nbsp;&nbsp;
-                                                        <span style="text-decoration:underline" data-mobile="@item.mobile" onclick="$(this).text($(this).attr('data-mobile'))">Показать</span>
-                                                    </span>
-                                                </div>
-                                                <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
-                                                    <a style="text-decoration: none; margin-left: 35px;" data-toggle="tooltip" title="@item.email" rel="nofollow" href="mailto:@item.email">
-                                                        <img src="~/Content/img/announ_social_mail_ico.png" alt="skype" />
-                                                    </a>
-                                                    <a style="text-decoration:none;margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.skype" rel="nofollow" href="skype:@item.skype?chat">
-                                                        <img src="~/Content/img/announ_social_skype_ico.png" alt="skype" />
-                                                    </a>
-                                                    <a style="text-decoration: none; margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.vkontakte" rel="nofollow" href="#">
-                                                        <img src="~/Content/img/announ_social_vkontakte_ico.png" alt="vkontakte" />
-                                                    </a>
-                                                    <a style="text-decoration: none; margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.facebook" rel="nofollow" href="#">
-                                                        <img src="~/Content/img/announ_social_facebook_ico.png" alt="facebook" />
-                                                    </a>
-
-                                                    @*<span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>*@
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div style="width:860px;height:170px;float:left;">
-
-                                        <div style="display:block;height:40px;overflow:hidden;">
-                                            <div style="font-family: Helvetica Bold; font-size: 16px; color: #446cb3; margin-left: 20px; margin-top: 17px;">
-                                                <a href="/Announ?announ_id=@item.announ_id" style=" border-bottom: 1px solid #446cb3; text-decoration: none;">
-                                                    <h2 style="font-family: Helvetica Bold; font-size: 16px; color: #446cb3; border-bottom: 1px solid #446cb3; display:inline;">@item.header</h2>
-                                                </a>
-                                            </div>
-                                            @{if (@item.status_vip_flag == 1)
-                                               {
-                                                <div style="width: 50px; height: 30px; background-color: #f5ab35; float: right; margin-top: -40px; font-family: Helvetica Bold; font-size: 12px; color:white;text-align:center;line-height:30px;">
-                                                    VIP
-                                                </div>
-                                               }
-                                            };
-
-                                        </div>
-                                        <div style="display:block;height:20px;overflow:hidden;">
-                                            <div class="write_message" data-customer_id="@item.customer_id" style="float:right;font-family: Helvetica Bold; font-size: 12px; color: #446cb3;margin-top:3px;margin-right:40px; border-bottom:1px solid #446cb3;height:16px;">
-                                                Написать личное сообщение
-                                            </div>
-                                            <img src="~/Content/img/announ_letter_ico3.png" style="margin-right:10px;float:right;margin-top:6px;" alt="letter" />
-                                            <div style="margin-left: 20px; ">
-                                                <img src="~/Content/img/star_active.png" alt="star" />
-                                                <img src="~/Content/img/star_active.png" alt="star" />
-                                                <img src="~/Content/img/star_active.png" alt="star" />
-                                                <img src="~/Content/img/star_active.png" alt="star" />
-                                                <img src="~/Content/img/star_inactive.png" alt="star" />
-                                                <a href="/Announ?announ_id=@item.announ_id" style="color: #f5ab35; font-family: Helvetica Bold; font-size: 12px; margin-left:20px;text-decoration:underline;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = item.announ_id });} отзывов</a>
-                                            </div>
-                                        </div>
-                                        <div style="display:block;height:83px;width:825px;overflow:hidden;">
-                                            <div style="font-family: Helvetica; font-size: 12px; line-height: 2.2;margin-left:-20px;">
-                                                <ul><li style="list-style-type: none; padding: 0; margin:0;">@item.description</li></ul>
-                                                <input type="hidden" class="is_index_flag" value="@item.is_index_flag">
-                                                <input type="hidden" class="announ_type_id" value="@item.type_id">
-                                            </div>
-
-                                        </div>
-                                        <div style="display:block;height:27px;overflow:hidden;">
-                                            <div style=" color: #888888; font-family: Helvetica; font-size: 11px; ">
-                                                <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" alt="calendar" />@item.date_from
-                                                <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " alt="visits" />@{Html.RenderAction("GetVisits", "Announ", new { announ_id = item.announ_id });}
-                                                @if (@item.subjects != null) {
-                                                    <div style="float: right; width: 480px; overflow: hidden; margin-right: 150px; height: 15px;">Предметы: @item.subjects</div>
-                                                   }
-                                                <div style="position: absolute; display: table; margin-left: 700px; margin-top:-8px; position: absolute; z-index: 1; width:141px;height:30px; vertical-align:middle;text-align:center; background-image: url(/Content/img/like_dislike.png)">
-                                                    <span>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                                    <div class="like_btn" data-announ_id="@item.announ_id" style="display: table-cell; text-align:center; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = item.announ_id });}</div>
-                                                    <span>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                                    <div class="dislike_btn" data-announ_id="@item.announ_id" style="display: table-cell; text-align: center; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle; ">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = item.announ_id });}</div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
                                     </div>
                                 </div>
-                               }
-                           }
-        </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display:table;width: 240px; height: 80px;">
+                        <div style="display:table-row;">
+                            <div style="margin-left:40px;float:left;margin-top:0px;">
+                                <img src="~/Content/img/phone.png" style="padding-right:5px;" alt="phone" />
+                                <span style="font-family: Helvetica Bold; font-size: 12px; color: #00a79d;">
+                                    mobile&nbsp;&nbsp;
+                                    <span style="text-decoration:underline" data-mobile="@item.mobile" onclick="$(this).text($(this).attr('data-mobile'))">Показать</span>
+                                </span>
+                            </div>
+                            <div class="social_band" style="margin-top: 10px; float: left; padding:8px; margin-left: 20px; width: 200px; height: 40px; background: url(/Content/img/announ_social_bg.png) no-repeat left; background-size: 195px 40px; ">
+                                <a style="text-decoration: none; margin-left: 35px;" data-toggle="tooltip" title="@item.email" rel="nofollow" href="mailto:@item.email">
+                                    <img src="~/Content/img/announ_social_mail_ico.png" alt="skype" />
+                                </a>
+                                <a style="text-decoration:none;margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.skype" rel="nofollow" href="skype:@item.skype?chat">
+                                    <img src="~/Content/img/announ_social_skype_ico.png" alt="skype" />
+                                </a>
+                                <a style="text-decoration: none; margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.vkontakte" rel="nofollow" href="#">
+                                    <img src="~/Content/img/announ_social_vkontakte_ico.png" alt="vkontakte" />
+                                </a>
+                                <a style="text-decoration: none; margin-left: 0px;" data-toggle="tooltip" onclick="return false;" title="@item.facebook" rel="nofollow" href="#">
+                                    <img src="~/Content/img/announ_social_facebook_ico.png" alt="facebook" />
+                                </a>
+                                @*<span style="font-family: Helvetica Bold; font-size: 10px; color: #00a79d; ">ОБО МНЕ</span>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="width:860px;height:170px;float:left;">
+                    <div style="display:block;height:40px;overflow:hidden;">
+                        <div style="font-family: Helvetica Bold; font-size: 16px; color: #446cb3; margin-left: 20px; margin-top: 17px;">
+                            <a href="/Announ?announ_id=@item.announ_id" style=" border-bottom: 1px solid #446cb3; text-decoration: none;">
+                                <h2 style="font-family: Helvetica Bold; font-size: 16px; color: #446cb3; border-bottom: 1px solid #446cb3; display:inline;">@item.header</h2>
+                            </a>
+                        </div>
+                        @{if (@item.status_vip_flag == 1)
+                        {
+                            <div style="width: 50px; height: 30px; background-color: #f5ab35; float: right; margin-top: -40px; font-family: Helvetica Bold; font-size: 12px; color:white;text-align:center;line-height:30px;">
+                                VIP
+                            </div>
+                        }
+                        };
+
+                    </div>
+                    <div style="display:block;height:20px;overflow:hidden;">
+                        <div class="write_message" data-customer_id="@item.customer_id" style="float:right;font-family: Helvetica Bold; font-size: 12px; color: #446cb3;margin-top:3px;margin-right:40px; border-bottom:1px solid #446cb3;height:16px;">
+                            Написать личное сообщение
+                        </div>
+                        <img src="~/Content/img/announ_letter_ico3.png" style="margin-right:10px;float:right;margin-top:6px;" alt="letter" />
+                        <div style="margin-left: 20px; ">
+                            <img src="~/Content/img/star_active.png" alt="star" />
+                            <img src="~/Content/img/star_active.png" alt="star" />
+                            <img src="~/Content/img/star_active.png" alt="star" />
+                            <img src="~/Content/img/star_active.png" alt="star" />
+                            <img src="~/Content/img/star_inactive.png" alt="star" />
+                            <a href="/Announ?announ_id=@item.announ_id" style="color: #f5ab35; font-family: Helvetica Bold; font-size: 12px; margin-left:20px;text-decoration:underline;">@{Html.RenderAction("GetReviews", "Announ", new { announ_id = item.announ_id });} отзывов</a>
+                        </div>
+                    </div>
+                    <div style="display:block;height:83px;width:825px;overflow:hidden;">
+                        <div style="font-family: Helvetica; font-size: 12px; line-height: 2.2;margin-left:-20px;">
+                            <ul><li style="list-style-type: none; padding: 0; margin:0;">@item.description</li></ul>
+                            <input type="hidden" class="is_index_flag" value="@item.is_index_flag">
+                            <input type="hidden" class="announ_type_id" value="@item.type_id">
+                        </div>
+                    </div>
+                    <div style="display:block;height:27px;overflow:hidden;">
+                        <div style=" color: #888888; font-family: Helvetica; font-size: 11px; ">
+                            <img src="~/Content/img/calendar_ico.png" style="padding-right: 5px; margin-top: -3px; margin-left: 20px;" alt="calendar" />@item.date_from
+                            <img src="~/Content/img/view_ico.png" style="margin-left: 25px; padding-right: 5px; margin-top: -3px; " alt="visits" />@{Html.RenderAction("GetVisits", "Announ", new { announ_id = item.announ_id });}
+                            @if (@item.subjects != null)
+                            {
+                                <div style="float: right; width: 480px; overflow: hidden; margin-right: 150px; height: 15px;">Предметы: @item.subjects</div>
+                            }
+                            <div style="position: absolute; display: table; margin-left: 700px; margin-top:-8px; position: absolute; z-index: 1; width:141px;height:30px; vertical-align:middle;text-align:center; background-image: url(/Content/img/like_dislike.png)">
+                                <span>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="like_btn" data-announ_id="@item.announ_id" style="display: table-cell; text-align:center; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle;">@{Html.RenderAction("GetLikes", "Announ", new { announ_id = item.announ_id });}</div>
+                                <span>  &nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                <div class="dislike_btn" data-announ_id="@item.announ_id" style="display: table-cell; text-align: center; width: 50%; height: 100%; font-family: Helvetica; z-index: 2; font-size: 11px; color: white; vertical-align: middle; ">@{Html.RenderAction("GetDislikes", "Announ", new { announ_id = item.announ_id });}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
 
         <div class="row" style=" margin: 0 auto; width: 1100px; height: 50px;  "></div>
 

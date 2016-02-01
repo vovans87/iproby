@@ -480,3 +480,25 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
 });
 
+
+$(document).ready(function () {
+    $('.find_btn_types').click(function () {
+    $.ajax({
+        url: this.action,
+        type: this.method,
+        data: $(this).serialize(),
+        beforeSend: function () {
+            //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
+            $('.loading-wait-btn').button('loading');
+        },
+        success: function (result) {
+            //$('.modal-footer').addClass('hide');
+            $('.loading-wait-btn').button('reset');
+            $('.return_result_search').html(result);
+            //setTimeout(function () {
+            //    location.reload();
+            //}, 5000)
+        }
+    });
+    });
+});
