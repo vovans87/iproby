@@ -11,7 +11,7 @@
                  var type_id = Request.Params["type_id"];                     
                  if (short_type != null) { 
         <div style="padding-top: 28px; margin: 0 auto; margin-top: 33px; width: 1100px; height: 100px; background-color: #44b375; -moz-border-radius: 4px; -webkit-border-radius: 4px; /* Safari, Chrome */ -khtml-border-radius: 4px; /* KHTML */ border-radius: 4px; ">
-            <form role="form" action="/Announ/SearchResultAllTarget" method="post" id="search_form">
+            <form role="form" class="find_btn_types_form" action="/Announ/SearchResultAllTarget" method="post" id="search_form">
                 <div style="margin-left:30px; width: 880px; height: 45px; background-color: white; -moz-border-radius: 4px;  -webkit-border-radius: 4px;  -khtml-border-radius: 4px; border-radius: 4px;  ">
                     <input type="hidden" name="target" value="@Model[0].target">
                     <input type="hidden" name="type_id" value="@type_id">
@@ -32,7 +32,7 @@
                     <script>if (location.href.indexOf('/Catalog/Service/') > -1) { $(".select_categ").val(location.href.substr(location.href.indexOf('/Catalog/Service/'), location.href.length)); }</script>
                 </div>
 
-                <button class="find_btn_types find_btn" style="border:none;" onclick="return false">
+                <button class="find_btn_types " style="border:none;" type="submit">
                     <img src="~/Content/img/find_ico.png" style="margin-left:-15px;margin-top:-5px;" alt="search" /> <span style="font-family: Helvetica Bold; font-size: 16px; line-height: 2.8;color:white;margin-left:6px;">НАЙТИ</span>
                 </button>
             </form>
@@ -67,7 +67,7 @@
         <div class="search_message_info" style=" margin: 0 auto; margin-top: 20px; width: 1100px;">
             <div style="display:table;width:100%;">
                 <div style="display:table-cell;width:30%;">
-                    По запросу <span style="color:blue;font-weight:bold;" class="search_text_info"></span>
+                    По запросу <span style="color:blue;font-weight:bold;" class="search_text_info">@ViewData["search_text"]</span>
 
                     <br />
                     Было найдено <span style="color:blue;"><b>@Model.Count()</b></span> результатов.
@@ -84,7 +84,7 @@
             </div>
         </div>
         }
-        <div class="search_result_block return_result_search">
+        <div class="search_result_block return_result_search" style="min-height:200px;">
     @if (Model.Count > 0)
     {
         foreach (var item in Model)

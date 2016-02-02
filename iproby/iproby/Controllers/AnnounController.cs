@@ -474,7 +474,7 @@ namespace iproby.Controllers
             }
         }
 
-        public ActionResult SearchResultAllTarget(string search_text, string target="workers")
+        public ActionResult SearchResultAllTarget(string search_text, string target="workers", int type_id=0)
         {
             if (search_text.Length > 2 && search_text.Length < 200)
             {
@@ -484,14 +484,29 @@ namespace iproby.Controllers
                 search_text_db.date_from = date_from1;
                 db.search_texts.Add(search_text_db);
                 db.SaveChanges();
-                var announ_id_arr = (from a in db.announs
-                                     where (a.description.Contains(search_text)
-                                     || a.header.Contains(search_text)
-                                     || a.about.Contains(search_text)
-                                     || a.subjects.Contains(search_text))
-                                     join db_target in db.announ_target on a.id equals db_target.announ_id
-                                     where db_target.target_type.Contains(target)
-                                     select a);
+                var announ_id_arr = Enumerable.Empty<iproby.Data_Model.announ>().AsQueryable();
+                if (type_id == 0)
+                {
+                     announ_id_arr = (from a in db.announs
+                                         where (a.description.Contains(search_text)
+                                         || a.header.Contains(search_text)
+                                         || a.about.Contains(search_text)
+                                         || a.subjects.Contains(search_text))
+                                         join db_target in db.announ_target on a.id equals db_target.announ_id
+                                         where db_target.target_type.Contains(target)
+                                         select a);
+                }
+                else {
+                     announ_id_arr = (from a in db.announs
+                                         where ((a.description.Contains(search_text)
+                                         || a.header.Contains(search_text)
+                                         || a.about.Contains(search_text)
+                                         || a.subjects.Contains(search_text))
+                                         && a.type_id == type_id)
+                                         join db_target in db.announ_target on a.id equals db_target.announ_id
+                                         where db_target.target_type.Contains(target)
+                                         select a);
+                }
                 int announ_id = 0;
                 List<iproby.Models.announ_preview> all_announs = new List<iproby.Models.announ_preview>();
                 foreach (var item in announ_id_arr)
@@ -547,8 +562,10 @@ namespace iproby.Controllers
                         announ.date_from = date_from;
 
                     }
+                    announ.from_search_flag = 1;
                     all_announs.Add(announ);
                 }
+                ViewData["search_text"] = search_text;
 
                 return View("~/Views/Catalog/Announs.cshtml", all_announs);
             }

@@ -42,7 +42,7 @@ namespace iproby.Controllers
                 var customer_ex = db.customers.Find(customer_id.First());
                 customer_ex.contact_id = contact.contact_id;
                 db.SaveChanges();
-                return View("~/Views/Registration/RegistrationSuccess.cshtml");
+                return RedirectToAction("Service","Catalog");
             }
             else { 
 
@@ -76,6 +76,8 @@ namespace iproby.Controllers
             в адресную строку браузера и нажмите enter.
 
             Спасибо!
+
+
             Письмо сгенерировано автоматически, если у вас есть вопросы пишите на почту info@iproby.ru";
             notification.SendMail(model.email, email_text);
             return View("~/Views/Registration/RegistrationStep2.cshtml");

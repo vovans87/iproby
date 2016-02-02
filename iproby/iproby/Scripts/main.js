@@ -1,8 +1,8 @@
 ﻿/// <reference path="D:\!PROJECTS\FromGitHub\iproby\iproby\iproby\Views/Announ/AddClients.cshtml" />
 /// <reference path="D:\!PROJECTS\FromGitHub\iproby\iproby\iproby\Views/Announ/AddClients.cshtml" />
-$('.registration').click(function () {
-    load_registration();
-})
+//$('.registration').click(function () {
+//    load_registration();
+//})
 $('.login_btn').click(function () {
     load_authorization();
 })
@@ -482,23 +482,84 @@ $(document).ready(function () {
 
 
 $(document).ready(function () {
-    $('.find_btn_types').click(function () {
-    $.ajax({
-        url: this.action,
-        type: this.method,
-        data: $(this).serialize(),
-        beforeSend: function () {
-            //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
-            $('.loading-wait-btn').button('loading');
-        },
-        success: function (result) {
-            //$('.modal-footer').addClass('hide');
-            $('.loading-wait-btn').button('reset');
-            $('.return_result_search').html(result);
-            //setTimeout(function () {
-            //    location.reload();
-            //}, 5000)
+    $('.find_btn_types_form').submit(function (e) {
+        if (e.isDefaultPrevented()) {
+            
+        } else {
+            
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                beforeSend: function () {
+                    ajaxindicatorstart('loading data.. please wait..')
+                },
+                success: function (result) {
+                    ajaxindicatorstop();
+                    $('.return_result_search').html(result);
+                    //setTimeout(function () {
+                    //    location.reload();
+                    //}, 5000)
+                }
+            });
+            e.preventDefault(); //STOP default action
+            e.unbind(); //unbind. to stop multiple form submit.
+
         }
     });
-    });
 });
+
+function ajaxindicatorstart(text) {
+    if (jQuery('body').find('#resultLoading').attr('id') != 'resultLoading') {
+        jQuery('body').append('<div id="resultLoading" style="display:none"><div><img src="../Content/img/ajax-loader.gif"><div>' + text + '</div></div><div class="bg"></div></div>');
+    }
+
+    jQuery('#resultLoading').css({
+        'width': '100%',
+        'height': '100%',
+        'position': 'fixed',
+        'z-index': '10000000',
+        'top': '0',
+        'left': '0',
+        'right': '0',
+        'bottom': '0',
+        'margin': 'auto'
+    });
+
+    jQuery('#resultLoading .bg').css({
+        'background': '#000000',
+        'opacity': '0.7',
+        'width': '100%',
+        'height': '100%',
+        'position': 'absolute',
+        'top': '0'
+    });
+
+    jQuery('#resultLoading>div:first').css({
+        'width': '250px',
+        'height': '75px',
+        'text-align': 'center',
+        'position': 'fixed',
+        'top': '0',
+        'left': '0',
+        'right': '0',
+        'bottom': '0',
+        'margin': 'auto',
+        'font-size': '16px',
+        'z-index': '10',
+        'color': '#ffffff'
+
+    });
+
+    jQuery('#resultLoading .bg').height('100%');
+    jQuery('#resultLoading').fadeIn(300);
+    jQuery('body').css('cursor', 'wait');
+}
+
+function ajaxindicatorstop() {
+    jQuery('#resultLoading .bg').height('100%');
+    jQuery('#resultLoading').fadeOut(300);
+    jQuery('body').css('cursor', 'default');
+}
+
+

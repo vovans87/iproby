@@ -4,13 +4,13 @@
     
 
 
-        <div class="b-layout b-layout_gradpane ">
-
-            <h1 style="font-size: 22px; padding-bottom: 28px; margin-top:0; ">
+        <div class="b-layout b-layout_gradpane " style=" position: relative; z-index: 2; overflow: hidden; ">
+            <img src="http://u0.s.progorodnn.ru/userfiles/picoriginal/img-20150129223306-169.jpg" style="left: 0; top: 0; width: 100%; height: auto; position: absolute; opacity: 0.3; z-index: 1;">
+            <h1 style="font-size: 22px; padding-bottom: 28px; margin-top: 0; position: relative; z-index: 2; ">
                 Регистрация
             </h1>
 
-            <div data-element-radiobox="role" style="font-family: Arial,Helvetica,sans-serif; line-height: 1; text-align: center ;width:666px;margin:0 auto;">
+            <div data-element-radiobox="role" style=" position: relative; z-index: 2; font-family: Arial,Helvetica,sans-serif; line-height: 1; text-align: center; width: 666px; margin: 0 auto;">
                 <div class="freelancer_label" style="display: inline-block; width: 333px; height: 66px; padding: 0; margin: 0; font-size: 13px; border-color: #ff7300; border-left: 2px solid #f5ab35; border-top: 2px solid #f5ab35; border-bottom: 2px solid #f5ab35; border-top-left-radius: 4px; border-bottom-left-radius: 4px; float: left; ">
                     <input style="display: none;" type="radio" name="freelancer" value="1" checked="checked" id="freelancer">
                     <label class="freelancer_label" for="freelancer" style="font-size: 20px; height: 100%; width: 100%; text-align: center; display: inline-block; padding-left: 2px; line-height: 3; color: #414141; vertical-align: top; font-family: Tahoma,Geneva,sans-serif; background: #f5ab35; color: #fff; display: inline-block; max-width: 100%; margin-bottom: 5px; font-weight: normal; ">
@@ -25,13 +25,13 @@
                 </div>
             </div>
 
-            <div id="employer-txt" style="display:none; margin-top:100px; width:100%; color: #333 !important; line-height: 44px; font-size: 30px;">
+            <div id="employer-txt" style="display: none; margin-top: 100px; width: 100%; color: #333 !important; line-height: 44px; font-size: 30px; position: relative; z-index: 2; ">
                 Зарегистрируйся и размести проект: <br>
                 мы подберем тебе <strong>лучших исполнителей</strong> с гарантией <br>
                 выполнения работы <strong>в срок</strong> через <strong> сделку!</strong>
             </div>
 
-            <div id="freelancer-txt" style="color: #333 !important; margin-top: 100px;  width: 100%; line-height: 44px; font-size: 30px; ">
+            <div id="freelancer-txt" style="color: #333 !important; margin-top: 100px; width: 100%; line-height: 44px; font-size: 30px; position: relative; z-index: 2; ">
                 Регистрируйся и зарабатывай <strong>с гарантией оплаты</strong> проектов <br>
                 от более чем <strong>1&nbsp;000 лучших заказчиков</strong> рунета, <br>
                 увеличивай свой рейтинг и доход <strong>на постоянном потоке заказов.</strong>
@@ -42,7 +42,7 @@
 
         <div style="padding: 40px 20px 0px 20px;background-color: white;">
 
-            <h2 style="font-size: 24px !important; padding-bottom: 25px !important; line-height: 1; margin: 0 !important; ">
+            <h2 style="font-size: 24px !important; padding-bottom: 5px !important; line-height: 1; margin: 0 !important; ">
                 Регистрируйся через почту
             </h2>
 
@@ -106,14 +106,14 @@
 
             </div>
 
-            <h2 style="padding-bottom: 25px ; color: #333 ; line-height: 1; font-size: 24px ;margin-top:80px; ">
+            <h2 style="padding-bottom:25px; color: #333; line-height: 1; font-size: 24px;margin-top:50px;">
                 Быстрая регистрация
             </h2>
 
             <div style="width:550px;margin:0 auto;height:100px;">
                 <a class="vk_regist" style="display:block;float:left;background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px;  line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; width: 154px; background: url('/Content/img/vk_ico_btn.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'vk'}" href="/auth/?param=vkontakte"></a>
-                <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 145px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/facebook_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
-                <a style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/odnoklassniki_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
+                <a class="fb_regist"  style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 145px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/facebook_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
+                <a class="ok_regist"  style="display: block; float: left; background-position: 0 -40px; background-repeat: no-repeat; background-color: #4d75a3; height: 40px; line-height: 40px; margin: 0px 9px 5px 9px; line-height: 50px; text-align: center; cursor: pointer; border-radius: 4px; width: 190px; font-size: 18px; color: #FFF; text-decoration: none; background: url('/Content/img/odnoklassniki_ico_reg.png'); " data-ga-event="{ec: 'user', ea: 'registration_socialnet_clicked',el: 'fb'}" href="/auth/?param=facebook"></a>
             </div>
 
             <div class="b-layout__txt" style="height:100px;">

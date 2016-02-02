@@ -67,16 +67,18 @@ body.loading_bg .waiting_modal_bg {
     overflow: hidden;
     width: 170px;
     text-align: center;
-    line-height: 3;
+    line-height: 3.2;
     font-size: 15px;
     color: white;
     font-weight: bold;
+    border: 1px solid #f5ab35
 }
 
     .registration:hover {
         cursor: pointer;
         background-color: #f6c679;
         border: 1px solid white;
+        color:white;
     }
 
     .registration:active {
@@ -192,6 +194,32 @@ body.loading_bg .waiting_modal_bg {
         background-color: #858586;
         border: 1px solid white;
     }
+
+        .find_btn_types {
+    width: 140px;
+    height: 45px;
+    background-color: #16171c;
+    float: right;
+    margin-top: -45px;
+    text-align: center;
+    margin-right: 30px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px; 
+    -khtml-border-radius: 4px; 
+    border-radius: 4px; 
+}
+
+    .find_btn_types:hover {
+        cursor: pointer;
+        background-color: #666667;
+        border: 1px solid white;
+    }
+        .find_btn_types:active {
+        cursor: pointer;
+        background-color: #858586;
+        border: 1px solid white;
+    }
+
 
 .social_band img, span:hover {
     cursor: pointer;
@@ -436,6 +464,15 @@ width: 880px; height: 45px; border: 2px solid #4C8EFA;
 .vk_regist:hover {
     opacity:0.7;
 }
+.fb_regist:hover {
+    opacity:0.7;
+}
+.ok_regist:hover {
+    opacity:0.7;
+}
+#send_btn:hover {
+    border:1px solid black!important;
+}
 .select_categ:hover {
     cursor:pointer;
 }
@@ -445,4 +482,10 @@ width: 880px; height: 45px; border: 2px solid #4C8EFA;
 .modal-open {
     overflow: auto;
         padding-right: 0px!important;
+}
+.freelancer_label:hover {
+    cursor:pointer;
+}
+.employer_label:hover {
+    cursor:pointer;
 }
