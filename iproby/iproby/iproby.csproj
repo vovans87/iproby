@@ -285,6 +285,7 @@
     <Content Include="Content\dialogs\Wait.html" />
     <Content Include="Content\dialogs\WriteMessage.html" />
     <Content Include="Content\imgareaselect-default.css" />
+    <Content Include="Content\img\ajax-loader.gif" />
     <Content Include="Content\img\announ_calend_ico.png" />
     <Content Include="Content\img\announ_letter_ico.png" />
     <Content Include="Content\img\announ_letter_ico2.png" />
@@ -342,9 +343,11 @@
     <Content Include="Content\img\header_middle_right_li.png" />
     <Content Include="Content\img\header_top_bg.png" />
     <Content Include="Content\img\header_top_login_ico.png" />
+    <Content Include="Content\img\header_top_login_ico_new.png" />
     <Content Include="Content\img\header_top_login_only.png" />
     <Content Include="Content\img\header_top_reg.png" />
     <Content Include="Content\img\header_top_reg_ico.png" />
+    <Content Include="Content\img\header_top_reg_ico_new.png" />
     <Content Include="Content\img\header_work_ico.png" />
     <Content Include="Content\img\icon_top.png" />
     <Content Include="Content\img\ipro_header_top.png" />
