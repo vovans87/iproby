@@ -10,87 +10,113 @@ $('.login_btn').click(function () {
 
 $(function () {
     $('.find_clients_btn').click(function () {
-        $.ajax({
-            url: '/Announ/AddClients',
-            type: 'GET',
-            success: function (result) {
-                $('#dialogAddClients').html(result);
-
-                $('#add_clients').modal({
-                    backdrop: 'static',
-                    keyboard: true
-                }, 'show');
-                $('form').validator();
-                $('form').submit(function (e) {
-                    if (e.isDefaultPrevented()) {
-                        //alert('32');
-                    } else {
-                        //tinymce.get('p').getContent();
-                        $.ajax({
-                            url: this.action,
-                            type: this.method,
-                            data: $(this).serialize(),
-                            beforeSend: function () {
-                                //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
-                                $('.loading-wait-btn').button('loading');
-                            },
-                            success: function (result) {
-                                //$('.modal-footer').addClass('hide');
-                                $('.return_result_clients').html(result);
-                                //setTimeout(function () {
-                                //    locatio.reload();
-                                //}, 3000)
-                            }
-                        });
-                    }
-                    return false;
-                });
-            }
-        });
-
-       
+        add_clients_last();
      });
 
     $('.find_workers_btn').click(function () {
-        $.ajax({
-            url: '/Announ/AddWorkers',
-            type: 'GET',
-            success: function (result) {
-                $('#dialogAddClients').html(result);
-             
-                $('#add_workers').modal({
-                    backdrop: 'static',
-                    keyboard: true
-                }, 'show');
-               
-                $('#add_workers form').validator();
-                $('#add_workers form').submit(function (e) {
-                    if (e.isDefaultPrevented()) {
-                    // data: 'parent_type=' + $("input[name='parent_type']").val() + '&type=' + $("input[name='type']").val() + '&name=' + $("input[name='name']").val() + '&about=' + $("input[name='about']").val() + '&description=' + $("input[name='description']").val() + '&subjects=' + $("input[name='subjects']").val() + '&price=' + $("input[name='price']").val(),
-                    } else {
-                        
-                        $.ajax({
-                            url: '/Announ/AddWorkers',
-                            type: 'POST',
-                            data: $('#add_workers form').serialize(),
-                            beforeSend: function () {
-                                //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
-                                $('#add_workers .loading-wait-btn').button('loading');
-                            },
-                            success: function (result) {
-                                $('#add_workers .return_result').html(result);
-                                //setTimeout(function () {
-                                //    location.reload();
-                                //}, 3000)
-                            }
-                        });
-                    }
-                    return false;
-                });
-            }
-         });
+        add_workers_last();
     });
+
+    $('.find_worker_small').click(function () {
+        add_workers_last();
+    });
+
+    $('.find_work_small').click(function () {
+        add_clients_last();
+    });
+    
 });
+function add_clients_last() {
+    $.ajax({
+        url: '/Announ/AddClients',
+        type: 'GET',
+        beforeSend: function () {
+            ajaxindicatorstart('loading data.. please wait..')
+        },
+        success: function (result) {
+            ajaxindicatorstop();
+            $('#dialogAddClients').html(result);
+
+            $('#add_clients').modal({
+                backdrop: 'static',
+                keyboard: true
+            }, 'show');
+            $('form').validator();
+            $('form').submit(function (e) {
+                if (e.isDefaultPrevented()) {
+                    //alert('32');
+                } else {
+                    //tinymce.get('p').getContent();
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        beforeSend: function () {
+                            //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
+                            $('.loading-wait-btn').button('loading');
+                        },
+                        success: function (result) {
+                            //$('.modal-footer').addClass('hide');
+                            $('.return_result_clients').html(result);
+                            //setTimeout(function () {
+                            //    locatio.reload();
+                            //}, 3000)
+                        }
+                    });
+                }
+                return false;
+            });
+
+
+        }
+    });
+
+}
+function add_workers_last() {
+    $.ajax({
+        url: '/Announ/AddWorkers',
+        type: 'GET',
+        beforeSend: function () {
+            ajaxindicatorstart('loading data.. please wait..')
+        },
+        success: function (result) {
+            ajaxindicatorstop();
+            $('#dialogAddClients').html(result);
+
+            $('#add_workers').modal({
+                backdrop: 'static',
+                keyboard: true
+            }, 'show');
+            $('form').validator();
+            $('form').submit(function (e) {
+                if (e.isDefaultPrevented()) {
+                    //alert('32');
+                } else {
+                    //tinymce.get('p').getContent();
+                    $.ajax({
+                        url: this.action,
+                        type: this.method,
+                        data: $(this).serialize(),
+                        beforeSend: function () {
+                            //    $('.return_wait').html('<div style="height:150px;width:100%;text-align:center;"> <br><br><h4 class="modal-title"> <span class="glyphicon glyphicon-time">  </span>  Пожалуйста, подождите... </h4><div class="progress" style="width:50%;margin:0 auto;"><div class="progress-bar progress-bar-info progress-bar-striped active" style="width:100%"></div><br/><br/></div></div>')
+                            $('.loading-wait-btn').button('loading');
+                        },
+                        success: function (result) {
+                            //$('.modal-footer').addClass('hide');
+                            $('.return_result_clients').html(result);
+                            //setTimeout(function () {
+                            //    locatio.reload();
+                            //}, 3000)
+                        }
+                    });
+                }
+                return false;
+            });
+
+
+        }
+    });
+}
 function load_add_clients() {
     $('#myContent').load("/Content/dialogs/AddClients.html", function () {
         $('#myDialog').modal({

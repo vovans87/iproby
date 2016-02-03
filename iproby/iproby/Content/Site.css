@@ -405,15 +405,14 @@ width: 880px; height: 45px; border: 2px solid #4C8EFA;
 .fa-google-plus:before {
     content: "\f0d5";
 }
-.btn-twitter {
-    color: white;
-    background-color: #55acee;
-    border-color: #55acee;
-}
+
 .btn-facebook {
     color: white;
     background-color: #3B5998;
     border-color: #3B5998;
+}
+.btn-odnoklassniki:hover {
+    color:black!important;
 }
 .btn-vk {
     color: white;
@@ -429,7 +428,7 @@ width: 880px; height: 45px; border: 2px solid #4C8EFA;
     top: 15px;
     z-index: 3000;
 }
-.form-control {
+.form-control_bg {
     background-color: #f5f5f5;
 }
 .b-layout_gradpane {
@@ -488,4 +487,12 @@ width: 880px; height: 45px; border: 2px solid #4C8EFA;
 }
 .employer_label:hover {
     cursor:pointer;
+}
+.find_worker_small:hover {
+    cursor:pointer;
+    border:1px solid white;
+}
+.find_work_small:hover {
+    cursor:pointer;
+    border:1px solid white;
 }
